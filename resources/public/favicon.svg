@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+   width="134.40834mm"
+   height="134.40834mm"
+   viewBox="0 0 134.40834 134.40834"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <style>
+    path {
+      fill: #173569;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        fill: #2f6db2;
+      }
+    }
+  </style>
+  <g
+   id="g1"
+   transform="translate(-45.171982,-93.237152)">
+    <path
+   id="path1"
+   style="display:inline;fill-opacity:1;stroke:none;stroke-width:0.953531;stroke-dasharray:none;stroke-opacity:1"
+   d="m 111.03602,101.83427 c -24.152389,0.5225 -45.501173,15.83313 -53.742181,38.54207 -10.426243,28.76887 3.072447,60.7129 30.969296,73.28745 L 136.6521,108.19499 c 0,0 16.71396,103.04621 -32.34358,110.10144 30.39109,4.19181 58.86026,-15.79891 65.23593,-45.80791 6.38285,-30.07199 -11.59173,-59.95575 -41.14801,-68.41097 -5.64161,-1.61393 -11.49388,-2.37016 -17.36042,-2.24328 z" />
+  </g>
+</svg>
