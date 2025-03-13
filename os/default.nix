@@ -11,6 +11,10 @@ let
   config = {
     imports = ["${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix" ];
 
+    services.getty.helpLine = builtins.concatStringsSep "\n"
+      (builtins.map (interface: "\\4{${interface}} \\6{${interface}}")
+        [ "ens3" "ens4" ]);
+
     system.stateVersion = "24.11";
 
     virtualisation.digitalOceanImage.compressionMethod = "bzip2";
