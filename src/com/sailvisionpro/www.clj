@@ -5,7 +5,8 @@
             [hiccup.page :as h]
             [ring.adapter.jetty :as jetty]
             [garden.core :as g]
-            [garden.stylesheet :as s]))
+            [garden.stylesheet :as s])
+  (:gen-class))
 
 (def css
   (g/css [:body

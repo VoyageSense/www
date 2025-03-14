@@ -11,4 +11,5 @@
   :repl-options {:init-ns com.sailvisionpro.www}
   :main com.sailvisionpro.www
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]
-                                  [ring/ring-devel "1.13.0"]]}})
+                                  [ring/ring-devel "1.13.0"]]}
+             :uberjar {:aot :all}})
