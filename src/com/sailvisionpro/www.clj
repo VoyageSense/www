@@ -1,6 +1,6 @@
 (ns com.sailvisionpro.www
+  (:gen-class)
   (:require [clout.core :as c]
-            [ring.middleware.refresh :as refresh]
             [ring.middleware.resource :as resource]
             [hiccup.page :as h]
             [ring.adapter.jetty :as jetty]
@@ -49,8 +49,9 @@
 (def handler
   (resource/wrap-resource route "public"))
 
-(def refreshingHandler
-  (refresh/wrap-refresh handler))
+(when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
+  (def refreshingHandler
+    (wrap-refresh handler)))
 
 (defn -main []
   (jetty/run-jetty handler {:port 8080}))
