@@ -8,11 +8,14 @@
             [garden.stylesheet :as s]))
 
 (def css
-  (g/css [:#slogan
+  (g/css [:body
+          {:margin 0}]
+         [:#slogan
           {:display :flex}
           {:align-items :center}
           {:justify-content :center}
           {:height "100vh"}
+          {:margin 0}
           {:font-family "Arial, sans-serif"}]
          (s/at-media {:prefers-color-scheme :dark}
                      [:body
