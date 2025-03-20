@@ -59,27 +59,26 @@
 
 (defn store []
   {:headers {"Content-Type" "text/html"}
-   :body (h/html5
-          (head "PopAI")
-          [:body
-           [:p "This is the product page for PopAI."]
-           [:form {:action routePurchase}
-            [:input {:type :hidden
-                     :name :product
-                     :value :popai}]
-            [:label {:for :location} "Location:"]
-            [:select#location {:name :location}
-             (map (fn [[area locations]]
-                    [:optgroup {:label area}
-                     (map (fn [[k v]] [:option {:value k} v]) locations)])
-                  locations)]
-            [:br]
-            [:label {:for :boatModel} "Boat Model:"]
-            [:select#boatModel {:name :boatModel}
-             (map (fn [[k v]] [:option {:value k} v]) boats)]
-            [:br]
-            [:input {:type :submit
-                     :value "Checkout"}]]])})
+   :body (h/html5 (head "PopAI")
+           [:body
+            [:p "This is the product page for PopAI."]
+            [:form {:action routePurchase}
+             [:input {:type :hidden
+                      :name :product
+                      :value :popai}]
+             [:label {:for :location} "Location:"]
+             [:select#location {:name :location}
+              (map (fn [[area locations]]
+                     [:optgroup {:label area}
+                      (map (fn [[k v]] [:option {:value k} v]) locations)])
+                   locations)]
+             [:br]
+             [:label {:for :boatModel} "Boat Model:"]
+             [:select#boatModel {:name :boatModel}
+              (map (fn [[k v]] [:option {:value k} v]) boats)]
+             [:br]
+             [:input {:type :submit
+                      :value "Checkout"}]]])})
 
 (defn purchase [request]
   (let [params (codec/form-decode (:query-string request))
@@ -88,10 +87,9 @@
         boat (get boats (keyword (get params "boatModel")))]
     (if (and location boat)
       {:headers {"Content-Type" "text/html"}
-       :body (h/html5
-              (head "Checkout")
-              [:body
-               [:p (str "Purchasing almanac for " location " aboard a " boat ".")]])}
+       :body (h/html5 (head "Checkout")
+               [:body
+                [:p (str "Purchasing almanac for " location " aboard a " boat ".")]])}
       {:status 401
        :headers {"Content-Type" "text/plain"}
        :body "invalid product configuration"})))
