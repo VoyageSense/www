@@ -7,7 +7,7 @@
                  [ring/ring-core "1.13.0"]
                  [ring/ring-jetty-adapter "1.13.0"]]
   :plugins [[lein-ring "0.12.6"]]
-  :ring {:handler com.sailvisionpro.www/refreshingHandler}
+  :ring {:handler com.sailvisionpro.www/refreshing-handler}
   :repl-options {:init-ns com.sailvisionpro.www}
   :main com.sailvisionpro.www
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]

@@ -39,10 +39,10 @@
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
    [:style css]])
 
-(defn sunOdyssey [model]
+(defn sun-odyssey [model]
   [:option (str "Jeanneau Sun Odyssey " model)])
 
-(def routePurchase "/store/purchase")
+(def route-purchase "/store/purchase")
 
 (def boats {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
             :oceanis-42.3 "Beneteau Oceanis 42.3"
@@ -62,7 +62,7 @@
    :body (h/html5 (head "PopAI")
            [:body
             [:p "This is the product page for PopAI."]
-            [:form {:action routePurchase}
+            [:form {:action route-purchase}
              [:input {:type :hidden
                       :name :product
                       :value :popai}]
@@ -88,6 +88,7 @@
     (if (and location boat)
       {:headers {"Content-Type" "text/html"}
        :body (h/html5 (head "Checkout")
+               [:style form-validation]
                [:body
                 [:p (str "Purchasing almanac for " location " aboard a " boat ".")]])}
       {:status 401
@@ -101,15 +102,15 @@
           [:body
            [:h1#slogan "The future of sailing is here"]])})
 
-(defn robotsExclusion []
+(defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
    :body "User-agent: *\nDisallow: /"})
 
 (defn route [request]
   (condp c/route-matches request
     (c/route-compile "/store/popai") (store)
-    (c/route-compile routePurchase) ((params/wrap-params purchase) request)
-    (c/route-compile "/robots.txt") (robotsExclusion)
+    (c/route-compile route-purchase) ((params/wrap-params purchase) request)
+    (c/route-compile "/robots.txt") (robots-exclusion)
     (c/route-compile "/") (home)
     (resp/redirect "/")))
 
@@ -117,7 +118,7 @@
   (resource/wrap-resource route "public"))
 
 (when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
-  (def refreshingHandler
+  (def refreshing-handler
     (wrap-refresh handler)))
 
 (defn -main []
