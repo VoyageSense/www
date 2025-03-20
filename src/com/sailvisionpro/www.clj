@@ -43,7 +43,18 @@
   ["input:valid:not(:focus):not(:placeholder-shown)"
    {:border "medium solid #00FF0060"}]
   ["input:invalid:not(:focus):not(:placeholder-shown)"
-   {:border "medium solid #FF000090"}])
+   {:border "medium solid #FF000090"}]
+  [:dialog
+   {:border 0
+    :background :transparent}]
+  ["dialog::backdrop"
+   {:backdrop-filter "blur(3px)"}]
+  [:#dialog-content
+   {:display :flex
+    :width "100%"
+    :height "100%"
+    :align-items :center
+    :justify-content :center}])
 
 (defn head [& {:keys [title extra-css]}]
   [:head
@@ -141,8 +152,13 @@
                           :required true
                           :style (g/style {:width "5em"})}]
                  [:br]
-                 [:button {:type :button}
-                  "Complete Purchase"]]])}
+                 [:button {:type :button
+                           :popovertarget :modal
+                           :popovertargetaction :show}
+                  "Complete Purchase"]]]
+               [:dialog#modal {:popover true}
+                [:div#dialog-content
+                 [:p "Sorry to mislead, but this isn't a real product (yet!)"]]])}
       {:status 401
        :headers {"Content-Type" "text/plain"}
        :body "invalid product configuration"})))
