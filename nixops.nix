@@ -4,7 +4,7 @@
   };
 
   www = let
-    domain = "sailvision.net";
+    domain = "sailvisionpro.com";
     host   = "www";
   in
     { modulesPath, config, pkgs, ... }: {
