@@ -1,7 +1,9 @@
 (ns com.sailvisionpro.www
   (:gen-class)
-  (:require [clojure.string :as str]
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
             [clout.core :as c]
+            [com.github.sikt-no.clj-jwt :as clj-jwt]
             [garden.core :as g]
             [garden.def :refer [defstylesheet]]
             [garden.stylesheet :as s]
@@ -12,6 +14,13 @@
             [ring.util.codec :as codec]
             [ring.util.response :as resp])
   (:gen-class))
+
+(defonce server (atom nil))
+
+(defn stop-server []
+  (when-let [srv @server]
+    (.stop srv))
+  (shutdown-agents))
 
 (defstylesheet css
   [:body
@@ -174,11 +183,32 @@
   {:headers {"Content-Type" "text/plain"}
    :body "User-agent: *\nDisallow: /"})
 
+(defn deploy [request]
+  (if-let [next-path (System/getenv "NEXT_PATH")]
+    (let [auth    (get (:headers request) "authorization")
+          jwk-url "https://token.actions.githubusercontent.com/.well-known/jwks"
+          uberjar (:body request)]
+      (if (try
+            (clj-jwt/unsign jwk-url auth)
+            (catch Throwable t (println "Unauthorized deployment attempted:" (ex-message t))))
+        (do
+          (println "Writing uberjar to" next-path)
+          (with-open [out (io/output-stream next-path)]
+            (io/copy uberjar out))
+          (println "Finished writing uberjar")
+          (future (stop-server))
+          {:status 201})
+        {:status 403}))
+    (do
+      (println "Deployment attempted but NEXT_PATH is not set")
+      {:status 400})))
+
 (defn route [request]
   (condp c/route-matches request
     (c/route-compile "/store/popai") (store)
     (c/route-compile route-purchase) ((params/wrap-params purchase) request)
     (c/route-compile "/robots.txt") (robots-exclusion)
+    (c/route-compile "/i/deploy") (deploy request)
     (c/route-compile "/") (home)
     (resp/redirect "/")))
 
@@ -190,4 +220,6 @@
     (wrap-refresh handler)))
 
 (defn -main []
-  (jetty/run-jetty handler {:port 8080}))
+  (let [srv (jetty/run-jetty handler {:port  8080
+                                      :join? false})]
+    (reset! server srv)))

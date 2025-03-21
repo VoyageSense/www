@@ -1,6 +1,7 @@
 (defproject com.sailvisionpro.www "unversioned"
   :url "https://sailvisionpro.com"
   :dependencies [[clout "2.2.1"]
+                 [com.github.sikt-no/clj-jwt "0.5.102"]
                  [garden "1.3.10"]
                  [hiccup "1.0.5"]
                  [org.clojure/clojure "1.11.1"]
