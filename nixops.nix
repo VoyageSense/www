@@ -48,6 +48,8 @@
           recommendedProxySettings = true;
           recommendedTlsSettings   = true;
 
+          clientMaxBodySize = "50m";
+
           virtualHosts = {
             "sailvisionpro.com" = {
               enableACME     = true;
