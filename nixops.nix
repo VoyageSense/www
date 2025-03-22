@@ -68,12 +68,20 @@
       };
 
       systemd.services = let
-        path = "/var/www/com.sailvisionpro.www-unversioned-standalone.jar";
+        uberjar  = "com.sailvisionpro.www-unversioned-standalone.jar";
+        path     = "/var/www/${uberjar}";
+        nextPath = "/tmp/${uberjar}";
       in {
         www = {
           requiredBy = [ "multi-user.target" ];
 
-          serviceConfig.ExecStart = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
+          serviceConfig = {
+            Environment = "NEXT_PATH=${nextPath}";
+            Restart     = "always";
+
+            ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
+            ExecStartPre = "-/bin/sh -c '[ -f ${nextPath} ] && mv ${nextPath} ${path}'";
+          };
         };
       };
 
