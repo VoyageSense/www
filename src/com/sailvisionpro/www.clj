@@ -187,10 +187,15 @@
   (if-let [next-path (System/getenv "NEXT_PATH")]
     (let [auth    (get (:headers request) "authorization")
           jwk-url "https://token.actions.githubusercontent.com/.well-known/jwks"
-          uberjar (:body request)]
-      (if (try
-            (clj-jwt/unsign jwk-url auth)
-            (catch Throwable t (println "Unauthorized deployment attempted:" (ex-message t))))
+          uberjar (:body request)
+          oidc    (try
+                    (clj-jwt/unsign jwk-url auth)
+                    (catch Throwable t
+                      (println "Failed to unsign OIDC token:" (ex-message t))))
+          oidc-aud  (:aud oidc)
+          oidc-repo (:repository oidc)]
+      (if (and (= oidc-aud  "prod-deploy")
+               (= oidc-repo "SailVision/www"))
         (do
           (println "Writing uberjar to" next-path)
           (with-open [out (io/output-stream next-path)]
@@ -198,7 +203,9 @@
           (println "Finished writing uberjar")
           (future (stop-server))
           {:status 201})
-        {:status 403}))
+        (do
+          (println "Unauthorized deployment attempted - aud:" oidc-aud " repo:" oidc-repo)
+          {:status 403})))
     (do
       (println "Deployment attempted but NEXT_PATH is not set")
       {:status 400})))
