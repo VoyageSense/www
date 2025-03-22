@@ -38,9 +38,14 @@ jobs:
 
       - name: Deploy server
         run: |
+          TOKEN=$(curl \
+            --header "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            --url    "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=prod-deploy" \
+            | jq --raw-output .value)
+
           curl \
             --fail-with-body \
             --silent \
             --data-binary @target/com.sailvisionpro.www-unversioned-standalone.jar \
-            --header      "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            --header      "Authorization: Bearer $TOKEN" \
             --url         https://www.sailvisionpro.com/i/deploy
