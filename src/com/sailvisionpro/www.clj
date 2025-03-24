@@ -65,6 +65,26 @@
     :align-items :center
     :justify-content :center}])
 
+(defstylesheet store-css
+  [:body
+   {:padding "0 1em"}]
+  [:.prompt
+   {:font-style :italic}]
+  [:details
+   {:margin-top "1em"}
+   [:summary
+    {:cursor :pointer}]]
+  [:form
+   {:display :grid
+    :grid-template-columns "auto 1fr"
+    :gap "0.3em"
+    :width :fit-content
+    :margin-inline-start "2em"}
+   [:button
+    {:grid-column "span 2"
+     :justify-self :center
+     :padding "0.3em 1em"}]])
+
 (defn head [& {:keys [title extra-css]}]
   [:head
    [:title (str/join " - " (keep identity ["SailVision" title]))]
@@ -77,6 +97,7 @@
   [:option (str "Jeanneau Sun Odyssey " model)])
 
 (def route-purchase "/store/purchase")
+(def route-request "/store/request")
 
 (def boats {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
             :oceanis-42.3 "Beneteau Oceanis 42.3"
@@ -93,10 +114,18 @@
 
 (defn store []
   {:headers {"Content-Type" "text/html"}
-   :body (h/html5 (head {:title "PopAI"})
+   :body (h/html5 (head {:title "PopAI" :extra-css store-css})
            [:body
-            [:p "This is the product page for PopAI."]
-            [:form {:action route-purchase}
+            [:h1 "Say hello to PopAI"]
+            [:p "Set sail with your ultimate crusing companion, PopAI (pronounced \"Popeye\")."]
+            [:p "PopAI is a voice assistant created by sailors and powered by detailed knowledge sets derived from crusing guides, government notices, local knowledge, as well as a host of other sources. This curated bank of information is invaluable for sailors of all skill levels."]
+            [:h3 [:q.prompt "PopAI, where can I anchor this evening?"]]
+            [:p "With access to all of this knowledge through PopAI's seamless voice interface, your trip will be one of the most memorable and relaxing in years. Forget about the stress of finding safe harbor during an unexpected squal, diagnosing an engine failure as you're motoring in a busy anchorage, or even just finding a great place to kick back and have a drink."]
+            [:h3 [:q.prompt "PopAI, what is the depth?"]]
+            [:p "Whether you're new to the world of sailing or a seasoned pro lamenting the loss of paper charts, PopAI is the perfect tool to augment your skill and ability, providing a second set of eyes to help you do what you do best."]
+            [:h3 [:q.prompt "PopAI, how do I get started?"]]
+            [:p "PopAI has digital almanacs available for select destinations and boat models, with more on the way. Choose your combination below before proceeding to checkout."]
+            [:form.sku-selection {:action route-purchase}
              [:input {:type :hidden
                       :name :product
                       :value :popai}]
@@ -106,13 +135,38 @@
                      [:optgroup {:label area}
                       (map (fn [[k v]] [:option {:value k} v]) locations)])
                    locations)]
-             [:br]
              [:label {:for :boatModel} "Boat Model:"]
              [:select#boatModel {:name :boatModel}
               (map (fn [[k v]] [:option {:value k} v]) boats)]
-             [:br]
-             [:input {:type :submit
-                      :value "Checkout"}]]])})
+             [:button {:type :submit} "Checkout"]]
+            [:details
+             [:summary "Don't see your destination or boat?"]
+             [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanacs. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
+             [:form.sku-request {:action route-request}
+              [:input {:type :hidden
+                       :name :product
+                       :value :popai}]
+              [:label {:for :destination} "Destination:"]
+              [:input#destination {:name :destination}]
+              [:label {:for :boatModel} "Boat Model:"]
+              [:input#boatModel {:name :boatModel}]
+              [:label {:for :timeframe} "Timeframe:"]
+              [:select#timeframe {:name :timeframe}
+               (map (fn [[year quarter]]
+                      (let [id (str year "q" quarter)
+                            months (case quarter
+                                     1 "January - March"
+                                     2 "April - June"
+                                     3 "July - September"
+                                     4 "October - December")]
+                        [:option {:value id} (str months ", " year)]))
+                    [[2025 2], [2025 3], [2025 4],
+                     [2026 1], [2026 2], [2026 3], [2026 4],
+                     [2027 1], [2027 2], [2027 3], [2027 4]])
+               ]
+              [:label {:for :emailAddress} "Email Address:"]
+              [:input#emailAddress {:name :emailAddress}]
+              [:button {:type :submit} "Request Almanacs"]]]])})
 
 (defn purchase [request]
   (let [params (codec/form-decode (:query-string request))
