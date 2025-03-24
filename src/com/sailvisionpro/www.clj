@@ -70,8 +70,7 @@
    [:title (str/join " - " (keep identity ["SailVision" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
    (if extra-css
-     [:style css
-      :style extra-css]
+     [:style css extra-css]
      [:style css])])
 
 (defn sun-odyssey [model]
