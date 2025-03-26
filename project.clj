@@ -8,9 +8,9 @@
                  [ring/ring-core "1.13.0"]
                  [ring/ring-jetty-adapter "1.13.0"]]
   :plugins [[lein-ring "0.12.6"]]
-  :ring {:handler com.sailvisionpro.www/refreshing-handler}
-  :repl-options {:init-ns com.sailvisionpro.www}
-  :main com.sailvisionpro.www
+  :ring {:handler com.sailvisionpro.www.core/refreshing-handler}
+  :repl-options {:init-ns com.sailvisionpro.www.core}
+  :main com.sailvisionpro.www.core
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]
                                   [ring/ring-devel "1.13.0"]]}
              :uberjar {:aot :all}})

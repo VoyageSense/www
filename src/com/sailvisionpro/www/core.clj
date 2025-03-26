@@ -1,4 +1,4 @@
-(ns com.sailvisionpro.www
+(ns com.sailvisionpro.www.core
   (:gen-class)
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
@@ -12,8 +12,7 @@
             [ring.middleware.params :as params]
             [ring.middleware.resource :as resource]
             [ring.util.codec :as codec]
-            [ring.util.response :as resp])
-  (:gen-class))
+            [ring.util.response :as resp]))
 
 (defonce server (atom nil))
 
