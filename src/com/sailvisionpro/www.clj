@@ -230,7 +230,7 @@
    :body (h/html5
           (head)
           [:body
-           [:h1#slogan "The future of sailing is here"]])})
+           [:h1#slogan "PopAI is the modern ancestor of J.A.R.V.I.S"]])})
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
