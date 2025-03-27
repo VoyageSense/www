@@ -4,6 +4,8 @@
             [clojure.string :as str]
             [clout.core :as c]
             [com.github.sikt-no.clj-jwt :as clj-jwt]
+            [com.sailvisionpro.www.db :as db]
+            [environ.core :refer [env]]
             [garden.core :as g]
             [garden.def :refer [defstylesheet]]
             [garden.stylesheet :as s]
@@ -20,6 +22,16 @@
   (when-let [srv @server]
     (.stop srv))
   (shutdown-agents))
+
+(defn db-storage []
+  (let [storage (env :db-storage)
+        [start] storage]
+    (case start
+      \: (keyword (subs storage 1))
+      \/ storage
+      nil (throw (IllegalArgumentException.
+                  "no storage directory specified for DB"))
+      (str (io/file (System/getProperty "user.dir") storage)))))
 
 (defstylesheet css
   [:body
@@ -224,6 +236,12 @@
        :headers {"Content-Type" "text/plain"}
        :body "invalid product configuration"})))
 
+(defn request-almanac [request]
+  (let [params (codec/form-decode (:query-string request))
+        storage (db-storage)
+        conn (db/connect storage :requested-almanacs)]
+    (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params)))))
+
 (defn home []
   {:headers {"Content-Type" "text/html"}
    :body (h/html5
@@ -236,7 +254,7 @@
    :body "User-agent: *\nDisallow: /"})
 
 (defn deploy [request]
-  (if-let [next-path (System/getenv "NEXT_PATH")]
+  (if-let [next-path (env :next-path)]
     (let [auth    (get (:headers request) "authorization")
           jwk-url "https://token.actions.githubusercontent.com/.well-known/jwks"
           uberjar (:body request)
@@ -266,6 +284,7 @@
   (condp c/route-matches request
     (c/route-compile "/store/popai") (store)
     (c/route-compile route-purchase) ((params/wrap-params purchase) request)
+    (c/route-compile route-request) ((params/wrap-params request-almanac) request)
     (c/route-compile "/robots.txt") (robots-exclusion)
     (c/route-compile "/i/deploy") (deploy request)
     (c/route-compile "/") (home)

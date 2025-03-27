@@ -71,12 +71,14 @@
         uberjar  = "com.sailvisionpro.www-unversioned-standalone.jar";
         path     = "/var/www/${uberjar}";
         nextPath = "/tmp/${uberjar}";
+        dbPath   = "db";
       in {
         www = {
           requiredBy = [ "multi-user.target" ];
 
           serviceConfig = {
             Environment = "NEXT_PATH=${nextPath}";
+            Environment = "DB_STORAGE=${dbPath}";
             Restart     = "always";
 
             ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
