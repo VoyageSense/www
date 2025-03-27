@@ -298,6 +298,7 @@
     (wrap-refresh handler)))
 
 (defn -main []
-  (let [srv (jetty/run-jetty handler {:port  8080
+  (let [srv (jetty/run-jetty handler {:host  "localhost"
+                                      :port  8080
                                       :join? false})]
     (reset! server srv)))
