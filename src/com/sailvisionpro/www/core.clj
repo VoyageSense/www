@@ -140,7 +140,7 @@
              [:button {:type :submit} "Checkout"]]
             [:details
              [:summary "Don't see your destination or boat?"]
-             [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanacs. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
+             [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanac. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
              [:form.sku-request {:action route-request}
               [:input {:type :hidden
                        :name :product
@@ -149,8 +149,8 @@
               [:input#destination {:name :destination}]
               [:label {:for :boatModel} "Boat Model:"]
               [:input#boatModel {:name :boatModel}]
-              [:label {:for :timeframe} "Timeframe:"]
-              [:select#timeframe {:name :timeframe}
+              [:label {:for :timeFrame} "Time Frame:"]
+              [:select#timeFrame {:name :timeFrame}
                (map (fn [[year quarter]]
                       (let [id (str year "q" quarter)
                             months (case quarter
@@ -165,7 +165,7 @@
                ]
               [:label {:for :emailAddress} "Email Address:"]
               [:input#emailAddress {:name :emailAddress}]
-              [:button {:type :submit} "Request Almanacs"]]]])})
+              [:button {:type :submit} "Request Almanac"]]]])})
 
 (defn purchase [request]
   (let [params (codec/form-decode (:query-string request))
