@@ -76,19 +76,19 @@
           clientMaxBodySize = "50m";
 
           virtualHosts = {
-            "www.i.sailvisionpro.com" = {
+            "www.i.${domain}" = {
               listenAddresses = [ adminIP ];
 
               locations."/status".extraConfig = "stub_status;";
             };
 
-            "sailvisionpro.com" = {
+            "${domain}" = {
               enableACME     = true;
               forceSSL       = true;
-              globalRedirect = "www.sailvisionpro.com";
+              globalRedirect = "www.${domain}";
             };
 
-            "www.sailvisionpro.com" = {
+            "www.${domain}" = {
               enableACME = true;
               forceSSL   = true;
 
