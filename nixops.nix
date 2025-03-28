@@ -112,7 +112,7 @@
         uberjar  = "com.sailvisionpro.www-unversioned-standalone.jar";
         path     = "/var/www/${uberjar}";
         nextPath = "/tmp/${uberjar}";
-        dbPath   = "db";
+        stateDir = "www";
       in {
         www = {
           requiredBy = [ "multi-user.target" ];
@@ -120,14 +120,43 @@
           serviceConfig = {
             Environment = ''
               NEXT_PATH=${nextPath}
-              DB_STORAGE=${dbPath}
+              DB_STORAGE=/var/lib/${stateDir}/db
             '';
-            Restart     = "always";
 
+            User  = config.users.users.www.name;
+            Group = config.users.users.www.group;
+
+            LockPersonality       = true;
+            NoNewPrivileges       = true;
+            PrivateDevices        = true;
+            PrivateTmp            = true;
+            PrivateUsers          = true;
+            ProtectClock          = true;
+            ProtectControlGroups  = "strict";
+            ProtectHome           = true;
+            ProtectHostname       = true;
+            ProtectKernelLogs     = true;
+            ProtectKernelModules  = true;
+            ProtectKernelTunables = true;
+            ProtectSystem         = "strict";
+            RestrictRealtime      = true;
+            RestrictSUIDSGID      = true;
+            StateDirectory        = stateDir;
+            SystemCallFilter      = [ "@system-service" ];
+
+            Restart      = "always";
             ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
             ExecStartPre = "-/bin/sh -c '[ -f ${nextPath} ] && mv ${nextPath} ${path}'";
           };
         };
+
+      users = {
+        users.www = {
+          group        = config.users.groups.www.name;
+          isSystemUser = true;
+        };
+
+        groups.www = {};
       };
 
       zramSwap = {
