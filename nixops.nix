@@ -6,6 +6,14 @@
   www = let
     domain = "sailvisionpro.com";
     host   = "www";
+
+    adminIP = "172.62.4.1";
+    vpnPort = 63532;
+
+    admins.alex.dali = {
+      publicKey  = "PmI3r4hottDbIt0kq/IEuGU6g5Zi89qZonS6XbzLrlY=";
+      allowedIPs = [ "172.62.4.16/32" ];
+    };
   in
     { modulesPath, config, pkgs, ... }: {
       imports = [
@@ -31,7 +39,24 @@
 
         useNetworkd = true;
 
-        firewall.allowedTCPPorts = [ 80 443 ];
+        firewall.allowedTCPPorts = [
+          config.services.nginx.defaultHTTPListenPort
+          config.services.nginx.defaultSSLListenPort
+        ];
+
+        firewall.allowedUDPPorts = [
+          config.networking.wireguard.interfaces.wg0.listenPort
+        ];
+
+        wireguard.interfaces.wg0 = {
+          ips        = [ "${adminIP}/24" ];
+          listenPort = vpnPort;
+
+          # Public Key: 4e0bwu5q6fInesM6T3BCgxJ4exrzhG4wbL5vDqJ3gAM=
+          privateKeyFile = "/var/lib/wireguard/private-key";
+
+          peers = builtins.concatMap builtins.attrValues (builtins.attrValues admins);
+        };
       };
 
       security.acme = {
@@ -51,6 +76,12 @@
           clientMaxBodySize = "50m";
 
           virtualHosts = {
+            "www.i.sailvisionpro.com" = {
+              listenAddresses = [ adminIP ];
+
+              locations."/status".extraConfig = "stub_status;";
+            };
+
             "sailvisionpro.com" = {
               enableACME     = true;
               forceSSL       = true;
