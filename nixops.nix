@@ -63,6 +63,13 @@
         acceptTerms     = true;
         defaults.email  = "alex+letsencrypt.org@sailvisionpro.com";
         # defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+
+        certs."wildcard.i.${domain}" = {
+          environmentFile = "/etc/secrets/digitalocean.env";
+          dnsProvider     = "digitalocean";
+          domain          = "*.i.${domain}";
+          group           = config.services.nginx.user;
+        };
       };
 
       services = {
@@ -77,6 +84,9 @@
 
           virtualHosts = {
             "www.i.${domain}" = {
+              useACMEHost = "wildcard.i.${domain}";
+              forceSSL    = true;
+
               listenAddresses = [ adminIP ];
 
               locations."/status".extraConfig = "stub_status;";
