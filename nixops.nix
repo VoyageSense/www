@@ -15,6 +15,10 @@
         publicKey  = "PmI3r4hottDbIt0kq/IEuGU6g5Zi89qZonS6XbzLrlY=";
         allowedIPs = [ "172.62.4.16/32" ];
       };
+      alex.timapple = {
+        publicKey  = "I5RcHamTFyP4nE+tQ2CFpQ3qY2VmC+YEi77SsxwzcQQ=";
+        allowedIPs = [ "172.62.4.17/32" ];
+      };
     };
   in
     { modulesPath, config, pkgs, ... }: {
