@@ -10,9 +10,11 @@
     adminIP = "172.62.4.1";
     vpnPort = 63532;
 
-    admins.alex.dali = {
-      publicKey  = "PmI3r4hottDbIt0kq/IEuGU6g5Zi89qZonS6XbzLrlY=";
-      allowedIPs = [ "172.62.4.16/32" ];
+    admins = {
+      alex.dali = {
+        publicKey  = "PmI3r4hottDbIt0kq/IEuGU6g5Zi89qZonS6XbzLrlY=";
+        allowedIPs = [ "172.62.4.16/32" ];
+      };
     };
   in
     { modulesPath, config, pkgs, ... }: {

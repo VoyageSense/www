@@ -1,4 +1,4 @@
-# com.sailvisionpro.www #
+# www #
 
 This is the backend for www.sailvisionpro.com!
 
@@ -23,3 +23,26 @@ down. systemd is configured to always restart the service and, before execution,
 move the new uberjar to its permanent location on disk.
 
 This is a fragile setup, since a working server is required to deploy new code.
+
+## Admin Access ##
+
+The server has two endpoints on which it listens: a publicly available one and a
+private one. This private one is hidden and only accessible via a WireGuard
+tunnel at <https://www.i.sailvisionpro.com/>. In order to get access, install
+the WireGuard app on your device(s) and configure the tunnel as follows:
+
+```ini
+[Interface]
+PrivateKey = ******
+Address = <next available IP>/32
+
+[Peer]
+PublicKey = 4e0bwu5q6fInesM6T3BCgxJ4exrzhG4wbL5vDqJ3gAM=
+AllowedIPs = 172.62.4.1/32
+Endpoint = www.sailvisionpro.com:63532
+PersistentKeepalive = 25
+```
+
+The next available IP can be determined by looking at the list of admins in the
+[machine configuration](./nixops.nix). Once the public key and IP are added, the
+machine can be redeployed and access will be granted.
