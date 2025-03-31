@@ -129,10 +129,10 @@
           requiredBy = [ "multi-user.target" ];
 
           serviceConfig = {
-            Environment = ''
-              NEXT_PATH=${nextPath}
-              DB_STORAGE=/var/lib/${stateDir}/db
-            '';
+            Environment = builtins.concatStringsSep " " [
+              "NEXT_PATH=${nextPath}"
+              "DB_STORAGE=/var/lib/${stateDir}/db"
+            ];
 
             User  = config.users.users.www.name;
             Group = config.users.users.www.group;
