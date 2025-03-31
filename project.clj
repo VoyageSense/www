@@ -9,7 +9,8 @@
                  [org.clojure/clojure "1.11.1"]
                  [ring/ring-core "1.13.0"]
                  [ring/ring-jetty-adapter "1.13.0"]]
-  :plugins [[lein-environ "1.2.0"]
+  :plugins [[dev.weavejester/lein-cljfmt "0.13.0"]
+            [lein-environ "1.2.0"]
             [lein-ring "0.12.6"]]
   :ring {:handler com.sailvisionpro.www.core/refreshing-handler}
   :repl-options {:init-ns com.sailvisionpro.www.core}
