@@ -38,7 +38,7 @@
    {:margin 0}]
   [:form
    [:label {:padding-right "10px"}]]
-  [:#slogan
+  [:#banner
    {:display :flex}
    {:align-items :center}
    {:justify-content :center}
@@ -247,7 +247,7 @@
    :body (h/html5
           (head)
           [:body
-           [:h1#slogan "The future of sailing is here."]])})
+           [:h1#banner "The future of sailing is here."]])})
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
@@ -280,6 +280,16 @@
       (println "Deployment attempted but NEXT_PATH is not set")
       {:status 400})))
 
+(defn internal-error []
+  {:headers {"Content-Type" "text/html"}
+   :body (h/html5
+          (head)
+          [:body
+           [:div#banner
+            [:div
+             [:h1 "Something appears to have gone wrong"]
+             [:p "Sorry about that! Please try again in a bit or send us a message and we'll take a look."]]]])})
+
 (defn route [request]
   (condp c/route-matches request
     (c/route-compile "/store/popai") (store)
@@ -287,6 +297,7 @@
     (c/route-compile route-request) ((params/wrap-params request-almanac) request)
     (c/route-compile "/robots.txt") (robots-exclusion)
     (c/route-compile "/i/deploy") (deploy request)
+    (c/route-compile "/5xx.html") (internal-error)
     (c/route-compile "/") (home)
     (resp/redirect "/")))
 

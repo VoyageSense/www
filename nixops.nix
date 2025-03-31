@@ -109,6 +109,11 @@
               forceSSL   = true;
 
               locations."/".proxyPass = "http://127.0.0.1:8080";
+
+              extraConfig = ''
+                proxy_intercept_errors     on;
+                error_page 500 502 503 504 /5xx.html;
+              '';
             };
           };
         };
