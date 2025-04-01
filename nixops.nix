@@ -119,13 +119,14 @@
         };
       };
 
-      systemd.services = let
+      systemd = let
         uberjar  = "net.sailvision.www-unversioned-standalone.jar";
-        path     = "/var/www/${uberjar}";
+        localBin = "/usr/local/bin";
+        path     = "${localBin}/${uberjar}";
         nextPath = "/tmp/${uberjar}";
         stateDir = "www";
       in {
-        www = {
+        services.www = {
           requiredBy = [ "multi-user.target" ];
 
           serviceConfig = {
@@ -160,6 +161,11 @@
             ExecStartPre = "-/bin/sh -c '[ -f ${nextPath} ] && mv ${nextPath} ${path}'";
           };
         };
+
+        tmpfiles.rules = [
+          "d ${localBin} 0775 root ${config.users.groups.www.name} - -"
+        ];
+      };
 
       users = {
         users.www = {
