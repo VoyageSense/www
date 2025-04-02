@@ -1,6 +1,6 @@
 # www #
 
-This is the backend for www.sailvisionpro.com!
+This is the backend for www.sailvision.net!
 
 ## Development ##
 
@@ -28,7 +28,7 @@ This is a fragile setup, since a working server is required to deploy new code.
 
 The server has two endpoints on which it listens: a publicly available one and a
 private one. This private one is hidden and only accessible via a WireGuard
-tunnel at <https://www.i.sailvisionpro.com/>. In order to get access, install
+tunnel at <https://www.i.sailvision.net/>. In order to get access, install
 the WireGuard app on your device(s) and configure the tunnel as follows:
 
 ```ini
@@ -39,7 +39,7 @@ Address = <next available IP>/32
 [Peer]
 PublicKey = 4e0bwu5q6fInesM6T3BCgxJ4exrzhG4wbL5vDqJ3gAM=
 AllowedIPs = 172.62.4.1/32
-Endpoint = www.sailvisionpro.com:63532
+Endpoint = www.sailvision.net:63532
 PersistentKeepalive = 25
 ```
 

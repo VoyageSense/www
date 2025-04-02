@@ -4,7 +4,7 @@
   };
 
   www = let
-    domain = "sailvisionpro.com";
+    domain = "sailvision.net";
     host   = "www";
 
     adminIP = "172.62.4.1";
@@ -120,7 +120,7 @@
       };
 
       systemd.services = let
-        uberjar  = "com.sailvisionpro.www-unversioned-standalone.jar";
+        uberjar  = "net.sailvision.www-unversioned-standalone.jar";
         path     = "/var/www/${uberjar}";
         nextPath = "/tmp/${uberjar}";
         stateDir = "www";

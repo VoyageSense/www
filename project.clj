@@ -1,5 +1,5 @@
-(defproject com.sailvisionpro.www "unversioned"
-  :url "https://sailvisionpro.com"
+(defproject net.sailvision.www "unversioned"
+  :url "https://sailvision.net"
   :dependencies [[clout "2.2.1"]
                  [com.github.sikt-no/clj-jwt "0.5.102"]
                  [com.datomic/local "1.0.285"]
@@ -12,9 +12,9 @@
   :plugins [[dev.weavejester/lein-cljfmt "0.13.0"]
             [lein-environ "1.2.0"]
             [lein-ring "0.12.6"]]
-  :ring {:handler com.sailvisionpro.www.core/refreshing-handler}
-  :repl-options {:init-ns com.sailvisionpro.www.core}
-  :main com.sailvisionpro.www.core
+  :ring {:handler net.sailvision.www.core/refreshing-handler}
+  :repl-options {:init-ns net.sailvision.www.core}
+  :main net.sailvision.www.core
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]
                                   [ring/ring-devel "1.13.0"]]
                    :env {:db-storage ":mem"}}

@@ -1,10 +1,10 @@
-(ns com.sailvisionpro.www.core
+(ns net.sailvision.www.core
   (:gen-class)
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
             [clout.core :as c]
             [com.github.sikt-no.clj-jwt :as clj-jwt]
-            [com.sailvisionpro.www.db :as db]
+            [net.sailvision.www.db :as db]
             [environ.core :refer [env]]
             [garden.core :as g]
             [garden.def :refer [defstylesheet]]

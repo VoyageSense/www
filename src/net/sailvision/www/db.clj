@@ -1,4 +1,4 @@
-(ns com.sailvisionpro.www.db
+(ns net.sailvision.www.db
   ;; (:gen-class)
   (:require [datomic.client.api :as d]))
 
