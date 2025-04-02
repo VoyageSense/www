@@ -143,7 +143,7 @@
             PrivateTmp            = true;
             PrivateUsers          = true;
             ProtectClock          = true;
-            ProtectControlGroups  = "strict";
+            ProtectControlGroups  = true;
             ProtectHome           = true;
             ProtectHostname       = true;
             ProtectKernelLogs     = true;
