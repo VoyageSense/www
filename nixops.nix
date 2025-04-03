@@ -151,6 +151,7 @@
             ProtectKernelModules  = true;
             ProtectKernelTunables = true;
             ProtectSystem         = "strict";
+            ReadWritePaths        = localBin;
             RestrictRealtime      = true;
             RestrictSUIDSGID      = true;
             StateDirectory        = stateDir;
@@ -158,7 +159,15 @@
 
             Restart      = "always";
             ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
-            ExecStartPre = "-/bin/sh -c '[ -f ${nextPath} ] && mv ${nextPath} ${path}'";
+            ExecStopPost = let
+              script = builtins.replaceStrings ["\n"] ["\\n"] ''
+                if [ -f ${nextPath} ]
+                then
+                  mv ${nextPath} ${path}
+                  echo Updated uberjar
+                fi
+              '';
+            in "/bin/sh -e -c '${script}'";
           };
         };
 
