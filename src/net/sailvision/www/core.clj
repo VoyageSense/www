@@ -78,7 +78,7 @@
 
 (defstylesheet store-css
   [:body
-   {:padding "0 1em"}]
+   {:padding "0 1em 2em"}]
   [:.prompt
    {:font-style :italic}]
   [:details
@@ -89,8 +89,7 @@
    {:display :grid
     :grid-template-columns "auto 1fr"
     :gap "0.3em"
-    :width :fit-content
-    :margin-inline-start "2em"}
+    :width :fit-content}
    [:button
     {:grid-column "span 2"
      :justify-self :center
@@ -100,6 +99,7 @@
   [:head
    [:title (str/join " - " (keep identity ["SailVision" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
+   [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
    (if extra-css
      [:style css extra-css]
      [:style css])])
@@ -146,8 +146,8 @@
                      [:optgroup {:label area}
                       (map (fn [[k v]] [:option {:value k} v]) locations)])
                    locations)]
-             [:label {:for :boatModel} "Boat Model:"]
-             [:select#boatModel {:name :boatModel}
+             [:label {:for :boat} "Boat:"]
+             [:select#boat {:name :boat}
               (map (fn [[k v]] [:option {:value k} v]) boats)]
              [:button {:type :submit} "Checkout"]]
             [:details
@@ -159,8 +159,8 @@
                        :value :popai}]
               [:label {:for :destination} "Destination:"]
               [:input#destination {:name :destination}]
-              [:label {:for :boatModel} "Boat Model:"]
-              [:input#boatModel {:name :boatModel}]
+              [:label {:for :boat} "Boat:"]
+              [:input#boat {:name :boat}]
               [:label {:for :timeFrame} "Time Frame:"]
               [:select#timeFrame {:name :timeFrame}
                (map (fn [[year quarter]]
@@ -183,7 +183,7 @@
   (let [params (codec/form-decode (:query-string request))
         location (get (reduce-kv (fn [acc k v] (merge acc v)) {} locations)
                       (keyword (get params "location")))
-        boat (get boats (keyword (get params "boatModel")))]
+        boat (get boats (keyword (get params "boat")))]
     (if (and location boat)
       {:headers {"Content-Type" "text/html"}
        :body (h/html5 (head {:title "Checkout" :extra-css form-validation-css})

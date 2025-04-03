@@ -28,8 +28,8 @@
       conn)))
 
 (defn insert-requested-almanac
-  [{:keys [conn destination boatModel timeFrame emailAddress]}]
+  [{:keys [conn destination boat timeFrame emailAddress]}]
   (d/transact conn {:tx-data [{:requested-almanacs/destination destination
-                               :requested-almanacs/boat-model boatModel
+                               :requested-almanacs/boat-model boat
                                :requested-almanacs/time-frame timeFrame
                                :requested-almanacs/email-address emailAddress}]}))
