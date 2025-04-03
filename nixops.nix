@@ -157,7 +157,9 @@
             StateDirectory        = stateDir;
             SystemCallFilter      = [ "@system-service" ];
 
-            Restart      = "always";
+            Restart           = "always";
+            SuccessExitStatus = 143;
+
             ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
             ExecStopPost = let
               script = builtins.replaceStrings ["\n"] ["\\n"] ''
