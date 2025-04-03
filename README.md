@@ -24,6 +24,13 @@ move the new uberjar to its permanent location on disk.
 
 This is a fragile setup, since a working server is required to deploy new code.
 
+### Configuration ###
+
+| Environment Variable | Description                                           |
+|:---------------------|:------------------------------------------------------|
+| `NEXT_PATH`          | Location to write the uploaded uberjar for deployment |
+| `DB_STOARGE`         | Location of the database, or `:mem`                   |
+
 ## Admin Access ##
 
 The server has two endpoints on which it listens: a publicly available one and a
