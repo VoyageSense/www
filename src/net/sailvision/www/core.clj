@@ -1,20 +1,20 @@
 (ns net.sailvision.www.core
   (:gen-class)
-  (:require [clojure.java.io :as io]
-            [clojure.string :as str]
-            [clout.core :as c]
-            [com.github.sikt-no.clj-jwt :as clj-jwt]
-            [net.sailvision.www.db :as db]
-            [environ.core :refer [env]]
-            [garden.core :as g]
-            [garden.def :refer [defstylesheet]]
-            [garden.stylesheet :as s]
-            [hiccup.page :as h]
-            [ring.adapter.jetty :as jetty]
-            [ring.middleware.params :as params]
-            [ring.middleware.resource :as resource]
-            [ring.util.codec :as codec]
-            [ring.util.response :as resp]))
+  (:require
+   [clojure.java.io :as io]
+   [clout.core :as c]
+   [com.github.sikt-no.clj-jwt :as clj-jwt]
+   [environ.core :refer [env]]
+   [garden.core :as g]
+   [garden.def :refer [defstylesheet]]
+   [hiccup.page :as h]
+   [net.sailvision.www.db :as db]
+   [net.sailvision.www.page :as page]
+   [ring.adapter.jetty :as jetty]
+   [ring.middleware.params :as params]
+   [ring.middleware.resource :as resource]
+   [ring.util.codec :as codec]
+   [ring.util.response :as resp]))
 
 (defonce server (atom nil))
 
@@ -32,29 +32,6 @@
       nil (throw (IllegalArgumentException.
                   "no storage directory specified for DB"))
       (str (io/file (System/getProperty "user.dir") storage)))))
-
-(defstylesheet css
-  [:body
-   {:margin 0}]
-  [:form
-   [:label {:padding-right "10px"}]]
-  [:#banner
-   {:display :flex}
-   {:align-items :center}
-   {:justify-content :center}
-   {:height "100vh"}
-   {:margin 0}
-   {:font-family "Arial, sans-serif"}]
-  (s/at-media {:prefers-color-scheme :dark}
-              [:body
-               {:background (s/rgb 30 30 30)}
-               {:color (s/rgb 200 200 200)}]
-              [:html
-               {:color-scheme "dark !important"}])
-  (s/at-media {:prefers-color-scheme :light}
-              [:body
-               {:background (s/rgb 245 245 245)}
-               {:color (s/rgb 50 50 50)}]))
 
 (defstylesheet form-validation-css
   ["input:not([type=\"submit\"])"
@@ -95,18 +72,6 @@
      :justify-self :center
      :padding "0.3em 1em"}]])
 
-(defn head [& {:keys [title extra-css]}]
-  [:head
-   [:title (str/join " - " (keep identity ["SailVision" title]))]
-   [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
-   [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
-   (if extra-css
-     [:style css extra-css]
-     [:style css])])
-
-(defn sun-odyssey [model]
-  [:option (str "Jeanneau Sun Odyssey " model)])
-
 (def route-purchase "/store/purchase")
 (def route-request "/store/request")
 
@@ -125,7 +90,7 @@
 
 (defn store []
   {:headers {"Content-Type" "text/html"}
-   :body (h/html5 (head {:title "PopAI" :extra-css store-css})
+   :body (h/html5 (page/head {:title "PopAI" :extra-css store-css})
            [:body
             [:h1 "Say hello to PopAI"]
             [:p "Set sail with your ultimate crusing companion, PopAI (pronounced \"Popeye\")."]
@@ -186,7 +151,7 @@
         boat (get boats (keyword (get params "boat")))]
     (if (and location boat)
       {:headers {"Content-Type" "text/html"}
-       :body (h/html5 (head {:title "Checkout" :extra-css form-validation-css})
+       :body (h/html5 (page/head {:title "Checkout" :extra-css form-validation-css})
                [:body
                 [:p (str "Purchasing almanac for " location " aboard a " boat ".")]
                 [:form
@@ -245,7 +210,7 @@
 (defn home []
   {:headers {"Content-Type" "text/html"}
    :body (h/html5
-          (head)
+          (page/head)
           [:body
            [:h1#banner "The future of sailing is here."]])})
 
@@ -283,7 +248,7 @@
 (defn internal-error []
   {:headers {"Content-Type" "text/html"}
    :body (h/html5
-          (head)
+          (page/head)
           [:body
            [:div#banner
             [:div
