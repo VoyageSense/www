@@ -12,7 +12,7 @@
   :plugins [[dev.weavejester/lein-cljfmt "0.13.0"]
             [lein-environ "1.2.0"]
             [lein-ring "0.12.6"]]
-  :ring {:handler net.sailvision.www.core/refreshing-handler}
+  :ring {:handler net.sailvision.www.core/dev-handler}
   :repl-options {:init-ns net.sailvision.www.core}
   :main net.sailvision.www.core
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]

@@ -95,7 +95,10 @@
 
               listenAddresses = [ adminIP ];
 
-              locations."/status".extraConfig = "stub_status;";
+              locations = {
+                "/status".extraConfig = "stub_status;";
+                "/admin".proxyPass    = "http://127.0.0.1:9080";
+              };
             };
 
             "${domain}" = {

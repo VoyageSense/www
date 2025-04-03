@@ -8,18 +8,21 @@
    [garden.core :as g]
    [garden.def :refer [defstylesheet]]
    [hiccup.page :as h]
+   [net.sailvision.www.admin :as admin]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.params :as params]
-   [ring.middleware.resource :as resource]
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
-(defonce server (atom nil))
+(defonce public-server (atom nil))
+(defonce admin-server (atom nil))
 
 (defn stop-server []
-  (when-let [srv @server]
+  (when-let [srv @public-server]
+    (.stop srv))
+  (when-let [srv @admin-server]
     (.stop srv))
   (shutdown-agents))
 
@@ -266,15 +269,20 @@
     (c/route-compile "/") (home)
     (resp/redirect "/")))
 
-(def handler
-  (resource/wrap-resource route "public"))
-
 (when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
-  (def refreshing-handler
-    (wrap-refresh handler)))
+  (def dev-handler
+    (wrap-refresh
+     (fn dev-route [request]
+       (condp c/route-matches request
+         (c/route-compile "/admin*") (admin/route request)
+         (route request))))))
 
 (defn -main []
-  (let [srv (jetty/run-jetty handler {:host  "localhost"
-                                      :port  8080
-                                      :join? false})]
-    (reset! server srv)))
+  (let [public (jetty/run-jetty route {:host  "localhost"
+                                       :port  8080
+                                       :join? false})
+        admin (jetty/run-jetty admin/route {:host  "localhost"
+                                            :port  9080
+                                            :join? false})]
+    (reset! public-server public)
+    (reset! admin-server admin)))
