@@ -26,16 +26,6 @@
     (.stop srv))
   (shutdown-agents))
 
-(defn db-storage []
-  (let [storage (env :db-storage)
-        [start] storage]
-    (case start
-      \: (keyword (subs storage 1))
-      \/ storage
-      nil (throw (IllegalArgumentException.
-                  "no storage directory specified for DB"))
-      (str (io/file (System/getProperty "user.dir") storage)))))
-
 (defstylesheet form-validation-css
   ["input:not([type=\"submit\"])"
    {:box-sizing :border-box}
@@ -206,7 +196,7 @@
 
 (defn request-almanac [request]
   (let [params (codec/form-decode (:query-string request))
-        storage (db-storage)
+        storage (db/storage)
         conn (db/connect storage :requested-almanacs)]
     (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params)))))
 

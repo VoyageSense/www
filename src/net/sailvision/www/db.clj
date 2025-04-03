@@ -1,6 +1,8 @@
 (ns net.sailvision.www.db
-  ;; (:gen-class)
-  (:require [datomic.client.api :as d]))
+  (:require
+   [clojure.java.io :as io]
+   [datomic.client.api :as d]
+   [environ.core :refer [env]]))
 
 (def requested-almanacs-schema
   [{:db/ident :requested-almanacs/destination
@@ -15,6 +17,16 @@
    {:db/ident :requested-almanacs/email-address
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}])
+
+(defn storage []
+  (let [storage (env :db-storage)
+        [start] storage]
+    (case start
+      \: (keyword (subs storage 1))
+      \/ storage
+      nil (throw (IllegalArgumentException.
+                  "no storage directory specified for DB"))
+      (str (io/file (System/getProperty "user.dir") storage)))))
 
 (defn connect [storage database]
   (let [client (d/client {:server-type :datomic-local
@@ -33,3 +45,21 @@
                                :requested-almanacs/boat-model boat
                                :requested-almanacs/time-frame timeFrame
                                :requested-almanacs/email-address emailAddress}]}))
+
+(defn list-requested-almanacs
+  [{:keys [conn]}]
+  (let [db (d/db conn)
+        ids (d/q '[:find ?e
+                   :where
+                   [?e :requested-almanacs/destination]
+                   [?e :requested-almanacs/boat-model]
+                   [?e :requested-almanacs/time-frame]
+                   [?e :requested-almanacs/email-address]]
+                 db)]
+    (map (fn [id]
+           (let [entity (d/pull db '[*] (first id))]
+             {:destination   (:requested-almanacs/destination entity)
+              :boat          (:requested-almanacs/boat-model entity)
+              :time-frame    (:requested-almanacs/time-frame entity)
+              :email-address (:requested-almanacs/email-address entity)}))
+         ids)))
