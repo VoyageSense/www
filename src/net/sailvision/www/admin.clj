@@ -21,7 +21,7 @@
    [:td {:background-color "#80808018"}]])
 
 (defn home []
-  {:headers {"Content-Type" "text/html"}
+  {:headers page/headers
    :body (h/html5
           (page/head {:title     "Admin"
                       :extra-css base-css})
@@ -33,7 +33,7 @@
 (defn requested-almanacs []
   (let [storage (db/storage)
         conn    (db/connect storage :requested-almanacs)]
-    {:headers {"Content-Type" "text/html"}
+    {:headers page/headers
      :body (h/html5
             (page/head {:title     "Admin - Requested Almanacs"
                         :extra-css base-css})

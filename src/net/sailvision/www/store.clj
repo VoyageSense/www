@@ -113,7 +113,7 @@
      :padding      "0.3em 1em"}]])
 
 (defn popai []
-  {:headers {"Content-Type" "text/html"}
+  {:headers page/headers
    :body
    (h/html5
     (page/head {:title "PopAI" :extra-css base-css})
@@ -206,7 +206,7 @@
                       (keyword (get params "location")))
         boat (get boats (keyword (get params "boat")))]
     (if (and location boat)
-      {:headers {"Content-Type" "text/html"}
+      {:headers page/headers
        :body
        (h/html5
         (page/head {:title "Checkout" :extra-css form-validation-css})
@@ -216,7 +216,7 @@
          [:dialog#modal {:popover true}
           checkout-modal]])}
       {:status 401
-       :headers {"Content-Type" "text/plain"}
+       :headers page/headers
        :body "invalid product configuration"})))
 
 (defn request-almanac [request]

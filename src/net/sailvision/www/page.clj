@@ -4,6 +4,8 @@
    [garden.def :refer [defstylesheet]]
    [garden.stylesheet :as s]))
 
+(def headers {"Content-Type" "text/html"})
+
 (defstylesheet base-css
   [:body
    {:margin 0}]

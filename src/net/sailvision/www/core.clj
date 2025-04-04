@@ -24,7 +24,7 @@
   (shutdown-agents))
 
 (defn home []
-  {:headers {"Content-Type" "text/html"}
+  {:headers page/headers
    :body (h/html5
           (page/head)
           [:body
@@ -62,7 +62,7 @@
       {:status 400})))
 
 (defn internal-error []
-  {:headers {"Content-Type" "text/html"}
+  {:headers page/headers
    :body (h/html5
           (page/head)
           [:body
