@@ -138,8 +138,9 @@
               "DB_STORAGE=/var/lib/${stateDir}/db"
             ];
 
-            User  = config.users.users.www.name;
-            Group = config.users.users.www.group;
+            User                = config.users.users.www.name;
+            Group               = config.users.users.www.group;
+            SupplementaryGroups = config.services.nginx.group;
 
             LockPersonality       = true;
             NoNewPrivileges       = true;
@@ -154,6 +155,7 @@
             ProtectKernelModules  = true;
             ProtectKernelTunables = true;
             ProtectSystem         = "strict";
+            ReadOnlyPaths         = "/var/log/nginx/access.log";
             ReadWritePaths        = localBin;
             RestrictRealtime      = true;
             RestrictSUIDSGID      = true;
