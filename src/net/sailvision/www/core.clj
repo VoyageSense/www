@@ -71,11 +71,14 @@
              [:h1 "Something appears to have gone wrong"]
              [:p "Sorry about that! Please try again in a bit or send us a message and we'll take a look."]]]])})
 
+(defn wrap-params [request handler]
+  #(handler (merge % (params/params-request request))))
+
 (defn route [request]
   (condp c/route-matches request
-    (c/route-compile "/store/:token")             :>> store/popai
-    (c/route-compile store/route-checkout)        ((params/wrap-params store/checkout)        request)
-    (c/route-compile store/route-request-almanac) ((params/wrap-params store/request-almanac) request)
+    (c/route-compile store/route-checkout)        :>> (wrap-params request store/checkout)
+    (c/route-compile store/route-request-almanac) :>> (wrap-params request store/request-almanac)
+    (c/route-compile store/route-home)            :>> (wrap-params request store/popai)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 (internal-error)

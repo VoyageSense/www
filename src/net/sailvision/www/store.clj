@@ -1,5 +1,6 @@
 (ns net.sailvision.www.store
   (:require
+   [clojure.string :as str]
    [hiccup.page :as h]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
@@ -7,7 +8,8 @@
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
-(def route-checkout "/store/checkout")
+(def route-home "/store/:token")
+(def route-checkout (str route-home "/checkout"))
 (def route-request-almanac "/store/request-almanac")
 
 (defn boats [token]
@@ -126,8 +128,8 @@
      :align-items     :center
      :justify-content :center}]))
 
-(defn checkout-form [{:keys [boats locations]}]
-  [:form.sku-selection {:action route-checkout}
+(defn checkout-form [{:keys [boats locations token]}]
+  [:form.sku-selection {:action (str/replace-first route-checkout ":token" (name token))}
    [:input {:type  :hidden
             :name  :product
             :value :popai}]
@@ -154,7 +156,8 @@
         [:body
          popai-description
          (checkout-form {:boats     boats
-                         :locations locations})
+                         :locations locations
+                         :token     token})
          almanac-request])}
       (resp/redirect "/"))))
 
@@ -217,10 +220,13 @@
    [:p "Sorry to mislead, but this isn't a real product (yet!)"]])
 
 (defn checkout [request]
-  (let [params (codec/form-decode (:query-string request))
-        location (get (reduce-kv (fn [acc k v] (merge acc v)) {} locations)
+  (let [token    (keyword (:token request))
+        params   (codec/form-decode (:query-string request))
+        location (get (reduce-kv (fn [acc k v]
+                                   (merge acc v)) {} (locations token))
                       (keyword (get params "location")))
-        boat (get boats (keyword (get params "boat")))]
+        boat     (get (boats token)
+                      (keyword (get params "boat")))]
     (if (and location boat)
       {:headers page/headers
        :body
