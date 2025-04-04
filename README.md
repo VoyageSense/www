@@ -35,7 +35,7 @@ This is a fragile setup, since a working server is required to deploy new code.
 
 The server has two endpoints on which it listens: a publicly available one and a
 private one. This private one is hidden and only accessible via a WireGuard
-tunnel at <https://www.i.sailvision.net/>. In order to get access, install
+tunnel at <https://www.i.sailvision.net/admin>. In order to get access, install
 the WireGuard app on your device(s) and configure the tunnel as follows:
 
 ```ini
