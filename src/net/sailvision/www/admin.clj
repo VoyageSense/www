@@ -1,7 +1,7 @@
 (ns net.sailvision.www.admin
   (:require
    [clout.core :as c]
-   [garden.def :refer [defstylesheet]]
+   [garden.core :as g]
    [hiccup.page :as h]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
@@ -9,16 +9,18 @@
 
 (def route-requested-almanacs "/admin/requested-almanacs")
 
-(defstylesheet base-css
-  [:body {:padding "0em 1em"}]
-  [:body {:padding "0em 1em"}]
-  [:table {:border-collapse :collapse}]
-  [:td :th {:border  "thin solid"
-            :padding "0.2em 0.4em"}]
-  [:td {:text-align :center}]
-  [:th {:background-color "#80808030"}]
-  ["tr:nth-child(odd)"
-   [:td {:background-color "#80808018"}]])
+(def base-css
+  (g/css
+   {:pretty-print? false}
+   [:body {:padding "0em 1em"}]
+   [:body {:padding "0em 1em"}]
+   [:table {:border-collapse :collapse}]
+   [:td :th {:border  "thin solid"
+             :padding "0.2em 0.4em"}]
+   [:td {:text-align :center}]
+   [:th {:background-color "#80808030"}]
+   ["tr:nth-child(odd)"
+    [:td {:background-color "#80808018"}]]))
 
 (defn home []
   {:headers page/headers

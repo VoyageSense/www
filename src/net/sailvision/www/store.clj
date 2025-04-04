@@ -4,7 +4,6 @@
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [garden.core :as g]
-   [garden.def :refer [defstylesheet]]
    [ring.util.codec :as codec]))
 
 (def route-checkout "/store/checkout")
@@ -93,24 +92,26 @@
     [:input#emailAddress {:name :emailAddress}]
     [:button {:type :submit} "Request Almanac"]]])
 
-(defstylesheet base-css
-  [:body
-   {:padding "0 1em 2em"}]
-  [:.prompt
-   {:font-style :italic}]
-  [:details
-   {:margin-top "1em"}
-   [:summary
-    {:cursor :pointer}]]
-  [:form
-   {:display               :grid
-    :grid-template-columns "auto 1fr"
-    :gap   "0.3em"
-    :width :fit-content}
-   [:button
-    {:grid-column  "span 2"
-     :justify-self :center
-     :padding      "0.3em 1em"}]])
+(def base-css
+  (g/css
+   {:pretty-print? false}
+   [:body
+    {:padding "0 1em 2em"}]
+   [:.prompt
+    {:font-style :italic}]
+   [:details
+    {:margin-top "1em"}
+    [:summary
+     {:cursor :pointer}]]
+   [:form
+    {:display               :grid
+     :grid-template-columns "auto 1fr"
+     :gap   "0.3em"
+     :width :fit-content}
+    [:button
+     {:grid-column  "span 2"
+      :justify-self :center
+      :padding      "0.3em 1em"}]]))
 
 (defn popai []
   {:headers page/headers
@@ -122,25 +123,27 @@
      checkout-form
      almanac-request])})
 
-(defstylesheet form-validation-css
-  ["input:not([type=\"submit\"])"
-   {:box-sizing :border-box}
-   {:border "medium solid transparent"}]
-  ["input:valid:not(:focus):not(:placeholder-shown)"
-   {:border "medium solid #00FF0060"}]
-  ["input:invalid:not(:focus):not(:placeholder-shown)"
-   {:border "medium solid #FF000090"}]
-  [:dialog
-   {:border     0
-    :background :transparent}]
-  ["dialog::backdrop"
-   {:backdrop-filter "blur(3px)"}]
-  [:#dialog-content
-   {:display         :flex
-    :width           "100%"
-    :height          "100%"
-    :align-items     :center
-    :justify-content :center}])
+(def form-validation-css
+  (g/css
+   {:pretty-print? false}
+   ["input:not([type=\"submit\"])"
+    {:box-sizing :border-box}
+    {:border "medium solid transparent"}]
+   ["input:valid:not(:focus):not(:placeholder-shown)"
+    {:border "medium solid #00FF0060"}]
+   ["input:invalid:not(:focus):not(:placeholder-shown)"
+    {:border "medium solid #FF000090"}]
+   [:dialog
+    {:border     0
+     :background :transparent}]
+   ["dialog::backdrop"
+    {:backdrop-filter "blur(3px)"}]
+   [:#dialog-content
+    {:display         :flex
+     :width           "100%"
+     :height          "100%"
+     :align-items     :center
+     :justify-content :center}]))
 
 (def credit-card-cardholder
   [:input {:type         :text
