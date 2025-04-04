@@ -4,23 +4,30 @@
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [garden.core :as g]
-   [ring.util.codec :as codec]))
+   [ring.util.codec :as codec]
+   [ring.util.response :as resp]))
 
 (def route-checkout "/store/checkout")
 (def route-request-almanac "/store/request-almanac")
 
-(def boats {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+(defn boats [token]
+  (case token
+    :popai {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
             :oceanis-42.3    "Beneteau Oceanis 42.3"
             :dufour-41       "Dufour 41"
             :dufour-44       "Dufour 44"
-            :oceanis-46.1    "Beneteau Oceanis 46.1"})
+            :oceanis-46.1    "Beneteau Oceanis 46.1"}
+    nil))
 
-(def locations {"Carribean"
-                {:usvi-bvi        "Virgin Islands (British and United States)"
-                 :leeward-islands "Leeward Islands"
-                 :turks-caicos    "Turks and Caicos Islands"}
-                "South Pacific"
-                {:tahiti          "Tahiti"}})
+(defn locations [token]
+  (case token
+    :popai {"Carribean"
+            {:usvi-bvi        "Virgin Islands (British and United States)"
+             :leeward-islands "Leeward Islands"
+             :turks-caicos    "Turks and Caicos Islands"}
+            "South Pacific"
+            {:tahiti          "Tahiti"}}
+    nil))
 
 (def time-frames [[2025 2], [2025 3], [2025 4],
                   [2026 1], [2026 2], [2026 3], [2026 4],
@@ -47,22 +54,6 @@
     [:q.prompt "PopAI, how do I get started?"]]
    [:p "PopAI has digital almanacs available for select destinations and boat models, with more on the way. Choose your
      combination below before proceeding to checkout."]])
-
-(def checkout-form
-  [:form.sku-selection {:action route-checkout}
-   [:input {:type  :hidden
-            :name  :product
-            :value :popai}]
-   [:label           {:for :location} "Location:"]
-   [:select#location {:name :location}
-    (map (fn [[area locations]]
-           [:optgroup {:label area}
-            (map (fn [[k v]] [:option {:value k} v]) locations)])
-         locations)]
-   [:label       {:for :boat} "Boat:"]
-   [:select#boat {:name :boat}
-    (map (fn [[k v]] [:option {:value k} v]) boats)]
-   [:button {:type :submit} "Checkout"]])
 
 (def almanac-request
   [:details
@@ -113,16 +104,6 @@
       :justify-self :center
       :padding      "0.3em 1em"}]]))
 
-(defn popai []
-  {:headers page/headers
-   :body
-   (h/html5
-    (page/head {:title "PopAI" :extra-css base-css})
-    [:body
-     popai-description
-     checkout-form
-     almanac-request])})
-
 (def form-validation-css
   (g/css
    {:pretty-print? false}
@@ -144,6 +125,38 @@
      :height          "100%"
      :align-items     :center
      :justify-content :center}]))
+
+(defn checkout-form [{:keys [boats locations]}]
+  [:form.sku-selection {:action route-checkout}
+   [:input {:type  :hidden
+            :name  :product
+            :value :popai}]
+   [:label           {:for :location} "Location:"]
+   [:select#location {:name :location}
+    (map (fn [[area locations]]
+           [:optgroup {:label area}
+            (map (fn [[k v]] [:option {:value k} v]) locations)])
+         locations)]
+   [:label       {:for :boat} "Boat:"]
+   [:select#boat {:name :boat}
+    (map (fn [[k v]] [:option {:value k} v]) boats)]
+   [:button {:type :submit} "Checkout"]])
+
+(defn popai [request]
+  (let [token             (keyword (:token request))
+        [boats locations] [(boats     token)
+                           (locations token)]]
+    (if (and boats locations)
+      {:headers page/headers
+       :body
+       (h/html5
+        (page/head :extra-css base-css)
+        [:body
+         popai-description
+         (checkout-form {:boats     boats
+                         :locations locations})
+         almanac-request])}
+      (resp/redirect "/"))))
 
 (def credit-card-cardholder
   [:input {:type         :text

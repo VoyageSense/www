@@ -73,7 +73,7 @@
 
 (defn route [request]
   (condp c/route-matches request
-    (c/route-compile "/store/popai")              (store/popai)
+    (c/route-compile "/store/:token")             :>> store/popai
     (c/route-compile store/route-checkout)        ((params/wrap-params store/checkout)        request)
     (c/route-compile store/route-request-almanac) ((params/wrap-params store/request-almanac) request)
     (c/route-compile "/robots.txt")               (robots-exclusion)
