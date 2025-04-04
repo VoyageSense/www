@@ -7,6 +7,7 @@
    [net.sailvision.www.page :as page]
    [ring.util.response :as resp]))
 
+(def route-home "/admin")
 (def route-requested-almanacs "/admin/requested-almanacs")
 
 (def base-css
@@ -58,5 +59,5 @@
 (defn route [request]
   (condp c/route-matches request
     (c/route-compile route-requested-almanacs) (requested-almanacs)
-    (c/route-compile "/admin")                 (home)
-    (resp/redirect "/admin")))
+    (c/route-compile route-home)                 (home)
+    (resp/redirect   route-home)))

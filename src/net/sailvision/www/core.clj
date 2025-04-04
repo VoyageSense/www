@@ -80,7 +80,7 @@
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 (internal-error)
     (c/route-compile "/")                         (home)
-    (resp/redirect "/")))
+    (resp/redirect   "/")))
 
 (when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
   (def dev-handler
