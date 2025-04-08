@@ -33,16 +33,13 @@
         {:extra-css
          (g/css
           {:pretty-print? false}
-          [:body
-           [:header {:height "3.5em"}]]
           [:#banner {:display         :flex
                      :align-items     :center
                      :justify-content :center
-                     :height          "calc(100vh - 3.5em)"
+                     :height          "100vh"
                      :margin          0
                      :font-family     "Arial, sans-serif"}])})
      [:body
-      page/header
       [:h1#banner "The future of sailing is here."]])})
 
 (defn robots-exclusion []
