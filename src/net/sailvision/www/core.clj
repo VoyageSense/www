@@ -29,6 +29,7 @@
    :body (h/html5
           (page/head)
           [:body
+           page/header
            [:h1#banner "The future of sailing is here."]])})
 
 (defn robots-exclusion []
