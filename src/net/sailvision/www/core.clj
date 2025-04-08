@@ -5,6 +5,7 @@
    [clout.core :as c]
    [com.github.sikt-no.clj-jwt :as clj-jwt]
    [environ.core :refer [env]]
+   [garden.core :as g]
    [hiccup.page :as h]
    [net.sailvision.www.admin :as admin]
    [net.sailvision.www.page :as page]
@@ -26,11 +27,23 @@
 
 (defn home []
   {:headers page/headers
-   :body (h/html5
-          (page/head)
+   :body
+   (h/html5
+       (page/head
+        {:extra-css
+         (g/css
+          {:pretty-print? false}
           [:body
-           page/header
-           [:h1#banner "The future of sailing is here."]])})
+           [:header {:height "3.5em"}]]
+          [:#banner {:display         :flex
+                     :align-items     :center
+                     :justify-content :center
+                     :height          "calc(100vh - 3.5em)"
+                     :margin          0
+                     :font-family     "Arial, sans-serif"}])})
+     [:body
+      page/header
+      [:h1#banner "The future of sailing is here."]])})
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}

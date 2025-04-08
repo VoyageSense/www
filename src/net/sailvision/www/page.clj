@@ -25,12 +25,6 @@
      [:div        {:flex-grow      1}]]]
    [:form
     [:label {:padding-right "10px"}]]
-   [:#banner {:display         :flex
-              :align-items     :center
-              :justify-content :center
-              :height          "100vh"
-              :margin          0
-              :font-family     "Arial, sans-serif"}]
    (s/at-media {:prefers-color-scheme :dark}
                [:html {:color-scheme "dark !important"}]
                [:body {:background (s/rgb 30 30 30)
