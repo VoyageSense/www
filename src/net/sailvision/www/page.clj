@@ -9,27 +9,22 @@
 (def base-css
   (g/css
    {:pretty-print? false}
-   [:body
-    {:margin 0}]
+   [:body {:margin 0}]
    [:form
     [:label {:padding-right "10px"}]]
-   [:#banner
-    {:display :flex}
-    {:align-items :center}
-    {:justify-content :center}
-    {:height "100vh"}
-    {:margin 0}
-    {:font-family "Arial, sans-serif"}]
+   [:#banner {:display         :flex
+              :align-items     :center
+              :justify-content :center
+              :height          "100vh"
+              :margin          0
+              :font-family     "Arial, sans-serif"}]
    (s/at-media {:prefers-color-scheme :dark}
-               [:body
-                {:background (s/rgb 30 30 30)}
-                {:color (s/rgb 200 200 200)}]
-               [:html
-                {:color-scheme "dark !important"}])
+               [:html {:color-scheme "dark !important"}]
+               [:body {:background (s/rgb 30 30 30)
+                       :color      (s/rgb 200 200 200)}])
    (s/at-media {:prefers-color-scheme :light}
-               [:body
-                {:background (s/rgb 245 245 245)}
-                {:color (s/rgb 50 50 50)}])))
+               [:body {:background (s/rgb 245 245 245)
+                       :color      (s/rgb 50 50 50)}])))
 
 (defn head [& {:keys [title extra-css]}]
   [:head
