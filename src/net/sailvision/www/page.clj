@@ -12,6 +12,7 @@
    [:body {:margin 0}
     [:header {:padding     "0.8em"
               :display     :flex
+              :overflow    :hidden
               :gap         "0.5em"
               :align-items "last baseline"}
      [:h1 :h2 :h3 {:margin         0
@@ -20,9 +21,14 @@
      [:h1         {:font-size      "3em"}]
      [:h2         {:font-size      "1em"}]
      [:h3         {:font-size      "0.9em"
+                   :white-space    :nowrap
                    :display        :inline-flex
                    :flex-direction :column}]
      [:div        {:flex-grow      1}]]]
+   (s/at-media {:max-width "60em"}
+               [:body
+                [:header
+                 [:h3 {:display :none}]]])
    [:form
     [:label {:padding-right "10px"}]]
    (s/at-media {:prefers-color-scheme :dark}
