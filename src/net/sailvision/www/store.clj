@@ -5,6 +5,7 @@
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [garden.core :as g]
+   [garden.stylesheet :as s]
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
@@ -34,6 +35,15 @@
 (def time-frames [[2025 2], [2025 3], [2025 4],
                   [2026 1], [2026 2], [2026 3], [2026 4],
                   [2027 1], [2027 2], [2027 3], [2027 4]])
+
+(def header
+  [:header
+   [:h1 "PopAI"]
+   [:h2 "The ultimate boating companion"]
+   [:div]
+   [:h3
+    [:span "Keep your hands on the helm and eyes on the water"]
+    [:span "Use the power of your voice to manage your boating experience"]]])
 
 (def popai-description
   [:main
@@ -88,8 +98,39 @@
 (def base-css
   (g/css
    {:pretty-print? false}
+   [:main
+    {:margin "1em 1em"}]
+   [:details :form
+    {:margin "0em 1em"}]
    [:body
-    {:padding "0 1em 2em"}]
+    {:padding "0 0 2em"}
+    [:header {:padding     "0.8em"
+              :display     :flex
+              :overflow    :hidden
+              :gap         "0.5em"
+              :align-items "last baseline"}
+     [:h1 :h2 :h3 {:margin         0
+                   :font-weight    :bold
+                   :font-family    "Arial, san-serif"}]
+     [:h1         {:font-size      "3em"}]
+     [:h2         {:font-size      "1em"}]
+     [:h3         {:font-size      "0.9em"
+                   :white-space    :nowrap
+                   :display        :inline-flex
+                   :flex-direction :column}]
+     [:div        {:flex-grow      1}]]]
+   (s/at-media {:max-width "60em"}
+               [:body
+                [:header
+                 [:h3 {:display :none}]]])
+   (s/at-media {:prefers-color-scheme :dark}
+               [:body
+                [:header {:color       (s/rgb 240 240 240)
+                          :background  (s/rgb 0 0 0)}]])
+   (s/at-media {:prefers-color-scheme :light}
+               [:body
+                [:header {:color      (s/rgb 20 20 20)
+                          :background (s/rgb 255 255 255)}]])
    [:.prompt
     {:font-style :italic}]
    [:details
@@ -154,6 +195,7 @@
        (h/html5
         (page/head :extra-css base-css)
         [:body
+         header
          popai-description
          (checkout-form {:boats     boats
                          :locations locations
