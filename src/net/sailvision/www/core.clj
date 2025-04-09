@@ -32,7 +32,7 @@
        (page/head
         {:extra-css
          (g/css
-          {:pretty-print? false}
+          (page/pretty-print)
           [:#banner {:display         :flex
                      :align-items     :center
                      :justify-content :center

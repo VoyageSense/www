@@ -98,7 +98,7 @@
 
 (def base-css
   (g/css
-   {:pretty-print? false}
+   (page/pretty-print)
    [:main
     {:margin "1em 1em"}]
    [:details :form
@@ -130,7 +130,7 @@
 
 (def form-validation-css
   (g/css
-   {:pretty-print? false}
+   (page/pretty-print)
    ["input:not([type=\"submit\"])"
     {:box-sizing :border-box}
     {:border "medium solid transparent"}]

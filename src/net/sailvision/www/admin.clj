@@ -15,7 +15,7 @@
 
 (defn base-css [& extra-css]
   (g/css
-   {:pretty-print? false}
+   (page/pretty-print)
    [:body {:padding "0em 1em"}]
    [:body {:padding "0em 1em"}]
    [:table {:border-collapse :collapse}]

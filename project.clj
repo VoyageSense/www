@@ -17,5 +17,6 @@
   :main net.sailvision.www.core
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]
                                   [ring/ring-devel "1.13.0"]]
-                   :env {:db-storage ":mem"}}
+                   :env {:db-storage   ":mem"
+                         :pretty-print true}}
              :uberjar {:aot :all}})

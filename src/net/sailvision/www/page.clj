@@ -1,14 +1,18 @@
 (ns net.sailvision.www.page
   (:require
    [clojure.string :as str]
+   [environ.core :refer [env]]
    [garden.core :as g]
    [garden.stylesheet :as s]))
 
 (def headers {"Content-Type" "text/html"})
 
+(defn pretty-print []
+  {:pretty-print? (or (env :pretty-print) false)})
+
 (def base-css
   (g/css
-   {:pretty-print? false}
+   (pretty-print)
    [:body {:margin 0}]
    [:form
     [:label {:padding-right "10px"}]]
