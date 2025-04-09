@@ -11,6 +11,7 @@
    [net.sailvision.www.page :as page]
    [net.sailvision.www.store :as store]
    [ring.adapter.jetty :as jetty]
+   [ring.middleware.not-modified :as not-modified]
    [ring.middleware.params :as params]
    [ring.middleware.resource :as resource]
    [ring.util.response :as resp]))
@@ -97,24 +98,26 @@
     (c/route-compile "/")                         (home)
     (resp/redirect   "/")))
 
-(defn wrap-public [handler]
-  (resource/wrap-resource handler "public"))
+(defn middlewares [handler]
+  (-> handler
+      (resource/wrap-resource "public")
+      not-modified/wrap-not-modified))
 
 (when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
   (def dev-handler
     (wrap-refresh
      (fn dev-route [request]
        (condp c/route-matches request
-         (c/route-compile "/admin*") ((wrap-public admin/route) request)
-         ((wrap-public route) request))))))
+         (c/route-compile "/admin*") ((middlewares admin/route) request)
+         ((middlewares route) request))))))
 
 (defn -main []
   (let [public (jetty/run-jetty
-                (wrap-public route) {:host  "localhost"
+                (middlewares route) {:host  "localhost"
                                      :port  8080
                                      :join? false})
         admin  (jetty/run-jetty
-                (wrap-public admin/route) {:host  "localhost"
+                (middlewares admin/route) {:host  "localhost"
                                            :port  9080
                                            :join? false})]
     (reset! public-server public)
