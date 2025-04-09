@@ -189,6 +189,39 @@
     (map (fn [[k v]] [:option {:value k} v]) boats)]
    [:button {:type :submit} "Checkout"]])
 
+(def features-panels-css
+  [[:.panels {:display    :flex
+              :gap        "20px"
+              :overflow-x :auto
+              :padding "2em"}]
+   [:.panel {:padding       "0px 20px 20px"
+             :border-radius "20px"
+             :background :black
+             :color :white
+             :transition "transform 0.3s ease"}
+    [:img {:width "25em"
+           :height "30em"}]]
+   [:.panel:hover {:transform  "scale(1.03)"}]])
+
+(def features-panels
+  [:div.panels
+   [:div.panel
+    [:h1 [:i "Cruising guide" ] " in your ear"]
+    [:h2 "Boating almanac on the go"]
+    [:img {:src "/panel-boat.png"}]]
+   [:div.panel
+    [:h1 [:i "Mechanic" ] " for your boat"]
+    [:h2 "You've never been more prepared"]
+    [:img {:src "/panel-engine.png"}]]
+   [:div.panel
+    [:h1 [:i "Patient Instructor" ]]
+    [:h2 "Checklists, rules and regulations"]
+    [:img {:src "/panel-textbook.png"}]]
+   [:div.panel
+    [:h1 "Turn your boat into a " [:i "Crew Member"]]
+    [:h2 "Interact, control and monitor"]
+    [:img {:src "/panel-glenn.png"}]]])
+
 (defn popai [request]
   (let [token             (keyword (:token request))
         [boats locations] [(boats     token)
@@ -197,11 +230,13 @@
       {:headers page/headers
        :body
        (h/html5
-        (page/head :extra-css (base-css hero-css)
+        (page/head :extra-css (base-css hero-css
+                                        features-panels-css)
                    :noscript  hero-image-noscript)
         [:body
          header
-         hero-image])}
+         hero-image
+         features-panels])}
       (resp/redirect "/"))))
 
 (def credit-card-cardholder
