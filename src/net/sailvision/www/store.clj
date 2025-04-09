@@ -45,28 +45,6 @@
     [:span "Keep your hands on the helm and eyes on the water"]
     [:span "Use the power of your voice to manage your boating experience"]]])
 
-(def popai-description
-  [:main
-   [:h1 "Say hello to PopAI"]
-   [:p "Set sail with your ultimate crusing companion, PopAI (pronounced \"Popeye\")."]
-   [:p "PopAI is a voice assistant created by sailors and powered by detailed knowledge sets derived from crusing
-     guides, government notices, local knowledge, as well as a host of other sources. This curated bank of information
-     is invaluable for sailors of all skill levels."]
-   [:h3
-    [:q.prompt "PopAI, where can I anchor this evening?"]]
-   [:p "With access to all of this knowledge through PopAI's seamless voice interface, your trip will be one of the most
-     memorable and relaxing in years. Forget about the stress of finding safe harbor during an unexpected squal,
-     diagnosing an engine failure as you're motoring in a busy anchorage, or even just finding a great place to kick
-     back and have a drink."]
-   [:h3
-    [:q.prompt "PopAI, what is the depth?"]]
-   [:p "Whether you're new to the world of sailing or a seasoned pro lamenting the loss of paper charts, PopAI is the
-     perfect tool to augment your skill and ability, providing a second set of eyes to help you do what you do best."]
-   [:h3
-    [:q.prompt "PopAI, how do I get started?"]]
-   [:p "PopAI has digital almanacs available for select destinations and boat models, with more on the way. Choose your
-     combination below before proceeding to checkout."]])
-
 (def almanac-request
   [:details
    [:summary "Don't see your destination or boat?"]
@@ -198,12 +176,7 @@
        (h/html5
         (page/head :extra-css base-css)
         [:body
-         header
-         popai-description
-         (checkout-form {:boats     boats
-                         :locations locations
-                         :token     token})
-         almanac-request])}
+         header])}
       (resp/redirect "/"))))
 
 (def credit-card-cardholder
