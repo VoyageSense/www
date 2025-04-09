@@ -12,8 +12,8 @@
    [:body {:margin 0}]
    [:form
     [:label {:padding-right "10px"}]]
+   [:html { :color-scheme "light dark" }]
    (s/at-media {:prefers-color-scheme :dark}
-               [:html {:color-scheme "dark !important"}]
                [:body {:background (s/rgb 30 30 30)
                        :color      (s/rgb 200 200 200)}])
    (s/at-media {:prefers-color-scheme :light}
