@@ -98,10 +98,16 @@
     (c/route-compile "/")                         (home)
     (resp/redirect   "/")))
 
+(defn wrap-cache-control [handler]
+  (fn [request]
+    (let [response (handler request)]
+      (assoc-in response [:headers "Cache-Control"] "public"))))
+
 (defn middlewares [handler]
   (-> handler
       (resource/wrap-resource "public")
-      not-modified/wrap-not-modified))
+      not-modified/wrap-not-modified
+      wrap-cache-control))
 
 (when-let [wrap-refresh (resolve 'ring.middleware.refresh/wrap-refresh)]
   (def dev-handler
