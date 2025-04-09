@@ -45,6 +45,28 @@
     [:span "Keep your hands on the helm and eyes on the water"]
     [:span "Use the power of your voice to manage your boating experience"]]])
 
+(def hero-css-loaded
+  {:opacity   1
+   :transform :none})
+
+(def hero-css
+  [[:.hero {:width      "100%"
+            :height     "calc(100vw)"
+            :opacity    0
+            :transform  "translateY(20px)"
+            :transition "opacity 0.8s linear, transform 0.8s ease"}]
+   [:.loaded hero-css-loaded]])
+
+(def hero-image-noscript
+  [:style
+   (g/css
+    (page/pretty-print)
+    [:.hero hero-css-loaded])])
+
+(def hero-image
+  [:img.hero {:src    "/popai-hero-background.jpg"
+              :alt    "Looking over the bow of a boat sailing in the San Francisco bay, the sunset in the background"
+              :onload "this.classList.add('loaded')"}])
 (def almanac-request
   [:details
    [:summary "Don't see your destination or boat?"]
@@ -96,7 +118,7 @@
                 [:header
                  [:h3 {:display :none}]]])])
 
-(def base-css
+(defn base-css [& extra-css]
   (g/css
    (page/pretty-print)
    [:main
@@ -126,7 +148,8 @@
      {:grid-column  "span 2"
       :justify-self :center
       :padding      "0.3em 1em"}]]
-   header-css))
+   header-css
+   extra-css))
 
 (def form-validation-css
   (g/css
@@ -174,9 +197,11 @@
       {:headers page/headers
        :body
        (h/html5
-        (page/head :extra-css base-css)
+        (page/head :extra-css (base-css hero-css)
+                   :noscript  hero-image-noscript)
         [:body
-         header])}
+         header
+         hero-image])}
       (resp/redirect "/"))))
 
 (def credit-card-cardholder

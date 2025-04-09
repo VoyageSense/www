@@ -24,11 +24,14 @@
                [:body {:background (s/rgb 245 245 245)
                        :color      (s/rgb 50 50 50)}])))
 
-(defn head [& {:keys [title extra-css]}]
+(defn head [& {:keys [title extra-css noscript]}]
   [:head
    [:title (str/join " - " (keep identity ["SailVision" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
    (if extra-css
      [:style base-css extra-css]
-     [:style base-css])])
+     [:style base-css])
+   (if noscript
+     [:noscript noscript]
+     nil)])
