@@ -95,14 +95,8 @@
     [:input#emailAddress {:name :emailAddress}]
     [:button {:type :submit} "Request Almanac"]]])
 
-(def base-css
-  (g/css
-   {:pretty-print? false}
-   [:main
-    {:margin "1em 1em"}]
-   [:details :form
-    {:margin "0em 1em"}]
-   [:body
+(def header-css
+  [[:body
     {:padding "0 0 2em"}
     [:header {:padding     "0.8em"
               :display     :flex
@@ -122,7 +116,15 @@
    (s/at-media {:max-width "60em"}
                [:body
                 [:header
-                 [:h3 {:display :none}]]])
+                 [:h3 {:display :none}]]])])
+
+(def base-css
+  (g/css
+   {:pretty-print? false}
+   [:main
+    {:margin "1em 1em"}]
+   [:details :form
+    {:margin "0em 1em"}]
    (s/at-media {:prefers-color-scheme :dark}
                [:body
                 [:header {:color       (s/rgb 240 240 240)
@@ -145,7 +147,8 @@
     [:button
      {:grid-column  "span 2"
       :justify-self :center
-      :padding      "0.3em 1em"}]]))
+      :padding      "0.3em 1em"}]]
+   header-css))
 
 (def form-validation-css
   (g/css
