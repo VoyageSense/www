@@ -97,7 +97,7 @@
 
               locations = {
                 "/status".extraConfig = "stub_status;";
-                "/admin".proxyPass    = "http://127.0.0.1:9080";
+                "/".proxyPass         = "http://127.0.0.1:9080";
               };
             };
 
