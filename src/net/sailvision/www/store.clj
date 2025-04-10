@@ -206,7 +206,7 @@
     [[:.panels {:display :flex
                 :gap     "2em"
                 :overflow-x :auto
-                :padding    "2em"
+                :padding    "2em 2em 10vh"
                 :background "rgba(var(--background), 0.9)"}]
      [:.panel {:display        :flex
                :flex-direction :column
