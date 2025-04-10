@@ -226,6 +226,7 @@
                :border-radius  "1em"
                :background     "rgb(var(--bold-background))"
                :color          "rgb(var(--bold-foreground))"
+               :cursor         :pointer
                :transition     "transform 0.2s ease-out"}
       [:h3 :h4 {:text-align  :center
                 :margin      0
