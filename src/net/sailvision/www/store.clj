@@ -60,6 +60,8 @@
             :mask-image     "linear-gradient(to bottom,black 90%,transparent)"
             :mask-composite :intersect
             :mask-size      "100% 100%"}]
+   [:.dark {:visibility "var(--dark-visibility)"}]
+   [:.light {:visibility "var(--light-visibility)"}]
    [:.loaded hero-css-loaded]
    [:.hero-mask {:width      "100%"
                  :height     "calc(min(70vw, 80vh))"
@@ -72,10 +74,15 @@
     (page/pretty-print)
     [:.hero hero-css-loaded])])
 
-(def hero-image
-  [:img.hero {:src    "/popai-hero-background.jpg"
-              :alt    "Looking over the bow of a boat sailing in the San Francisco bay, the sunset in the background"
-              :onload "this.classList.add('loaded')"}])
+(def hero-image-light
+  [:img.hero.light {:src    "/popai-hero-background-light.jpg"
+                    :alt    "Looking over the bow of a boat sailing in the San Francisco bay, the city in the background"
+                    :onload "this.classList.add('loaded')"}])
+
+(def hero-image-dark
+  [:img.hero.dark {:src    "/popai-hero-background-dark.jpg"
+                   :alt    "Looking over the bow of a boat sailing in the San Francisco bay, the sunset in the background"
+                   :onload "this.classList.add('loaded')"}])
 
 (def hero-mask
   [:div.hero-mask])
@@ -115,8 +122,8 @@
               :overflow    :hidden
               :gap         "0.5em"
               :align-items "last baseline"
-              :color       "#f0f0f0"
-              :text-shadow "0.05em 0.1em 0.2em #000"}
+              :color       "rgb(var(--bold-foreground))"
+              :text-shadow "0.05em 0.1em 0.2em rgb(var(--bold-background))"}
      [:h1 :h2 :h3 {:margin         0
                    :font-weight    :bold
                    :font-family    "Arial, san-serif"}]
@@ -140,11 +147,15 @@
    [:details :form
     {:margin "0em 1em"}]
    (s/at-media {:prefers-color-scheme :dark}
-               [":root" {:--bold-foreground "240 240 240"
-                         :--bold-background "1 1 1"}]
+               [":root" {:--bold-foreground  "240 240 240"
+                         :--bold-background  "1 1 1"
+                         :--light-visibility "hidden"
+                         :--dark-visibility  "visible"}]
    (s/at-media {:prefers-color-scheme :light}
-               [":root" {:--bold-foreground "20 20 20"
-                         :--bold-background "255 255 255"}]))
+               [":root" {:--bold-foreground  "20 20 20"
+                         :--bold-background  "255 255 255"
+                         :--light-visibility "visible"
+                         :--dark-visibility  "hidden"}]))
    [:.prompt
     {:font-style :italic}]
    [:details
@@ -276,7 +287,8 @@
                    :noscript  hero-image-noscript)
         [:body
          header
-         hero-image
+         hero-image-light
+         hero-image-dark
          hero-mask
          features-panels])}
       (resp/redirect "/"))))
