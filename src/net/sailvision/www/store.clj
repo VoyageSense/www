@@ -141,7 +141,7 @@
     {:margin "0em 1em"}]
    (s/at-media {:prefers-color-scheme :dark}
                [":root" {:--bold-foreground "240 240 240"
-                         :--bold-background "0 0 0"}]
+                         :--bold-background "1 1 1"}]
    (s/at-media {:prefers-color-scheme :light}
                [":root" {:--bold-foreground "20 20 20"
                          :--bold-background "255 255 255"}]))
