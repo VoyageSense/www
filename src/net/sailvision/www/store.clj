@@ -66,7 +66,8 @@
    [:.hero-mask {:width      "100%"
                  :height     "calc(min(70vw, 80vh))"
                  :background "linear-gradient(to bottom, transparent 85%, rgba(var(--background), 0.9))"
-                 :z-index    -1}]])
+                 :z-index    -1}]
+   [:.over-hero {:background "rgba(var(--background), 0.9)"}]])
 
 (def hero-image-noscript
   [:style
@@ -217,8 +218,7 @@
     [[:.panels {:display :flex
                 :gap     "2em"
                 :overflow-x :auto
-                :padding    "2em 2em 10vh"
-                :background "rgba(var(--background), 0.9)"}]
+                :padding    "2em 2em 10vh"}]
      [:.panel {:display        :flex
                :flex-direction :column
                :gap            "1.2em"
@@ -258,7 +258,7 @@
    [:img {:src image-path}]])
 
 (def features-panels
-  [:div.panels
+  [:div.panels.over-hero
    (panel {:title      "Cruising Guide"
            :subtitle   "Boating almanac on the go"
            :image-path "/panel-boat.png"})
