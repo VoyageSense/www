@@ -57,7 +57,7 @@
             :z-index        -2
             :transform      "translateY(20px)"
             :transition     "opacity 0.8s linear, transform 0.8s ease"
-            :mask-image     "linear-gradient(to bottom,black 90%,transparent)"
+            :mask-image     "linear-gradient(to bottom,black 70%,transparent)"
             :mask-composite :intersect
             :mask-size      "100% 100%"}]
    [:.dark {:visibility "var(--dark-visibility)"}]
