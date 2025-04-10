@@ -50,12 +50,25 @@
    :transform :none})
 
 (def hero-css
-  [[:.hero {:width      "100%"
-            :height     "calc(100vw)"
-            :opacity    0
-            :transform  "translateY(20px)"
-            :transition "opacity 0.8s linear, transform 0.8s ease"}]
-   [:.loaded hero-css-loaded]])
+  [[:.hero {:width          "100%"
+            :position       :fixed
+            :opacity        0
+            :top            0
+            :z-index        -2
+            :transform      "translateY(20px)"
+            :transition     "opacity 0.8s linear, transform 0.8s ease"
+            :mask-image     "linear-gradient(to bottom,black 90%,transparent)"
+            :mask-composite :intersect
+            :mask-size      "100% 100%"}]
+   [:.loaded hero-css-loaded]
+   [:.hero-mask {
+                 :width         "100%"
+                 :height        "130vh"
+                 :top           "-100vh"
+                 :margin-bottom "-70vh"
+                 :position      :sticky
+                 :background    "linear-gradient(to bottom, transparent 30vh, rgba(var(--background), 0.95) 40vh)"
+                 :z-index       -1}]])
 
 (def hero-image-noscript
   [:style
@@ -67,6 +80,10 @@
   [:img.hero {:src    "/popai-hero-background.jpg"
               :alt    "Looking over the bow of a boat sailing in the San Francisco bay, the sunset in the background"
               :onload "this.classList.add('loaded')"}])
+
+(def hero-mask
+  [:div.hero-mask])
+
 (def almanac-request
   [:details
    [:summary "Don't see your destination or boat?"]
@@ -236,6 +253,7 @@
         [:body
          header
          hero-image
+         hero-mask
          features-panels])}
       (resp/redirect "/"))))
 
