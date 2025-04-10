@@ -119,7 +119,9 @@
               :display     :flex
               :overflow    :hidden
               :gap         "0.5em"
-              :align-items "last baseline"}
+              :align-items "last baseline"
+              :color       "rgb(var(--bold-foreground))"
+              :background  "rgb(var(--bold-background))"}
      [:h1 :h2 :h3 {:margin         0
                    :font-weight    :bold
                    :font-family    "Arial, san-serif"}]
@@ -143,13 +145,11 @@
    [:details :form
     {:margin "0em 1em"}]
    (s/at-media {:prefers-color-scheme :dark}
-               [:body
-                [:header {:color       (s/rgb 240 240 240)
-                          :background  (s/rgb 0 0 0)}]])
+               [":root" {:--bold-foreground "240 240 240"
+                         :--bold-background "0 0 0"}]
    (s/at-media {:prefers-color-scheme :light}
-               [:body
-                [:header {:color      (s/rgb 20 20 20)
-                          :background (s/rgb 255 255 255)}]])
+               [":root" {:--bold-foreground "20 20 20"
+                         :--bold-background "255 255 255"}]))
    [:.prompt
     {:font-style :italic}]
    [:details
