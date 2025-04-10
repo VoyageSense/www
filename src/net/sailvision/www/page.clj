@@ -10,6 +10,11 @@
 (defn pretty-print []
   {:pretty-print? (or (env :pretty-print) false)})
 
+(def light-foreground "50, 50, 50")
+(def light-background "245, 245, 245")
+(def dark-foreground  "200, 200, 200")
+(def dark-background  "30, 30, 30")
+
 (def base-css
   (g/css
    (pretty-print)
@@ -17,12 +22,14 @@
    [:form
     [:label {:padding-right "10px"}]]
    [:html { :color-scheme "light dark" }]
-   (s/at-media {:prefers-color-scheme :dark}
-               [:body {:background (s/rgb 30 30 30)
-                       :color      (s/rgb 200 200 200)}])
    (s/at-media {:prefers-color-scheme :light}
-               [:body {:background (s/rgb 245 245 245)
-                       :color      (s/rgb 50 50 50)}])))
+               [":root" {:--foreground light-foreground
+                         :--background light-background}])
+   (s/at-media {:prefers-color-scheme :dark}
+               [":root" {:--foreground dark-foreground
+                         :--background dark-background}])
+   [:body {:color      "rgb(var(--foreground))"
+           :background "rgb(var(--background))"}]))
 
 (defn head [& {:keys [title extra-css noscript]}]
   [:head
