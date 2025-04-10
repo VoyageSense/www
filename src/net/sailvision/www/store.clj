@@ -218,7 +218,7 @@
     [[:.panels {:display :flex
                 :gap     "2em"
                 :overflow-x :auto
-                :padding    "2em 2em 10vh"}]
+                :padding    "2em"}]
      [:.panel {:display        :flex
                :flex-direction :column
                :gap            "1.2em"
@@ -275,6 +275,23 @@
            :subtitle   "Interact, control and monitor"
            :image-path "/panel-glenn.png"})])
 
+(def description-css
+  [:.description {:margin  0
+                  :padding "1em"}])
+
+(def description
+  [:p.description.over-hero
+   (str/join
+    " "
+    ["Are you chartering a boat and going cruising?"
+     "Will you be in an area with internet connectivity?"
+     "The PopAI App is for you."
+     "The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat."
+     "The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc."
+     "It has all COLREGS, immigration rules and regulations, lights and markers, etc."
+     "With the PopAI  App you will never feel unprepared for a charter again."
+     "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])])
+
 (defn popai [request]
   (let [token             (keyword (:token request))
         [boats locations] [(boats     token)
@@ -284,14 +301,16 @@
        :body
        (h/html5
         (page/head :extra-css (base-css hero-css
-                                        features-panels-css)
+                                        features-panels-css
+                                        description-css)
                    :noscript  hero-image-noscript)
         [:body
          header
          hero-image-light
          hero-image-dark
          hero-mask
-         features-panels])}
+         features-panels
+         description])}
       (resp/redirect "/"))))
 
 (def credit-card-cardholder
