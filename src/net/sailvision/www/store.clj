@@ -115,8 +115,8 @@
               :overflow    :hidden
               :gap         "0.5em"
               :align-items "last baseline"
-              :color       "rgb(var(--bold-foreground))"
-              :background  "rgb(var(--bold-background))"}
+              :color       "#f0f0f0"
+              :text-shadow "0.05em 0.1em 0.2em #000"}
      [:h1 :h2 :h3 {:margin         0
                    :font-weight    :bold
                    :font-family    "Arial, san-serif"}]
