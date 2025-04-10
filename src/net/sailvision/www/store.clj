@@ -61,14 +61,10 @@
             :mask-composite :intersect
             :mask-size      "100% 100%"}]
    [:.loaded hero-css-loaded]
-   [:.hero-mask {
-                 :width         "100%"
-                 :height        "130vh"
-                 :top           "-100vh"
-                 :margin-bottom "-70vh"
-                 :position      :sticky
-                 :background    "linear-gradient(to bottom, transparent 30vh, rgba(var(--background), 0.95) 40vh)"
-                 :z-index       -1}]])
+   [:.hero-mask {:width      "100%"
+                 :height     "calc(min(70vw, 80vh))"
+                 :background "linear-gradient(to bottom, transparent 85%, rgba(var(--background), 0.9))"
+                 :z-index    -1}]])
 
 (def hero-image-noscript
   [:style
@@ -114,7 +110,6 @@
 
 (def header-css
   [[:body
-    {:padding "0 0 2em"}
     [:header {:padding     "0.8em"
               :display     :flex
               :overflow    :hidden
@@ -207,37 +202,66 @@
    [:button {:type :submit} "Checkout"]])
 
 (def features-panels-css
-  [[:.panels {:display    :flex
-              :gap        "20px"
-              :overflow-x :auto
-              :padding "2em"}]
-   [:.panel {:padding       "0px 20px 20px"
-             :border-radius "20px"
-             :background :black
-             :color :white
-             :transition "transform 0.3s ease"}
-    [:img {:width "25em"
-           :height "30em"}]]
-   [:.panel:hover {:transform  "scale(1.03)"}]])
+  (let [soft-image-border 2]
+    [[:.panels {:display :flex
+                :gap     "2em"
+                :overflow-x :auto
+                :padding    "2em"
+                :background "rgba(var(--background), 0.9)"}]
+     [:.panel {:display        :flex
+               :flex-direction :column
+               :gap            "1.2em"
+               :padding        "1em"
+               :border-radius  "1em"
+               :background     "rgb(var(--bold-background))"
+               :color          "rgb(var(--bold-foreground))"
+               :transition     "transform 0.2s ease-out"}
+      [:h3 :h4 {:text-align  :center
+                :margin      0
+                :font-family "Arial,sans-serif"}]
+      [:h3     {:font-size "1.8em"}]
+      [:h4     {:font-size "1em"}]
+      [:img    {:width      "calc(min(60vw, 50ch))"
+                :height     "calc(1.3 * min(60vw, 50ch))"
+                :mask-image (str "linear-gradient(to top"
+                                 ",transparent"
+                                 ",black " soft-image-border "%"
+                                 ",black " (- 100 soft-image-border) "%"
+                                 ",transparent)"
+                                 ",linear-gradient(to left"
+                                 ",transparent"
+                                 ",black " soft-image-border "%"
+                                 ",black " (- 100 soft-image-border) "%"
+                                 ",transparent)")
+                :mask-composite :intersect
+                :mask-size      "100% 100%"}]
+      [:.space {:flex-grow 1}]]
+     [:.panel:hover {:transform "scale(1.03)"}]]))
+
+(defn panel [{:keys [title subtitle image-path]}]
+  [:div.panel
+   [:h3 [:i title]]
+   [:h4 subtitle]
+   [:div.space]
+   [:img {:src image-path}]])
 
 (def features-panels
   [:div.panels
-   [:div.panel
-    [:h1 [:i "Cruising guide" ] " in your ear"]
-    [:h2 "Boating almanac on the go"]
-    [:img {:src "/panel-boat.png"}]]
-   [:div.panel
-    [:h1 [:i "Mechanic" ] " for your boat"]
-    [:h2 "You've never been more prepared"]
-    [:img {:src "/panel-engine.png"}]]
-   [:div.panel
-    [:h1 [:i "Patient Instructor" ]]
-    [:h2 "Checklists, rules and regulations"]
-    [:img {:src "/panel-textbook.png"}]]
-   [:div.panel
-    [:h1 "Turn your boat into a " [:i "Crew Member"]]
-    [:h2 "Interact, control and monitor"]
-    [:img {:src "/panel-glenn.png"}]]])
+   (panel {:title      "Cruising Guide"
+           :subtitle   "Boating almanac on the go"
+           :image-path "/panel-boat.png"})
+
+   (panel {:title      "Boat Mechanic"
+           :subtitle   "You've never been more prepared"
+           :image-path "/panel-engine.png"})
+
+   (panel {:title      "Sailing Instructor"
+           :subtitle   "Checklists, rules and regulations"
+           :image-path "/panel-textbook.png"})
+
+   (panel {:title      "Crew Member"
+           :subtitle   "Interact, control and monitor"
+           :image-path "/panel-glenn.png"})])
 
 (defn popai [request]
   (let [token             (keyword (:token request))
