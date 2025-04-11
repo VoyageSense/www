@@ -209,6 +209,28 @@
     (map (fn [[k v]] [:option {:value k} v]) boats)]
    [:button {:type :submit} "Checkout"]])
 
+(def get-to-know-css
+  [:.get-to-know {:margin 0
+                  :padding "4em 2em"}
+   [:h1 {:margin  0
+         :display :inline}]
+   [:h2 {:font-size-adjust "0.3"
+         :padding-left     "0.4em"
+         :display          :inline}]
+   [:.emphasis {:font-weight     :bold
+                :font-style      :italic
+                :text-decoration :underline}]])
+
+(def get-to-know
+  [:div.get-to-know.over-hero
+   [:h1 "Get to know PopAI"]
+   [:h2 "pronounced " [:q "Popeye"]]
+   [:p "PopAI is a voice controlled boating helper. It is a part "
+    [:span.emphasis "guide"] ", part "
+    [:span.emphasis "mechanic"]", part "
+    [:span.emphasis "instructor"] ", and part "
+    [:span.emphasis "crew member" "."]]])
+
 (def features-panels-css
   (let [soft-image-border 2]
     [[:.panels {:display :flex
@@ -390,7 +412,7 @@
 
 (def description-css
   ["body > .description" {:margin  0
-                          :padding "1em"}])
+                          :padding "4em 1em"}])
 
 (def description
   [:p.description.over-hero
@@ -413,6 +435,7 @@
        :body
        (h/html5
         (page/head :extra-css (base-css hero-css
+                                        get-to-know-css
                                         features-panels-css
                                         description-css)
                    :noscript  [:style
@@ -425,6 +448,7 @@
          hero-image-light
          hero-image-dark
          hero-mask
+         get-to-know
          features-panels
          description])}
       (resp/redirect "/"))))
