@@ -267,9 +267,9 @@
              :font       "italic 3em Arial, san-serif"}]
        [:p.intro {:font-size "1.4em"
                   :margin    0}]
-       [:span.intro {:font-weight :bold
-                     :font-style  :italic}]
-       [:span.body  {:font-size "1.1em"}]
+       [:span.heading {:font-weight :bold
+                       :font-style  :italic}]
+       [:span.body    {:font-size "1.1em"}]
        [:.prompt       {:display      :block
                         :font         "italic 1.8em Arial, san-serif"
                         :padding-top  "0.8em"
@@ -320,9 +320,9 @@
       [:div.content
        [:h1 title]
        [:p.intro intro]
-       (map (fn [{:keys [intro body prompts]}]
+       (map (fn [{:keys [heading body prompts]}]
               [:div.section
-               [:p [:span.intro intro] " " [:span.body body]]
+               [:p [:span.heading heading] " " [:span.body body]]
                (map (fn [prompt, i]
                       [:q.prompt {:class (if (= 0 (mod i 2))
                                            "left"
