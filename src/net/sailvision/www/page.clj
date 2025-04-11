@@ -31,7 +31,7 @@
    [:body {:color      "rgb(var(--foreground))"
            :background "rgb(var(--background))"}]))
 
-(defn head [& {:keys [title extra-css noscript]}]
+(defn head [& {:keys [title extra-css noscript extras]}]
   [:head
    [:title (str/join " - " (keep identity ["SailVision" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
@@ -41,4 +41,7 @@
      [:style base-css])
    (if noscript
      [:noscript noscript]
+     nil)
+   (if extras
+     (map identity extras)
      nil)])
