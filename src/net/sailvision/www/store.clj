@@ -71,10 +71,7 @@
    [:.over-hero {:background "rgba(var(--background), 0.9)"}]])
 
 (def hero-image-noscript
-  [:style
-   (g/css
-    (page/pretty-print)
-    [:.hero hero-css-loaded])])
+  [:.hero hero-css-loaded])
 
 (def hero-image-light
   [:img.hero.light {:src    "/popai-hero-background-light.jpg"
@@ -158,8 +155,6 @@
                          :--bold-background  "255 255 255"
                          :--light-visibility "visible"
                          :--dark-visibility  "hidden"}]))
-   [:.prompt
-    {:font-style :italic}]
    [:details
     {:margin-top "1em"}
     [:summary
@@ -224,6 +219,7 @@
                :flex-direction :column
                :gap            "1.2em"
                :padding        "1em"
+               :border         0
                :border-radius  "1em"
                :background     "rgb(var(--bold-background))"
                :color          "rgb(var(--bold-foreground))"
@@ -249,20 +245,133 @@
                 :mask-composite :intersect
                 :mask-size      "100% 100%"}]
       [:.space {:flex-grow 1}]]
-     [:.panel:hover {:transform "scale(1.03)"}]]))
+     [:.panel:hover {:transform "scale(1.03)"}]
+     [:dialog.feature {:width      "100%"
+                       :height     "100%"
+                       :border     0
+                       :background :transparent
+                       :animation-duration "0.3s"}
+      [:.content {:margin        "10vh 10vw"
+                  :width         "auto"
+                  :padding       "1em"
+                  :border-radius "1em"
+                  :text-align    :start
+                  :color         "rgb(var(--foreground))"
+                  :background    "rgb(var(--background))"}
+       [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
+                   :border-radius "0.5em"
+                   :padding       "0 1em"
+                   :margin        "3em 0 0"}]
+       [:h1 {:text-align :center
+             :font       "italic 3em Arial, san-serif"}]
+       [:p.intro {:font-size "1.4em"
+                  :margin    0}]
+       [:span.intro {:font-weight :bold
+                     :font-style  :italic}]
+       [:span.body  {:font-size "1.1em"}]
+       [:.prompt       {:font         "italic 1.8em Arial, san-serif"
+                        :padding-top  "0.8em"
+                        :transition   "opacity 1s linear, transform 1s ease-out"}]
+       [:.prompt.left  {:margin-right "5ch"
+                        :text-align   :left
+                        :opacity      0.4
+                        :transform    "translateX(-0.3ch)"}]
+       [:.prompt.right {:margin-left  "5ch"
+                        :text-align   :right
+                        :opacity      0.4
+                        :transform    "translateX(0.3ch)"}]
+       [:.prompt.shown {:opacity      1
+                        :transform    :none}]]]
+     ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]))
 
-(defn panel [{:keys [title subtitle image-path]}]
-  [:div.panel
-   [:h3 [:i title]]
-   [:h4 subtitle]
-   [:div.space]
-   [:img {:src image-path}]])
+(def features-panels-noscript
+  [:dialog.feature
+   [:.content
+    [:.prompt.left :.prompt.right {:opacity   1
+                                   :transform :none}]]])
+
+(defn panel-script [id]
+  [:script
+   (long-str
+    [(str "document.getElementById('" id "').addEventListener('toggle', (event) => {")
+     "shownfn = event.target.matches(':popover-open')"
+     "? (prompt) => prompt.classList.add('shown')"
+     ": (prompt) => prompt.classList.remove('shown');"
+     "event.target.querySelectorAll('.prompt').forEach(shownfn);"
+     "});"])])
+
+(defn panel [{:keys [title subtitle intro image-path details]}]
+  (let [modal-id (str/join "-" (flatten
+                                ["modal"
+                                 (-> title
+                                     (str/lower-case)
+                                     (str/split #" "))]))]
+    [:button.panel {:type          :button
+                    :popovertarget modal-id}
+     [:h3 [:i title]]
+     [:h4 subtitle]
+     [:div.space]
+     [:img {:src image-path}]
+     [:dialog.feature {:id      modal-id
+                       :popover true}
+      [:div.content
+       [:h1 title]
+       [:p.intro intro]
+       (map (fn [{:keys [intro body prompts]}]
+              [:div.section
+               [:p [:span.intro intro] " " [:span.body body]]
+               (map (fn [prompt, i]
+                      [:p.prompt {:class (if (= 0 (mod i 2))
+                                           "left"
+                                           "right")
+                                  :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
+                       prompt])
+                    prompts (range))])
+            details)
+       (panel-script modal-id)]]]))
 
 (def features-panels
   [:div.panels.over-hero
    (panel {:title      "Cruising Guide"
            :subtitle   "Boating almanac on the go"
-           :image-path "/panel-boat.png"})
+           :image-path "/panel-boat.png"
+           :intro      "... talking to a local guide has never been simpler."
+           :details    [{:heading "Local Navigation"
+                         :body    (long-str
+                                   ["Local weather patterns and seasonal considerations, local rules and regulations,"
+                                    "fuel docks and provisioning spots, customs and immigration procedures."
+                                    "PopAI is there to help make your boating experience smooth and stress free."])
+                         :prompts ["PopAI, what are the predominant winds for this part of the year?"
+                                   "PopAI, can we anchor in Cam Bay National Park?"
+                                   "PopAI, how do I clear customs in Tortola?"]}
+                        {:heading "Marinas, Anchorages and Points of Interest."
+                         :body    (long-str
+                                   ["Planning your day has never been easier."
+                                    "Simply tell PopAI what activities you want to do and it will suggest areas"
+                                    "around you where you can do those."])
+                         :prompts ["PopAI, where do I snorkel to see Manta rays?"
+                                   "What types of fish are visible at this diving spot?"
+                                   "Where is a child friendly beach to anchor?"
+                                   "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
+                                   "How do I call the marina?"]}
+                        {:heading "Off The Water Insights"
+                         :body    (long-str
+                                   ["From the best restaurants and bars, to where to get groceries and services"
+                                    "in town, PopAI knows the area as a local."])
+                         :prompts ["PopAI, where do we go dancing?"
+                                   "PopAI, is there a laundry in town?"
+                                   "Where do I buy ice?"
+                                   "Where is the best playground in town?"]}
+                        {:heading "Etiquette, customs and more"
+                         :body    (long-str
+                                   ["PopAI is there to help you learn about local history and culture."
+                                    "It can help prepare you for things you should know before you get"
+                                    "to your destination. "
+                                    "It can also offer popular itineraries once you get to an area."])
+                         :prompts ["When did BVI become British?"
+                                   "Who discovered the Virgin Islands?"
+                                   "PopAI, what should I do in Virgin Gorda on a Tuesday?"
+                                   "PopAI, how do you say <q>Hi</q> in Croatian?"]}]})
 
    (panel {:title      "Boat Mechanic"
            :subtitle   "You've never been more prepared"
@@ -277,8 +386,8 @@
            :image-path "/panel-glenn.png"})])
 
 (def description-css
-  [:.description {:margin  0
-                  :padding "1em"}])
+  ["body > .description" {:margin  0
+                          :padding "1em"}])
 
 (def description
   [:p.description.over-hero
@@ -303,7 +412,11 @@
         (page/head :extra-css (base-css hero-css
                                         features-panels-css
                                         description-css)
-                   :noscript  hero-image-noscript)
+                   :noscript  [:style
+                               (g/css
+                                (page/pretty-print)
+                                [hero-image-noscript
+                                 features-panels-noscript])])
         [:body
          header
          hero-image-light
