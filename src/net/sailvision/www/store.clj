@@ -4,6 +4,7 @@
    [hiccup.page :as h]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
+   [net.sailvision.www.util :refer [long-str]]
    [garden.core :as g]
    [garden.stylesheet :as s]
    [ring.util.codec :as codec]
@@ -281,8 +282,7 @@
 
 (def description
   [:p.description.over-hero
-   (str/join
-    " "
+   (long-str
     ["Are you chartering a boat and going cruising?"
      "Will you be in an area with internet connectivity?"
      "The PopAI App is for you."
