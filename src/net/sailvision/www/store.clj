@@ -426,60 +426,6 @@
          description])}
       (resp/redirect "/"))))
 
-(def credit-card-cardholder
-  [:input {:type         :text
-           :name         :card-holder
-           :autocomplete :cc-name
-           :placeholder  "Name on Card"
-           :required     true
-           :style        (g/style {:width "25em"})}])
-
-(def credit-card-number
-  [:input {:type         :text
-           :name         :card-number
-           :inputmode    :numeric
-           :autocomplete :cc-number
-           :placeholder  "1234 5678 9012 3456"
-           :pattern      "\\d{13,19}"
-           :required     true
-           :style        (g/style {:width "15em"})}])
-
-(def credit-card-expiry
-  [:input {:type         :month
-           :name         :card-expiry
-           :inputmode    :numeric
-           :autocomplete :cc-exp
-           :placeholder "MM/YY"
-           :pattern "\\d{2}/\\d{2}"
-           :required true
-           :style        (g/style {:width "5em"})}])
-
-(def credit-card-cvc
-  [:input {:type         :text
-           :name         :card-cvc
-           :inputmode    :numeric
-           :autocomplete :cc-csc
-           :placeholder  "123"
-           :pattern      "\\d{3,4}"
-           :required     true
-           :style        (g/style {:width "5em"})}])
-
-(def credit-card-form
-  [:form
-   [:input {:type  :hidden
-            :name  :product
-            :value :popai}]
-   credit-card-cardholder
-   [:br]
-   credit-card-number
-   credit-card-expiry
-   credit-card-cvc
-   [:br]
-   [:button {:type                :button
-             :popovertarget       :modal
-             :popovertargetaction :show}
-    "Complete Purchase"]])
-
 (def checkout-modal
   [:div#dialog-content
    [:p "Sorry to mislead, but this isn't a real product (yet!)"]])
@@ -499,7 +445,6 @@
         (page/head {:title "Checkout" :extra-css form-validation-css})
         [:body
          [:p (str "Purchasing almanac for " location " aboard a " boat ".")]
-         credit-card-form
          [:dialog#modal {:popover true}
           checkout-modal]])}
       {:status 401
