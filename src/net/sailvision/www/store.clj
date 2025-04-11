@@ -251,9 +251,9 @@
                        :border     0
                        :background :transparent
                        :animation-duration "0.3s"}
-      [:.content {:margin        "10vh 10vw"
+      [:.content {:margin        "5vh 5vw"
                   :width         "auto"
-                  :padding       "1em"
+                  :padding       "2em"
                   :border-radius "1em"
                   :text-align    :start
                   :color         "rgb(var(--foreground))"
@@ -263,6 +263,7 @@
                    :padding       "0 1em"
                    :margin        "3em 0 0"}]
        [:h1 {:text-align :center
+             :margin-top 0
              :font       "italic 3em Arial, san-serif"}]
        [:p.intro {:font-size "1.4em"
                   :margin    0}]
