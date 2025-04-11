@@ -426,6 +426,21 @@
      "With the PopAI  App you will never feel unprepared for a charter again."
      "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])])
 
+(def footer-css
+  [:footer {:background "#101010"
+            :color      "#f0f0f0"
+            :margin     0
+            :padding    "3em 1em"
+            :display    :flex}
+   [:.spacer {:flex-grow 1}]
+   [:a {:color "#a6cffb"}]])
+
+(def footer
+  [:footer
+   [:span "Copyright 2025 - SailVisionPro, LLC"]
+   [:div.spacer]
+   [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]])
+
 (defn popai [request]
   (let [token             (keyword (:token request))
         [boats locations] [(boats     token)
@@ -437,7 +452,8 @@
         (page/head :extra-css (base-css hero-css
                                         get-to-know-css
                                         features-panels-css
-                                        description-css)
+                                        description-css
+                                        footer-css)
                    :noscript  [:style
                                (g/css
                                 (page/pretty-print)
@@ -450,7 +466,8 @@
          hero-mask
          get-to-know
          features-panels
-         description])}
+         description
+         footer])}
       (resp/redirect "/"))))
 
 (def checkout-modal
