@@ -269,8 +269,10 @@
        [:span.intro {:font-weight :bold
                      :font-style  :italic}]
        [:span.body  {:font-size "1.1em"}]
-       [:.prompt       {:font         "italic 1.8em Arial, san-serif"
+       [:.prompt       {:display      :block
+                        :font         "italic 1.8em Arial, san-serif"
                         :padding-top  "0.8em"
+                        :margin       "0.5em"
                         :transition   "opacity 1s linear, transform 1s ease-out"}]
        [:.prompt.left  {:margin-right "5ch"
                         :text-align   :left
@@ -321,7 +323,7 @@
               [:div.section
                [:p [:span.intro intro] " " [:span.body body]]
                (map (fn [prompt, i]
-                      [:p.prompt {:class (if (= 0 (mod i 2))
+                      [:q.prompt {:class (if (= 0 (mod i 2))
                                            "left"
                                            "right")
                                   :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
