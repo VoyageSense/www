@@ -30,10 +30,6 @@
                              "South Pacific"
                              {:tahiti          "Tahiti"}}}})
 
-(def time-frames [[2025 2], [2025 3], [2025 4],
-                  [2026 1], [2026 2], [2026 3], [2026 4],
-                  [2027 1], [2027 2], [2027 3], [2027 4]])
-
 (def base
   (let [posthog-script (slurp (io/resource "posthog.js"))]
     {:css    [[:main {:margin "1em 1em"}]
@@ -127,34 +123,6 @@
                   :alt    "Looking over the bow of a boat sailing in the San Francisco bay, sunset in the background"
                   :onload "this.classList.add('loaded')"}]
                 [:div.hero-mask]]}))
-
-(def almanac-request
-  [:details
-   [:summary "Don't see your destination or boat?"]
-   [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanac. We'll
-      let you know if they'll be ready in time for your trip and follow up once they are."]
-   [:form.sku-request {:action route-request-almanac}
-    [:input {:type  :hidden
-             :name  :product
-             :value :popai}]
-    [:label             {:for  :destination} "Destination:"]
-    [:input#destination {:name :destination}]
-    [:label      {:for  :boat} "Boat:"]
-    [:input#boat {:name :boat}]
-    [:label            {:for  :timeFrame} "Time Frame:"]
-    [:select#timeFrame {:name :timeFrame}
-     (map (fn [[year quarter]]
-            (let [id (str year "q" quarter)
-                  months (case quarter
-                           1 "January - March"
-                           2 "April - June"
-                           3 "July - September"
-                           4 "October - December")]
-              [:option {:value id} (str months ", " year)]))
-          time-frames)]
-    [:label              {:for  :emailAddress} "Email Address:"]
-    [:input#emailAddress {:name :emailAddress}]
-    [:button {:type :submit} "Request Almanac"]]])
 
 (def form-validation-css
   (g/css
@@ -416,6 +384,39 @@
                                      footer])
       (resp/redirect "/"))))
 
+
+(def almanac-request
+  (let [time-frames [          [2025 2], [2025 3], [2025 4],
+                     [2026 1], [2026 2], [2026 3], [2026 4],
+                     [2027 1], [2027 2], [2027 3], [2027 4]]]
+    {:body [[:details
+             [:summary "Don't see your destination or boat?"]
+             [:p (long-str ["Let us know where you're going, what you'll be sailing, and when so we can start working"
+                            "on the almanac. We'll let you know if they'll be ready in time for your trip and follow up"
+                            "once they are."])]
+             [:form.sku-request {:action route-request-almanac}
+              [:input {:type  :hidden
+                       :name  :product
+                       :value :popai}]
+              [:label             {:for  :destination} "Destination:"]
+              [:input#destination {:name :destination}]
+              [:label      {:for  :boat} "Boat:"]
+              [:input#boat {:name :boat}]
+              [:label            {:for  :timeFrame} "Time Frame:"]
+              [:select#timeFrame {:name :timeFrame}
+               (map (fn [[year quarter]]
+                      (let [id (str year "q" quarter)
+                            months (case quarter
+                                     1 "January - March"
+                                     2 "April - June"
+                                     3 "July - September"
+                                     4 "October - December")]
+                        [:option {:value id} (str months ", " year)]))
+                    time-frames)]
+              [:label              {:for  :emailAddress} "Email Address:"]
+              [:input#emailAddress {:name :emailAddress}]
+              [:button {:type :submit} "Request Almanac"]]]]}))
+
 (defn configuration [code]
   (let [config (code targets)
         boats (:boats config)
@@ -443,7 +444,8 @@
     (if (and code (code targets))
       (page/from-components "Configure PopAI" [base
                                                header
-                                               (configuration code)])
+                                               (configuration code)
+                                               almanac-request])
       (resp/redirect "/"))))
 
 (def checkout-modal
