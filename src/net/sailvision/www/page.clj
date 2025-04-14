@@ -3,7 +3,8 @@
    [clojure.string :as str]
    [environ.core :refer [env]]
    [garden.core :as g]
-   [garden.stylesheet :as s]))
+   [garden.stylesheet :as s]
+   [hiccup.page :as h]))
 
 (def headers {"Content-Type" "text/html"})
 
@@ -16,9 +17,7 @@
 (def dark-background  "30, 30, 30")
 
 (def base-css
-  (g/css
-   (pretty-print)
-   [:body {:margin 0}]
+  [[:body {:margin 0}]
    [:form
     [:label {:padding-right "10px"}]]
    [:html { :color-scheme "light dark" }]
@@ -29,19 +28,36 @@
                [":root" {:--foreground dark-foreground
                          :--background dark-background}])
    [:body {:color      "rgb(var(--foreground))"
-           :background "rgb(var(--background))"}]))
+           :background "rgb(var(--background))"}]])
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head
    [:title (str/join " - " (keep identity ["SailVision" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
-   (if extra-css
-     [:style base-css extra-css]
-     [:style base-css])
+   [:style
+    (g/css (pretty-print) base-css)
+    extra-css]
    (if noscript
      [:noscript noscript]
      nil)
    (if extras
      (map identity extras)
      nil)])
+
+(defn from-components [title components]
+  {:headers headers
+   :body
+   (h/html5
+    [:head
+     [:title (str/join " - " (keep identity ["SailVision" title]))]
+     [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+     [:style (g/css
+              (pretty-print)
+              base-css
+              (mapcat :css components))]
+     [:noscript (g/css
+                 (pretty-print)
+                 (mapcat :noscript components))]]
+    [:body (mapcat :body components)])})
