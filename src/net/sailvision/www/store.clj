@@ -437,13 +437,11 @@
      "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])])
 
 (def footer-css
-  [:footer {:background "#101010"
-            :color      "#f0f0f0"
+  [:footer {
             :margin     0
             :padding    "3em 1em"
             :display    :flex}
-   [:.spacer {:flex-grow 1}]
-   [:a {:color "#a6cffb"}]])
+   [:.spacer {:flex-grow 1}]])
 
 (def footer
   [:footer
