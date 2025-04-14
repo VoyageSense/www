@@ -12,6 +12,7 @@
    [net.sailvision.www.store :as store]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.not-modified :as not-modified]
+   [ring.middleware.keyword-params :as keyword-params]
    [ring.middleware.params :as params]
    [ring.middleware.resource :as resource]
    [ring.util.response :as resp]))
@@ -85,7 +86,7 @@
              [:p "Sorry about that! Please try again in a bit or send us a message and we'll take a look."]]]])})
 
 (defn wrap-params [request handler]
-  #(handler (merge % (params/params-request request))))
+  #((keyword-params/wrap-keyword-params handler) (merge % (params/params-request request))))
 
 (defn route [request]
   (condp c/route-matches request
