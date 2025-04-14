@@ -130,7 +130,7 @@
               :gap         "0.5em"
               :align-items "last baseline"
               :color       "rgb(var(--bold-foreground))"
-              :text-shadow "0.05em 0.1em 0.2em rgb(var(--bold-background))"}
+              :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
      [:h1 :h2 :h3 {:margin         0
                    :font-weight    :bold
                    :font-family    "Arial, san-serif"}]
