@@ -428,13 +428,13 @@
         [boats locations] [(boats     token)
                            (locations token)]]
     (if (and boats locations)
-      (page/from-components nil [base
-                                 header
-                                 hero
-                                 get-to-know
-                                 features-panels
-                                 description
-                                 footer])
+      (page/from-components "PopAI" [base
+                                     header
+                                     hero
+                                     get-to-know
+                                     features-panels
+                                     description
+                                     footer])
       (resp/redirect "/"))))
 
 (def checkout-modal
