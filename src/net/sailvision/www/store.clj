@@ -97,8 +97,9 @@
             [:span "Use the power of your voice to manage your boating experience"]]]]})
 
 (def hero
-  (let [loaded {:opacity   1
-                :transform :none}]
+  (let [loaded      {:opacity   1
+                     :transform :none}
+        mask-opacity 0.85]
     {:css      [[:.hero {:width          "100%"
                          :position       :fixed
                          :opacity        0
@@ -114,9 +115,12 @@
                 [:.loaded loaded]
                 [:.hero-mask {:width      "100%"
                               :height     "calc(min(70vw, 80vh))"
-                              :background "linear-gradient(to bottom, transparent 85%, rgba(var(--background), 0.9))"
+                              :background (str
+                                           "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
+                                           mask-opacity
+                                           "))")
                               :z-index    -1}]
-                [:.over-hero {:background "rgba(var(--background), 0.9)"}]]
+                [:.over-hero {:background (str "rgba(var(--background), " mask-opacity ")")}]]
      :noscript [[:.hero loaded]]
      :body     [[:img.hero.light
                  {:src    "/popai-hero-background-light.jpg"
@@ -391,9 +395,11 @@
                          :image-path "/panel-glenn.png"})]]}))
 
 (def description
-  {:css  [["body > .description" {:margin  0
-                                  :padding "4em 1em"}]]
-   :body [[:p.description.over-hero
+  {:css  [["body > .description" {:margin     0
+                                  :padding    "4em 1em"
+                                  :background "rgb(var(--background))"
+                                  :color      "rgb(var(--foreground))"}]]
+   :body [[:p.description
            (long-str
             ["Are you chartering a boat and going cruising?"
              "Will you be in an area with internet connectivity?"
