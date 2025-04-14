@@ -30,6 +30,7 @@ This is a fragile setup, since a working server is required to deploy new code.
 |:---------------------|:------------------------------------------------------|
 | `NEXT_PATH`          | Location to write the uploaded uberjar for deployment |
 | `DB_STOARGE`         | Location of the database, or `:mem`                   |
+| `PRETTY_PRINT`       | Include formatting in generated CSS                   |
 | `POSTHOG`            | Include PostHog tracker on store page                 |
 
 ## Admin Access ##
