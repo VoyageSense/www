@@ -12,28 +12,23 @@
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
-(def route-home "/store/:token")
+(def route-home "/store/popai")
+(def route-configure (str route-home "/configure"))
 (def route-checkout (str route-home "/checkout"))
 (def route-request-almanac "/store/request-almanac")
 
-(defn boats [token]
-  (case token
-    :popai {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
-            :oceanis-42.3    "Beneteau Oceanis 42.3"
-            :dufour-41       "Dufour 41"
-            :dufour-44       "Dufour 44"
-            :oceanis-46.1    "Beneteau Oceanis 46.1"}
-    nil))
-
-(defn locations [token]
-  (case token
-    :popai {"Carribean"
-            {:usvi-bvi        "Virgin Islands (British and United States)"
-             :leeward-islands "Leeward Islands"
-             :turks-caicos    "Turks and Caicos Islands"}
-            "South Pacific"
-            {:tahiti          "Tahiti"}}
-    nil))
+(def targets
+  {:watermellon {:boats     {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+                             :oceanis-42.3    "Beneteau Oceanis 42.3"
+                             :dufour-41       "Dufour 41"
+                             :dufour-44       "Dufour 44"
+                             :oceanis-46.1    "Beneteau Oceanis 46.1"}
+                 :locations {"Carribean"
+                             {:usvi-bvi        "Virgin Islands (British and United States)"
+                              :leeward-islands "Leeward Islands"
+                              :turks-caicos    "Turks and Caicos Islands"}
+                             "South Pacific"
+                             {:tahiti          "Tahiti"}}}})
 
 (def time-frames [[2025 2], [2025 3], [2025 4],
                   [2026 1], [2026 2], [2026 3], [2026 4],
@@ -182,22 +177,6 @@
      :height          "100%"
      :align-items     :center
      :justify-content :center}]))
-
-(defn checkout-form [{:keys [boats locations token]}]
-  [:form.sku-selection {:action (str/replace-first route-checkout ":token" (name token))}
-   [:input {:type  :hidden
-            :name  :product
-            :value :popai}]
-   [:label           {:for :location} "Location:"]
-   [:select#location {:name :location}
-    (map (fn [[area locations]]
-           [:optgroup {:label area}
-            (map (fn [[k v]] [:option {:value k} v]) locations)])
-         locations)]
-   [:label       {:for :boat} "Boat:"]
-   [:select#boat {:name :boat}
-    (map (fn [[k v]] [:option {:value k} v]) boats)]
-   [:button {:type :submit} "Checkout"]])
 
 (def get-to-know
   {:css  [[:.get-to-know {:margin   0
@@ -395,21 +374,23 @@
                          :subtitle   "Interact, control and monitor"
                          :image-path "/panel-glenn.png"})]]}))
 
-(def description
+(defn description [code]
   {:css  [["body > .description" {:margin     0
                                   :padding    "4em 1em"
                                   :background "rgb(var(--background))"
                                   :color      "rgb(var(--foreground))"}]]
-   :body [[:p.description
-           (long-str
-            ["Are you chartering a boat and going cruising?"
-             "Will you be in an area with internet connectivity?"
-             "The PopAI App is for you."
-             "The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat."
-             "The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc."
-             "It has all COLREGS, immigration rules and regulations, lights and markers, etc."
-             "With the PopAI  App you will never feel unprepared for a charter again."
-             "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])]]})
+   :body [[:div.description
+           [:p
+            (long-str
+             ["Are you chartering a boat and going cruising?"
+              "Will you be in an area with internet connectivity?"
+              "The PopAI App is for you."
+              "The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat."
+              "The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc."
+              "It has all COLREGS, immigration rules and regulations, lights and markers, etc."
+              "With the PopAI  App you will never feel unprepared for a charter again."
+              "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])]
+           [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]})
 
 (def footer
   {:css  [[:footer {:margin     0
@@ -424,17 +405,45 @@
            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]})
 
 (defn popai [request]
-  (let [token             (keyword (:token request))
-        [boats locations] [(boats     token)
-                           (locations token)]]
-    (if (and boats locations)
+  (let [code (keyword (:code (:params request)))]
+    (if (and code (code targets))
       (page/from-components "PopAI" [base
                                      header
                                      hero
                                      get-to-know
                                      features-panels
-                                     description
+                                     (description code)
                                      footer])
+      (resp/redirect "/"))))
+
+(defn configuration [code]
+  (let [config (code targets)
+        boats (:boats config)
+        locations (:locations config)]
+    {:body [[:form.sku-selection {:action route-checkout}
+             [:input {:type  :hidden
+                      :name  :code
+                      :value code}]
+             [:input {:type  :hidden
+                      :name  :product
+                      :value :popai}]
+             [:label           {:for :location} "Location:"]
+             [:select#location {:name :location}
+              (map (fn [[area locations]]
+                     [:optgroup {:label area}
+                      (map (fn [[k v]] [:option {:value k} v]) locations)])
+                   locations)]
+             [:label       {:for :boat} "Boat:"]
+             [:select#boat {:name :boat}
+              (map (fn [[k v]] [:option {:value k} v]) boats)]
+             [:button {:type :submit} "Checkout"]]]}))
+
+(defn configure [request]
+  (let [code (keyword (:code (:params request)))]
+    (if (and code (code targets))
+      (page/from-components "Configure PopAI" [base
+                                               header
+                                               (configuration code)])
       (resp/redirect "/"))))
 
 (def checkout-modal
@@ -442,13 +451,17 @@
    [:p "Sorry to mislead, but this isn't a real product (yet!)"]])
 
 (defn checkout [request]
-  (let [token    (keyword (:token request))
-        params   (codec/form-decode (:query-string request))
-        location (get (reduce-kv (fn [acc k v]
-                                   (merge acc v)) {} (locations token))
-                      (keyword (get params "location")))
-        boat     (get (boats token)
-                      (keyword (get params "boat")))]
+  (let [code         (keyword (:code (:params request)))
+        config       (code targets)
+        locations    (:locations config)
+        location-key (keyword (:location (:params request)))
+        location     (location-key (reduce-kv (fn [acc k v]
+                                                (merge acc v))
+                                              {}
+                                              locations))
+        boats        (:boats config)
+        boat-key     (keyword (:boat (:params request)))
+        boat         (boat-key boats)]
     (if (and location boat)
       {:headers page/headers
        :body

@@ -90,9 +90,10 @@
 
 (defn route [request]
   (condp c/route-matches request
+    (c/route-compile store/route-home)            :>> (wrap-params request store/popai)
+    (c/route-compile store/route-configure)       :>> (wrap-params request store/configure)
     (c/route-compile store/route-checkout)        :>> (wrap-params request store/checkout)
     (c/route-compile store/route-request-almanac) :>> (wrap-params request store/request-almanac)
-    (c/route-compile store/route-home)            :>> (wrap-params request store/popai)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 (internal-error)
