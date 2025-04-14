@@ -218,21 +218,23 @@
    [:button {:type :submit} "Checkout"]])
 
 (def get-to-know-css
-  [:.get-to-know {:margin 0
-                  :padding "4em 2em"}
+  [:.get-to-know {:margin   0
+                  :padding  "4em 2em"}
    [:h1 {:margin  0
          :display :inline}]
    [:h2 {:font-size-adjust "0.3"
          :padding-left     "0.4em"
          :display          :inline}]
+   [:div {:display :inline}]
    [:.emphasis {:font-weight     :bold
                 :font-style      :italic
                 :text-decoration :underline}]])
 
 (def get-to-know
   [:div.get-to-know.over-hero
-   [:h1 "Get to know PopAI"]
-   [:h2 "pronounced " [:q "Popeye"]]
+   [:div
+   [:h1 "Get to know PopAI"]]
+   [:div [:h2 "pronounced " [:q "Popeye"]]]
    [:p "PopAI is a voice controlled boating helper. It is a part "
     [:span.emphasis "guide"] ", part "
     [:span.emphasis "mechanic"]", part "
