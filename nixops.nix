@@ -136,6 +136,7 @@
             Environment = builtins.concatStringsSep " " [
               "NEXT_PATH=${nextPath}"
               "DB_STORAGE=/var/lib/${stateDir}/db"
+              "POSTHOG=true"
             ];
 
             User                = config.users.users.www.name;
