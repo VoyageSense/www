@@ -170,12 +170,12 @@
 (defn panel-script [id]
   [:script
    (long-str
-    [(str "document.getElementById('" id "').addEventListener('toggle', (event) => {")
+    (str "document.getElementById('" id "').addEventListener('toggle', (event) => {")
      "shownfn = event.target.matches(':popover-open')"
      "? (prompt) => prompt.classList.add('shown')"
      ": (prompt) => prompt.classList.remove('shown');"
      "event.target.querySelectorAll('.prompt').forEach(shownfn);"
-     "});"])])
+     "});")])
 
 (defn panel [{:keys [title subtitle intro image-path details]}]
   (let [modal-id (str/join "-" (flatten
@@ -295,17 +295,18 @@
                          :intro      "... talking to a local guide has never been simpler."
                          :details    [{:heading "Local Navigation"
                                        :body    (long-str
-                                                 ["Local weather patterns and seasonal considerations, local rules and regulations,"
-                                                  "fuel docks and provisioning spots, customs and immigration procedures."
-                                                  "PopAI is there to help make your boating experience smooth and stress free."])
+                                                 "Local weather patterns and seasonal considerations, local rules and"
+                                                 "regulations, fuel docks and provisioning spots, customs and"
+                                                 "immigration procedures. PopAI is there to help make your boating"
+                                                 "experience smooth and stress free.")
                                        :prompts ["PopAI, what are the predominant winds for this part of the year?"
                                                  "PopAI, can we anchor in Cam Bay National Park?"
                                                  "PopAI, how do I clear customs in Tortola?"]}
                                       {:heading "Marinas, Anchorages and Points of Interest."
                                        :body    (long-str
-                                                 ["Planning your day has never been easier."
-                                                  "Simply tell PopAI what activities you want to do and it will suggest areas"
-                                                  "around you where you can do those."])
+                                                 "Planning your day has never been easier. Simply tell PopAI what"
+                                                 "activities you want to do and it will suggest areas around you where"
+                                                 "you can do those.")
                                        :prompts ["PopAI, where do I snorkel to see Manta rays?"
                                                  "What types of fish are visible at this diving spot?"
                                                  "Where is a child friendly beach to anchor?"
@@ -313,18 +314,18 @@
                                                  "How do I call the marina?"]}
                                       {:heading "Off The Water Insights"
                                        :body    (long-str
-                                                 ["From the best restaurants and bars, to where to get groceries and services"
-                                                  "in town, PopAI knows the area as a local."])
+                                                 "From the best restaurants and bars, to where to get groceries and"
+                                                 "services in town, PopAI knows the area as a local.")
                                        :prompts ["PopAI, where do we go dancing?"
                                                  "PopAI, is there a laundry in town?"
                                                  "Where do I buy ice?"
                                                  "Where is the best playground in town?"]}
                                       {:heading "Etiquette, customs and more"
                                        :body    (long-str
-                                                 ["PopAI is there to help you learn about local history and culture."
-                                                  "It can help prepare you for things you should know before you get"
-                                                  "to your destination. "
-                                                  "It can also offer popular itineraries once you get to an area."])
+                                                 "PopAI is there to help you learn about local history and culture. It"
+                                                 "can help prepare you for things you should know before you get to"
+                                                 "your destination. It can also offer popular itineraries once you get"
+                                                 "to an area.")
                                        :prompts ["When did BVI become British?"
                                                  "Who discovered the Virgin Islands?"
                                                  "PopAI, what should I do in Virgin Gorda on a Tuesday?"
@@ -350,14 +351,14 @@
    :body [[:div.description
            [:p
             (long-str
-             ["Are you chartering a boat and going cruising?"
-              "Will you be in an area with internet connectivity?"
-              "The PopAI App is for you."
-              "The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat."
-              "The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc."
-              "It has all COLREGS, immigration rules and regulations, lights and markers, etc."
-              "With the PopAI  App you will never feel unprepared for a charter again."
-              "Simply download the app on your favorite mobile device (phone or tablet) and talk to it with your preferred method."])]
+             "Are you chartering a boat and going cruising? Will you be in an area with internet connectivity? The"
+             "PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing"
+             "almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on"
+             "your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you"
+             "common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS,"
+             "immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel"
+             "unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet)"
+             "and talk to it with your preferred method.")]
            [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]})
 
 (def footer
@@ -391,9 +392,9 @@
                      [2027 1], [2027 2], [2027 3], [2027 4]]]
     {:body [[:details
              [:summary "Don't see your destination or boat?"]
-             [:p (long-str ["Let us know where you're going, what you'll be sailing, and when so we can start working"
-                            "on the almanac. We'll let you know if they'll be ready in time for your trip and follow up"
-                            "once they are."])]
+             [:p (long-str "Let us know where you're going, what you'll be sailing, and when so we can start working on"
+                           "the almanac. We'll let you know if they'll be ready in time for your trip and follow up"
+                           "once they are.")]
              [:form.sku-request {:action route-request-almanac}
               [:input {:type  :hidden
                        :name  :product
