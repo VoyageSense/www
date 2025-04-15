@@ -124,28 +124,6 @@
                   :onload "this.classList.add('loaded')"}]
                 [:div.hero-mask]]}))
 
-(def form-validation-css
-  (g/css
-   (page/pretty-print)
-   ["input:not([type=\"submit\"])"
-    {:box-sizing :border-box}
-    {:border "medium solid transparent"}]
-   ["input:valid:not(:focus):not(:placeholder-shown)"
-    {:border "medium solid #00FF0060"}]
-   ["input:invalid:not(:focus):not(:placeholder-shown)"
-    {:border "medium solid #FF000090"}]
-   [:dialog
-    {:border     0
-     :background :transparent}]
-   ["dialog::backdrop"
-    {:backdrop-filter "blur(3px)"}]
-   [:#dialog-content
-    {:display         :flex
-     :width           "100%"
-     :height          "100%"
-     :align-items     :center
-     :justify-content :center}]))
-
 (def get-to-know
   {:css  [[:.get-to-know {:margin   0
                           :padding  "4em 2em"}
@@ -449,9 +427,51 @@
                                                almanac-request])
       (resp/redirect "/"))))
 
-(def checkout-modal
-  [:div#dialog-content
-   [:p "Sorry to mislead, but this isn't a real product (yet!)"]])
+(defn thank-you [&{:keys [location boat]}]
+  (let [functions ["Cruising Guide"
+                   "Boat Mechanic"
+                   "Sailing Instructor"
+                   "Crew Member"]
+        survey [{:name     :mostIntriguing
+                 :question "Of the four categories of functions, which did you find most intriguing?"
+                 :answers  functions}
+                {:name     :leastIntriguing
+                 :question "Of the four categories of functions, which did you find least intriguing?"
+                 :answers  functions}
+                {:name     :offline
+                 :question "Are you interested in a version of the product that can work entirely offline?"
+                 :answers  ["Yes"
+                            "No"
+                            "This product requires an Internet connection?"]}
+                {:name     :remote
+                 :question "Are you interested in the capability to monitor and control your boat remotely?"
+                 :answers  ["Yes"
+                            "No"]}]]
+    {:body [[:main
+             [:p (long-str "Thank you for your interest, but unfortunately, this isn't a real product yet. We really"
+                           "appreciate you giving us your attention and we hope we haven't caused any disruption with our"
+                           "experiment.")]
+             [:p (long-str "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're"
+                           "sailing in" location "or you're on a" (str boat ",") "we'll have an almanac ready to go."
+                           "Just give us an email address and we'll send you a message when it's ready to go. Use the"
+                           "same email address at checkout and the discount will automatically be applied.")]
+             [:p (long-str "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No"
+                           "worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way."
+                           "Thanks again!")]
+             [:form
+              (apply concat (map (fn [&{:keys [name question answers]}]
+                                   [[:label  {:for  name} question]
+                                    [:select {:id   name
+                                              :name name}
+                                     (map (fn [v]
+                                            [:option {:value v} v])
+                                          (flatten ["-- Select One --"
+                                                    answers]))]])
+                                 survey))
+              [:label              {:for  :emailAddress} "Email Address:"]
+              [:input#emailAddress {:name :emailAddress
+                                    :type :email}]
+              [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]
   (let [code         (keyword (:code (:params request)))
@@ -466,14 +486,12 @@
         boat-key     (keyword (:boat (:params request)))
         boat         (boat-key boats)]
     (if (and location boat)
-      {:headers page/headers
-       :body
-       (h/html5
-        (page/head {:title "Checkout" :extra-css form-validation-css})
-        [:body
-         [:p (str "Purchasing almanac for " location " aboard a " boat ".")]
-         [:dialog#modal {:popover true}
-          checkout-modal]])}
+      (page/from-components
+       "Checkout"
+       [base
+        header
+        (thank-you {:location location
+                    :boat     boat})])
       {:status 401
        :headers page/headers
        :body "invalid product configuration"})))
