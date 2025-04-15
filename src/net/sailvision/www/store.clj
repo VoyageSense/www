@@ -135,11 +135,15 @@
    :body [[:div.get-to-know.over-hero
            [:div [:h1 "Get to know PopAI"]]
            [:div [:h2 "pronounced " [:q "Popeye"]]]
-           [:p "PopAI is a voice controlled boating helper. It is a part "
+           [:p "PopAI is a voice-controlled boating helper. It is part "
             [:span.emphasis "guide"] ", part "
             [:span.emphasis "mechanic"]", part "
             [:span.emphasis "instructor"] ", and part "
-            [:span.emphasis "crew member" "."]]]]})
+            [:span.emphasis "crew member"] "."]
+           [:p (long-str "Implemented as an app that runs on your phone, PopAI is there when you need it and provides"
+                         "sailors of all skill levels with a second opinion. It can help make the difference between a"
+                         "stressful vacation and one that is remembered for years to come &mdash; maybe even helping to"
+                         "kick off a new tradition with friends and family.")]]]})
 
 (defn panel-script [id]
   [:script
