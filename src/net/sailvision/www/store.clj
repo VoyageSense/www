@@ -102,7 +102,7 @@
                 [:.light {:visibility "var(--light-visibility)"}]
                 [:.loaded loaded]
                 [:.hero-mask {:width      "100%"
-                              :height     "calc(min(70vw, 80vh))"
+                              :height     "calc(min(70vw, 50vh))"
                               :background (str
                                            "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
                                            mask-opacity
