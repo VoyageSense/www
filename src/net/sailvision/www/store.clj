@@ -32,7 +32,11 @@
 
 (def base
   (let [posthog-script (slurp (io/resource "posthog.js"))]
-    {:css    [[:main {:margin "1em 1em"}]
+    {:css    [[:body {:display        :flex
+                      :flex-direction :column
+                      :min-height     "100vh"}]
+              [:main {:margin    "1em 1em"
+                      :flex-grow 1}]
               [:details :form {:margin "0em 1em"}]
               (s/at-media {:prefers-color-scheme :dark}
                           [":root" {:--bold-foreground  "240 240 240"
@@ -347,7 +351,7 @@
                     :color      "rgb(var(--foreground))"}
            [:.spacer {:flex-grow 1}]]]
    :body [[:footer
-           [:span "Copyright 2025 - SailVisionPro, LLC"]
+           [:span "&copy; 2025 SailVisionPro, LLC"]
            [:div.spacer]
            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]})
 
@@ -400,23 +404,25 @@
   (let [config (code targets)
         boats (:boats config)
         locations (:locations config)]
-    {:body [[:form.sku-selection {:action route-checkout}
-             [:input {:type  :hidden
-                      :name  :code
-                      :value code}]
-             [:input {:type  :hidden
-                      :name  :product
-                      :value :popai}]
-             [:label           {:for :location} "Location:"]
-             [:select#location {:name :location}
-              (map (fn [[area locations]]
-                     [:optgroup {:label area}
-                      (map (fn [[k v]] [:option {:value k} v]) locations)])
-                   locations)]
-             [:label       {:for :boat} "Boat:"]
-             [:select#boat {:name :boat}
-              (map (fn [[k v]] [:option {:value k} v]) boats)]
-             [:button {:type :submit} "Checkout"]]]}))
+    {:body [[:main
+             [:form.sku-selection {:action route-checkout}
+              [:input {:type  :hidden
+                       :name  :code
+                       :value code}]
+              [:input {:type  :hidden
+                       :name  :product
+                       :value :popai}]
+              [:label           {:for :location} "Location:"]
+              [:select#location {:name :location}
+               (map (fn [[area locations]]
+                      [:optgroup {:label area}
+                       (map (fn [[k v]] [:option {:value k} v]) locations)])
+                    locations)]
+              [:label       {:for :boat} "Boat:"]
+              [:select#boat {:name :boat}
+               (map (fn [[k v]] [:option {:value k} v]) boats)]
+              [:button {:type :submit} "Checkout"]]
+             (first (:body almanac-request))]]}))
 
 (defn configure [request]
   (let [code (keyword (:code (:params request)))]
@@ -424,7 +430,7 @@
       (page/from-components "Configure PopAI" [base
                                                header
                                                (configuration code)
-                                               almanac-request])
+                                               footer])
       (resp/redirect "/"))))
 
 (defn thank-you [&{:keys [location boat]}]
@@ -494,7 +500,8 @@
        [base
         header
         (thank-you {:location location
-                    :boat     boat})])
+                    :boat     boat})
+        footer])
       {:status 401
        :headers page/headers
        :body "invalid product configuration"})))
