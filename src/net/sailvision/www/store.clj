@@ -400,7 +400,42 @@
 
                  (panel {:title      "Crew Member"
                          :subtitle   "Interact, control and monitor"
-                         :image-path "/panel-glenn.png"})]]}))
+                         :image-path "/panel-glenn.png"
+                         :details    [{:heading "Local Navigation"
+                                       :body    [(long-str "Local weather patterns and seasonal considerations, local"
+                                                           "rules and regulations, fuel docks and provisioning spots,"
+                                                           "customs and immigration procedures. PopAI is there to help"
+                                                           "make your boating experience smooth and stress free.")]
+                                       :prompts ["PopAI, what are the predominant winds for this part of the year?"
+                                                 "PopAI, can we anchor in Cam Bay National Park?"
+                                                 "PopAI, how do I clear customs in Tortola?"]}
+                                      {:heading "Marinas, Anchorages and Points of Interest"
+                                       :body    [(long-str "Planning your day has never been easier. Simply tell PopAI"
+                                                           "what activities you want to do and it will suggest areas"
+                                                           "around you where you can do those.")]
+                                       :prompts ["PopAI, where do I snorkel to see Manta rays?"
+                                                 "What types of fish are visible at this diving spot?"
+                                                 "Where is a child friendly beach to anchor?"
+                                                 (long-str "PopAI, I need fuel, fresh water and a hot shower tonight."
+                                                           "Which marina should I go to?")
+                                                 "How do I call the marina?"]}
+                                      {:heading "Off The Water Insights"
+                                       :body    [(long-str "From the best restaurants and bars, to where to get"
+                                                           "groceries and services in town, PopAI knows the area as a"
+                                                           "local.")]
+                                       :prompts ["PopAI, where do we go dancing?"
+                                                 "PopAI, is there a laundry in town?"
+                                                 "Where do I buy ice?"
+                                                 "Where is the best playground in town?"]}
+                                      {:heading "Etiquette, customs and more"
+                                       :body    [(long-str "PopAI is there to help you learn about local history and"
+                                                           "culture. It can help prepare you for things you should know"
+                                                           "before you get to your destination. It can also offer"
+                                                           "popular itineraries once you get to an area.")]
+                                       :prompts ["When did BVI become British?"
+                                                 "Who discovered the Virgin Islands?"
+                                                 "PopAI, what should I do in Virgin Gorda on a Tuesday?"
+                                                 "PopAI, how do you say <q>Hi<q> in Croatian?"]}]})]]}))
 
 (defn description [code]
   {:css  [["body > .description" {:margin     0
