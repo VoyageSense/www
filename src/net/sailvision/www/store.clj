@@ -252,7 +252,7 @@
                                        :prompts ["PopAI, what are the predominant winds for this part of the year?"
                                                  "PopAI, can we anchor in Cam Bay National Park?"
                                                  "PopAI, how do I clear customs in Tortola?"]}
-                                      {:heading "Marinas, Anchorages and Points of Interest."
+                                      {:heading "Marinas, Anchorages and Points of Interest"
                                        :body    [(long-str
                                                   "Planning your day has never been easier. Simply tell PopAI what"
                                                   "activities you want to do and it will suggest areas around you where"
