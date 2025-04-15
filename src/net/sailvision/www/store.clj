@@ -463,9 +463,20 @@
 
 (defn description [code]
   {:css  [["body > .description" {:margin     0
-                                  :padding    "4em 1em"
+                                  :padding    "4em 1em 0"
                                   :background "rgb(var(--background))"
-                                  :color      "rgb(var(--foreground))"}]]
+                                  :color      "rgb(var(--foreground))"}]
+          [:div.buy-now {:display        :flex
+                         :flex-direction :column
+                         :align-items    :center
+                         :padding        "2em"}]
+          ["div.buy-now > a" {:background      "#50a050"
+                              :font-size       "2em"
+                              :color           :white
+                              :text-decoration :none
+                              :border          "medium #307030 solid"
+                              :border-radius   "0.3em"
+                              :padding         "1em"}]]
    :body [[:div.description
            [:p
             (long-str
@@ -477,7 +488,8 @@
              "immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel"
              "unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet)"
              "and talk to it with your preferred method.")]
-           [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]})
+           [:div.buy-now
+            [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]]})
 
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
