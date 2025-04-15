@@ -356,7 +356,47 @@
 
                  (panel {:title      "Sailing Instructor"
                          :subtitle   "Checklists, rules and regulations"
-                         :image-path "/panel-textbook.png"})
+                         :image-path "/panel-textbook.png"
+                         :details    [{:heading "Rusty Knowledge Fret No More!"
+                                       :body    [(long-str "One of the biggest fears of charters is rusty or outdated"
+                                                           "knowledge. The majority of boat charterers go on a boat a"
+                                                           "few times per year. It is way too easy to forget all the"
+                                                           "processes and procedures one is expected to know"
+                                                           "chartering. Now you can simply ask PopAI and you will get a"
+                                                           "step-by-step reminder.")]
+                                       :prompts [(long-str "PopAI, I am going sailing in Croatia in July. What should I"
+                                                           "bring with me?")
+                                                 "How do you <q>heave to</q>?"
+                                                 "PopAI, what are the rules of the road in the Med?"
+                                                 "PopAI, tell me how to do a Med mooring step-by-step."]}
+                                      {:heading "Never Forget a Boat Term"
+                                       :body    [(long-str "From the least experienced sailor to the most experienced"
+                                                           "captain, we all sometimes need a reminder on boat terms.")]
+                                       :prompts ["PopAI, what is the origin of the word <q>starboard</q>?"
+                                                 (long-str "What is the name of the metal plate that attaches the"
+                                                           "shrouds to the hull?")
+                                                 "How many fathoms are in a shackle?"
+                                                 "What is a Code Zero?"]}
+                                      {:heading "Instant Reference To All Rules and Regulations"
+                                       :body    [(long-str "Instant reference to all International Regulations for"
+                                                           "Preventing Collisions at Sea (COLREGS) and other"
+                                                           "conventions by the International Maritime Organization,"
+                                                           "US Coast Guard and other navigation regulating bodies.")]
+                                       :prompts ["What are the governing marine rules and regulations at this location?"
+                                                 "I just heard three short horn blasts. What does that mean?"
+                                                 (long-str "I see some lights ahead of me. What are the lights of a"
+                                                           "towing vessel?")]}
+                                      {:heading "Local Laws"
+                                       :body    [(long-str "There are national, state and local laws that all must be"
+                                                           "followed when operating vessels. <q>Officer, I did not"
+                                                           "know</q> will probably not avoid a $2000 fine for violating"
+                                                           "the No Discharge Zone regulations. PopAI is here to help.")]
+                                       :prompts [(long-str "I am sailing in San Francisco Bay. Can I discharge my black"
+                                                           "water tanks?")
+                                                 (long-str "What safety equipment is required on a 40 foot sailing"
+                                                           "vessel  to visit Virgin Gorda?")
+                                                 "Can I anchor at an area with coral around St Martin?"
+                                                 "Do I need to quarantine my dog when visiting Jamaica by boat?"]}]})
 
                  (panel {:title      "Crew Member"
                          :subtitle   "Interact, control and monitor"
