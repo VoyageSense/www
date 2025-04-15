@@ -26,7 +26,8 @@
                               :leeward-islands "Leeward Islands"
                               :turks-caicos    "Turks and Caicos Islands"}
                              "South Pacific"
-                             {:tahiti          "Tahiti"}}}})
+                             {:tahiti          "Tahiti"}}
+                 :price     300}})
 
 (def header
   {:css  [[:body
@@ -356,10 +357,14 @@
               [:button {:type :submit} "Request Almanac"]]]]}))
 
 (defn configuration [code]
-  (let [config (code targets)
-        boats (:boats config)
-        locations (:locations config)]
-    {:body [[:main
+  (let [config    (code targets)
+        boats     (:boats     config)
+        locations (:locations config)
+        price     (:price     config)]
+    {:css  [[:.total {:grid-column "1 / -1"
+                      :text-align  :right
+                      :font-size "1.1em"}]]
+     :body [[:main
              [:form.sku-selection {:action route-checkout}
               [:input {:type  :hidden
                        :name  :code
@@ -376,6 +381,7 @@
               [:label       {:for :boat} "Boat:"]
               [:select#boat {:name :boat}
                (map (fn [[k v]] [:option {:value k} v]) boats)]
+              [:p.total "Price: $" price]
               [:button {:type :submit} "Checkout"]]
              (first (:body almanac-request))]]}))
 
