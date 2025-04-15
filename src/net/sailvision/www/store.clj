@@ -474,6 +474,7 @@
                               :font-size       "2em"
                               :color           :white
                               :text-decoration :none
+                              :text-align      :center
                               :border          "medium #307030 solid"
                               :border-radius   "0.3em"
                               :padding         "1em"}]]
