@@ -284,7 +284,75 @@
 
                  (panel {:title      "Boat Mechanic"
                          :subtitle   "You've never been more prepared"
-                         :image-path "/panel-engine.png"})
+                         :image-path "/panel-engine.png"
+                         :intro      "... 90% of the time anybody can fix things on the boat with a little bit of help!"
+                         :details    [{:heading "Piece of Mind"
+                                       :body    [(long-str "You've spent the past year dreaming, planning, and"
+                                                           "obsessing over every detail of your incredible charter to"
+                                                           "an exotic paradise. Countless hours of research and"
+                                                           "coordination, thousands of dollars in airfare,"
+                                                           "provisioning, logistics, and charter fees &mdash; and now,"
+                                                           "your crew is finally aboard, the sun is shining, and the"
+                                                           "adventure has begun.")
+                                                 "Then suddenly... the engine dies."
+                                                 (long-str "Do you call the charter company? Can you imagine being"
+                                                          "towed back and having to change boats? Are you even in cell"
+                                                          "range? Should you try to fix it yourself?")
+                                                 (long-str "Despite the best efforts of charter companies and thorough"
+                                                           "pre-departure checks, things can &mdash; and do &mdash; go"
+                                                           "wrong. The good news? <b>90% of the time, you can fix the"
+                                                           "problem yourself</b> with a bit of knowledge, calm"
+                                                           "thinking, and a few basic tools.")]
+                                       :prompts ["How do I clean the water strainer?"
+                                                 (long-str "The fridge stopped working and our food is going to go bad."
+                                                           "What do we do?")
+                                                 "PopAI, where is the port engine breaker box?"]}
+                                      {:heading "Know Your Boat Inside and Out"
+                                       :body    [(long-str "PopAI gives you unprecedented confidence and clarity by"
+                                                          "putting <b>everything</b> about your charter boat at your"
+                                                          "fingertips. From the owner's manuals to professional-grade"
+                                                          "engine diagrams, you'll have instant access to:")
+                                                 (long-str "<ul>"
+                                                           "<li>Propulsion system details, fuel tank capacity, engine"
+                                                           "consumption charts</li>"
+                                                           "<li>Electrical and water system schematics</li>"
+                                                           "<li>Hot water configurations</li>"
+                                                           "<li>AC diagrams and instructions</li>"
+                                                           "<li>Black and grey water tank types, locations, capacities,"
+                                                           "and maintenance instructions</li>"
+                                                           "<li>Running and standing rigging diagrams, explanations and"
+                                                           "load tables</li>"
+                                                           "<li>Sails' load charts, polar diagrams, anchoring, hoisting"
+                                                           "and reefing instructions</li>"
+                                                           "</ul>")
+                                                 (long-str "Whether you're troubleshooting or just getting familiar"
+                                                           "before you cast off, PopAI makes sure you're fully prepared"
+                                                           "&mdash; <b>like a pro before you even step aboard</b>. Once"
+                                                           "onboard you can <b>just ask about any system</b> and"
+                                                           "<b>PopAI will give you an instant reference to the boat"
+                                                           "documentation</b>.")]
+                                       :prompts ["What is the fuel capacity?"
+                                                 "How do I change the impeller?"]}
+                                      {:heading "Smart Troubleshooting When You Need It"
+                                       :body    ["PopAI helps guide you through general diagnostic steps when issues"
+                                                 "arise onboard. While boat systems can vary or evolve over time, PopAI"
+                                                 "provides practical, tailored advice to help you pinpoint the problem"
+                                                 "&mdash;whether it’s electrical, mechanical, or plumbing-related. Even"
+                                                 "if your system differs slightly from the manual, PopAI can assist"
+                                                 "with identifying likely causes and recommending next steps to get you"
+                                                 "back underway."]
+                                       :prompts ["PopAI, the running lights are not working. How can I fix that?"
+                                                 (long-str "PopAI, the water pump is turning on and off all night."
+                                                           "Nobody is using any water. Please help!")]}
+                                      {:heading "Step-by-Step Operation Instructions"
+                                       :body    [(long-str "PopAI will walk you through step by step instructions on"
+                                                           "how to do specific actions on the boat. Do not assume"
+                                                           "anything. Each boat is different, so it is best to ask how"
+                                                           "to do things.")]
+                                       :prompts [(long-str "PopAI, how do I fix a flooded carburetor on the outboard"
+                                                           "dinghy engine?")
+                                                 "PopAI, where is the wye valve for the starboard aft head?"
+                                                 "PopAI, should I leave the engine in gear while sailing?"]}]})
 
                  (panel {:title      "Sailing Instructor"
                          :subtitle   "Checklists, rules and regulations"
