@@ -475,16 +475,19 @@
 
 (defn checkout [request]
   (let [code         (keyword (:code (:params request)))
-        config       (code targets)
+        config       (when code
+                       (code targets))
         locations    (:locations config)
         location-key (keyword (:location (:params request)))
-        location     (location-key (reduce-kv (fn [acc k v]
-                                                (merge acc v))
-                                              {}
-                                              locations))
+        location     (when location-key
+                       (location-key (reduce-kv (fn [acc k v]
+                                                  (merge acc v))
+                                                {}
+                                                locations)))
         boats        (:boats config)
         boat-key     (keyword (:boat (:params request)))
-        boat         (boat-key boats)]
+        boat         (when boat-key
+                       (boat-key boats))]
     (if (and location boat)
       (page/from-components
        "Checkout"
