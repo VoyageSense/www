@@ -429,41 +429,49 @@
                  (panel {:title      "Crew Member"
                          :subtitle   "Interact, control and monitor"
                          :image-path "/panel-glenn.png"
-                         :details    [{:heading "Local Navigation"
-                                       :body    [(long-str "Local weather patterns and seasonal considerations, local"
-                                                           "rules and regulations, fuel docks and provisioning spots,"
-                                                           "customs and immigration procedures. PopAI is there to help"
-                                                           "make your boating experience smooth and stress free.")]
-                                       :prompts ["PopAI, what are the predominant winds for this part of the year?"
-                                                 "PopAI, can we anchor in Cam Bay National Park?"
-                                                 "PopAI, how do I clear customs in Tortola?"]}
-                                      {:heading "Marinas, Anchorages and Points of Interest"
-                                       :body    [(long-str "Planning your day has never been easier. Simply tell PopAI"
-                                                           "what activities you want to do and it will suggest areas"
-                                                           "around you where you can do those.")]
-                                       :prompts ["PopAI, where do I snorkel to see Manta rays?"
-                                                 "What types of fish are visible at this diving spot?"
-                                                 "Where is a child friendly beach to anchor?"
-                                                 (long-str "PopAI, I need fuel, fresh water and a hot shower tonight."
-                                                           "Which marina should I go to?")
-                                                 "How do I call the marina?"]}
-                                      {:heading "Off The Water Insights"
-                                       :body    [(long-str "From the best restaurants and bars, to where to get"
-                                                           "groceries and services in town, PopAI knows the area as a"
-                                                           "local.")]
-                                       :prompts ["PopAI, where do we go dancing?"
-                                                 "PopAI, is there a laundry in town?"
-                                                 "Where do I buy ice?"
-                                                 "Where is the best playground in town?"]}
-                                      {:heading "Etiquette, customs and more"
-                                       :body    [(long-str "PopAI is there to help you learn about local history and"
-                                                           "culture. It can help prepare you for things you should know"
-                                                           "before you get to your destination. It can also offer"
-                                                           "popular itineraries once you get to an area.")]
-                                       :prompts ["When did BVI become British?"
-                                                 "Who discovered the Virgin Islands?"
-                                                 "PopAI, what should I do in Virgin Gorda on a Tuesday?"
-                                                 "PopAI, how do you say <q>Hi<q> in Croatian?"]}]})]]}))
+                         :intro      "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
+                         :details    [{:heading "Access All Boat Data With Your Voice"
+                                       :body    [(long-str "PopAI connects to your boat's Wi-Fi data network and allows"
+                                                           "you to query all data available on the network using your"
+                                                           "voice. You no longer have to make the trip to a MFD or"
+                                                           "fight with screen glare or brightness just to get the"
+                                                           "depth. You can keep your eyes on the water and focus on"
+                                                           "steering while having full access to all the instrument"
+                                                           "data.")]
+                                       :prompts ["PopAI, what is the boat speed?"
+                                                 "What is the true wind speed?"
+                                                 "What is the engine rpm?"
+                                                 "How much fuel do we have?"]}
+                                      {:heading "Simplify and Automate Checklists"
+                                       :body    [(long-str "Departure and arrival checklists can feel like they take"
+                                                           "forever &mdash; there are so many steps, it's almost like"
+                                                           "you need a checklist just to manage your checklists. That's"
+                                                           "where PopAI comes in. It automates much of the process,"
+                                                           "saving you time and reducing the risk of oversight. PopAI"
+                                                           "can create, remember, and manage your checklists for you"
+                                                           "&mdash; and even handle many of the tasks itself. From"
+                                                           "checking fuel and oil levels to monitoring water tanks,"
+                                                           "battery bank status, lights, instruments, GPS, radar, AIS,"
+                                                           "and more, PopAI takes care of the details so you can focus"
+                                                           "on the journey.")]
+                                       :prompts ["PopAI, are we ready to go?"
+                                                 "Walk me through the checklist for anchoring for the night."]}
+                                      {:heading "Voice Control Your Boat"
+                                       :body    [(long-str "PopAI allows you to control with your voice almost any"
+                                                           "functionality that you can control with you chart plotter"
+                                                           "display or MFD.")]
+                                       :prompts ["PopAI turn on night mode on the instruments."
+                                                 "PopAI, turn up the brightness."
+                                                 "Turn on the running lights."
+                                                 "Turn off the cabin lights."]}
+                                      {:heading "On Watch 24h / Day!"
+                                       :body    [(long-str "PopAI keeps watch 24/7, so you don't have to worry. It"
+                                                           "constantly monitors your boat and alerts you when something"
+                                                           "unusual happens. For example, it can notify you if the"
+                                                           "water pump is running continuously because the tank is"
+                                                           "empty, or if you accidentally left the heater on after"
+                                                           "leaving the boat. With PopAI, you're always in the loop"
+                                                           "&mdash; no matter where you are.")]}]})]]}))
 
 (defn description [code]
   {:css  [["body > .description" {:margin     0
