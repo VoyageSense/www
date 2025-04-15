@@ -7,6 +7,7 @@
    [environ.core :refer [env]]
    [garden.core :as g]
    [hiccup.page :as h]
+   [net.sailvision.www.about :as about]
    [net.sailvision.www.admin :as admin]
    [net.sailvision.www.page :as page]
    [net.sailvision.www.store :as store]
@@ -94,6 +95,7 @@
     (c/route-compile store/route-configure)       :>> (wrap-params request store/configure)
     (c/route-compile store/route-checkout)        :>> (wrap-params request store/checkout)
     (c/route-compile store/route-request-almanac) :>> (wrap-params request store/request-almanac)
+    (c/route-compile about/route-home)            (about/home)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 (internal-error)

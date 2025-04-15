@@ -1,5 +1,6 @@
 (ns net.sailvision.www.page
   (:require
+   [clojure.java.io :as io]
    [clojure.string :as str]
    [environ.core :refer [env]]
    [garden.core :as g]
@@ -29,6 +30,37 @@
                          :--background dark-background}])
    [:body {:color      "rgb(var(--foreground))"
            :background "rgb(var(--background))"}]])
+
+(def base
+  (let [posthog-script (slurp (io/resource "posthog.js"))]
+    {:css    [[:body {:display        :flex
+                      :flex-direction :column
+                      :min-height     "100vh"}]
+              [:main {:margin    "1em 1em"
+                      :flex-grow 1}]
+              [:details :form {:margin "0em 1em"}]
+              (s/at-media {:prefers-color-scheme :dark}
+                          [":root" {:--bold-foreground  "240 240 240"
+                                    :--bold-background  "1 1 1"
+                                    :--light-visibility "hidden"
+                                    :--dark-visibility  "visible"}]
+                          (s/at-media {:prefers-color-scheme :light}
+                                      [":root" {:--bold-foreground  "20 20 20"
+                                                :--bold-background  "255 255 255"
+                                                :--light-visibility "visible"
+                                                :--dark-visibility  "hidden"}]))
+              [:details {:margin-top "1em"}
+               [:summary {:cursor :pointer}]]
+              [:form {:display               :grid
+                      :grid-template-columns "auto 1fr"
+                      :gap   "0.3em"
+                      :width :fit-content}
+               [:button {:grid-column  "span 2"
+                         :justify-self :center
+                         :padding      "0.3em 1em"}]]]
+     :script (if (env :posthog)
+               [posthog-script]
+               nil)}))
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head

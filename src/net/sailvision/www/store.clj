@@ -1,9 +1,7 @@
 (ns net.sailvision.www.store
   (:require
-   [clojure.java.io :as io]
    [clojure.string :as str]
-   [environ.core :refer [env]]
-   [hiccup.page :as h]
+   [net.sailvision.www.about :as about]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [net.sailvision.www.util :refer [long-str]]
@@ -29,37 +27,6 @@
                               :turks-caicos    "Turks and Caicos Islands"}
                              "South Pacific"
                              {:tahiti          "Tahiti"}}}})
-
-(def base
-  (let [posthog-script (slurp (io/resource "posthog.js"))]
-    {:css    [[:body {:display        :flex
-                      :flex-direction :column
-                      :min-height     "100vh"}]
-              [:main {:margin    "1em 1em"
-                      :flex-grow 1}]
-              [:details :form {:margin "0em 1em"}]
-              (s/at-media {:prefers-color-scheme :dark}
-                          [":root" {:--bold-foreground  "240 240 240"
-                                    :--bold-background  "1 1 1"
-                                    :--light-visibility "hidden"
-                                    :--dark-visibility  "visible"}]
-                          (s/at-media {:prefers-color-scheme :light}
-                                      [":root" {:--bold-foreground  "20 20 20"
-                                                :--bold-background  "255 255 255"
-                                                :--light-visibility "visible"
-                                                :--dark-visibility  "hidden"}]))
-              [:details {:margin-top "1em"}
-               [:summary {:cursor :pointer}]]
-              [:form {:display               :grid
-                      :grid-template-columns "auto 1fr"
-                      :gap   "0.3em"
-                      :width :fit-content}
-               [:button {:grid-column  "span 2"
-                         :justify-self :center
-                         :padding      "0.3em 1em"}]]]
-     :script (if (env :posthog)
-               [posthog-script]
-               nil)}))
 
 (def header
   {:css  [[:body
@@ -343,28 +310,16 @@
              "and talk to it with your preferred method.")]
            [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]})
 
-(def footer
-  {:css  [[:footer {:margin     0
-                    :padding    "3em 1em"
-                    :display    :flex
-                    :background "rgb(var(--background))"
-                    :color      "rgb(var(--foreground))"}
-           [:.spacer {:flex-grow 1}]]]
-   :body [[:footer
-           [:span "&copy; 2025 SailVisionPro, LLC"]
-           [:div.spacer]
-           [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]})
-
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
     (if (and code (code targets))
-      (page/from-components "PopAI" [base
+      (page/from-components "PopAI" [page/base
                                      header
                                      hero
                                      get-to-know
                                      features-panels
                                      (description code)
-                                     footer])
+                                     about/footer])
       (resp/redirect "/"))))
 
 
@@ -427,10 +382,10 @@
 (defn configure [request]
   (let [code (keyword (:code (:params request)))]
     (if (and code (code targets))
-      (page/from-components "Configure PopAI" [base
+      (page/from-components "Configure PopAI" [page/base
                                                header
                                                (configuration code)
-                                               footer])
+                                               about/footer])
       (resp/redirect "/"))))
 
 (defn thank-you [&{:keys [location boat]}]
@@ -497,11 +452,11 @@
     (if (and location boat)
       (page/from-components
        "Checkout"
-       [base
+       [page/base
         header
         (thank-you {:location location
                     :boat     boat})
-        footer])
+        about/footer])
       {:status 401
        :headers page/headers
        :body "invalid product configuration"})))
