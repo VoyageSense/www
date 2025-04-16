@@ -42,8 +42,7 @@
                              :grid-template-columns "1fr 1em min(calc(100% - 2em), var(--max-body-width)) 1em 1fr"}]
               [:.body-width {:grid-column 3}]
               [:.body-width-no-edge {:grid-column "2 / -2"}]
-              [:main {:margin "1em 1em"}]
-              [:details :form {:margin "0em 1em"}]
+              [:main {:margin "3em 0"}]
               (s/at-media {:prefers-color-scheme :dark}
                           [":root" {:--bold-foreground  "240 240 240"
                                     :--bold-background  "1 1 1"

@@ -215,7 +215,7 @@
                 [:div.hero-mask.full-width]]}))
 
 (def get-to-know
-  {:css  [[:.get-to-know
+  {:css  [[:.get-to-know {:margin "3em 0"}
            [:h1 {:margin  0
                  :display :inline}]
            [:h2 {:font-size-adjust "0.3"
@@ -464,6 +464,7 @@
   (defn description [code]
     {:css  [[:.background {:background "rgb(var(--background))"
                            :color      "rgb(var(--foreground))"}]
+            [:.description {:margin "3em 0"}]
             [:div.buy-now {:display        :flex
                            :flex-direction :column
                            :align-items    :center
