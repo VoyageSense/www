@@ -4,7 +4,6 @@
    [net.sailvision.www.about :as about]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
-   [net.sailvision.www.util :refer [long-str]]
    [garden.core :as g]
    [garden.stylesheet :as s]
    [ring.util.codec :as codec]
@@ -240,13 +239,12 @@
 
 (defn panel-script [id]
   [:script
-   (long-str
-    (str "document.getElementById('" id "').addEventListener('toggle', (event) => {")
-     "shownfn = event.target.matches(':popover-open')"
-     "? (prompt) => prompt.classList.add('shown')"
-     ": (prompt) => prompt.classList.remove('shown');"
-     "event.target.querySelectorAll('.prompt').forEach(shownfn);"
-     "});")])
+   (str "document.getElementById('" id "').addEventListener('toggle', (event) => {"
+        "shownfn = event.target.matches(':popover-open')"
+        "? (prompt) => prompt.classList.add('shown')"
+        ": (prompt) => prompt.classList.remove('shown');"
+        "event.target.querySelectorAll('.prompt').forEach(shownfn);"
+        "});")])
 
 (defn panel [{:keys [title subtitle intro image-path details]}]
   (let [modal-id (str/join "-" (flatten
@@ -403,15 +401,14 @@
                                                  "PopAI, where is the port engine breaker box?"]}
                                       {:heading "Know Your Boat Inside and Out"
                                        :body    ["PopAI gives you unprecedented confidence and clarity by putting <b>everything</b> about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
-                                                 (long-str "<ul>"
-                                                           "<li>Propulsion system details, fuel tank capacity, engine consumption charts</li>"
-                                                           "<li>Electrical and water system schematics</li>"
-                                                           "<li>Hot water configurations</li>"
-                                                           "<li>AC diagrams and instructions</li>"
-                                                           "<li>Black and grey water tank types, locations, capacities, and maintenance instructions</li>"
-                                                           "<li>Running and standing rigging diagrams, explanations and load tables</li>"
-                                                           "<li>Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions</li>"
-                                                           "</ul>")
+                                                 [:ul
+                                                  [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
+                                                  [:li "Electrical and water system schematics"]
+                                                  [:li "Hot water configurations"]
+                                                  [:li "AC diagrams and instructions"]
+                                                  [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
+                                                  [:li "Running and standing rigging diagrams, explanations and load tables"]
+                                                  [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
                                                  "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared &mdash; <b>like a pro before you even step aboard</b>. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
                                        :prompts ["What is the fuel capacity?"
                                                  "How do I change the impeller?"]}
