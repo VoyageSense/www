@@ -452,14 +452,14 @@
                                                  (long-str "Whether you're troubleshooting or just getting familiar"
                                                            "before you cast off, PopAI makes sure you're fully prepared"
                                                            "&mdash; <b>like a pro before you even step aboard</b>. Once"
-                                                           "onboard you can <b>just ask about any system</b> and"
+                                                           "on board you can <b>just ask about any system</b> and"
                                                            "<b>PopAI will give you an instant reference to the boat"
                                                            "documentation</b>.")]
                                        :prompts ["What is the fuel capacity?"
                                                  "How do I change the impeller?"]}
                                       {:heading "Smart Troubleshooting When You Need It"
                                        :body    ["PopAI helps guide you through general diagnostic steps when issues"
-                                                 "arise onboard. While boat systems can vary or evolve over time, PopAI"
+                                                 "arise on board. While boat systems can vary or evolve over time, PopAI"
                                                  "provides practical, tailored advice to help you pinpoint the problem"
                                                  "&mdash;whether it’s electrical, mechanical, or plumbing-related. Even"
                                                  "if your system differs slightly from the manual, PopAI can assist"
@@ -536,7 +536,7 @@
                                                            "data.")]
                                        :prompts ["PopAI, what is the boat speed?"
                                                  "What is the true wind speed?"
-                                                 "What is the engine rpm?"
+                                                 "What is the engine RPM?"
                                                  "How much fuel do we have?"]}
                                       {:heading "Simplify and Automate Checklists"
                                        :body    [(long-str "Departure and arrival checklists can feel like they take"
@@ -589,7 +589,7 @@
    :body [[:div.description
            [:p
             (long-str
-             "Are you chartering a boat and going cruising? Will you be in an area with internet connectivity? The"
+             "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The"
              "PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing"
              "almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on"
              "your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you"
