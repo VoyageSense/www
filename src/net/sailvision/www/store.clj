@@ -603,13 +603,13 @@
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
     (if (and code (code targets))
-      (page/from-components "PopAI" [page/base
-                                     header
-                                     hero
-                                     get-to-know
-                                     features-panels
-                                     (description code)
-                                     about/footer])
+      (page/from-components nil [page/base
+                                 header
+                                 hero
+                                 get-to-know
+                                 features-panels
+                                 (description code)
+                                 about/footer])
       (resp/redirect "/"))))
 
 
