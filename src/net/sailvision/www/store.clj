@@ -359,7 +359,7 @@
                  [:div.panels.body-width
                   (panel {:title      "Cruising Guide"
                           :subtitle   "Boating almanac on the go"
-                          :image-path "/panel-boat.png"
+                          :image-path "/card-boat.jpg"
                           :intro      "... talking to a local guide has never been simpler."
                           :details    [{:heading "Local Navigation"
                                         :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
@@ -388,7 +388,7 @@
 
                  (panel {:title      "Boat Mechanic"
                          :subtitle   "You've never been more prepared"
-                         :image-path "/panel-engine.png"
+                         :image-path "/card-engine.jpg"
                          :intro      "... 90% of the time anybody can fix things on the boat with a little bit of help!"
                          :details    [{:heading "Know Your Boat Inside and Out"
                                        :body    ["PopAI gives you unprecedented confidence and clarity by putting <b>everything</b> about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
@@ -423,7 +423,7 @@
 
                   (panel {:title      "Sailing Instructor"
                           :subtitle   "Checklists, rules and regulations"
-                          :image-path "/panel-textbook.png"
+                          :image-path "/card-textbook.jpg"
                           :details    [{:heading "Rusty Knowledge Fret No More!"
                                         :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
                                         :prompts ["PopAI, I am going sailing in Croatin July. What should I bring with me?"
@@ -447,7 +447,7 @@
 
                   (panel {:title      "Crew Member"
                           :subtitle   "Interact, control and monitor"
-                          :image-path "/panel-glenn.png"
+                          :image-path "/card-glenn.jpg"
                           :intro      "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
                           :details    [{:heading "Access All Boat Data With Your Voice"
                                         :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instrument data."]
