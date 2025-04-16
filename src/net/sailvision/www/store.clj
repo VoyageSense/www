@@ -378,13 +378,7 @@
                                      :prompts ["PopAI, where do we go dancing?"
                                                "PopAI, is there a laundry in town?"
                                                "Where do I buy ice?"
-                                               "Where is the best playground in town?"]}
-                                    {:heading "Etiquette, customs and more"
-                                     :body    ["PopAI is there to help you learn about local history and culture. It can help prepare you for things you should know before you get to your destination. It can also offer popular itineraries once you get to an area."]
-                                     :prompts ["When did BVI become British?"
-                                               "Who discovered the Virgin Islands?"
-                                               "PopAI, what should I do in Virgin Gorda on a Tuesday?"
-                                               "PopAI, how do you say <q>Hi</q> in Croatian?"]}]})
+                                               "Where is the best playground in town?"]}]})
                   (card {:title      "Boat Mechanic"
                          :subtitle   "You've never been more prepared"
                          :image "/card-engine.jpg"
