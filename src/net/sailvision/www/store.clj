@@ -229,7 +229,7 @@
            [:div.get-to-know.body-width
             [:div [:h1 "Get to know PopAI"]]
             [:div [:h2 "pronounced " [:q "Popeye"]]]
-            [:p "PopAI is a voice-controlled boating helper. It is part "
+            [:p "PopAI is a voice-controlled boating assistant. It is part "
              [:span.emphasis "guide"] ", part "
              [:span.emphasis "mechanic"]", part "
              [:span.emphasis "instructor"] ", and part "
@@ -381,7 +381,7 @@
                                                "Where do I buy ice?"
                                                "Where is the best playground in town?"]}]})
                   (card {:title    "Boat Mechanic"
-                         :subtitle "You've never been more prepared"
+                         :subtitle "Manuals, diagrams, schematics and troubleshooting"
                          :image    "/card-engine.jpg"
                          :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
                          :details  [{:heading "Know Your Boat Inside and Out"
@@ -411,7 +411,7 @@
                                                "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
                                                "PopAI, how do I change the windlass breaker?"]}]})
                   (card {:title    "Sailing Instructor"
-                         :subtitle "Checklists, rules and regulations"
+                         :subtitle "Instant reference, rules and regulations"
                          :image    "/card-textbook.jpg"
                          :details  [{:heading "Rusty Knowledge Fret No More!"
                                      :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
