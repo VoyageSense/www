@@ -234,7 +234,8 @@
              [:span.emphasis "mechanic"]", part "
              [:span.emphasis "instructor"] ", and part "
              [:span.emphasis "crew member"] "."]
-            [:p "Implemented as an app that runs on your phone, PopAI is there when you need it and provides sailors of all skill levels with a second opinion. It can help make the difference between a stressful vacation and one that is remembered for years to come &mdash; maybe even helping to kick off a new tradition with friends and family."]]]]})
+            [:p [:span.emphasis "PopAI"] " is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
+            [:p "No more flipping through soggy manuals, squinting at screens in the dark, or trying to remember how to calculate scope ratio while juggling conversations with your kids. PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
 (defn card-script [id]
   [:script
