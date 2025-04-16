@@ -379,36 +379,36 @@
                                                "PopAI, is there a laundry in town?"
                                                "Where do I buy ice?"
                                                "Where is the best playground in town?"]}]})
-                  (card {:title      "Boat Mechanic"
-                         :subtitle   "You've never been more prepared"
-                         :image "/card-engine.jpg"
-                         :intro      "... 90% of the time anybody can fix things on the boat with a little bit of help!"
-                         :details    [{:heading "Know Your Boat Inside and Out"
-                                       :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
-                                                 [:ul
-                                                  [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
-                                                  [:li "Electrical and water system schematics"]
-                                                  [:li "Hot water configurations"]
-                                                  [:li "AC diagrams and instructions"]
-                                                  [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
-                                                  [:li "Running and standing rigging diagrams, explanations and load tables"]
-                                                  [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
-                                                 "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
-                                       :prompts ["What is the fuel capacity?"
-                                                 "What is the optimal engine RPM for cruising?"]}
-                                      {:heading "Operation Instructions"
-                                       :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
-                                       :prompts ["PopAI, how do I empty the black water holding tank for the starboard aft head?"
-                                                 "PopAI, should I leave the engine in gear while sailing?"]}
-                                      {:heading "Smart Troubleshooting"
-                                       :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
-                                       :prompts ["PopAI, why are the running lights not working?"
-                                                 "PopAI, why is the water pump turning on and off while nobody is using any water?"]}
-                                      {:heading "Step-by-step Fix It Yourself"
-                                       :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
-                                       :prompts ["How do I clean the water strainer?"
-                                                 "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
-                                                 "PopAI, how do I change the windlass breaker?"]}]})
+                  (card {:title    "Boat Mechanic"
+                         :subtitle "You've never been more prepared"
+                         :image    "/card-engine.jpg"
+                         :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
+                         :details  [{:heading "Know Your Boat Inside and Out"
+                                     :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
+                                               [:ul
+                                                [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
+                                                [:li "Electrical and water system schematics"]
+                                                [:li "Hot water configurations"]
+                                                [:li "AC diagrams and instructions"]
+                                                [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
+                                                [:li "Running and standing rigging diagrams, explanations and load tables"]
+                                                [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
+                                               "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
+                                     :prompts ["What is the fuel capacity?"
+                                               "What is the optimal engine RPM for cruising?"]}
+                                    {:heading "Operation Instructions"
+                                     :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
+                                     :prompts ["PopAI, how do I empty the black water holding tank for the starboard aft head?"
+                                               "PopAI, should I leave the engine in gear while sailing?"]}
+                                    {:heading "Smart Troubleshooting"
+                                     :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
+                                     :prompts ["PopAI, why are the running lights not working?"
+                                               "PopAI, why is the water pump turning on and off while nobody is using any water?"]}
+                                    {:heading "Step-by-step Fix It Yourself"
+                                     :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
+                                     :prompts ["How do I clean the water strainer?"
+                                               "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
+                                               "PopAI, how do I change the windlass breaker?"]}]})
                   (card {:title    "Sailing Instructor"
                          :subtitle "Checklists, rules and regulations"
                          :image    "/card-textbook.jpg"
