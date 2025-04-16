@@ -215,8 +215,7 @@
                 [:div.hero-mask.full-width]]}))
 
 (def get-to-know
-  {:css  [[:.get-to-know {:margin   0
-                          :padding  "4em 2em"}
+  {:css  [[:.get-to-know {:padding  "4em 2em"}
            [:h1 {:margin  0
                  :display :inline}]
            [:h2 {:font-size-adjust "0.3"
@@ -471,7 +470,7 @@
                                         :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]]}))
 
   (defn description [code]
-    {:css  [[:.background {:padding    "4em 1em 0"
+    {:css  [[:.background {:padding    "4em 2em 0"
                             :background "rgb(var(--background))"
                             :color      "rgb(var(--foreground))"}]
             [:div.buy-now {:display        :flex
