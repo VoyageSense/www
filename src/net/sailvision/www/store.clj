@@ -418,8 +418,8 @@
                           :subtitle "Instant reference, rules and regulations"
                           :image    "/card-textbook.jpg"
                           :details  [{:heading "Rusty Knowledge Fret No More!"
-                                      :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
-                                      :prompts ["PopAI, I am going sailing in Croatin July. What should I bring with me?"
+                                      :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
+                                      :prompts ["PopAI, I am going sailing in Croatin in July. What should I bring with me?"
                                                 "How do you <q>heave to</q>?"
                                                 "PopAI, what are the rules of the road in the Med?"
                                                 "PopAI, tell me how to do a Med mooring step-by-step."]}
@@ -429,7 +429,7 @@
                                                 "How many fathoms are in a shackle?"
                                                 "What is a Code Zero?"]}
                                      {:heading "Instant Reference To All Rules and Regulations"
-                                      :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
+                                      :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS) and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
                                       :prompts ["I just heard three short horn blasts. What does that mean?"
                                                 "I see two white lights and a yellow light. What type of vessel is this?"]}
                                      {:heading "Local Laws"
@@ -443,11 +443,10 @@
                           :image    "/card-glenn.jpg"
                           :intro    "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
                           :details  [{:heading "Access All Boat Data With Your Voice"
-                                      :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instrument data."]
+                                      :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments' data."]
                                       :prompts ["PopAI, what is the boat speed?"
                                                 "What is the true wind speed?"
-                                                "What is the engine RPM?"
-                                                "How much fuel do we have?"]}
+                                                "What is the engine RPM?"]}
                                      {:heading "Simplify and Automate Checklists"
                                       :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
                                       :prompts ["PopAI, are we ready to go?"
@@ -455,11 +454,12 @@
                                      {:heading "Voice Control Your Boat"
                                       :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
                                       :prompts ["PopAI turn on night mode on the instruments."
-                                                "PopAI, turn up the brightness."
-                                                "Turn on the running lights."
-                                                "Turn off the cabin lights."]}
-                                     {:heading "On Watch 24h / Day!"
-                                      :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]]]}))
+                                                "PopAI, turn up the brightness."]}
+                                     {:heading "On Watch"
+                                      :body    ["PopAI keeps watch 24 hours a day. It constantly monitors your boat and alerts you when something unusual happens."]
+                                      :prompts ["Notification: The water tank is empty and the water pump is running continuously."
+                                                "Notification: The cabin heater has been on for 48 hours. Is this intentional?"
+                                                "Notification: Your house batteries are down to 15% charge."]}]})]]]]}))
 
   (defn description [code]
     {:css  [[:.background {:background "rgb(var(--background))"
