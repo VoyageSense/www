@@ -4,7 +4,7 @@
   };
 
   www = let
-    domain = "sailvision.net";
+    domain = "popaithesailor.com";
     host   = "www";
 
     adminIP = "172.62.4.1";

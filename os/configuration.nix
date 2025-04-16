@@ -10,7 +10,7 @@
 
   networking = {
     hostName = "www";
-    domain   = "sailvision.net";
+    domain   = "popaithesailor.com";
   };
 
   services.nginx.enable = true;

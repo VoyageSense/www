@@ -7,7 +7,7 @@
 
 (def about-us
   {:body [[:main
-           [:p (long-str "SailVision is a small company based out of San Francisco, California that is focused on"
+           [:p (long-str "We are a small company based out of San Francisco, California that is focused on"
                          "making the joy and sport of sailing safer and more approachable to people of all skill"
                          "levels. The founders, George and Alex, each have extensive experience developing technology"
                          "ranging from cloud infrastructure, to personalized search, to hand-held consumer electronics."

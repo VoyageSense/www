@@ -48,4 +48,4 @@ jobs:
             --silent \
             --data-binary @target/net.sailvision.www-unversioned-standalone.jar \
             --header      "Authorization: Bearer $TOKEN" \
-            --url         https://www.sailvision.net/i/deploy
+            --url         https://www.popaithesailor.com/i/deploy

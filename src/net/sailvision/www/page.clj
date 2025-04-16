@@ -64,7 +64,7 @@
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head
-   [:title (str/join " - " (keep identity ["SailVision" title]))]
+   [:title (str/join " - " (keep identity ["PopAI" title]))]
    [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
    [:style
@@ -82,7 +82,7 @@
    :body
    (h/html5
     [:head
-     [:title (str/join " - " (keep identity ["SailVision" title]))]
+     [:title (str/join " - " (keep identity ["PopAI" title]))]
      [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:style (g/css
