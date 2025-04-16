@@ -468,19 +468,19 @@
                            :flex-direction :column
                            :align-items    :center
                            :padding        "2em"}]
-            ["div.buy-now > a" {:background      "#50a050"
-                                :font-size       "2em"
+            ["div.buy-now > a" {:background      "#5050a0"
+                                :font-size       "1.5em"
                                 :color           :white
                                 :text-decoration :none
                                 :text-align      :center
-                                :border          "medium #307030 solid"
+                                :border          "thin #303070 solid"
                                 :border-radius   "0.3em"
                                 :padding         "1em"}]]
      :body [[:div.background.full-width
              [:div.description.body-width
              [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
              [:div.buy-now
-              [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]]]})
+              [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure PopAI"]]]]]})
 
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
