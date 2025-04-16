@@ -433,21 +433,18 @@
                                                  "PopAI, tell me how to do a Med mooring step-by-step."]}
                                       {:heading "Never Forget a Boat Term"
                                        :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
-                                       :prompts ["PopAI, what is the origin of the word <q>starboard</q>?"
-                                                 "What is the name of the metal plate that attaches the shrouds to the hull?"
+                                       :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
                                                  "How many fathoms are in a shackle?"
                                                  "What is a Code Zero?"]}
                                       {:heading "Instant Reference To All Rules and Regulations"
                                        :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
-                                       :prompts ["What are the governing marine rules and regulations at this location?"
-                                                 "I just heard three short horn blasts. What does that mean?"
-                                                 "I see some lights ahead of me. What are the lights of a towing vessel?"]}
+                                       :prompts ["I just heard three short horn blasts. What does that mean?"
+                                                 "I see two white lights and a yellow light. What type of vessel is this?"]}
                                       {:heading "Local Laws"
                                        :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
-                                       :prompts ["I am sailing in San Francisco Bay. Can I discharge my black water tanks?"
-                                                 "What safety equipment is required on a 40 foot sailing vessel  to visit Virgin Gorda?"
-                                                 "Can I anchor at an area with coral around St Martin?"
-                                                 "Do I need to quarantine my dog when visiting Jamaica by boat?"]}]})
+                                       :prompts ["Can I discharge my black water tanks here?"
+                                                 "Can I anchor at the Rhone Marine Park?"
+                                                 "Do I need to quarantine my dog when visiting Jamaica?"]}]})
 
                  (panel {:title      "Crew Member"
                          :subtitle   "Interact, control and monitor"
