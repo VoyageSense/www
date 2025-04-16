@@ -35,7 +35,8 @@
   (let [posthog-script (slurp (io/resource "posthog.js"))
         max-body-width "150ch"]
     {:css    [[:body {:display :grid
-                      :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")}]
+                      :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")
+                      :font-family "Arial,sans-serif"}]
               [:.full-width {:grid-column           "1 / -1"
                              :display               :grid
                              :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")}]

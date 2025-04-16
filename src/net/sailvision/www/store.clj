@@ -295,9 +295,8 @@
                            :color          "rgb(var(--bold-foreground))"
                            :cursor         :pointer
                            :transition     "transform 0.2s ease-out"}
-                  [:h3 :h4 {:text-align  :center
-                            :margin      0
-                            :font-family "Arial,sans-serif"}]
+                  [:h3 :h4 {:text-align :center
+                            :margin     0}]
                   [:h3     {:font-size "1.8em"}]
                   [:h4     {:font-size "1em"}]
                   [:img    {:width      "calc(min(60vw, 50ch))"
