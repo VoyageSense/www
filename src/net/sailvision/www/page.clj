@@ -36,13 +36,12 @@
         max-body-width "150ch"]
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
-              [:body {:display               :grid
-                      :grid-template-columns "1fr min(100%, var(--max-body-width)) 1fr"
-                      :font-family           "Arial,sans-serif"}]
+              [:body {:font-family "Arial,sans-serif"}]
               [:.full-width {:grid-column           "1 / -1"
                              :display               :grid
-                             :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")}]
-              [:.body-width {:grid-column 2}]
+                             :grid-template-columns "1fr 1em min(calc(100% - 2em), var(--max-body-width)) 1em 1fr"}]
+              [:.body-width {:grid-column 3}]
+              [:.body-width-no-edge {:grid-column "2 / -2"}]
               [:main {:margin "1em 1em"}]
               [:details :form {:margin "0em 1em"}]
               (s/at-media {:prefers-color-scheme :dark}
@@ -99,4 +98,4 @@
      [:noscript (g/css
                  (pretty-print)
                  (mapcat :noscript components))]]
-    [:body (mapcat :body components)])})
+    [:body.full-width (mapcat :body components)])})

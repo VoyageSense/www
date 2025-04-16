@@ -18,8 +18,8 @@
                          "note using the email address in the footer.")]]]})
 
 (def footer
-  {:css  [[:footer {:padding    "3em 1em"
-                    :display    :flex}
+  {:css  [[:footer {:padding "1em 0"
+                    :display :flex}
            [:.spacer {:flex-grow 1}]]
           [:.footer-background {:background "rgb(var(--background))"
                                :color      "rgb(var(--foreground))"}]]

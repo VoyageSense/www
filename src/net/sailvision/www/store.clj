@@ -150,7 +150,7 @@
 
 (def header
   {:css  [[:body
-           [:header {:padding     "0.8em"
+           [:header {:margin-top  "1em"
                      :display     :flex
                      :overflow    :hidden
                      :gap         "0.5em"
@@ -215,7 +215,7 @@
                 [:div.hero-mask.full-width]]}))
 
 (def get-to-know
-  {:css  [[:.get-to-know {:padding  "4em 2em"}
+  {:css  [[:.get-to-know
            [:h1 {:margin  0
                  :display :inline}]
            [:h2 {:font-size-adjust "0.3"
@@ -360,7 +360,7 @@
                                     :transform    :none}]]]
                  ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]
      :body     [[:div.over-hero.full-width
-                 [:div.cards.body-width
+                 [:div.cards.body-width-no-edge
                   [:div.cards-slide
                    (card {:title    "Cruising Guide"
                           :subtitle "Boating almanac on the go"
@@ -462,9 +462,8 @@
                                       :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]]]}))
 
   (defn description [code]
-    {:css  [[:.background {:padding    "4em 2em 0"
-                            :background "rgb(var(--background))"
-                            :color      "rgb(var(--foreground))"}]
+    {:css  [[:.background {:background "rgb(var(--background))"
+                           :color      "rgb(var(--foreground))"}]
             [:div.buy-now {:display        :flex
                            :flex-direction :column
                            :align-items    :center
