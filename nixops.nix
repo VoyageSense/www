@@ -19,6 +19,10 @@
         publicKey  = "I5RcHamTFyP4nE+tQ2CFpQ3qY2VmC+YEi77SsxwzcQQ=";
         allowedIPs = [ "172.62.4.17/32" ];
       };
+      george.macbookpro = {
+        publicKey  = "oOnzj7XPII3fe46n4IvTw3IxSs7UEDBXT0ESuEHzf0k=";
+        allowedIPs = [ "172.62.4.18/32" ];
+      };
     };
   in
     { modulesPath, config, pkgs, ... }: {
