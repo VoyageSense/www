@@ -236,10 +236,7 @@
             [:span.emphasis "mechanic"]", part "
             [:span.emphasis "instructor"] ", and part "
             [:span.emphasis "crew member"] "."]
-           [:p (long-str "Implemented as an app that runs on your phone, PopAI is there when you need it and provides"
-                         "sailors of all skill levels with a second opinion. It can help make the difference between a"
-                         "stressful vacation and one that is remembered for years to come &mdash; maybe even helping to"
-                         "kick off a new tradition with friends and family.")]]]})
+           [:p "Implemented as an app that runs on your phone, PopAI is there when you need it and provides sailors of all skill levels with a second opinion. It can help make the difference between a stressful vacation and one that is remembered for years to come &mdash; maybe even helping to kick off a new tradition with friends and family."]]]})
 
 (defn panel-script [id]
   [:script
@@ -368,39 +365,25 @@
                          :image-path "/panel-boat.png"
                          :intro      "... talking to a local guide has never been simpler."
                          :details    [{:heading "Local Navigation"
-                                       :body    [(long-str
-                                                  "Local weather patterns and seasonal considerations, local rules and"
-                                                  "regulations, fuel docks and provisioning spots, customs and"
-                                                  "immigration procedures. PopAI is there to help make your boating"
-                                                  "experience smooth and stress free.")]
+                                       :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
                                        :prompts ["PopAI, what are the predominant winds for this part of the year?"
                                                  "PopAI, can we anchor in Cam Bay National Park?"
                                                  "PopAI, how do I clear customs in Tortola?"]}
                                       {:heading "Marinas, Anchorages and Points of Interest"
-                                       :body    [(long-str
-                                                  "Planning your day has never been easier. Simply tell PopAI what"
-                                                  "activities you want to do and it will suggest areas around you where"
-                                                  "you can do those.")]
+                                       :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
                                        :prompts ["PopAI, where do I snorkel to see Manta rays?"
                                                  "What types of fish are visible at this diving spot?"
                                                  "Where is a child friendly beach to anchor?"
-                                                 (long-str "PopAI, I need fuel, fresh water and a hot shower tonight."
-                                                           "Which marina should I go to?")
+                                                 "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
                                                  "How do I call the marina?"]}
                                       {:heading "Off The Water Insights"
-                                       :body    [(long-str
-                                                  "From the best restaurants and bars, to where to get groceries and"
-                                                  "services in town, PopAI knows the area as a local.")]
+                                       :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI knows the area as a local."]
                                        :prompts ["PopAI, where do we go dancing?"
                                                  "PopAI, is there a laundry in town?"
                                                  "Where do I buy ice?"
                                                  "Where is the best playground in town?"]}
                                       {:heading "Etiquette, customs and more"
-                                       :body    [(long-str
-                                                  "PopAI is there to help you learn about local history and culture. It"
-                                                  "can help prepare you for things you should know before you get to"
-                                                  "your destination. It can also offer popular itineraries once you get"
-                                                  "to an area.")]
+                                       :body    ["PopAI is there to help you learn about local history and culture. It can help prepare you for things you should know before you get to your destination. It can also offer popular itineraries once you get to an area."]
                                        :prompts ["When did BVI become British?"
                                                  "Who discovered the Virgin Islands?"
                                                  "PopAI, what should I do in Virgin Gorda on a Tuesday?"
@@ -411,70 +394,34 @@
                          :image-path "/panel-engine.png"
                          :intro      "... 90% of the time anybody can fix things on the boat with a little bit of help!"
                          :details    [{:heading "Piece of Mind"
-                                       :body    [(long-str "You've spent the past year dreaming, planning, and"
-                                                           "obsessing over every detail of your incredible charter to"
-                                                           "an exotic paradise. Countless hours of research and"
-                                                           "coordination, thousands of dollars in airfare,"
-                                                           "provisioning, logistics, and charter fees &mdash; and now,"
-                                                           "your crew is finally aboard, the sun is shining, and the"
-                                                           "adventure has begun.")
+                                       :body    ["You've spent the past year dreaming, planning, and obsessing over every detail of your incredible charter to an exotic paradise. Countless hours of research and coordination, thousands of dollars in airfare, provisioning, logistics, and charter fees &mdash; and now, your crew is finally aboard, the sun is shining, and the adventure has begun."
                                                  "Then suddenly... the engine dies."
-                                                 (long-str "Do you call the charter company? Can you imagine being"
-                                                          "towed back and having to change boats? Are you even in cell"
-                                                          "range? Should you try to fix it yourself?")
-                                                 (long-str "Despite the best efforts of charter companies and thorough"
-                                                           "pre-departure checks, things can &mdash; and do &mdash; go"
-                                                           "wrong. The good news? <b>90% of the time, you can fix the"
-                                                           "problem yourself</b> with a bit of knowledge, calm"
-                                                           "thinking, and a few basic tools.")]
+                                                 "Do you call the charter company? Can you imagine being towed back and having to change boats? Are you even in cell range? Should you try to fix it yourself?"
+                                                 "Despite the best efforts of charter companies and thorough pre-departure checks, things can &mdash; and do &mdash; go wrong. The good news? <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
                                        :prompts ["How do I clean the water strainer?"
-                                                 (long-str "The fridge stopped working and our food is going to go bad."
-                                                           "What do we do?")
+                                                 "The fridge stopped working and our food is going to go bad. What do we do?"
                                                  "PopAI, where is the port engine breaker box?"]}
                                       {:heading "Know Your Boat Inside and Out"
-                                       :body    [(long-str "PopAI gives you unprecedented confidence and clarity by"
-                                                          "putting <b>everything</b> about your charter boat at your"
-                                                          "fingertips. From the owner's manuals to professional-grade"
-                                                          "engine diagrams, you'll have instant access to:")
+                                       :body    ["PopAI gives you unprecedented confidence and clarity by putting <b>everything</b> about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
                                                  (long-str "<ul>"
-                                                           "<li>Propulsion system details, fuel tank capacity, engine"
-                                                           "consumption charts</li>"
+                                                           "<li>Propulsion system details, fuel tank capacity, engine consumption charts</li>"
                                                            "<li>Electrical and water system schematics</li>"
                                                            "<li>Hot water configurations</li>"
                                                            "<li>AC diagrams and instructions</li>"
-                                                           "<li>Black and grey water tank types, locations, capacities,"
-                                                           "and maintenance instructions</li>"
-                                                           "<li>Running and standing rigging diagrams, explanations and"
-                                                           "load tables</li>"
-                                                           "<li>Sails' load charts, polar diagrams, anchoring, hoisting"
-                                                           "and reefing instructions</li>"
+                                                           "<li>Black and grey water tank types, locations, capacities, and maintenance instructions</li>"
+                                                           "<li>Running and standing rigging diagrams, explanations and load tables</li>"
+                                                           "<li>Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions</li>"
                                                            "</ul>")
-                                                 (long-str "Whether you're troubleshooting or just getting familiar"
-                                                           "before you cast off, PopAI makes sure you're fully prepared"
-                                                           "&mdash; <b>like a pro before you even step aboard</b>. Once"
-                                                           "on board you can <b>just ask about any system</b> and"
-                                                           "<b>PopAI will give you an instant reference to the boat"
-                                                           "documentation</b>.")]
+                                                 "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared &mdash; <b>like a pro before you even step aboard</b>. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
                                        :prompts ["What is the fuel capacity?"
                                                  "How do I change the impeller?"]}
                                       {:heading "Smart Troubleshooting When You Need It"
-                                       :body    ["PopAI helps guide you through general diagnostic steps when issues"
-                                                 "arise on board. While boat systems can vary or evolve over time, PopAI"
-                                                 "provides practical, tailored advice to help you pinpoint the problem"
-                                                 "&mdash;whether it’s electrical, mechanical, or plumbing-related. Even"
-                                                 "if your system differs slightly from the manual, PopAI can assist"
-                                                 "with identifying likely causes and recommending next steps to get you"
-                                                 "back underway."]
+                                       :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it’s electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
                                        :prompts ["PopAI, the running lights are not working. How can I fix that?"
-                                                 (long-str "PopAI, the water pump is turning on and off all night."
-                                                           "Nobody is using any water. Please help!")]}
+                                                 "PopAI, the water pump is turning on and off all night. Nobody is using any water. Please help!"]}
                                       {:heading "Step-by-Step Operation Instructions"
-                                       :body    [(long-str "PopAI will walk you through step by step instructions on"
-                                                           "how to do specific actions on the boat. Do not assume"
-                                                           "anything. Each boat is different, so it is best to ask how"
-                                                           "to do things.")]
-                                       :prompts [(long-str "PopAI, how do I fix a flooded carburetor on the outboard"
-                                                           "dinghy engine?")
+                                       :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat. Do not assume anything. Each boat is different, so it is best to ask how to do things."]
+                                       :prompts ["PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
                                                  "PopAI, where is the wye valve for the starboard aft head?"
                                                  "PopAI, should I leave the engine in gear while sailing?"]}]})
 
@@ -482,43 +429,26 @@
                          :subtitle   "Checklists, rules and regulations"
                          :image-path "/panel-textbook.png"
                          :details    [{:heading "Rusty Knowledge Fret No More!"
-                                       :body    [(long-str "One of the biggest fears of charters is rusty or outdated"
-                                                           "knowledge. The majority of boat charterers go on a boat a"
-                                                           "few times per year. It is way too easy to forget all the"
-                                                           "processes and procedures one is expected to know"
-                                                           "chartering. Now you can simply ask PopAI and you will get a"
-                                                           "step-by-step reminder.")]
-                                       :prompts [(long-str "PopAI, I am going sailing in Croatia in July. What should I"
-                                                           "bring with me?")
+                                       :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
+                                       :prompts ["PopAI, I am going sailing in Croatin July. What should I bring with me?"
                                                  "How do you <q>heave to</q>?"
                                                  "PopAI, what are the rules of the road in the Med?"
                                                  "PopAI, tell me how to do a Med mooring step-by-step."]}
                                       {:heading "Never Forget a Boat Term"
-                                       :body    [(long-str "From the least experienced sailor to the most experienced"
-                                                           "captain, we all sometimes need a reminder on boat terms.")]
+                                       :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
                                        :prompts ["PopAI, what is the origin of the word <q>starboard</q>?"
-                                                 (long-str "What is the name of the metal plate that attaches the"
-                                                           "shrouds to the hull?")
+                                                 "What is the name of the metal plate that attaches the shrouds to the hull?"
                                                  "How many fathoms are in a shackle?"
                                                  "What is a Code Zero?"]}
                                       {:heading "Instant Reference To All Rules and Regulations"
-                                       :body    [(long-str "Instant reference to all International Regulations for"
-                                                           "Preventing Collisions at Sea (COLREGS) and other"
-                                                           "conventions by the International Maritime Organization,"
-                                                           "US Coast Guard and other navigation regulating bodies.")]
+                                       :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
                                        :prompts ["What are the governing marine rules and regulations at this location?"
                                                  "I just heard three short horn blasts. What does that mean?"
-                                                 (long-str "I see some lights ahead of me. What are the lights of a"
-                                                           "towing vessel?")]}
+                                                 "I see some lights ahead of me. What are the lights of a towing vessel?"]}
                                       {:heading "Local Laws"
-                                       :body    [(long-str "There are national, state and local laws that all must be"
-                                                           "followed when operating vessels. <q>Officer, I did not"
-                                                           "know</q> will probably not avoid a $2000 fine for violating"
-                                                           "the No Discharge Zone regulations. PopAI is here to help.")]
-                                       :prompts [(long-str "I am sailing in San Francisco Bay. Can I discharge my black"
-                                                           "water tanks?")
-                                                 (long-str "What safety equipment is required on a 40 foot sailing"
-                                                           "vessel  to visit Virgin Gorda?")
+                                       :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
+                                       :prompts ["I am sailing in San Francisco Bay. Can I discharge my black water tanks?"
+                                                 "What safety equipment is required on a 40 foot sailing vessel  to visit Virgin Gorda?"
                                                  "Can I anchor at an area with coral around St Martin?"
                                                  "Do I need to quarantine my dog when visiting Jamaica by boat?"]}]})
 
@@ -527,47 +457,23 @@
                          :image-path "/panel-glenn.png"
                          :intro      "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
                          :details    [{:heading "Access All Boat Data With Your Voice"
-                                       :body    [(long-str "PopAI connects to your boat's Wi-Fi data network and allows"
-                                                           "you to query all data available on the network using your"
-                                                           "voice. You no longer have to make the trip to a MFD or"
-                                                           "fight with screen glare or brightness just to get the"
-                                                           "depth. You can keep your eyes on the water and focus on"
-                                                           "steering while having full access to all the instrument"
-                                                           "data.")]
+                                       :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instrument data."]
                                        :prompts ["PopAI, what is the boat speed?"
                                                  "What is the true wind speed?"
                                                  "What is the engine RPM?"
                                                  "How much fuel do we have?"]}
                                       {:heading "Simplify and Automate Checklists"
-                                       :body    [(long-str "Departure and arrival checklists can feel like they take"
-                                                           "forever &mdash; there are so many steps, it's almost like"
-                                                           "you need a checklist just to manage your checklists. That's"
-                                                           "where PopAI comes in. It automates much of the process,"
-                                                           "saving you time and reducing the risk of oversight. PopAI"
-                                                           "can create, remember, and manage your checklists for you"
-                                                           "&mdash; and even handle many of the tasks itself. From"
-                                                           "checking fuel and oil levels to monitoring water tanks,"
-                                                           "battery bank status, lights, instruments, GPS, radar, AIS,"
-                                                           "and more, PopAI takes care of the details so you can focus"
-                                                           "on the journey.")]
+                                       :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
                                        :prompts ["PopAI, are we ready to go?"
                                                  "Walk me through the checklist for anchoring for the night."]}
                                       {:heading "Voice Control Your Boat"
-                                       :body    [(long-str "PopAI allows you to control with your voice almost any"
-                                                           "functionality that you can control with you chart plotter"
-                                                           "display or MFD.")]
+                                       :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
                                        :prompts ["PopAI turn on night mode on the instruments."
                                                  "PopAI, turn up the brightness."
                                                  "Turn on the running lights."
                                                  "Turn off the cabin lights."]}
                                       {:heading "On Watch 24h / Day!"
-                                       :body    [(long-str "PopAI keeps watch 24/7, so you don't have to worry. It"
-                                                           "constantly monitors your boat and alerts you when something"
-                                                           "unusual happens. For example, it can notify you if the"
-                                                           "water pump is running continuously because the tank is"
-                                                           "empty, or if you accidentally left the heater on after"
-                                                           "leaving the boat. With PopAI, you're always in the loop"
-                                                           "&mdash; no matter where you are.")]}]})]]}))
+                                       :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]}))
 
 (defn description [code]
   {:css  [["body > .description" {:margin     0
@@ -587,16 +493,7 @@
                               :border-radius   "0.3em"
                               :padding         "1em"}]]
    :body [[:div.description
-           [:p
-            (long-str
-             "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The"
-             "PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing"
-             "almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on"
-             "your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you"
-             "common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS,"
-             "immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel"
-             "unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet)"
-             "and talk to it with your preferred method.")]
+           [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
            [:div.buy-now
             [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]]})
 
@@ -619,9 +516,7 @@
                      [2027 1], [2027 2], [2027 3], [2027 4]]]
     {:body [[:details
              [:summary "Don't see your destination or boat?"]
-             [:p (long-str "Let us know where you're going, what you'll be sailing, and when so we can start working on"
-                           "the almanac. We'll let you know if they'll be ready in time for your trip and follow up"
-                           "once they are.")]
+             [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanac. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
              [:form.sku-request {:action route-request-almanac}
               [:input {:type  :hidden
                        :name  :product
@@ -704,16 +599,9 @@
                  :answers  ["Yes"
                             "No"]}]]
     {:body [[:main
-             [:p (long-str "Thank you for your interest, but unfortunately, this isn't a real product yet. We really"
-                           "appreciate you giving us your attention and we hope we haven't caused any disruption with our"
-                           "experiment.")]
-             [:p (long-str "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're"
-                           "sailing in" location "or you're on a" (str boat ",") "we'll have an almanac ready to go."
-                           "Just give us an email address and we'll send you a message when it's ready to go. Use the"
-                           "same email address at checkout and the discount will automatically be applied.")]
-             [:p (long-str "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No"
-                           "worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way."
-                           "Thanks again!")]
+             [:p "Thank you for your interest, but unfortunately, this isn't a real product yet. We really appreciate you giving us your attention and we hope we haven't caused any disruption with our experiment."]
+             [:p "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're sailing in" location "or you're on a" (str boat "," "we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied.")]
+             [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way. Thanks again!"]
              [:form
               (apply concat (map (fn [&{:keys [name question answers]}]
                                    [[:label  {:for  name} question]
