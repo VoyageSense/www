@@ -365,10 +365,10 @@
                    (card {:title    "Cruising Guide"
                           :subtitle "Boating almanac on the go"
                           :image    "/card-boat.jpg"
-                          :intro    "... talking to a local guide has never been simpler."
+                          :intro    "... searching your local guide has never been easier. Simply ask!"
                           :details  [{:heading "Local Navigation"
                                       :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
-                                      :prompts ["PopAI, what are the predominant winds for this part of the year?"
+                                      :prompts ["PopAI, what are the predominant winds here?"
                                                 "PopAI, can we anchor in Cam Bay National Park?"
                                                 "PopAI, how do I clear customs in Tortola?"]}
                                      {:heading "Marinas, Anchorages and Points of Interest"
@@ -379,11 +379,11 @@
                                                 "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
                                                 "How do I call the marina?"]}
                                      {:heading "Off The Water Insights"
-                                      :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI knows the area as a local."]
+                                      :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
                                       :prompts ["PopAI, where do we go dancing?"
-                                                "PopAI, is there a laundry in town?"
+                                                "PopAI, where do I do laundry tonight?"
                                                 "Where do I buy ice?"
-                                                "Where is the best playground in town?"]}]})
+                                                "Where is a children's playground?"]}]})
                    (card {:title    "Boat Mechanic"
                           :subtitle "Manuals, diagrams, schematics and troubleshooting"
                           :image    "/card-engine.jpg"
