@@ -171,7 +171,7 @@
                       [:body
                        [:header
                         [:h3 {:display :none}]]])]
-   :body [[:header
+   :body [[:header.body-width
            [:h1 "PopAI"]
            [:h2 "The ultimate boating companion"]
            [:div]
@@ -196,14 +196,13 @@
                 [:.dark {:visibility "var(--dark-visibility)"}]
                 [:.light {:visibility "var(--light-visibility)"}]
                 [:.loaded loaded]
-                [:.hero-mask {:width      "100%"
-                              :height     "calc(min(70vw, 50vh))"
-                              :background (str
-                                           "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
-                                           mask-opacity
-                                           "))")
-                              :z-index    -1}]
-                [:.over-hero {:background (str "rgba(var(--background), " mask-opacity ")")}]]
+                [:.hero-mask {:height      "calc(min(70vw, 50vh))"
+                              :background  (str
+                                            "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
+                                            mask-opacity
+                                            "))")
+                              :z-index     -1}]
+                [:.over-hero {:background  (str "rgba(var(--background), " mask-opacity ")")}]]
      :noscript [[:.hero loaded]]
      :body     [[:img.hero.light
                  {:src    "/popai-hero-background-light.jpg"
@@ -213,7 +212,7 @@
                  {:src    "/popai-hero-background-dark.jpg"
                   :alt    "Looking over the bow of a boat sailing in the San Francisco bay, sunset in the background"
                   :onload "this.classList.add('loaded')"}]
-                [:div.hero-mask]]}))
+                [:div.hero-mask.full-width]]}))
 
 (def get-to-know
   {:css  [[:.get-to-know {:margin   0
@@ -227,15 +226,16 @@
            [:.emphasis {:font-weight     :bold
                         :font-style      :italic
                         :text-decoration :underline}]]]
-   :body [[:div.get-to-know.over-hero
-           [:div [:h1 "Get to know PopAI"]]
-           [:div [:h2 "pronounced " [:q "Popeye"]]]
-           [:p "PopAI is a voice-controlled boating helper. It is part "
-            [:span.emphasis "guide"] ", part "
-            [:span.emphasis "mechanic"]", part "
-            [:span.emphasis "instructor"] ", and part "
-            [:span.emphasis "crew member"] "."]
-           [:p "Implemented as an app that runs on your phone, PopAI is there when you need it and provides sailors of all skill levels with a second opinion. It can help make the difference between a stressful vacation and one that is remembered for years to come &mdash; maybe even helping to kick off a new tradition with friends and family."]]]})
+   :body [[:div.over-hero.full-width
+           [:div.get-to-know.body-width
+            [:div [:h1 "Get to know PopAI"]]
+            [:div [:h2 "pronounced " [:q "Popeye"]]]
+            [:p "PopAI is a voice-controlled boating helper. It is part "
+             [:span.emphasis "guide"] ", part "
+             [:span.emphasis "mechanic"]", part "
+             [:span.emphasis "instructor"] ", and part "
+             [:span.emphasis "crew member"] "."]
+            [:p "Implemented as an app that runs on your phone, PopAI is there when you need it and provides sailors of all skill levels with a second opinion. It can help make the difference between a stressful vacation and one that is remembered for years to come &mdash; maybe even helping to kick off a new tradition with friends and family."]]]]})
 
 (defn panel-script [id]
   [:script
@@ -357,35 +357,36 @@
                    [:.prompt.shown {:opacity      1
                                     :transform    :none}]]]
                  ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]
-     :body     [[:div.panels.over-hero
-                 (panel {:title      "Cruising Guide"
-                         :subtitle   "Boating almanac on the go"
-                         :image-path "/panel-boat.png"
-                         :intro      "... talking to a local guide has never been simpler."
-                         :details    [{:heading "Local Navigation"
-                                       :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
-                                       :prompts ["PopAI, what are the predominant winds for this part of the year?"
-                                                 "PopAI, can we anchor in Cam Bay National Park?"
-                                                 "PopAI, how do I clear customs in Tortola?"]}
-                                      {:heading "Marinas, Anchorages and Points of Interest"
-                                       :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
-                                       :prompts ["PopAI, where do I snorkel to see Manta rays?"
-                                                 "What types of fish are visible at this diving spot?"
-                                                 "Where is a child friendly beach to anchor?"
-                                                 "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
-                                                 "How do I call the marina?"]}
-                                      {:heading "Off The Water Insights"
-                                       :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI knows the area as a local."]
-                                       :prompts ["PopAI, where do we go dancing?"
-                                                 "PopAI, is there a laundry in town?"
-                                                 "Where do I buy ice?"
-                                                 "Where is the best playground in town?"]}
-                                      {:heading "Etiquette, customs and more"
-                                       :body    ["PopAI is there to help you learn about local history and culture. It can help prepare you for things you should know before you get to your destination. It can also offer popular itineraries once you get to an area."]
-                                       :prompts ["When did BVI become British?"
-                                                 "Who discovered the Virgin Islands?"
-                                                 "PopAI, what should I do in Virgin Gorda on a Tuesday?"
-                                                 "PopAI, how do you say <q>Hi</q> in Croatian?"]}]})
+     :body     [[:div.over-hero.full-width
+                 [:div.panels.body-width
+                  (panel {:title      "Cruising Guide"
+                          :subtitle   "Boating almanac on the go"
+                          :image-path "/panel-boat.png"
+                          :intro      "... talking to a local guide has never been simpler."
+                          :details    [{:heading "Local Navigation"
+                                        :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
+                                        :prompts ["PopAI, what are the predominant winds for this part of the year?"
+                                                  "PopAI, can we anchor in Cam Bay National Park?"
+                                                  "PopAI, how do I clear customs in Tortola?"]}
+                                       {:heading "Marinas, Anchorages and Points of Interest"
+                                        :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
+                                        :prompts ["PopAI, where do I snorkel to see Manta rays?"
+                                                  "What types of fish are visible at this diving spot?"
+                                                  "Where is a child friendly beach to anchor?"
+                                                  "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
+                                                  "How do I call the marina?"]}
+                                       {:heading "Off The Water Insights"
+                                        :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI knows the area as a local."]
+                                        :prompts ["PopAI, where do we go dancing?"
+                                                  "PopAI, is there a laundry in town?"
+                                                  "Where do I buy ice?"
+                                                  "Where is the best playground in town?"]}
+                                       {:heading "Etiquette, customs and more"
+                                        :body    ["PopAI is there to help you learn about local history and culture. It can help prepare you for things you should know before you get to your destination. It can also offer popular itineraries once you get to an area."]
+                                        :prompts ["When did BVI become British?"
+                                                  "Who discovered the Virgin Islands?"
+                                                  "PopAI, what should I do in Virgin Gorda on a Tuesday?"
+                                                  "PopAI, how do you say <q>Hi</q> in Croatian?"]}]})
 
                  (panel {:title      "Boat Mechanic"
                          :subtitle   "You've never been more prepared"
@@ -422,74 +423,74 @@
                                                  "The fridge stopped working and our food is going to go bad. What do we do?"
                                                  "PopAI, where is the port engine breaker box?"]}]})
 
-                 (panel {:title      "Sailing Instructor"
-                         :subtitle   "Checklists, rules and regulations"
-                         :image-path "/panel-textbook.png"
-                         :details    [{:heading "Rusty Knowledge Fret No More!"
-                                       :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
-                                       :prompts ["PopAI, I am going sailing in Croatin July. What should I bring with me?"
-                                                 "How do you <q>heave to</q>?"
-                                                 "PopAI, what are the rules of the road in the Med?"
-                                                 "PopAI, tell me how to do a Med mooring step-by-step."]}
-                                      {:heading "Never Forget a Boat Term"
-                                       :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
-                                       :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
-                                                 "How many fathoms are in a shackle?"
-                                                 "What is a Code Zero?"]}
-                                      {:heading "Instant Reference To All Rules and Regulations"
-                                       :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
-                                       :prompts ["I just heard three short horn blasts. What does that mean?"
-                                                 "I see two white lights and a yellow light. What type of vessel is this?"]}
-                                      {:heading "Local Laws"
-                                       :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
-                                       :prompts ["Can I discharge my black water tanks here?"
-                                                 "Can I anchor at the Rhone Marine Park?"
-                                                 "Do I need to quarantine my dog when visiting Jamaica?"]}]})
+                  (panel {:title      "Sailing Instructor"
+                          :subtitle   "Checklists, rules and regulations"
+                          :image-path "/panel-textbook.png"
+                          :details    [{:heading "Rusty Knowledge Fret No More!"
+                                        :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminder."]
+                                        :prompts ["PopAI, I am going sailing in Croatin July. What should I bring with me?"
+                                                  "How do you <q>heave to</q>?"
+                                                  "PopAI, what are the rules of the road in the Med?"
+                                                  "PopAI, tell me how to do a Med mooring step-by-step."]}
+                                       {:heading "Never Forget a Boat Term"
+                                        :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
+                                        :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
+                                                  "How many fathoms are in a shackle?"
+                                                  "What is a Code Zero?"]}
+                                       {:heading "Instant Reference To All Rules and Regulations"
+                                        :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
+                                        :prompts ["I just heard three short horn blasts. What does that mean?"
+                                                  "I see two white lights and a yellow light. What type of vessel is this?"]}
+                                       {:heading "Local Laws"
+                                        :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
+                                        :prompts ["Can I discharge my black water tanks here?"
+                                                  "Can I anchor at the Rhone Marine Park?"
+                                                  "Do I need to quarantine my dog when visiting Jamaica?"]}]})
 
-                 (panel {:title      "Crew Member"
-                         :subtitle   "Interact, control and monitor"
-                         :image-path "/panel-glenn.png"
-                         :intro      "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
-                         :details    [{:heading "Access All Boat Data With Your Voice"
-                                       :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instrument data."]
-                                       :prompts ["PopAI, what is the boat speed?"
-                                                 "What is the true wind speed?"
-                                                 "What is the engine RPM?"
-                                                 "How much fuel do we have?"]}
-                                      {:heading "Simplify and Automate Checklists"
-                                       :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
-                                       :prompts ["PopAI, are we ready to go?"
-                                                 "Walk me through the checklist for anchoring for the night."]}
-                                      {:heading "Voice Control Your Boat"
-                                       :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
-                                       :prompts ["PopAI turn on night mode on the instruments."
-                                                 "PopAI, turn up the brightness."
-                                                 "Turn on the running lights."
-                                                 "Turn off the cabin lights."]}
-                                      {:heading "On Watch 24h / Day!"
-                                       :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]}))
+                  (panel {:title      "Crew Member"
+                          :subtitle   "Interact, control and monitor"
+                          :image-path "/panel-glenn.png"
+                          :intro      "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
+                          :details    [{:heading "Access All Boat Data With Your Voice"
+                                        :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instrument data."]
+                                        :prompts ["PopAI, what is the boat speed?"
+                                                  "What is the true wind speed?"
+                                                  "What is the engine RPM?"
+                                                  "How much fuel do we have?"]}
+                                       {:heading "Simplify and Automate Checklists"
+                                        :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
+                                        :prompts ["PopAI, are we ready to go?"
+                                                  "Walk me through the checklist for anchoring for the night."]}
+                                       {:heading "Voice Control Your Boat"
+                                        :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
+                                        :prompts ["PopAI turn on night mode on the instruments."
+                                                  "PopAI, turn up the brightness."
+                                                  "Turn on the running lights."
+                                                  "Turn off the cabin lights."]}
+                                       {:heading "On Watch 24h / Day!"
+                                        :body    ["PopAI keeps watch 24/7, so you don't have to worry. It constantly monitors your boat and alerts you when something unusual happens. For example, it can notify you if the water pump is running continuously because the tank is empty, or if you accidentally left the heater on after leaving the boat. With PopAI, you're always in the loop &mdash; no matter where you are."]}]})]]]}))
 
-(defn description [code]
-  {:css  [["body > .description" {:margin     0
-                                  :padding    "4em 1em 0"
-                                  :background "rgb(var(--background))"
-                                  :color      "rgb(var(--foreground))"}]
-          [:div.buy-now {:display        :flex
-                         :flex-direction :column
-                         :align-items    :center
-                         :padding        "2em"}]
-          ["div.buy-now > a" {:background      "#50a050"
-                              :font-size       "2em"
-                              :color           :white
-                              :text-decoration :none
-                              :text-align      :center
-                              :border          "medium #307030 solid"
-                              :border-radius   "0.3em"
-                              :padding         "1em"}]]
-   :body [[:div.description
-           [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
-           [:div.buy-now
-            [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]]})
+  (defn description [code]
+    {:css  [[:.background {:padding    "4em 1em 0"
+                            :background "rgb(var(--background))"
+                            :color      "rgb(var(--foreground))"}]
+            [:div.buy-now {:display        :flex
+                           :flex-direction :column
+                           :align-items    :center
+                           :padding        "2em"}]
+            ["div.buy-now > a" {:background      "#50a050"
+                                :font-size       "2em"
+                                :color           :white
+                                :text-decoration :none
+                                :text-align      :center
+                                :border          "medium #307030 solid"
+                                :border-radius   "0.3em"
+                                :padding         "1em"}]]
+     :body [[:div.background.full-width
+             [:div.description.body-width
+             [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
+             [:div.buy-now
+              [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure and Buy Now"]]]]]})
 
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
@@ -542,7 +543,7 @@
     {:css  [[:.total {:grid-column "1 / -1"
                       :text-align  :right
                       :font-size "1.1em"}]]
-     :body [[:main
+     :body [[:main.body-width
              [:form.sku-selection {:action route-checkout}
               [:input {:type  :hidden
                        :name  :code
@@ -592,7 +593,7 @@
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
-    {:body [[:main
+    {:body [[:main.body-width
              [:p "Thank you for your interest, but unfortunately, this isn't a real product yet. We really appreciate you giving us your attention and we hope we haven't caused any disruption with our experiment."]
              [:p "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're sailing in" location "or you're on a" (str boat "," "we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied.")]
              [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way. Thanks again!"]

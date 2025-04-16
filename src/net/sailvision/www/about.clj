@@ -18,18 +18,18 @@
                          "note using the email address in the footer.")]]]})
 
 (def footer
-  {:css  [[:footer {:margin     0
-                    :padding    "3em 1em"
-                    :display    :flex
-                    :background "rgb(var(--background))"
-                    :color      "rgb(var(--foreground))"}
-           [:.spacer {:flex-grow 1}]]]
-   :body [[:footer
-           [:span "&copy; 2025 SailVisionPro, LLC"]
-           [:div.spacer]
-           [:a {:href route-home} "About Us"]
-           [:div.spacer]
-           [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]})
+  {:css  [[:footer {:padding    "3em 1em"
+                    :display    :flex}
+           [:.spacer {:flex-grow 1}]]
+          [:.footer-background {:background "rgb(var(--background))"
+                               :color      "rgb(var(--foreground))"}]]
+   :body [[:div.footer-background.full-width
+           [:footer.body-width
+            [:span "&copy; 2025 SailVisionPro, LLC"]
+            [:div.spacer]
+            [:a {:href route-home} "About Us"]
+            [:div.spacer]
+            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]]})
 
 (defn home []
   (page/from-components

@@ -32,12 +32,15 @@
            :background "rgb(var(--background))"}]])
 
 (def base
-  (let [posthog-script (slurp (io/resource "posthog.js"))]
-    {:css    [[:body {:display        :flex
-                      :flex-direction :column
-                      :min-height     "100vh"}]
-              [:main {:margin    "1em 1em"
-                      :flex-grow 1}]
+  (let [posthog-script (slurp (io/resource "posthog.js"))
+        max-body-width "150ch"]
+    {:css    [[:body {:display :grid
+                      :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")}]
+              [:.full-width {:grid-column           "1 / -1"
+                             :display               :grid
+                             :grid-template-columns (str "1fr min(100%," max-body-width ") 1fr")}]
+              [:.body-width {:grid-column 2}]
+              [:main {:margin "1em 1em"}]
               [:details :form {:margin "0em 1em"}]
               (s/at-media {:prefers-color-scheme :dark}
                           [":root" {:--bold-foreground  "240 240 240"
