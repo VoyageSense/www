@@ -9,10 +9,13 @@
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
-(def route-home "/store/popai")
+(def route-home "/store/popai/:code")
 (def route-configure (str route-home "/configure"))
 (def route-checkout (str route-home "/checkout"))
 (def route-request-almanac "/store/request-almanac")
+
+(defn route-with-code [route code]
+  (str/replace-first route ":code" (name code)))
 
 (def targets
   {:watermellon {:boats     {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
@@ -511,7 +514,7 @@
              [:div.description.body-width
              [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
              [:div.buy-now
-              [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure PopAI"]]]]]})
+              [:a {:href (route-with-code route-configure code)} "Configure PopAI"]]]]]})
 
 (defn show-popover-on-load [id]
   {:script [(str "window.addEventListener('load', () => {"
@@ -519,7 +522,7 @@
                  "}, false);")]})
 
 (defn popai [request]
-  (let [code (keyword (:code (:params request)))]
+  (let [code (keyword (:code request))]
     (if (and code (code targets))
       (page/from-components nil [page/base
                                  ;; (show-popover-on-load "modal-cruising-guide")
@@ -592,10 +595,7 @@
      :body [[:main.body-width
              [:div#forms.soft-outline
               [:h1 "PopAI Digital Almanac"]
-              [:form.sku-selection {:action route-checkout}
-               [:input {:type  :hidden
-                        :name  :code
-                        :value code}]
+              [:form.sku-selection {:action (route-with-code route-checkout code)}
                [:input {:type  :hidden
                         :name  :product
                         :value :popai}]
@@ -613,7 +613,7 @@
              (first (:body almanac-request))]]]}))
 
 (defn configure [request]
-  (let [code (keyword (:code (:params request)))]
+  (let [code (keyword (:code request))]
     (if (and code (code targets))
       (page/from-components "Configure PopAI" [page/base
                                                header
@@ -678,7 +678,7 @@
               [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]
-  (let [code         (keyword (:code (:params request)))
+  (let [code         (keyword (:code request))
         config       (when code
                        (code targets))
         locations    (:locations config)
