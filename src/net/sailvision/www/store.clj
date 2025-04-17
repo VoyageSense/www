@@ -248,219 +248,227 @@
         "});")])
 
 (defn card [{:keys [title subtitle intro image details]}]
-  (let [modal-id (str/join "-" (flatten
+  (let [soft-image-border  2
+        image-aspect-ratio "500/630"
+        modal-id (str/join "-" (flatten
                                 ["modal"
                                  (-> title
                                      (str/lower-case)
                                      (str/split #" "))]))]
-    [:button.card {:type          :button
-                   :popovertarget modal-id}
-     [:h3 [:i title]]
-     [:h4 subtitle]
-     [:div.space]
-     [:img {:src image}]
-     [:dialog.feature {:id      modal-id
-                       :popover true}
-      [:div.content
-       [:h1 title]
-       [:p.intro intro]
-       (map (fn [{:keys [heading body prompts]}]
-              [:div.section
-               [:p [:span.heading heading] " " (map (fn [p] [:p.body p]) body)]
-               (map (fn [prompt, i]
-                      [:q.prompt {:class (if (= 0 (mod i 2))
-                                           "left"
-                                           "right")
-                                  :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
-                       prompt])
-                    prompts (range))])
-            details)
-       (card-script modal-id)]]]))
-
-(def features-cards
-  (let [soft-image-border  2
-        image-aspect-ratio "500/630"]
-    {:noscript [[:dialog.feature
+    {:css      [[:.card {:display        :flex
+                         :flex-direction :column
+                         :gap            "1.2em"
+                         :padding        "1em"
+                         :border         0
+                         :border-radius  "1em"
+                         :background     "rgb(var(--bold-background))"
+                         :color          "rgb(var(--bold-foreground))"
+                         :cursor         :pointer
+                         :transition     "transform 0.2s ease-out"
+                         :width          "calc(var(--max-body-width)/4)"}
+                 [:h3 :h4 {:text-align :center
+                           :margin     0}]
+                 [:h3     {:font-size "1.8em"}]
+                 [:h4     {:font-size "1em"}]
+                 [:img    {:width        "100%"
+                           :aspect-ratio image-aspect-ratio
+                           :mask-image   (str "linear-gradient(to top"
+                                              ",transparent"
+                                              ",black " soft-image-border "%"
+                                              ",black " (- 100 soft-image-border) "%"
+                                              ",transparent)"
+                                              ",linear-gradient(to left"
+                                              ",transparent"
+                                              ",black " soft-image-border "%"
+                                              ",black " (- 100 soft-image-border) "%"
+                                              ",transparent)")
+                           :mask-composite :intersect
+                           :mask-size      "100% 100%"}]
+                 [:.space {:flex-grow 1}]]
+                [:.card:hover {:transform "scale(1.03)"}]
+                [:dialog.feature {:width              "100%"
+                                  :height             "100%"
+                                  :border             0
+                                  :background         :transparent
+                                  :animation-duration "0.3s"}
+                 [:.content {:margin        "5vh 5vw"
+                             :width         "auto"
+                             :padding       "2em"
+                             :border-radius "1em"
+                             :text-align    :start
+                             :color         "rgb(var(--foreground))"
+                             :background    "rgb(var(--background))"}
+                  [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
+                              :border-radius "0.5em"
+                              :padding       "0 1em"
+                              :margin        "3em 0 0"}]
+                  [:h1 {:text-align :center
+                        :margin-top 0
+                        :font       "italic 3em Arial, san-serif"}]
+                  [:p.intro {:font-size "1.4em"
+                             :margin    0}]
+                  [:span.heading {:font-weight :bold
+                                  :font-style  :italic}]
+                  [".section > *" {:font-size "1.1em"}]
+                  [:.prompt       {:display      :block
+                                   :font         "italic 1.8em Arial, san-serif"
+                                   :padding-top  "0.8em"
+                                   :margin       "0.5em"
+                                   :transition   "opacity 1s linear, transform 1s ease-out"}]
+                  [:.prompt.left  {:margin-right "5ch"
+                                   :text-align   :left
+                                   :opacity      0.4
+                                   :transform    "translateX(-0.3ch)"}]
+                  [:.prompt.right {:margin-left  "5ch"
+                                   :text-align   :right
+                                   :opacity      0.4
+                                   :transform    "translateX(0.3ch)"}]
+                  [:.prompt.shown {:opacity      1
+                                   :transform    :none}]]]
+                ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]
+     :noscript [[:dialog.feature
                  [:.content
                   [:.prompt.left :.prompt.right {:opacity   1
                                                  :transform :none}]]]]
-     :css       [[:.cards {:overflow-x :auto}]
-                 [:.cards-slide {:display    :flex
-                                 :gap        "2em"
-                                 :padding    "2em"
-                                 :width      "var(--max-body-width)"}]
-                 [:.card {:display        :flex
-                          :flex-direction :column
-                          :gap            "1.2em"
-                          :padding        "1em"
-                          :border         0
-                          :border-radius  "1em"
-                          :background     "rgb(var(--bold-background))"
-                          :color          "rgb(var(--bold-foreground))"
-                          :cursor         :pointer
-                          :transition     "transform 0.2s ease-out"
-                          :width          "calc(var(--max-body-width)/4)"}
-                  [:h3 :h4 {:text-align :center
-                            :margin     0}]
-                  [:h3     {:font-size "1.8em"}]
-                  [:h4     {:font-size "1em"}]
-                  [:img    {:width        "100%"
-                            :aspect-ratio image-aspect-ratio
-                            :mask-image   (str "linear-gradient(to top"
-                                               ",transparent"
-                                               ",black " soft-image-border "%"
-                                               ",black " (- 100 soft-image-border) "%"
-                                               ",transparent)"
-                                               ",linear-gradient(to left"
-                                               ",transparent"
-                                               ",black " soft-image-border "%"
-                                               ",black " (- 100 soft-image-border) "%"
-                                               ",transparent)")
-                            :mask-composite :intersect
-                            :mask-size      "100% 100%"}]
-                  [:.space {:flex-grow 1}]]
-                 [:.card:hover {:transform "scale(1.03)"}]
-                 [:dialog.feature {:width      "100%"
-                                   :height     "100%"
-                                   :border     0
-                                   :background :transparent
-                                   :animation-duration "0.3s"}
-                  [:.content {:margin        "5vh 5vw"
-                              :width         "auto"
-                              :padding       "2em"
-                              :border-radius "1em"
-                              :text-align    :start
-                              :color         "rgb(var(--foreground))"
-                              :background    "rgb(var(--background))"}
-                   [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
-                               :border-radius "0.5em"
-                               :padding       "0 1em"
-                               :margin        "3em 0 0"}]
-                   [:h1 {:text-align :center
-                         :margin-top 0
-                         :font       "italic 3em Arial, san-serif"}]
-                   [:p.intro {:font-size "1.4em"
-                              :margin    0}]
-                   [:span.heading {:font-weight :bold
-                                   :font-style  :italic}]
-                   [".section > *" {:font-size "1.1em"}]
-                   [:.prompt       {:display      :block
-                                    :font         "italic 1.8em Arial, san-serif"
-                                    :padding-top  "0.8em"
-                                    :margin       "0.5em"
-                                    :transition   "opacity 1s linear, transform 1s ease-out"}]
-                   [:.prompt.left  {:margin-right "5ch"
-                                    :text-align   :left
-                                    :opacity      0.4
-                                    :transform    "translateX(-0.3ch)"}]
-                   [:.prompt.right {:margin-left  "5ch"
-                                    :text-align   :right
-                                    :opacity      0.4
-                                    :transform    "translateX(0.3ch)"}]
-                   [:.prompt.shown {:opacity      1
-                                    :transform    :none}]]]
-                 ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]
+     :body     [[:button.card {:type          :button
+                               :popovertarget modal-id}
+                 [:h3 [:i title]]
+                 [:h4 subtitle]
+                 [:div.space]
+                 [:img {:src image}]
+                 [:dialog.feature {:id      modal-id
+                                   :popover true}
+                  [:div.content
+                   [:h1 title]
+                   ;; [:button]
+                   [:p.intro intro]
+                   (map (fn [{:keys [heading body prompts]}]
+                          [:div.section
+                           [:p [:span.heading heading] " " (map (fn [p] [:p.body p]) body)]
+                           (map (fn [prompt, i]
+                                  [:q.prompt {:class (if (= 0 (mod i 2))
+                                                       "left"
+                                                       "right")
+                                              :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
+                                   prompt])
+                                prompts (range))])
+                        details)
+                   (card-script modal-id)]]]]}))
+
+(def features-cards
+  (let [cards
+        [{:title    "Cruising Guide"
+          :subtitle "Boating almanac on the go"
+          :image    "/card-boat.jpg"
+          :intro    "... searching your local guide has never been easier. Simply ask!"
+          :details
+          [{:heading "Local Navigation"
+            :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
+            :prompts ["PopAI, what are the predominant winds here?"
+                      "PopAI, can we anchor in Cam Bay National Park?"
+                      "PopAI, how do I clear customs in Tortola?"]}
+           {:heading "Marinas, Anchorages and Points of Interest"
+            :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
+            :prompts ["PopAI, where do I snorkel to see Manta rays?"
+                      "What types of fish are visible at this diving spot?"
+                      "Where is a child friendly beach to anchor?"
+                      "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
+                      "How do I call the marina?"]}
+           {:heading "Off The Water Insights"
+            :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
+            :prompts ["PopAI, where do we go dancing?"
+                      "PopAI, where do I do laundry tonight?"
+                      "Where do I buy ice?"
+                      "Where is a children's playground?"]}]}
+         {:title    "Boat Mechanic"
+          :subtitle "Manuals, diagrams, schematics and troubleshooting"
+          :image    "/card-engine.jpg"
+          :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
+          :details
+          [{:heading "Know Your Boat Inside and Out"
+            :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
+                      [:ul
+                       [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
+                       [:li "Electrical and water system schematics"]
+                       [:li "Hot water configurations"]
+                       [:li "AC diagrams and instructions"]
+                       [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
+                       [:li "Running and standing rigging diagrams, explanations and load tables"]
+                       [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
+                      "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
+            :prompts ["What is the fuel capacity?"
+                      "What is the optimal engine RPM for cruising?"]}
+           {:heading "Operation Instructions"
+            :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
+            :prompts ["PopAI, how do I empty the black water holding tank for the starboard aft head?"
+                      "PopAI, should I leave the engine in gear while sailing?"]}
+           {:heading "Smart Troubleshooting"
+            :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
+            :prompts ["PopAI, why are the running lights not working?"
+                      "PopAI, why is the water pump turning on and off while nobody is using any water?"]}
+           {:heading "Step-by-step Fix It Yourself"
+            :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
+            :prompts ["How do I clean the water strainer?"
+                      "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
+                      "PopAI, how do I change the windlass breaker?"]}]}
+         {:title    "Sailing Instructor"
+          :subtitle "Instant reference, rules and regulations"
+          :image    "/card-textbook.jpg"
+          :details
+          [{:heading "Rusty Knowledge Fret No More!"
+            :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
+            :prompts ["PopAI, I am going sailing in Croatin in July. What should I bring with me?"
+                      "How do you <q>heave to</q>?"
+                      "PopAI, what are the rules of the road in the Med?"
+                      "PopAI, tell me how to do a Med mooring step-by-step."]}
+           {:heading "Never Forget a Boat Term"
+            :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
+            :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
+                      "How many fathoms are in a shackle?"
+                      "What is a Code Zero?"]}
+           {:heading "Instant Reference To All Rules and Regulations"
+            :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS) and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
+            :prompts ["I just heard three short horn blasts. What does that mean?"
+                      "I see two white lights and a yellow light. What type of vessel is this?"]}
+           {:heading "Local Laws"
+            :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
+            :prompts ["Can I discharge my black water tanks here?"
+                      "Can I anchor at the Rhone Marine Park?"
+                      "Do I need to quarantine my dog when visiting Jamaica?"]}]}
+         {:title    "Crew Member"
+          :subtitle "Interact, control and monitor"
+          :image    "/card-glenn.jpg"
+          :intro    "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
+          :details
+          [{:heading "Access All Boat Data With Your Voice"
+            :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments' data."]
+            :prompts ["PopAI, what is the boat speed?"
+                      "What is the true wind speed?"
+                      "What is the engine RPM?"]}
+           {:heading "Simplify and Automate Checklists"
+            :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
+            :prompts ["PopAI, are we ready to go?"
+                      "Walk me through the checklist for anchoring for the night."]}
+           {:heading "Voice Control Your Boat"
+            :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
+            :prompts ["PopAI turn on night mode on the instruments."
+                      "PopAI, turn up the brightness."]}
+           {:heading "On Watch"
+            :body    ["PopAI keeps watch 24 hours a day. It constantly monitors your boat and alerts you when something unusual happens."]
+            :prompts ["Notification: The water tank is empty and the water pump is running continuously."
+                      "Notification: The cabin heater has been on for 48 hours. Is this intentional?"
+                      "Notification: Your house batteries are down to 15% charge."]}]}]]
+    {:css       [[:.cards {:overflow-x :auto}]
+                 [:.cards-slide {:display :flex
+                                 :gap     "2em"
+                                 :padding "2em"
+                                 :width   "var(--max-body-width)"}]
+                 (-> cards first card :css)]
+     :noscript [(-> cards first card :noscript)]
      :body     [[:div.over-hero.full-width
                  [:div.cards.body-width-no-edge
                   [:div.cards-slide
-                   (card {:title    "Cruising Guide"
-                          :subtitle "Boating almanac on the go"
-                          :image    "/card-boat.jpg"
-                          :intro    "... searching your local guide has never been easier. Simply ask!"
-                          :details  [{:heading "Local Navigation"
-                                      :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
-                                      :prompts ["PopAI, what are the predominant winds here?"
-                                                "PopAI, can we anchor in Cam Bay National Park?"
-                                                "PopAI, how do I clear customs in Tortola?"]}
-                                     {:heading "Marinas, Anchorages and Points of Interest"
-                                      :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
-                                      :prompts ["PopAI, where do I snorkel to see Manta rays?"
-                                                "What types of fish are visible at this diving spot?"
-                                                "Where is a child friendly beach to anchor?"
-                                                "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
-                                                "How do I call the marina?"]}
-                                     {:heading "Off The Water Insights"
-                                      :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
-                                      :prompts ["PopAI, where do we go dancing?"
-                                                "PopAI, where do I do laundry tonight?"
-                                                "Where do I buy ice?"
-                                                "Where is a children's playground?"]}]})
-                   (card {:title    "Boat Mechanic"
-                          :subtitle "Manuals, diagrams, schematics and troubleshooting"
-                          :image    "/card-engine.jpg"
-                          :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
-                          :details  [{:heading "Know Your Boat Inside and Out"
-                                      :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
-                                                [:ul
-                                                 [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
-                                                 [:li "Electrical and water system schematics"]
-                                                 [:li "Hot water configurations"]
-                                                 [:li "AC diagrams and instructions"]
-                                                 [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
-                                                 [:li "Running and standing rigging diagrams, explanations and load tables"]
-                                                 [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
-                                                "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
-                                      :prompts ["What is the fuel capacity?"
-                                                "What is the optimal engine RPM for cruising?"]}
-                                     {:heading "Operation Instructions"
-                                      :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
-                                      :prompts ["PopAI, how do I empty the black water holding tank for the starboard aft head?"
-                                                "PopAI, should I leave the engine in gear while sailing?"]}
-                                     {:heading "Smart Troubleshooting"
-                                      :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
-                                      :prompts ["PopAI, why are the running lights not working?"
-                                                "PopAI, why is the water pump turning on and off while nobody is using any water?"]}
-                                     {:heading "Step-by-step Fix It Yourself"
-                                      :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
-                                      :prompts ["How do I clean the water strainer?"
-                                                "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
-                                                "PopAI, how do I change the windlass breaker?"]}]})
-                   (card {:title    "Sailing Instructor"
-                          :subtitle "Instant reference, rules and regulations"
-                          :image    "/card-textbook.jpg"
-                          :details  [{:heading "Rusty Knowledge Fret No More!"
-                                      :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
-                                      :prompts ["PopAI, I am going sailing in Croatin in July. What should I bring with me?"
-                                                "How do you <q>heave to</q>?"
-                                                "PopAI, what are the rules of the road in the Med?"
-                                                "PopAI, tell me how to do a Med mooring step-by-step."]}
-                                     {:heading "Never Forget a Boat Term"
-                                      :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
-                                      :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
-                                                "How many fathoms are in a shackle?"
-                                                "What is a Code Zero?"]}
-                                     {:heading "Instant Reference To All Rules and Regulations"
-                                      :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS) and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
-                                      :prompts ["I just heard three short horn blasts. What does that mean?"
-                                                "I see two white lights and a yellow light. What type of vessel is this?"]}
-                                     {:heading "Local Laws"
-                                      :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
-                                      :prompts ["Can I discharge my black water tanks here?"
-                                                "Can I anchor at the Rhone Marine Park?"
-                                                "Do I need to quarantine my dog when visiting Jamaica?"]}]})
-
-                   (card {:title    "Crew Member"
-                          :subtitle "Interact, control and monitor"
-                          :image    "/card-glenn.jpg"
-                          :intro    "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
-                          :details  [{:heading "Access All Boat Data With Your Voice"
-                                      :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments' data."]
-                                      :prompts ["PopAI, what is the boat speed?"
-                                                "What is the true wind speed?"
-                                                "What is the engine RPM?"]}
-                                     {:heading "Simplify and Automate Checklists"
-                                      :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
-                                      :prompts ["PopAI, are we ready to go?"
-                                                "Walk me through the checklist for anchoring for the night."]}
-                                     {:heading "Voice Control Your Boat"
-                                      :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
-                                      :prompts ["PopAI turn on night mode on the instruments."
-                                                "PopAI, turn up the brightness."]}
-                                     {:heading "On Watch"
-                                      :body    ["PopAI keeps watch 24 hours a day. It constantly monitors your boat and alerts you when something unusual happens."]
-                                      :prompts ["Notification: The water tank is empty and the water pump is running continuously."
-                                                "Notification: The cabin heater has been on for 48 hours. Is this intentional?"
-                                                "Notification: Your house batteries are down to 15% charge."]}]})]]]]}))
+                   (apply concat (map #(-> % card :body) cards))]]]]}))
 
   (defn description [code]
     {:css  [[:.background {:background "rgb(var(--background))"
