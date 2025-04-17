@@ -230,12 +230,8 @@
            [:div.get-to-know.body-width
             [:div [:h1 "Get to know PopAI"]]
             [:div [:h2 "pronounced " [:q "Popeye"]]]
-            [:p "PopAI is a voice-controlled boating assistant. It is part "
-             [:span.emphasis "guide"] ", part "
-             [:span.emphasis "mechanic"]", part "
-             [:span.emphasis "instructor"] ", and part "
-             [:span.emphasis "crew member"] "."]
-            [:p [:span.emphasis "PopAI"] " is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
+            [:p "PopAI is a voice-controlled boating assistant. It is part guide , part mechanic, part instructor , and part crew member."]
+            [:p "PopAI is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
             [:p "No more flipping through soggy manuals, squinting at screens in the dark, or trying to remember how to calculate scope ratio while juggling conversations with your kids. PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
 (defn card-script [id]
