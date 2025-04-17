@@ -501,7 +501,9 @@
   (let [time-frames [          [2025 2], [2025 3], [2025 4],
                      [2026 1], [2026 2], [2026 3], [2026 4],
                      [2027 1], [2027 2], [2027 3], [2027 4]]]
-    {:body [[:details
+    {:css  [[:details {:margin-top "3em"}
+             [:button {:margin-top "1em"}]]]
+     :body [[:details
              [:summary "Don't see your destination or boat?"]
              [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanac. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
              [:form.sku-request {:action route-request-almanac}
@@ -532,36 +534,48 @@
         boats     (:boats     config)
         locations (:locations config)
         price     (:price     config)]
-    {:css  [[:form.sku-selection {:display                :grid
-                                   :grid-template-columns "auto 1fr"
-                                   :gap                   "0.3em"
-                                   :width                 :fit-content}
+    {:css  [[:#forms {:display        :flex
+                      :flex-direction :column
+                      :margin         "auto"
+                      :width          :min-content}
+             [:h1 {:font-size "1.5em"
+                   :margin    "1em auto 0.5em"}]
+             [:form
+              {:display               :grid
+               :grid-template-columns "auto 1fr"
+               :gap                   "0.3em"
+               :width                 :fit-content
+               :margin                "auto"}
+              [:label {:align-content :center}]
               [:button {:grid-column  "span 2"
                         :justify-self :center
                         :padding      "0.3em 1em"}]]
-            [:.total {:grid-column "1 / -1"
-                      :text-align  :right
-                      :font-size "1.1em"}]]
+             [:.total {:grid-column "1 / -1"
+                       :font-size   "1.1em"
+                       :margin      "1em 0 0.5em"}]]
+            (first (:css almanac-request))]
      :body [[:main.body-width
-             [:form.sku-selection {:action route-checkout}
-              [:input {:type  :hidden
-                       :name  :code
-                       :value code}]
-              [:input {:type  :hidden
-                       :name  :product
-                       :value :popai}]
-              [:label           {:for :location} "Location:"]
-              [:select#location {:name :location}
-               (map (fn [[area locations]]
-                      [:optgroup {:label area}
-                       (map (fn [[k v]] [:option {:value k} v]) locations)])
-                    locations)]
-              [:label       {:for :boat} "Boat:"]
-              [:select#boat {:name :boat}
-               (map (fn [[k v]] [:option {:value k} v]) boats)]
-              [:p.total "Price: $" price]
-              [:button {:type :submit} "Checkout"]]
-             (first (:body almanac-request))]]}))
+             [:div#forms.soft-outline
+              [:h1 "PopAI Digital Almanac"]
+              [:form.sku-selection {:action route-checkout}
+               [:input {:type  :hidden
+                        :name  :code
+                        :value code}]
+               [:input {:type  :hidden
+                        :name  :product
+                        :value :popai}]
+               [:label           {:for  :location} "Location:"]
+               [:select#location {:name :location}
+                (map (fn [[area locations]]
+                       [:optgroup {:label area}
+                        (map (fn [[k v]] [:option {:value k} v]) locations)])
+                     locations)]
+               [:label       {:for  :boat} "Boat:"]
+               [:select#boat {:name :boat}
+                (map (fn [[k v]] [:option {:value k} v]) boats)]
+               [:p.total "Subtotal: $" price]
+               [:button {:type :submit} "Checkout"]]
+             (first (:body almanac-request))]]]}))
 
 (defn configure [request]
   (let [code (keyword (:code (:params request)))]

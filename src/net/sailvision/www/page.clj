@@ -43,10 +43,6 @@
               [:.body-width {:grid-column 3}]
               [:.body-width-no-edge {:grid-column "2 / -2"}]
               [:main {:margin "3em 0"}]
-              [:form {:padding       "1em"
-                      :width         :fit-content
-                      :border        "thin rgba(var(--foreground), 0.5) solid"
-                      :border-radius "1em"}]
               (s/at-media {:pointer :coarse}
                           [:form
                            [:select {:font-size "1em"}]
@@ -61,8 +57,11 @@
                                     :--bold-background  "255 255 255"
                                     :--light-visibility "visible"
                                     :--dark-visibility  "hidden"}])
-              [:details {:margin-top "1em"}
-               [:summary {:cursor :pointer}]]]
+              [:details [:summary {:cursor :pointer}]]
+              [:.soft-outline {:padding       "1em"
+                               :width         :fit-content
+                               :border        "thin rgba(var(--foreground), 0.5) solid"
+                               :border-radius "1em"}]]
      :script (if (env :posthog)
                [posthog-script]
                nil)}))
