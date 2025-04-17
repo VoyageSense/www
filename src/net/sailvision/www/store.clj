@@ -521,10 +521,16 @@
              [:div.buy-now
               [:a {:href (str "/store/popai/configure?code=" (name code))} "Configure PopAI"]]]]]})
 
+(defn show-popover-on-load [id]
+  {:script [(str "window.addEventListener('load', () => {"
+                 "document.querySelector('#" id "').showPopover()"
+                 "}, false);")]})
+
 (defn popai [request]
   (let [code (keyword (:code (:params request)))]
     (if (and code (code targets))
       (page/from-components nil [page/base
+                                 ;; (show-popover-on-load "modal-cruising-guide")
                                  header
                                  hero
                                  get-to-know
