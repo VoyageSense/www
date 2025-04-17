@@ -593,13 +593,9 @@
                  :answers  ["Yes"
                             "No"]}]]
     {:css  [[:form.survey {:margin                "4em auto"
-                           :padding               "1em"
                            :display               :grid
                            :grid-template-columns "1fr auto 1fr"
-                           :row-gap               "1em"
-                           :width                 :fit-content
-                           :border                "thin rgba(var(--foreground), 0.5) solid"
-                           :border-radius         "1em"}
+                           :row-gap               "1em"}
              [:label.question {:grid-column "1 / -1"}]
              [:select {:grid-column   2
                        :margin-bottom "2em"

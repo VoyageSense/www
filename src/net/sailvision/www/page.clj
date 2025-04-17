@@ -43,6 +43,10 @@
               [:.body-width {:grid-column 3}]
               [:.body-width-no-edge {:grid-column "2 / -2"}]
               [:main {:margin "3em 0"}]
+              [:form {:padding       "1em"
+                      :width         :fit-content
+                      :border        "thin rgba(var(--foreground), 0.5) solid"
+                      :border-radius "1em"}]
               (s/at-media {:pointer :coarse}
                           [:form
                            [:select {:font-size "1em"}]
