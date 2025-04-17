@@ -592,7 +592,7 @@
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
-    {:css  [[:form.survey {:margin                "4em auto"
+    {:css  [[:form.survey {:margin                "4em auto 2em"
                            :display               :grid
                            :grid-template-columns "1fr auto 1fr"
                            :row-gap               "1em"}
