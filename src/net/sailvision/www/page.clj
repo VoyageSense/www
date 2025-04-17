@@ -51,12 +51,12 @@
                           [":root" {:--bold-foreground  "240 240 240"
                                     :--bold-background  "1 1 1"
                                     :--light-visibility "hidden"
-                                    :--dark-visibility  "visible"}]
-                          (s/at-media {:prefers-color-scheme :light}
-                                      [":root" {:--bold-foreground  "20 20 20"
-                                                :--bold-background  "255 255 255"
-                                                :--light-visibility "visible"
-                                                :--dark-visibility  "hidden"}]))
+                                    :--dark-visibility  "visible"}])
+              (s/at-media {:prefers-color-scheme :light}
+                          [":root" {:--bold-foreground  "20 20 20"
+                                    :--bold-background  "255 255 255"
+                                    :--light-visibility "visible"
+                                    :--dark-visibility  "hidden"}])
               [:details {:margin-top "1em"}
                [:summary {:cursor :pointer}]]]
      :script (if (env :posthog)
