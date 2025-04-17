@@ -248,8 +248,7 @@
         "});")])
 
 (defn card [{:keys [title subtitle intro image details]}]
-  (let [soft-image-border  2
-        image-aspect-ratio "500/630"
+  (let [image-aspect-ratio "500/630"
         modal-id (str/join "-" (flatten
                                 ["modal"
                                  (-> title
@@ -273,20 +272,9 @@
                            :margin     0}]
                  [:h3     {:font-size "1.8em"}]
                  [:h4     {:font-size "1em"}]
-                 [:img    {:width        "100%"
-                           :aspect-ratio image-aspect-ratio
-                           :mask-image   (str "linear-gradient(to top"
-                                              ",transparent"
-                                              ",black " soft-image-border "%"
-                                              ",black " (- 100 soft-image-border) "%"
-                                              ",transparent)"
-                                              ",linear-gradient(to left"
-                                              ",transparent"
-                                              ",black " soft-image-border "%"
-                                              ",black " (- 100 soft-image-border) "%"
-                                              ",transparent)")
-                           :mask-composite :intersect
-                           :mask-size      "100% 100%"}]
+                 [:img    {:width         "100%"
+                           :aspect-ratio  image-aspect-ratio
+                           :border-radius "0.5em"}]
                  [:.space {:flex-grow 1}]]
                 [:.card:hover {:transform "scale(1.03)"}]
                 [:dialog.feature {:width              "100%"
