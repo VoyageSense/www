@@ -393,22 +393,18 @@
           :details
           [{:heading "Local Navigation"
             :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
-            :prompts ["PopAI, what are the predominant winds here?"
-                      "PopAI, can we anchor in Cam Bay National Park?"
-                      "PopAI, how do I clear customs in Tortola?"]}
+            :prompts ["What are the predominant winds here?"
+                      "Can we anchor in Cam Bay National Park?"
+                      "How do I clear customs in Tortola?"]}
            {:heading "Marinas, Anchorages and Points of Interest"
             :body    ["Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
-            :prompts ["PopAI, where do I snorkel to see Manta rays?"
-                      "What types of fish are visible at this diving spot?"
-                      "Where is a child friendly beach to anchor?"
-                      "PopAI, I need fuel, fresh water and a hot shower tonight. Which marina should I go to?"
-                      "How do I call the marina?"]}
+            :prompts ["Where do I snorkel to see Manta rays?"
+                      "Where is a child friendly beach?"
+                      "Which marina has fuel, ice, and hot showers?"]}
            {:heading "Off The Water Insights"
             :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
-            :prompts ["PopAI, where do we go dancing?"
-                      "PopAI, where do I do laundry tonight?"
-                      "Where do I buy ice?"
-                      "Where is a children's playground?"]}]}
+            :prompts ["Where do I do laundry?"
+                      "Find a children's playground?"]}]}
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
           :image    "/card-engine.jpg"
@@ -426,44 +422,41 @@
                        [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
                       "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
             :prompts ["What is the fuel capacity?"
-                      "What is the optimal engine RPM for cruising?"]}
+                      "What is the cruising RPM?"]}
            {:heading "Operation Instructions"
             :body    ["PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
-            :prompts ["PopAI, how do I empty the black water holding tank for the starboard aft head?"
-                      "PopAI, should I leave the engine in gear while sailing?"]}
+            :prompts ["How do I empty the black water?"
+                      "Should I sail with the engine in gear?"]}
            {:heading "Smart Troubleshooting"
             :body    ["PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
-            :prompts ["PopAI, why are the running lights not working?"
-                      "PopAI, why is the water pump turning on and off while nobody is using any water?"]}
+            :prompts ["Why are the running lights off?"
+                      "Why is the water pump turning on when no one is using water?"]}
            {:heading "Step-by-step Fix It Yourself"
             :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
             :prompts ["How do I clean the water strainer?"
-                      "PopAI, how do I fix a flooded carburetor on the outboard dinghy engine?"
-                      "PopAI, how do I change the windlass breaker?"]}]}
+                      "How can I fix the dinghy's flooded carburetor?"
+                      "How do I change the windlass breaker?"]}]}
          {:title    "Sailing Instructor"
           :subtitle "Instant reference, rules and regulations"
           :image    "/card-textbook.jpg"
           :details
           [{:heading "Rusty Knowledge Fret No More!"
             :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
-            :prompts ["PopAI, I am going sailing in Croatin in July. What should I bring with me?"
-                      "How do you <q>heave to</q>?"
-                      "PopAI, what are the rules of the road in the Med?"
-                      "PopAI, tell me how to do a Med mooring step-by-step."]}
+            :prompts ["How do you <q>heave to</q>?" 
+                      "How do you do a Med mooring, step by step?"]}
            {:heading "Never Forget a Boat Term"
             :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
             :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
-                      "How many fathoms are in a shackle?"
-                      "What is a Code Zero?"]}
+                      "How many fathoms are in a shackle?"]}
            {:heading "Instant Reference To All Rules and Regulations"
             :body    ["Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS) and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
-            :prompts ["I just heard three short horn blasts. What does that mean?"
-                      "I see two white lights and a yellow light. What type of vessel is this?"]}
+            :prompts ["What do three short horn blasts mean?"
+                      "What vessel has two white lights and a yellow light?"]}
            {:heading "Local Laws"
             :body    ["There are national, state and local laws that all must be followed when operating vessels. <q>Officer, I did not know</q> will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
             :prompts ["Can I discharge my black water tanks here?"
                       "Can I anchor at the Rhone Marine Park?"
-                      "Do I need to quarantine my dog when visiting Jamaica?"]}]}
+                      "Do I need to quarantine my dog in when visiting Jamaica?"]}]}
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
           :image    "/card-glenn.jpg"
@@ -471,21 +464,20 @@
           :details
           [{:heading "Access All Boat Data With Your Voice"
             :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments' data."]
-            :prompts ["PopAI, what is the boat speed?"
+            :prompts ["What is the boat speed?"
                       "What is the true wind speed?"
                       "What is the engine RPM?"]}
            {:heading "Simplify and Automate Checklists"
             :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
-            :prompts ["PopAI, are we ready to go?"
-                      "Walk me through the checklist for anchoring for the night."]}
+            :prompts ["Are we ready to go?"
+                      "Walk me through the anchoring checklist."]}
            {:heading "Voice Control Your Boat"
             :body    ["PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
-            :prompts ["PopAI turn on night mode on the instruments."
-                      "PopAI, turn up the brightness."]}
+            :prompts ["Turn on night mode on the instruments."
+                      "Turn up the brightness."]}
            {:heading "On Watch"
             :body    ["PopAI keeps watch 24 hours a day. It constantly monitors your boat and alerts you when something unusual happens."]
             :prompts ["Notification: The water tank is empty and the water pump is running continuously."
-                      "Notification: The cabin heater has been on for 48 hours. Is this intentional?"
                       "Notification: Your house batteries are down to 15% charge."]}]}]]
     {:css       [[:.cards {:overflow-x :auto}]
                  [:.cards-slide {:display :flex
