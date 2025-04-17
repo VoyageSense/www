@@ -27,9 +27,9 @@
            [:footer.body-width
             [:span "&copy; 2025 SailVisionPro, LLC"]
             [:div.spacer]
-            [:a {:href route-home} "About Us"]
+            [:a {:href route-home} "About"]
             [:div.spacer]
-            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact Us"]]]]})
+            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact"]]]]})
 
 (defn home []
   (page/from-components
