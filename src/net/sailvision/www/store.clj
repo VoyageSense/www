@@ -276,11 +276,11 @@
                            :border-radius "0.5em"}]
                  [:.space {:flex-grow 1}]]
                 [:.card:hover {:transform "scale(1.03)"}]
-                [:dialog.feature {:width              "100%"
-                                  :height             "100%"
-                                  :border             0
-                                  :background         :transparent
-                                  :animation-duration "0.3s"}
+                [:.modal {:width              "100%"
+                          :height             "100%"
+                          :border             0
+                          :background         :transparent
+                          :animation-duration "0.3s"}
                  [:.content {:margin        "auto"
                              :max-width     "calc(min(80ch, 90vw))"
                              :padding       "2em"
@@ -316,8 +316,8 @@
                                    :transform    "translateX(0.3ch)"}]
                   [:.prompt.shown {:opacity      1
                                    :transform    :none}]]]
-                ["dialog.feature::backdrop" {:backdrop-filter "blur(10px)"}]]
-     :noscript [[:dialog.feature
+                [".modal::backdrop" {:backdrop-filter "blur(10px)"}]]
+     :noscript [[:.modal
                  [:.content
                   [:.prompt.left :.prompt.right {:opacity   1
                                                  :transform :none}]]]]
@@ -351,8 +351,8 @@
                  [:h4 subtitle]
                  [:div.space]
                  [:img {:src image}]
-                 [:dialog.feature {:id      modal-id
-                                   :popover true}
+                 [:div.modal {:id      modal-id
+                              :popover true}
                   [:div.content
                    [:div.topbar
                     [:svg.close {:xmlns           "http://www.w3.org/2000/svg"
