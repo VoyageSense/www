@@ -291,8 +291,8 @@
                                   :border             0
                                   :background         :transparent
                                   :animation-duration "0.3s"}
-                 [:.content {:margin        "5vh 5vw"
-                             :width         "auto"
+                 [:.content {:margin        "auto"
+                             :max-width     "calc(min(80ch, 90vw))"
                              :padding       "2em"
                              :border-radius "1em"
                              :text-align    :start
