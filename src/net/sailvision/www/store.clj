@@ -531,7 +531,14 @@
         boats     (:boats     config)
         locations (:locations config)
         price     (:price     config)]
-    {:css  [[:.total {:grid-column "1 / -1"
+    {:css  [[:form.sku-selection {:display                :grid
+                                   :grid-template-columns "auto 1fr"
+                                   :gap                   "0.3em"
+                                   :width                 :fit-content}
+              [:button {:grid-column  "span 2"
+                        :justify-self :center
+                        :padding      "0.3em 1em"}]]
+            [:.total {:grid-column "1 / -1"
                       :text-align  :right
                       :font-size "1.1em"}]]
      :body [[:main.body-width
@@ -584,13 +591,33 @@
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
-    {:body [[:main.body-width
+    {:css  [[:form.survey {:margin                "4em auto"
+                           :padding               "1em"
+                           :display               :grid
+                           :grid-template-columns "1fr auto 1fr"
+                           :row-gap               "1em"
+                           :width                 :fit-content
+                           :border                "thin rgba(var(--foreground), 0.5) solid"
+                           :border-radius         "1em"}
+             [:label.question {:grid-column "1 / -1"}]
+             [:select {:grid-column   2
+                       :margin-bottom "2em"
+                       :width "100%"}]
+             [:div.emailAddress {:display       :flex
+                                 :grid-column   "1 / -1"
+                                 :margin-bottom "2em"
+                                 :max-width     "60ch"}
+              [:input {:flex-grow 1}]]
+             [:button {:grid-column  "span 3"
+                       :justify-self :center
+                       :padding      "0.3em 1em"}]]]
+     :body [[:main.body-width
              [:p "Thank you for your interest, but unfortunately, this isn't a real product yet. We really appreciate you giving us your attention and we hope we haven't caused any disruption with our experiment."]
              [:p "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're sailing in" location "or you're on a" (str boat "," "we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied.")]
              [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way. Thanks again!"]
-             [:form
+             [:form.survey
               (apply concat (map (fn [&{:keys [name question answers]}]
-                                   [[:label  {:for  name} question]
+                                   [[:label.question {:for  name} question]
                                     [:select {:id   name
                                               :name name}
                                      (map (fn [v]
@@ -598,9 +625,10 @@
                                           (flatten ["-- Select One --"
                                                     answers]))]])
                                  survey))
-              [:label              {:for  :emailAddress} "Email Address:"]
-              [:input#emailAddress {:name :emailAddress
-                                    :type :email}]
+              [:div.emailAddress
+               [:label {:for  :emailAddress} "Email Address:"]
+               [:input {:name :emailAddress
+                        :type :email}]]
               [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]

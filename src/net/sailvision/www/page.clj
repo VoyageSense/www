@@ -43,6 +43,10 @@
               [:.body-width {:grid-column 3}]
               [:.body-width-no-edge {:grid-column "2 / -2"}]
               [:main {:margin "3em 0"}]
+              (s/at-media {:pointer :coarse}
+                          [:form
+                           [:select {:font-size "1em"}]
+                           [:button {:font-size "1.2em"}]])
               (s/at-media {:prefers-color-scheme :dark}
                           [":root" {:--bold-foreground  "240 240 240"
                                     :--bold-background  "1 1 1"
@@ -54,14 +58,7 @@
                                                 :--light-visibility "visible"
                                                 :--dark-visibility  "hidden"}]))
               [:details {:margin-top "1em"}
-               [:summary {:cursor :pointer}]]
-              [:form {:display               :grid
-                      :grid-template-columns "auto 1fr"
-                      :gap   "0.3em"
-                      :width :fit-content}
-               [:button {:grid-column  "span 2"
-                         :justify-self :center
-                         :padding      "0.3em 1em"}]]]
+               [:summary {:cursor :pointer}]]]
      :script (if (env :posthog)
                [posthog-script]
                nil)}))
