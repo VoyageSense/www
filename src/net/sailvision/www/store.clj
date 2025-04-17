@@ -266,7 +266,10 @@
                          :cursor         :pointer
                          :transition     "transform 0.2s ease-out"
                          :width          "calc(var(--max-body-width)/4)"}
-                 [:h3 :h4 {:text-align :center
+                 [:.topbar {:display               :grid
+                            :width                 "100%"
+                            :grid-template-columns "1fr auto"}]
+                 [:h3 :h4 {:text-align :start
                            :margin     0}]
                  [:h3     {:font-size "1.8em"}]
                  [:h4     {:font-size "1em"}]
@@ -298,10 +301,7 @@
                              :text-align    :start
                              :color         "rgb(var(--foreground))"
                              :background    "rgb(var(--background))"}
-                  [:.topbar {:width                 "100%"
-                             :display               :grid
-                             :grid-template-columns "1fr auto"}
-                   [:svg.close {:grid-column 2}]]
+                  [:svg.close {:grid-column 2}]
                   [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
                               :border-radius "0.5em"
                               :padding       "0 1em"
@@ -336,7 +336,31 @@
                                                  :transform :none}]]]]
      :body     [[:button.card {:type          :button
                                :popovertarget modal-id}
-                 [:h3 [:i title]]
+                 [:div.topbar
+                  [:h3 [:i title]]
+                  [:svg {:width   24
+                         :height  24
+                         :viewBox "0 0 24 24"
+                         :fill    :none
+                         :xmlns   "http://www.w3.org/2000/svg"}
+                   [:rect {:x            3
+                           :y            3
+                           :width        18
+                           :height       18
+                           :rx           2
+                           :ry           2
+                           :stroke       :currentColor
+                           :stroke-width 2}]
+                   [:path {:d               "M14 6H18V10"
+                           :stroke          :currentColor
+                           :stroke-width    2
+                           :stroke-linecap  :round
+                           :stroke-linejoin :round}]
+                   [:path {:d               "M10 14L18 6"
+                           :stroke          :currentColor
+                           :stroke-width    2
+                           :stroke-linecap  :round
+                           :stroke-linejoin :round}]]]
                  [:h4 subtitle]
                  [:div.space]
                  [:img {:src image}]
