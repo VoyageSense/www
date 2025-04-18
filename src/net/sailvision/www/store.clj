@@ -649,6 +649,8 @@
              [:select {:grid-column "span 2"
                        :margin-bottom "3em"
                        :width "100%"}]
+             [:textarea {:grid-column   "span 2"
+                         :margin-bottom "3em"}]
              [:label {:grid-column 1}]
              [:input {:grid-column 2}]
              [:button {:grid-column  "span 2"
@@ -663,7 +665,7 @@
              [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the discount either way. Thanks again!"]
              [:form.survey.soft-outline {:action (route-with-code route-survey code)}
               (apply concat (map (fn [&{:keys [name question answers]}]
-                                   [[:label.question {:for  name} question]
+                                   [[:label.question {:for name} question]
                                     [:select {:id   name
                                               :name name}
                                      (map (fn [v]
@@ -671,6 +673,8 @@
                                           (flatten ["-- Select One --"
                                                     answers]))]])
                                  survey))
+              [:label.question {:for :additionalComments} "Additional comments:"]
+              [:textarea#additionalComments {:name :additionalComments}]
               [:label {:for  :emailAddress} "Email Address:"]
               [:input {:name :emailAddress
                        :type :email}]
