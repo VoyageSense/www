@@ -170,8 +170,7 @@
                      :overflow    :hidden
                      :gap         "0.5em"
                      :align-items "last baseline"
-                     :color       "rgb(var(--bold-foreground))"
-                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
+                     :color       "white"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
@@ -211,7 +210,7 @@
                 [:.dark {:visibility "var(--dark-visibility)"}]
                 [:.light {:visibility "var(--light-visibility)"}]
                 [:.loaded loaded]
-                [:.hero-mask {:height      "calc(min(70vw, 50vh))"
+                [:.hero-mask {:height      "calc(min(70vw, 75vh))"
                               :background  (str
                                             "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
                                             mask-opacity
