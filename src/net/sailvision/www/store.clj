@@ -171,37 +171,6 @@
     (when (and code config)
       [code config])))
 
-(def header
-  {:css  [[:body
-           [:header {:margin-top  "1em"
-                     :display     :flex
-                     :overflow    :hidden
-                     :gap         "0.5em"
-                     :align-items "last baseline"
-                     :color       "rgb(var(--bold-foreground))"
-                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
-            [:h1 :h2 :h3 {:margin         0
-                          :font-weight    :bold
-                          :font-family    "Arial, san-serif"}]
-            [:h1         {:font-size      "3em"}]
-            [:h2         {:font-size      "1em"}]
-            [:h3         {:font-size      "0.9em"
-                          :white-space    :nowrap
-                          :display        :inline-flex
-                          :flex-direction :column}]
-            [:div        {:flex-grow      1}]]]
-          (s/at-media {:max-width "60em"}
-                      [:body
-                       [:header
-                        [:h3 {:display :none}]]])]
-   :body [[:header.body-width
-           [:h1 "PopAI"]
-           [:h2 "The ultimate boating companion"]
-           [:div]
-           [:h3
-            [:span "Keep your hands on the helm and eyes on the water"]
-            [:span "Use the power of your voice to manage your boating experience"]]]]})
-
 (def hero
   (let [loaded      {:opacity   1
                      :transform :none}
@@ -557,7 +526,7 @@
   (if-let [[code config] (validate request)]
     (page/from-components nil [page/base
                                ;; (show-modal-on-load "modal-cruising-guide")
-                               header
+                               page/header
                                hero
                                get-to-know
                                features-cards
@@ -646,7 +615,7 @@
 (defn configure [request]
   (if-let [[code _config] (validate request)]
     (page/from-components "Configure PopAI" [page/base
-                                             header
+                                             page/header
                                              (configuration code)
                                              about/footer])
       (resp/redirect "/")))
@@ -723,7 +692,7 @@
       (page/from-components
        "Checkout"
        [page/base
-        header
+        page/header
         (thank-you {:location location
                     :boat     boat
                     :code     code})
@@ -749,7 +718,7 @@
       (page/from-components
        "Survey"
        [page/base
-        header
+        page/header
         {:body [[:main.body-width
                  [:p "Thank you for your submission."]]]}
         about/footer]))

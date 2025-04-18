@@ -70,6 +70,37 @@
                [posthog-script]
                nil)}))
 
+(def header
+  {:css  [[:body
+           [:header {:margin-top  "1em"
+                     :display     :flex
+                     :overflow    :hidden
+                     :gap         "0.5em"
+                     :align-items "last baseline"
+                     :color       "rgb(var(--bold-foreground))"
+                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
+            [:h1 :h2 :h3 {:margin         0
+                          :font-weight    :bold
+                          :font-family    "Arial, san-serif"}]
+            [:h1         {:font-size      "3em"}]
+            [:h2         {:font-size      "1em"}]
+            [:h3         {:font-size      "0.9em"
+                          :white-space    :nowrap
+                          :display        :inline-flex
+                          :flex-direction :column}]
+            [:div        {:flex-grow      1}]]]
+          (s/at-media {:max-width "60em"}
+                      [:body
+                       [:header
+                        [:h3 {:display :none}]]])]
+   :body [[:header.body-width
+           [:h1 "PopAI"]
+           [:h2 "The ultimate boating companion"]
+           [:div]
+           [:h3
+            [:span "Keep your hands on the helm and eyes on the water"]
+            [:span "Use the power of your voice to manage your boating experience"]]]]})
+
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head
    [:title (str/join " - " (keep identity ["PopAI" title]))]

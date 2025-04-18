@@ -37,5 +37,6 @@
   (page/from-components
    "About"
    [page/base
+    page/header
     about-us
     footer]))
