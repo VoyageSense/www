@@ -13,6 +13,7 @@
 (def route-configure (str route-home "/configure"))
 (def route-checkout (str route-home "/checkout"))
 (def route-request-almanac "/store/request-almanac")
+(def route-survey (str route-home "/survey"))
 
 (defn route-with-code [route code]
   (str/replace-first route ":code" (name code)))
@@ -644,7 +645,7 @@
                                              about/footer])
       (resp/redirect "/")))
 
-(defn thank-you [&{:keys [location boat]}]
+(defn thank-you [&{:keys [location boat code]}]
   (let [functions ["Cruising Guide"
                    "Boat Mechanic"
                    "Sailing Instructor"
@@ -686,7 +687,7 @@
                [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you're sailing in " location " or you're on a " boat ", we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."]
                [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you take a sailing trip, we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."])
              [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the discount either way. Thanks again!"]
-             [:form.survey
+             [:form.survey {:action (route-with-code route-survey code)}
               (apply concat (map (fn [&{:keys [name question answers]}]
                                    [[:label.question {:for  name} question]
                                     [:select {:id   name
@@ -720,7 +721,8 @@
        [page/base
         header
         (thank-you {:location location
-                    :boat     boat})
+                    :boat     boat
+                    :code     code})
         about/footer]))
     (resp/redirect "/")))
 
@@ -731,3 +733,20 @@
           conn    (db/connect storage :requested-almanacs)]
       (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params))))
     (resp/redirect "/")))
+
+(defn submit-survey [request]
+  (if-let [[_code _config] (validate request)]
+    (let [storage (db/storage)
+          conn    (db/connect storage :survey-responses)
+          blob    (pr-str (:params request))]
+      (prn blob)
+      (db/insert-survey-response {:conn conn
+                                  :blob blob})
+      (page/from-components
+       "Survey"
+       [page/base
+        header
+        {:body [[:main.body-width
+                 [:p "Thank you for your submission."]]]}
+        about/footer]))
+      (resp/redirect "/")))

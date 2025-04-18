@@ -18,6 +18,11 @@
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}])
 
+(def survey-responses-schema
+  [{:db/ident :survey-responses/blob
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one}])
+
 (defn storage []
   (let [storage (env :db-storage)
         [start] storage]
@@ -33,7 +38,8 @@
                           :system "www"
                           :storage-dir storage})
         [db-name schema] (case database
-                           :requested-almanacs ["requested-almanacs" requested-almanacs-schema])]
+                           :requested-almanacs ["requested-almanacs" requested-almanacs-schema]
+                           :survey-responses   ["survey-responses"   survey-responses-schema])]
     (d/create-database client {:db-name db-name})
     (let [conn (d/connect client {:db-name db-name})]
       (d/transact conn {:tx-data schema})
@@ -63,3 +69,14 @@
               :time-frame    (:requested-almanacs/time-frame entity)
               :email-address (:requested-almanacs/email-address entity)}))
          ids)))
+
+(defn insert-survey-response
+  [{:keys [conn blob]}]
+  (d/transact conn {:tx-data [{:survey-responses/blob blob}]}))
+
+(defn list-survey-responses
+  [{:keys [conn]}]
+  (let [db (d/db conn)]
+    (map first (d/q '[:find ?blob
+                      :where [_ :survey-responses/blob ?blob]]
+                    db))))

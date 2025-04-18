@@ -95,6 +95,7 @@
     (c/route-compile store/route-configure)       :>> (wrap-params request store/configure)
     (c/route-compile store/route-checkout)        :>> (wrap-params request store/checkout)
     (c/route-compile store/route-request-almanac) :>> (wrap-params request store/request-almanac)
+    (c/route-compile store/route-survey)          :>> (wrap-params request store/submit-survey)
     (c/route-compile about/route-home)            (about/home)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
