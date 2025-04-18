@@ -150,7 +150,8 @@
                         :turks-caicos    "Turks and Caicos Islands"}
                        "South Pacific"
                        {:tahiti          "Tahiti"}}
-           :price     300}})
+           :price     300}
+   :mango {}})
 
 (def header
   {:css  [[:body
@@ -515,9 +516,13 @@
                                 :padding         "1em"}]]
      :body [[:div.background.full-width
              [:div.description.body-width
-             [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
-             [:div.buy-now
-              [:a {:href (route-with-code route-configure code)} "Configure PopAI"]]]]]})
+              [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
+              [:div.buy-now
+               [:a {:href (if (and (:boats     (code targets))
+                                   (:locations (code targets)))
+                            (route-with-code route-configure code)
+                            (route-with-code route-checkout code))}
+                "Configure PopAI"]]]]]})
 
 (defn show-modal-on-load [id]
   {:script [(str "window.addEventListener('load', () => {"
@@ -662,8 +667,10 @@
                        :padding      "0.3em 1em"}]]]
      :body [[:main.body-width
              [:p "Thank you for your interest, but unfortunately, this isn't a real product yet. We really appreciate you giving us your attention and we hope we haven't caused any disruption with our experiment."]
-             [:p "As a thank-you, we'd like to offer you a coupon for 75% off. Hopefully the next time you're sailing in" location "or you're on a" (str boat "," "we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied.")]
-             [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the coupon either way. Thanks again!"]
+             (if (and boat location)
+               [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you're sailing in " location " or you're on a " boat ", we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."]
+               [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you take a sailing trip, we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+             [:p "Oh, and if you wouldn't mind, we'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the discount either way. Thanks again!"]
              [:form.survey
               (apply concat (map (fn [&{:keys [name question answers]}]
                                    [[:label.question {:for  name} question]
@@ -681,31 +688,27 @@
               [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]
-  (let [code         (keyword (:code request))
-        config       (when code
-                       (code targets))
-        locations    (:locations config)
-        location-key (keyword (:location (:params request)))
-        location     (when location-key
-                       (location-key (reduce-kv (fn [acc k v]
-                                                  (merge acc v))
-                                                {}
-                                                locations)))
-        boats        (:boats config)
-        boat-key     (keyword (:boat (:params request)))
-        boat         (when boat-key
-                       (boat-key boats))]
-    (if (and location boat)
+  (if-let [config (let [code (keyword (:code request))]
+                    (code targets))]
+    (let [locations    (:locations config)
+          location-key (keyword (:location (:params request)))
+          location     (when location-key
+                         (location-key (reduce-kv (fn [acc _k v]
+                                                    (merge acc v))
+                                                  {}
+                                                  locations)))
+          boats        (:boats config)
+          boat-key     (keyword (:boat (:params request)))
+          boat         (when boat-key
+                         (boat-key boats))]
       (page/from-components
        "Checkout"
        [page/base
         header
         (thank-you {:location location
                     :boat     boat})
-        about/footer])
-      {:status 401
-       :headers page/headers
-       :body "invalid product configuration"})))
+        about/footer]))
+    (resp/redirect "/")))
 
 (defn request-almanac [request]
   (let [params  (codec/form-decode (:query-string request))
