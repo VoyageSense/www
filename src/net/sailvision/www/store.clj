@@ -163,6 +163,13 @@
    :1ruxy {}
    :1hxpd {}})
 
+(defn validate [request]
+  (let [code   (keyword (:code request))
+        config (when code
+                 (code targets))]
+    (when (and code config)
+      [code config])))
+
 (def header
   {:css  [[:body
            [:header {:margin-top  "1em"
@@ -508,7 +515,7 @@
                   [:div.cards-slide
                    (apply concat (map #(-> % card :body) cards))]]]]}))
 
-  (defn description [code]
+  (defn description [code config]
     {:css  [[:.background {:background "rgb(var(--background))"
                            :color      "rgb(var(--foreground))"}]
             [:.description {:margin "3em 0"}]
@@ -528,8 +535,8 @@
              [:div.description.body-width
               [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
               [:div.buy-now
-               [:a {:href (if (and (:boats     (code targets))
-                                   (:locations (code targets)))
+               [:a {:href (if (and (:boats     config)
+                                   (:locations config))
                             (route-with-code route-configure code)
                             (route-with-code route-checkout code))}
                 "Configure PopAI"]]]]]})
@@ -540,17 +547,16 @@
                  "}, false);")]})
 
 (defn popai [request]
-  (let [code (keyword (:code request))]
-    (if (and code (code targets))
-      (page/from-components nil [page/base
-                                 ;; (show-modal-on-load "modal-cruising-guide")
-                                 header
-                                 hero
-                                 get-to-know
-                                 features-cards
-                                 (description code)
-                                 about/footer])
-      (resp/redirect "/"))))
+  (if-let [[code config] (validate request)]
+    (page/from-components nil [page/base
+                               ;; (show-modal-on-load "modal-cruising-guide")
+                               header
+                               hero
+                               get-to-know
+                               features-cards
+                               (description code config)
+                               about/footer])
+    (resp/redirect "/")))
 
 
 (def almanac-request
@@ -631,13 +637,12 @@
              (first (:body almanac-request))]]]}))
 
 (defn configure [request]
-  (let [code (keyword (:code request))]
-    (if (and code (code targets))
-      (page/from-components "Configure PopAI" [page/base
-                                               header
-                                               (configuration code)
-                                               about/footer])
-      (resp/redirect "/"))))
+  (if-let [[code _config] (validate request)]
+    (page/from-components "Configure PopAI" [page/base
+                                             header
+                                             (configuration code)
+                                             about/footer])
+      (resp/redirect "/")))
 
 (defn thank-you [&{:keys [location boat]}]
   (let [functions ["Cruising Guide"
@@ -698,8 +703,7 @@
               [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]
-  (if-let [config (let [code (keyword (:code request))]
-                    (code targets))]
+  (if-let [[code config] (validate request)]
     (let [locations    (:locations config)
           location-key (keyword (:location (:params request)))
           location     (when location-key
@@ -721,7 +725,9 @@
     (resp/redirect "/")))
 
 (defn request-almanac [request]
-  (let [params  (codec/form-decode (:query-string request))
-        storage (db/storage)
-        conn    (db/connect storage :requested-almanacs)]
-    (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params)))))
+  (if-let [[_code _config] (validate request)]
+    (let [params  (codec/form-decode (:query-string request))
+          storage (db/storage)
+          conn    (db/connect storage :requested-almanacs)]
+      (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params))))
+    (resp/redirect "/")))
