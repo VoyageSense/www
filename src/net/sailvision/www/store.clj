@@ -523,14 +523,14 @@
                            :flex-direction :column
                            :align-items    :center
                            :padding        "2em"}]
-            ["div.buy-now > a" {:background      "#5050a0"
-                                :font-size       "1.5em"
+            ["div.buy-now > a" {:background      "#000000"
+                                :font-size       "1.75em"
                                 :color           :white
                                 :text-decoration :none
                                 :text-align      :center
-                                :border          "thin #303070 solid"
-                                :border-radius   "0.3em"
-                                :padding         "1em"}]]
+                                :border          "thin #FFFFFF solid"
+                                :border-radius   "0.5em"
+                                :padding         "0.75em 2em"}]]
      :body [[:div.background.full-width
              [:div.description.body-width
               [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you. The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet and talk to it with your preferred method."]
@@ -539,7 +539,7 @@
                                    (:locations config))
                             (route-with-code route-configure code)
                             (route-with-code route-checkout code))}
-                "Configure PopAI"]]]]]})
+                "Get the App"]]]]]})
 
 (defn show-modal-on-load [id]
   {:script [(str "window.addEventListener('load', () => {"
