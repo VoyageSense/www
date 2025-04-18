@@ -415,7 +415,11 @@
           :image    "/card-boat.jpg"
           :intro    "... searching your local guide has never been easier. Simply ask!"
           :details
-          [{:heading "Local Navigation"
+          [{:heading "Plan and Prep Assist"
+            :body    ["PopAI has commomn checklists for gear, travel documents, and provisioning for your charter destination. It will help during boat checkout and return."]
+            :prompts ["What geat do I bring to BVI for charter in July?"
+                      "What should I check on Lagoon 52 at checkout?"]}
+           {:heading "Local Navigation"
             :body    ["Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
             :prompts ["What are the predominant winds here?"
                       "Can we anchor in Cam Bay National Park?"
