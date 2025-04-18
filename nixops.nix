@@ -92,6 +92,12 @@
 
           clientMaxBodySize = "50m";
 
+          # Needed for PostHog proxy
+          resolver.addresses = [
+            "8.8.8.8"
+            "8.8.4.4"
+          ];
+
           virtualHosts = {
             "www.i.${domain}" = {
               useACMEHost = "wildcard.i.${domain}";
@@ -102,6 +108,28 @@
               locations = {
                 "/status".extraConfig = "stub_status;";
                 "/".proxyPass         = "http://127.0.0.1:9080";
+              };
+            };
+
+            # Adapted from https://posthog.com/docs/advanced/proxy/nginx
+            "ph.${domain}" = {
+              enableACME = true;
+              forceSSL   = true;
+
+              locations = {
+                "~ ^/static/(.*)$".extraConfig = ''
+                  set $posthog_static "https://us-assets.i.posthog.com/static/";
+                  # use variable to force proper DNS re-resolution, also must manually pass along path
+                  proxy_pass $posthog_static$1$is_args$args;
+                  proxy_set_header Host "us-assets.i.posthog.com";
+                '';
+
+                "~ ^/(.*)$".extraConfig = ''
+                  set $posthog_main "https://us.i.posthog.com/";
+                  # use variable to force proper DNS re-resolution, also must manually pass along path
+                  proxy_pass $posthog_main$1$is_args$args;
+                  proxy_set_header Host "us.i.posthog.com";
+                '';
               };
             };
 
