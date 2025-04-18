@@ -43,7 +43,7 @@
                      :margin          0
                      :font-family     "Arial, sans-serif"}])})
      [:body
-      [:h1#banner "The future of sailing is here."]])})
+      [:h1#banner "If you're looking for a specific page, please be sure to follow the exact link that was provided to you. Thank you!"]])})
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
