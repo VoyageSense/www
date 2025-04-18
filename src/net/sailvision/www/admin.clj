@@ -12,6 +12,7 @@
 (def route-home "/admin")
 (def route-requested-almanacs "/admin/requested-almanacs")
 (def route-page-views "/admin/page-views")
+(def route-survey-responses "/admin/survey-responses")
 
 (defn base-css [& extra-css]
   (g/css
@@ -35,7 +36,8 @@
            [:h1 "Admin Panel"]
            [:ul
             [:li [:a {:href route-requested-almanacs} "Requested Almanacs"]]
-            [:li [:a {:href route-page-views}         "Page Views"]]]])})
+            [:li [:a {:href route-page-views}         "Page Views"]]
+            [:li [:a {:href route-survey-responses}   "Survey Responses"]]]])})
 
 (defn requested-almanacs []
   (let [storage (db/storage)
@@ -90,9 +92,26 @@
                      [:tr [:td agent] [:td count]])
                    (reverse (sort-by (fn [[_ v]] v) user-agents)))]])}))
 
+(defn survey-responses []
+  (let [storage   (db/storage)
+        conn      (db/connect storage :survey-responses)
+        responses (db/list-survey-responses {:conn conn})]
+    {:headers page/headers
+     :body (h/html5
+            (page/head {:title     "Admin - Survey Responses"
+                        :extra-css (base-css [:td {:text-align :center}])})
+            [:body
+             [:h1 "Survey Responses"]
+             [:table
+              [:tr [:th "Blob"]]
+              (map (fn [response]
+                     [:tr [:td response]])
+                   responses)]])}))
+
 (defn route [request]
   (condp c/route-matches request
     (c/route-compile route-requested-almanacs) (requested-almanacs)
     (c/route-compile route-page-views)         (page-views)
-    (c/route-compile route-home)                 (home)
+    (c/route-compile route-survey-responses)   (survey-responses)
+    (c/route-compile route-home)               (home)
     (resp/redirect   route-home)))
