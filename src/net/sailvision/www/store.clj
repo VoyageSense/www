@@ -178,8 +178,8 @@
                      :overflow    :hidden
                      :gap         "0.5em"
                      :align-items "last baseline"
-                     :color       "white"
-                     :text-shadow "0.05em 0.1em 0.5em black"}
+                     :color       "rgb(var(--bold-foreground))"
+                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
@@ -206,7 +206,10 @@
   (let [loaded      {:opacity   1
                      :transform :none}
         mask-opacity 0.85]
-    {:css      [[:.hero {:width          "100%"
+    {:css      [[:body
+                 [:header {:color       "#f8f8f8"
+                           :text-shadow "0.05em 0.1em 0.5em #404040"}]]
+                [:.hero {:width          "100%"
                          :position       :fixed
                          :opacity        0
                          :top            0
