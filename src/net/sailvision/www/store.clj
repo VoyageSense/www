@@ -151,7 +151,17 @@
                        "South Pacific"
                        {:tahiti          "Tahiti"}}
            :price     300}
-   :mango {}})
+   :mango {}
+   :1ayjd {}
+   :1vhji {}
+   :1nzxl {}
+   :1rxah {}
+   :1ojpw {}
+   :1uvac {}
+   :1xppc {}
+   :1hhey {}
+   :1ruxy {}
+   :1hxpd {}})
 
 (def header
   {:css  [[:body
