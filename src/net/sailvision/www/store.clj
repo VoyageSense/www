@@ -237,14 +237,15 @@
             [:p "PopAI is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
             [:p "No more flipping through soggy manuals, squinting at screens in the dark, or trying to remember how to calculate scope ratio while juggling conversations with your kids. PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
-(defn card-script [id]
-  [:script
-   (str "document.getElementById('" id "').addEventListener('toggle', (event) => {"
-        "shownfn = event.target.matches(':popover-open')"
-        "? (prompt) => prompt.classList.add('shown')"
-        ": (prompt) => prompt.classList.remove('shown');"
-        "event.target.querySelectorAll('.prompt').forEach(shownfn);"
-        "});")])
+(defn card-modal-show [id]
+  (str "let modal = document.getElementById('" id "');"
+       "modal.showModal();"
+       "modal.querySelectorAll('.prompt').forEach((prompt) => prompt.classList.add('shown'));"))
+
+(defn card-modal-hide [id]
+  (str "let modal = document.getElementById('" id "');"
+       "modal.close();"
+       "modal.querySelectorAll('.prompt').forEach((prompt) => prompt.classList.remove('shown'));"))
 
 (defn card [{:keys [title subtitle intro image details]}]
   (let [image-aspect-ratio "500/630"
@@ -264,9 +265,6 @@
                          :cursor         :pointer
                          :transition     "transform 0.2s ease-out"
                          :width          "calc(var(--max-body-width)/4)"}
-                 [:.topbar {:display               :grid
-                            :width                 "100%"
-                            :grid-template-columns "1fr auto"}]
                  [:h3 :h4 {:text-align :start
                            :margin     0}]
                  [:h3     {:font-size "1.8em"}]
@@ -275,20 +273,26 @@
                            :aspect-ratio  image-aspect-ratio
                            :border-radius "0.5em"}]
                  [:.space {:flex-grow 1}]]
+                [:.topbar {:display               :grid
+                           :width                 "100%"
+                           :grid-template-columns "1fr auto"}]
                 [:.card:hover {:transform "scale(1.03)"}]
-                [:.modal {:width              "100%"
-                          :height             "100%"
+                [:.modal {:max-width          "100vw"
+                          :max-height         "100vh"
                           :border             0
+                          :margin             0
+                          :padding            "5vh 5vw"
                           :background         :transparent
                           :animation-duration "0.3s"}
                  [:.content {:margin        "auto"
-                             :max-width     "calc(min(80ch, 90vw))"
+                             :max-width     "calc(min(80ch, 100%))"
                              :padding       "2em"
                              :border-radius "1em"
                              :text-align    :start
                              :color         "rgb(var(--foreground))"
                              :background    "rgb(var(--background))"}
-                  [:svg.close {:grid-column 2}]
+                  [:svg.close {:grid-column 2
+                               :cursor      :pointer}]
                   [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
                               :border-radius "0.5em"
                               :padding       "0 1em"
@@ -321,8 +325,8 @@
                  [:.content
                   [:.prompt.left :.prompt.right {:opacity   1
                                                  :transform :none}]]]]
-     :body     [[:button.card {:type          :button
-                               :popovertarget modal-id}
+     :body     [[:button.card {:type    :button
+                               :onclick (card-modal-show modal-id)}
                  [:div.topbar
                   [:h3 [:i title]]
                   [:svg {:width   24
@@ -350,42 +354,41 @@
                            :stroke-linejoin :round}]]]
                  [:h4 subtitle]
                  [:div.space]
-                 [:img {:src image}]
-                 [:div.modal {:id      modal-id
-                              :popover true}
-                  [:div.content
-                   [:div.topbar
-                    [:svg.close {:xmlns           "http://www.w3.org/2000/svg"
-                                 :width           24
-                                 :height          24
-                                 :viewBox         "0 0 24 24"
-                                 :fill            :none
-                                 :stroke          :currentColor
-                                 :stroke-width    2
-                                 :stroke-linecap  :round
-                                 :stroke-linejoin :round}
-                     [:line {:x1 18
-                             :y1 6
-                             :x2 6
-                             :y2 18}]
-                     [:line {:x1 6
-                             :y1 6
-                             :x2 18
-                             :y2 18}]]]
-                   [:h1 title]
-                   [:p.intro intro]
-                   (map (fn [{:keys [heading body prompts]}]
-                          [:div.section
-                           [:p [:span.heading heading] " " (map (fn [p] [:p.body p]) body)]
-                           (map (fn [prompt, i]
-                                  [:q.prompt {:class (if (= 0 (mod i 2))
-                                                       "left"
-                                                       "right")
-                                              :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
-                                   prompt])
-                                prompts (range))])
-                        details)
-                   (card-script modal-id)]]]]}))
+                 [:img {:src image}]]
+                [:dialog.modal {:id      modal-id
+                                :onclick (card-modal-hide modal-id)}
+                 [:div.content
+                  [:div.topbar
+                   [:svg.close {:xmlns           "http://www.w3.org/2000/svg"
+                                :width           24
+                                :height          24
+                                :viewBox         "0 0 24 24"
+                                :fill            :none
+                                :stroke          :currentColor
+                                :stroke-width    2
+                                :stroke-linecap  :round
+                                :stroke-linejoin :round}
+                    [:line {:x1 18
+                            :y1 6
+                            :x2 6
+                            :y2 18}]
+                    [:line {:x1 6
+                            :y1 6
+                            :x2 18
+                            :y2 18}]]]
+                  [:h1 title]
+                  [:p.intro intro]
+                  (map (fn [{:keys [heading body prompts]}]
+                         [:div.section
+                          [:p [:span.heading heading] " " (map (fn [p] [:p.body p]) body)]
+                          (map (fn [prompt, i]
+                                 [:q.prompt {:class (if (= 0 (mod i 2))
+                                                      "left"
+                                                      "right")
+                                             :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
+                                  prompt])
+                               prompts (range))])
+                       details)]]]}))
 
 (def features-cards
   (let [cards
@@ -516,16 +519,16 @@
              [:div.buy-now
               [:a {:href (route-with-code route-configure code)} "Configure PopAI"]]]]]})
 
-(defn show-popover-on-load [id]
+(defn show-modal-on-load [id]
   {:script [(str "window.addEventListener('load', () => {"
-                 "document.querySelector('#" id "').showPopover()"
+                 "document.querySelector('#" id "').showModal()"
                  "}, false);")]})
 
 (defn popai [request]
   (let [code (keyword (:code request))]
     (if (and code (code targets))
       (page/from-components nil [page/base
-                                 ;; (show-popover-on-load "modal-cruising-guide")
+                                 ;; (show-modal-on-load "modal-cruising-guide")
                                  header
                                  hero
                                  get-to-know
