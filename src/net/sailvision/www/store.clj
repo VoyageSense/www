@@ -170,7 +170,8 @@
                      :overflow    :hidden
                      :gap         "0.5em"
                      :align-items "last baseline"
-                     :color       "white"}
+                     :color       "white"
+                     :text-shadow "0.05em 0.1em 0.5em black"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
@@ -243,7 +244,7 @@
            [:div.get-to-know.body-width
             [:div [:h1 "Get to know PopAI"]]
             [:div [:h2 "pronounced " [:q "Popeye"]]]
-            [:p "PopAI is a voice-controlled boating assistant. It is part guide , part mechanic, part instructor , and part crew member."]
+            [:p "PopAI is a voice-controlled boating assistant. It is part guide, part mechanic, part instructor, and part crew member."]
             [:p "PopAI is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
             [:p "No more flipping through soggy manuals, squinting at screens in the dark, or trying to remember how to calculate scope ratio while juggling conversations with your kids. PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
