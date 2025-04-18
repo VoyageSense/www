@@ -316,16 +316,16 @@
                               :border-radius "0.5em"
                               :padding       "0 1em"
                               :margin        "3em 0 0"}]
-                  [:h1 {:text-align :center
+                  [:h1 {:text-align :left
                         :margin-top 0
-                        :font       "italic 3em Arial, san-serif"}]
-                  [:p.intro {:font-size "1.4em"
+                        :font       "italic clamp(2em, 1em + 4vw, 3em) Arial, san-serif"}]
+                  [:p.intro {:font-size "clamp(1.2em, 0.2em + 3vw, 1.4em)"
                              :margin    0}]
                   [:span.heading {:font-weight :bold
                                   :font-style  :italic}]
                   [".section > *" {:font-size "1.1em"}]
                   [:.prompt       {:display      :block
-                                   :font         "italic 1.8em Arial, san-serif"
+                                   :font         "italic clamp(1.3em, 0.3em + 3vw, 1.8em) Arial, san-serif"
                                    :padding-top  "0.8em"
                                    :margin       "0.5em"
                                    :transition   "opacity 1s linear, transform 1s ease-out"}]
