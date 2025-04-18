@@ -20,7 +20,9 @@
 (def footer
   {:css  [[:footer {:padding "1em 0"
                     :display :flex}
-           [:.spacer {:flex-grow 1}]]
+           [:.spacer {:flex-grow 1}]
+           [:a {:color "rgb(var(--link-unvisited))"}]
+           ["a:visited" {:color "rgb(var(--link-visited))"}]]
           [:.footer-background {:background "rgb(var(--background))"
                                :color      "rgb(var(--foreground))"}]]
    :body [[:div.footer-background.full-width

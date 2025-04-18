@@ -16,18 +16,22 @@
 (def light-background "245, 245, 245")
 (def dark-foreground  "200, 200, 200")
 (def dark-background  "30, 30, 30")
+(def link-visited  "128, 128, 128")
 
 (def base-css
   [[:body {:margin 0}]
    [:form
     [:label {:padding-right "10px"}]]
    [:html { :color-scheme "light dark" }]
+   [":root" {:--link-visited   link-visited}]
    (s/at-media {:prefers-color-scheme :light}
-               [":root" {:--foreground light-foreground
-                         :--background light-background}])
+               [":root" {:--foreground     light-foreground
+                         :--background     light-background
+                         :--link-unvisited light-foreground}])
    (s/at-media {:prefers-color-scheme :dark}
-               [":root" {:--foreground dark-foreground
-                         :--background dark-background}])
+               [":root" {:--foreground     dark-foreground
+                         :--background     dark-background
+                         :--link-unvisited dark-foreground}])
    [:body {:color      "rgb(var(--foreground))"
            :background "rgb(var(--background))"}]])
 
