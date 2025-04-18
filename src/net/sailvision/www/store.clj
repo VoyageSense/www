@@ -536,7 +536,6 @@
                                 :color           :white
                                 :text-decoration :none
                                 :text-align      :center
-                                :border          "thin #FFFFFF solid"
                                 :border-radius   "0.5em"
                                 :padding         "0.75em 2em"}]]
      :body [[:div.background.full-width
