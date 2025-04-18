@@ -416,7 +416,7 @@
   (let [cards
         [{:title    "Cruising Guide"
           :subtitle "Boating almanac on the go"
-          :image    "/card-boat.jpg"
+          :image    "/card-guide.jpg"
           :intro    "... searching your local guide has never been easier. Simply ask!"
           :details
           [{:heading "Plan and Prep Assist"
@@ -439,7 +439,7 @@
                       "Find a children's playground?"]}]}
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
-          :image    "/card-engine.jpg"
+          :image    "/card-mechanic.jpg"
           :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
           :details
           [{:heading "Know Your Boat Inside and Out"
@@ -470,7 +470,7 @@
                       "How do I change the windlass breaker?"]}]}
          {:title    "Sailing Instructor"
           :subtitle "Instant reference, rules and regulations"
-          :image    "/card-textbook.jpg"
+          :image    "/card-instructor.jpg"
           :details
           [{:heading "Rusty Knowledge Fret No More!"
             :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
@@ -491,7 +491,7 @@
                       "Do I need to quarantine my dog in when visiting Jamaica?"]}]}
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
-          :image    "/card-glenn.jpg"
+          :image    "/card-crew.jpg"
           :intro    "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
           :details
           [{:heading "Access All Boat Data With Your Voice"
