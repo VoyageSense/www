@@ -516,7 +516,7 @@
                                    (:locations config))
                             (route-with-code route-configure code)
                             (route-with-code route-checkout code))}
-                "Get the App"]]]]]})
+                "Customize and Buy"]]]]]})
 
 (defn show-modal-on-load [id]
   {:script [(str "window.addEventListener('load', () => {"
