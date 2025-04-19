@@ -224,9 +224,9 @@
            [:div.get-to-know.body-width
             [:div [:h1 "Get to know PopAI"]]
             [:div [:h2 "pronounced " [:q "Popeye"]]]
-            [:p "PopAI is a voice-controlled boating assistant. It is part guide, part mechanic, part instructor, and part crew member."]
-            [:p "PopAI is a mobile app designed to run seamlessly on your phone or tablet, and works perfectly with your favorite hands-free headset. It&rsquo;s your smart sailing companion-always ready when you need it. Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
-            [:p "No more flipping through soggy manuals, squinting at screens in the dark, or trying to remember how to calculate scope ratio while juggling conversations with your kids. PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
+            [:p "PopAI is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s your smart sailing companion &mdash; always ready when you need it."]
+            [:p "Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
+            [:p "PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
 (defn card-modal-show [id]
   (str "let modal = document.getElementById('" id "');"
@@ -509,8 +509,8 @@
                                 :padding         "0.75em 2em"}]]
      :body [[:div.background.full-width
              [:div.description.body-width
-              [:p "Are you chartering a boat and going cruising? Will you be in an area with Internet connectivity? The PopAI App is for you."] 
-              [:p "The PopAI App is a lightweight app that will give you access to the latest sailing almanac for your charter destination, all manufacturer diagrams, schematics and manuals for systems on your boat. The app also acts as a sailing instructor who knows all rules and regulations, can remind you common sailing terms and can walk you through how to do most popular maneuvers, etc. It has all COLREGS, immigration rules and regulations, lights and markers, etc. With the PopAI App you will never feel unprepared for a charter again. Simply download the app on your favorite mobile device (phone or tablet), connect it to your boat's WIFI, and talk to it with your preferred method."]
+              [:p "PopAI is powered by digital almanacs, customized for you and curated from numerous data sources including travel guides, government notices and publications, and local knowledge."]
+              [:p "Each purchase of a digital almanac, which covers one model of boat and a particular region, grants lifetime access and includes updates for one year. Additional almanacs can be added each time you charter a new boat or travel to a new region."]
               [:div.buy-now
                [:a {:href (if (and (:boats     config)
                                    (:locations config))
