@@ -405,14 +405,14 @@
            {:heading "Off The Water Insights"
             :body    ["From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
             :prompts ["Where do I do laundry?"
-                      "Find a children's playground?"]}]}
+                      "Find a children&rsquo;s playground?"]}]}
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
           :image    "/card-mechanic.jpg"
           :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
           :details
           [{:heading "Know Your Boat Inside and Out"
-            :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner's manuals to professional-grade engine diagrams, you'll have instant access to:"
+            :body    ["PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner&rsquo;s manuals to professional-grade engine diagrams, you&rsquo;ll have instant access to:"
                       [:ul
                        [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
                        [:li "Electrical and water system schematics"]
@@ -420,8 +420,8 @@
                        [:li "AC diagrams and instructions"]
                        [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
                        [:li "Running and standing rigging diagrams, explanations and load tables"]
-                       [:li "Sails' load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
-                      "Whether you're troubleshooting or just getting familiar before you cast off, PopAI makes sure you're fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
+                       [:li "Sails&rsquo; load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
+                      "Whether you&rsquo;re troubleshooting or just getting familiar before you cast off, PopAI makes sure you&rsquo;re fully prepared. Once on board you can <b>just ask about any system</b> and <b>PopAI will give you an instant reference to the boat documentation</b>."]
             :prompts ["What is the fuel capacity?"
                       "What is the cruising RPM?"]}
            {:heading "Operation Instructions"
@@ -435,7 +435,7 @@
            {:heading "Step-by-step Fix It Yourself"
             :body    ["PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. <b>90% of the time, you can fix the problem yourself</b> with a bit of knowledge, calm thinking, and a few basic tools."]
             :prompts ["How do I clean the water strainer?"
-                      "How can I fix the dinghy's flooded carburetor?"
+                      "How can I fix the dinghy&rsquo;s flooded carburetor?"
                       "How do I change the windlass breaker?"]}]}
          {:title    "Sailing Instructor"
           :subtitle "Instant reference, rules and regulations"
@@ -443,7 +443,7 @@
           :details
           [{:heading "Rusty Knowledge Fret No More!"
             :body    ["One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
-            :prompts ["How do you <q>heave to</q>?" 
+            :prompts ["How do you <q>heave to</q>?"
                       "How do you do a Med mooring, step by step?"]}
            {:heading "Never Forget a Boat Term"
             :body    ["From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
@@ -461,15 +461,15 @@
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
           :image    "/card-crew.jpg"
-          :intro    "Connect PopAI to your boat's WIFI network and turn your boat into a crew member!"
+          :intro    "Connect PopAI to your boat&rsquo;s Wi-Fi network and turn your boat into a crew member!"
           :details
           [{:heading "Access All Boat Data With Your Voice"
-            :body    ["PopAI connects to your boat's Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments' data."]
+            :body    ["PopAI connects to your boat&rsquo;s Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments&rsquo; data."]
             :prompts ["What is the boat speed?"
                       "What is the true wind speed?"
                       "What is the engine RPM?"]}
            {:heading "Simplify and Automate Checklists"
-            :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it's almost like you need a checklist just to manage your checklists. That's where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
+            :body    ["Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it&rsquo;s almost like you need a checklist just to manage your checklists. That&rsquo;s where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
             :prompts ["Are we ready to go?"
                       "Walk me through the anchoring checklist."]}
            {:heading "Voice Control Your Boat"
@@ -543,8 +543,8 @@
     {:css  [[:details {:margin-top "3em"}
              [:button {:margin-top "1em"}]]]
      :body [[:details
-             [:summary "Don't see your destination or boat?"]
-             [:p "Let us know where you're going, what you'll be sailing, and when so we can start working on the almanac. We'll let you know if they'll be ready in time for your trip and follow up once they are."]
+             [:summary "Don&rsquo;t see your destination or boat?"]
+             [:p "Let us know where you&rsquo;re going, what you&rsquo;ll be sailing, and when so we can start working on the almanac. We&rsquo;ll let you know if they&rsquo;ll be ready in time for your trip and follow up once they are."]
              [:form.sku-request {:action route-request-almanac}
               [:input {:type  :hidden
                        :name  :product
@@ -659,11 +659,11 @@
                        :margin-top   "1em"
                        :padding      "0.3em 1em"}]]]
      :body [[:main.body-width
-             [:p "Thank you for your interest, but unfortunately, this isn't a real product yet. We really appreciate you giving us your attention and we hope we haven't caused any disruption with our experiment."]
+             [:p "Thank you for your interest, but unfortunately, this isn&rsquo;t a real product yet. We really appreciate you giving us your attention and we hope we haven&rsquo;t caused any disruption with our experiment."]
              (if (and boat location)
-               [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you're sailing in " location " or you're on a " boat ", we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."]
-               [:p "As a thank-you, we'd like to offer you 75% off your first purchase. The next time you take a sailing trip, we'll have an almanac ready to go. Just give us an email address and we'll send you a message when it's ready to go. Use the same email address at checkout and the discount will automatically be applied."])
-             [:p "We'd love a bit of feedback on the product before you go. No worries if you'd rather skip the survey though &mdash; we'll honor the discount either way. Thanks again!"]
+               [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
+               [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you take a sailing trip, we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+             [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
              [:form.survey.soft-outline {:action (route-with-code route-survey code)}
               (apply concat (map (fn [&{:keys [name question answers]}]
                                    [[:label.question {:for name} question]
