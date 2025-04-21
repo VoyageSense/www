@@ -32,13 +32,11 @@
   (page/from-components
    nil
    [page/base
-    page/header
     {:css  [[:.banner {:display         :flex
                        :align-items     :center
                        :justify-content :center
                        :font-size       "1.2em"}]]
-     :body [[:p.body-width.banner "If you&rsquo;re looking for a specific page, please be sure to follow the exact link that was provided."]]}
-    about/footer]))
+     :body [[:p.body-width.banner "If you&rsquo;re looking for a specific page, please be sure to follow the exact link that was provided."]]}]))
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
