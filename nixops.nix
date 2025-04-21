@@ -99,6 +99,9 @@
           ];
 
           virtualHosts = {
+            "sailvisionpro.com".globalRedirect     = domain;
+            "www.sailvisionpro.com".globalRedirect = "www.${domain}";
+
             "www.i.${domain}" = {
               useACMEHost = "wildcard.i.${domain}";
               forceSSL    = true;
