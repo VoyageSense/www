@@ -539,9 +539,7 @@
                 "Customize and Buy"]]]]]})
 
 (defn show-modal-on-load [id]
-  {:script [(str "window.addEventListener('load', () => {"
-                 "document.querySelector('#" id "').showModal()"
-                 "}, false);")]})
+  {:script [(str "window.addEventListener('load', () => {" (card-modal-show id) "}, false);")]})
 
 (defn popai [request]
   (if-let [[code config] (validate request)]
