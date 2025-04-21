@@ -182,7 +182,37 @@
    :1dqhp {}
    :1kcnz {}
    :1hqqo {}
-   :1fovf {}})
+   :1fovf {}
+   :1rvxb {}
+   :1lpzj {}
+   :1urcs {}
+   :1gupz {}
+   :1terr {}
+   :1ddor {}
+   :1bnps {}
+   :1rsrs {}
+   :1sobx {}
+   :1pflq {}
+   :1ajyk {}
+   :1zevq {}
+   :1eyey {}
+   :1hlis {}
+   :1afqs {}
+   :1emdb {}
+   :1bncy {}
+   :1yhvz {}
+   :1donk {}
+   :1wcnc {}
+   :1beyc {}
+   :1knjj {}
+   :1wlda {}
+   :1boie {}
+   :1wzir {}
+   :1utcg {}
+   :1zexj {}
+   :1kfny {}
+   :1yypb {}
+   :1jrto {}})
 
 (defn validate [request]
   (let [code   (keyword (:code request))
