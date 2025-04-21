@@ -162,7 +162,27 @@
    :1xppc {}
    :1hhey {}
    :1ruxy {}
-   :1hxpd {}})
+   :1hxpd {}
+   :1djii {}
+   :1pdqs {}
+   :1jxop {}
+   :1ovwc {}
+   :1eblo {}
+   :1psbx {}
+   :1bgpt {}
+   :1xjjv {}
+   :1kksd {}
+   :1nbnj {}
+   :1mkrj {}
+   :1khbf {}
+   :1fnji {}
+   :1jamh {}
+   :1smob {}
+   :1pajn {}
+   :1dqhp {}
+   :1kcnz {}
+   :1hqqo {}
+   :1fovf {}})
 
 (defn validate [request]
   (let [code   (keyword (:code request))
