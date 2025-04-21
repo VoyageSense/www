@@ -478,26 +478,20 @@
         [{:title    "Cruising Guide"
           :subtitle "Boating almanac on the go"
           :image    "/card-guide.jpg"
-          :intro    "... searching your local guide has never been easier. Simply ask!"
+          :intro    "... searching your local guide has never been easier."
           :details
-          [{:heading "Plan and Prep Assist"
-            :body    [:p "PopAI has common checklists for gear, travel documents, and provisioning for your charter destination. It will help during boat checkout and return."]
-            :prompts ["What gear do I bring to BVI for charter in July?"
-                      "What should I check on Lagoon 52 at checkout?"]}
-           {:heading "Local Navigation"
-            :body    [:p "Local weather patterns and seasonal considerations, local rules and regulations, fuel docks and provisioning spots, customs and immigration procedures. PopAI is there to help make your boating experience smooth and stress free."]
-            :prompts ["What are the predominant winds here?"
-                      "Can we anchor in Cam Bay National Park?"
+          [{:heading "Planning and Preparation"
+            :body    [:p "Get help preparing and running through checklists for gear, travel documents, and provisioning."]
+            :prompts ["What's next on the pre-cruise checklist?"
                       "How do I clear customs in Tortola?"]}
-           {:heading "Marinas, Anchorages and Points of Interest"
-            :body    [:p "Planning your day has never been easier. Simply tell PopAI what activities you want to do and it will suggest areas around you where you can do those."]
-            :prompts ["Where do I snorkel to see Manta rays?"
-                      "Where is a child friendly beach?"
-                      "Which marina has fuel, ice, and hot showers?"]}
-           {:heading "Off The Water Insights"
-            :body    [:p "From the best restaurants and bars, to where to get groceries and services in town, PopAI can help."]
-            :prompts ["Where do I do laundry?"
-                      "Find a children&rsquo;s playground?"]}]}
+           {:heading "Local Navigation"
+            :body    [:p "Double check local weather patterns and seasonal considerations, as well as local rules and regulations."]
+            :prompts ["Can we anchor in Cam Bay National Park?"
+                      "How are the tides at night?"]}
+           {:heading "Shore Support"
+            :body    [:p "Easily find fuel, groceries, and other services ashore."]
+            :prompts ["Which marinas nearby have laundry?"
+                      "Where can I get fuel?"]}]}
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
           :image    "/card-mechanic.jpg"
