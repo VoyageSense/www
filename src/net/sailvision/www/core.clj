@@ -119,7 +119,7 @@
     (wrap-refresh
      (fn dev-route [request]
        (condp c/route-matches request
-         (c/route-compile "/admin*") ((middlewares admin/route) request)
+         (c/route-compile (str admin/route-home "*")) ((middlewares admin/route) request)
          ((middlewares route) request))))))
 
 (defn -main []

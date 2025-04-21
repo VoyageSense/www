@@ -18,5 +18,6 @@
   :profiles {:dev {:dependencies [[ring-refresh "0.2.0"]
                                   [ring/ring-devel "1.13.0"]]
                    :env {:db-storage   ":mem"
-                         :pretty-print "true"}}
+                         :pretty-print "true"
+                         :access-log   "nginx/access.log"}}
              :uberjar {:aot :all}})

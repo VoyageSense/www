@@ -1,7 +1,11 @@
 (ns net.sailvision.www.nginx
-  (:require [clojure.string :as str]))
+  (:require
+   [clojure.string :as str]
+   [environ.core :refer [env]]))
 
-(def access-log-path "/var/log/nginx/access.log")
+(def access-log-path (if-let [access-log (env :access-log)]
+                       access-log
+                       "/var/log/nginx/access.log"))
 
 (def access-log-pattern
   (re-pattern
