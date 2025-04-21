@@ -19,7 +19,9 @@
 (def link-visited  "128, 128, 128")
 
 (def base-css
-  [[:body {:margin 0}]
+  [[:body {:margin 0}
+    :body.full-width {:grid-template-rows "auto 1fr"
+                      :min-height         "100vh"}]
    [:form
     [:label {:padding-right "10px"}]]
    [:html { :color-scheme "light dark" }]
@@ -41,8 +43,8 @@
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
               [:body {:font-family "Arial,sans-serif"}]
-              [:.full-width {:grid-column           "1 / -1"
-                             :display               :grid
+              [:.full-width {:display               :grid
+                             :grid-column           "1 / -1"
                              :grid-template-columns "1fr 1em min(calc(100% - 2em), var(--max-body-width)) 1em 1fr"}]
               [:.body-width {:grid-column 3}]
               [:.body-width-no-edge {:grid-column "2 / -2"}]
