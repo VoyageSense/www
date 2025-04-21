@@ -160,6 +160,7 @@
         path     = "${localBin}/${uberjar}";
         nextPath = "/tmp/${uberjar}";
         stateDir = "www";
+        jreFlags = "-XX:MaxRAMPercentage=75";
       in {
         services.www = {
           requiredBy = [ "multi-user.target" ];
@@ -198,7 +199,7 @@
             Restart           = "always";
             SuccessExitStatus = 143;
 
-            ExecStart    = "${pkgs.temurin-jre-bin}/bin/java -jar ${path}";
+            ExecStart    = "${pkgs.temurin-jre-bin}/bin/java ${jreFlags} -jar ${path}";
             ExecStopPost = let
               script = builtins.replaceStrings ["\n"] ["\\n"] ''
                 if [ -f ${nextPath} ]
