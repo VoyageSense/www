@@ -28,22 +28,17 @@
     (.stop srv))
   (shutdown-agents))
 
-(defn home []
-  {:headers page/headers
-   :body
-   (h/html5
-       (page/head
-        {:extra-css
-         (g/css
-          (page/pretty-print)
-          [:#banner {:display         :flex
-                     :align-items     :center
-                     :justify-content :center
-                     :height          "100vh"
-                     :margin          0
-                     :font-family     "Arial, sans-serif"}])})
-     [:body
-      [:h1#banner "If you're looking for a specific page, please be sure to follow the exact link that was provided to you. Thank you!"]])})
+(def home
+  (page/from-components
+   nil
+   [page/base
+    page/header
+    {:css  [[:.banner {:display         :flex
+                       :align-items     :center
+                       :justify-content :center
+                       :font-size       "1.2em"}]]
+     :body [[:p.body-width.banner "If you&rsquo;re looking for a specific page, please be sure to follow the exact link that was provided."]]}
+    about/footer]))
 
 (defn robots-exclusion []
   {:headers {"Content-Type" "text/plain"}
@@ -76,15 +71,17 @@
       (println "Deployment attempted but NEXT_PATH is not set")
       {:status 400})))
 
-(defn internal-error []
-  {:headers page/headers
-   :body (h/html5
-          (page/head)
-          [:body
-           [:div#banner
-            [:div
+(def internal-error
+  (page/from-components
+   "Error"
+   [page/base
+    {:css  [[:.banner {:display         :flex
+                       :flex-direction  :column
+                       :align-items     :center
+                       :justify-content :center}]]
+     :body [[:div.body-width.banner
              [:h1 "Something appears to have gone wrong"]
-             [:p "Sorry about that! Please try again in a bit or send us a message and we'll take a look."]]]])})
+             [:p "Sorry about that! Please try again in a bit or send us a message and we'll take a look."]]]}]))
 
 (defn wrap-params [request handler]
   #((keyword-params/wrap-keyword-params handler) (merge % (params/params-request request))))
@@ -99,8 +96,8 @@
     (c/route-compile about/route-home)            (about/home)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
-    (c/route-compile "/5xx.html")                 (internal-error)
-    (c/route-compile "/")                         (home)
+    (c/route-compile "/5xx.html")                 internal-error
+    (c/route-compile "/")                         home
     (resp/redirect   "/")))
 
 (defn wrap-cache-control [handler]
