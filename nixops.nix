@@ -173,6 +173,7 @@
               "NEXT_PATH=${nextPath}"
               "DB_STORAGE=/var/lib/${stateDir}/db"
               "POSTHOG=true"
+              "PRETTY_PRINT=true"
             ];
 
             User                = config.users.users.www.name;
