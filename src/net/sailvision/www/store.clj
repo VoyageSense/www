@@ -551,11 +551,12 @@
                            :flex-direction :column
                            :align-items    :center
                            :padding        "2em"}]
-            ["div.buy-now > a" {:background      "#000000"
+            ["div.buy-now > a" {:background      :black
                                 :font-size       "1.75em"
                                 :color           :white
                                 :text-decoration :none
                                 :text-align      :center
+                                :border          "thin rgb(var(--foreground)) solid"
                                 :border-radius   "0.5em"
                                 :padding         "0.75em 2em"}]]
      :body [[:div.background.full-width
