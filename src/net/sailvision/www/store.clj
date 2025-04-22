@@ -764,10 +764,11 @@
     (resp/redirect "/")))
 
 (defn submit-survey [request]
-  (if-let [[_code _config] (validate request)]
+  (if-let [[code _config] (validate request)]
     (let [storage (db/storage)
           conn    (db/connect storage :survey-responses)
-          blob    (pr-str (:params request))]
+          blob    (pr-str (merge {:code code}
+                                 (:params request)))]
       (prn blob)
       (db/insert-survey-response {:conn conn
                                   :blob blob})
