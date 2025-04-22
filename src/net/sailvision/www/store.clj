@@ -509,27 +509,23 @@
             :body    [:p "Instructions, tailored to your skill level, for various repairs on the boat. "]
             :prompts ["How do I reset the windlass breaker?"
                       "How do I bleed the fuel lines?"]}]}
-         {:title    "Sailing Instructor"
+         {:title    "Sailing Textbook"
           :subtitle "Instant reference, rules and regulations"
           :image    "/card-instructor.jpg"
+          :intro    "A quick reminder is usually all it takes to get back into the swing of things."
           :details
-          [{:heading "Rusty Knowledge Fret No More!"
-            :body    [:p "One of the biggest fears of charters is rusty or outdated knowledge. The majority of boat charterers go on a boat a few times per year. It is way too easy to forget all the processes and procedures one is expected to know chartering. Now you can simply ask PopAI and you will get a step-by-step reminders."]
-            :prompts ["How do you <q>heave to</q>?"
-                      "How do you do a Med mooring, step by step?"]}
-           {:heading "Never Forget a Boat Term"
-            :body    [:p "From the least experienced sailor to the most experienced captain, we all sometimes need a reminder on boat terms."]
-            :prompts ["What is the name of the metal plate that attaches the shrouds to the hull?"
+          [{:heading "Boating Terms"
+            :body    [:p "A glossary of terms and phrases, right in your ear."]
+            :prompts ["What&rsquo;s the metal plate that attaches the shrouds to the hull?"
                       "How many fathoms are in a shackle?"]}
-           {:heading "Instant Reference To All Rules and Regulations"
-            :body    [:p "Instant reference to all International Regulations for Preventing Collisions at Sea (COLREGS) and other conventions by the International Maritime Organization, US Coast Guard and other navigation regulating bodies."]
-            :prompts ["What do three short horn blasts mean?"
-                      "What vessel has two white lights and a yellow light?"]}
-           {:heading "Local Laws"
-            :body    [:p "There are national, state and local laws that all must be followed when operating vessels. " [:q "Officer, I did not know"] " will probably not avoid a $2000 fine for violating the No Discharge Zone regulations. PopAI is here to help."]
-            :prompts ["Can I discharge my black water tanks here?"
-                      "Can I anchor at the Rhone Marine Park?"
-                      "Do I need to quarantine my dog in when visiting Jamaica?"]}]}
+           {:heading "Rules and Regulations"
+            :body    [:p "Quick and easy access to all regulations, domestic and international, and other conventions."]
+            :prompts ["What does three short horn blasts mean?"
+                      "Do I need to acknowledge?"]}
+           {:heading "Tips and Guidance"
+            :body    [:p "Close the loop and improve your sailing performance with feedback guided by your sails&rsquo; load charts and polar diagrams."]
+            :prompts ["How's my speed look for these conditions?"
+                      "Am I heeling too much?"]}]}
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
           :image    "/card-crew.jpg"
