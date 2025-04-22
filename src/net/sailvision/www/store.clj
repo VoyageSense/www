@@ -312,7 +312,7 @@
   {:body [[:div.over-hero.full-width
            [:div.get-to-know.body-width
             [:h1 "Get to know PopAI"]
-            [:p "PopAI (pronounced " [:q "Popeye"] ") is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s your smart sailing companion &mdash; always ready when you need it."]
+            [:p "PopAI (pronounced " [:q "Popeye"] ") is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s an interactive boating companion &mdash; always ready when you need it."]
             [:p "Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
             [:p "PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]
             [:br]
@@ -487,7 +487,7 @@
            {:heading "Local Navigation"
             :body    [:p "Double check local weather patterns and seasonal considerations, as well as local rules and regulations."]
             :prompts ["Can we anchor in Cam Bay National Park?"
-                      "How are the tides at night?"]}
+                      "Can I fish here?"]}
            {:heading "Shore Support"
             :body    [:p "Easily find fuel, groceries, and other services ashore."]
             :prompts ["Which marinas nearby have laundry?"
@@ -495,22 +495,22 @@
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
           :image    "/card-mechanic.jpg"
-          :intro    "With a bit of know-how, you can tackle 90% of repairs to your boat; likely saving your day."
+          :intro    "With a little know-how, you can handle 90% of boat repairs yourself &mdash; and probably save the day in the process."
           :details
           [{:heading "Know Your Boat"
             :body    [:p "Gain confidence and clarity with information and instructions derived from the owner&rsquo;s manual, engine diagrams, and maintenance guides."]
             :prompts ["What is our fresh water capacity?"
                       "What is the cruising RPM?"]}
-           {:heading "Smart Troubleshooting"
+           {:heading "Interactive Troubleshooting"
             :body    [:p "Get help with general diagnostic steps when issues arise on board and get assistance with identifying likely causes and recommending next steps to get you back underway."]
-            :prompts ["Why does the water pump keep turning on and off?"
+            :prompts ["Why is the water pump still running?"
                       "Why are the running lights off?"]}
            {:heading "Fix It Yourself"
             :body    [:p "Instructions, tailored to your skill level, for various repairs on the boat. "]
             :prompts ["How do I reset the windlass breaker?"
                       "How do I bleed the fuel lines?"]}]}
-         {:title    "Sailing Textbook"
-          :subtitle "Instant reference, rules and regulations"
+         {:title    "Maritime Reference"
+          :subtitle "Instant access to rules and regulations"
           :image    "/card-instructor.jpg"
           :intro    "A quick reminder is usually all it takes to get back into the swing of things."
           :details
@@ -521,28 +521,28 @@
            {:heading "Rules and Regulations"
             :body    [:p "Quick and easy access to all regulations, domestic and international, and other conventions."]
             :prompts ["What does three short horn blasts mean?"
-                      "Do I need to acknowledge?"]}
-           {:heading "Tips and Guidance"
-            :body    [:p "Close the loop and improve your sailing performance with feedback guided by your sails&rsquo; load charts and polar diagrams."]
-            :prompts ["How's my speed look for these conditions?"
-                      "Am I heeling too much?"]}]}
+                      "Do I need quarantine my dog when visiting Jamaca?"]}
+           {:heading "General Knowledge"
+            :body    [:p "Get answers about boat operations, radio protocols, signaling, and more."]
+            :prompts ["Which VHF channels should I monitor?"
+                      "What does a white flare mean?"]}]}
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
           :image    "/card-crew.jpg"
-          :intro    "Connect to your boat&rsquo;s network and turn it into a crew member."
+          :intro    "Connect to the onboard network and turn your boat into a crew member."
           :details
           [{:heading "Boat Systems"
             :body    [:p "Connect to your boat&rsquo;s Wi-Fi data network and query the systems aboard using your voice &mdash; above or below deck."]
             :prompts ["What is the name of the boat ahead?"
-                      "What is the depth below the keel?"]}
-           {:heading "Night Control"
-            :body    [:p "Control systems on the boat with your voice and focus on the dark ahead."]
-            :prompts ["Lower the brightness on the displays."
-                      "Turn one point to port."]}
+                      "What is the depth?"]}
            {:heading "On Watch"
             :body    [:p "Keep a constant eye on your boat and be alerted when something unusual happens."]
             :prompts ["Let me know when the water tank is half empty."
-                      "Tell me if the depth gets below ten feet."]}]}]]
+                      "Tell me if the depth gets below ten feet."]}
+           {:heading "Tips and Guidance"
+            :body    [:p "Close the loop and improve your sailing performance with feedback guided by your sails&rsquo; load charts and polar diagrams."]
+            :prompts ["How's my speed look for these conditions?"
+                      "Am I heeling too much?"]}]}]]
     {:css       [[:.cards {:overflow-x :auto}]
                  [:.cards-slide {:display :flex
                                  :gap     "2em"
