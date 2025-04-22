@@ -5,13 +5,12 @@
    [clout.core :as c]
    [com.github.sikt-no.clj-jwt :as clj-jwt]
    [environ.core :refer [env]]
-   [garden.core :as g]
-   [hiccup.page :as h]
    [net.sailvision.www.about :as about]
    [net.sailvision.www.admin :as admin]
    [net.sailvision.www.page :as page]
    [net.sailvision.www.store :as store]
    [ring.adapter.jetty :as jetty]
+   [ring.middleware.content-type :as content-type]
    [ring.middleware.not-modified :as not-modified]
    [ring.middleware.keyword-params :as keyword-params]
    [ring.middleware.params :as params]
@@ -106,6 +105,7 @@
 (defn middlewares [handler]
   (-> handler
       (resource/wrap-resource "public")
+      (content-type/wrap-content-type)
       (not-modified/wrap-not-modified)
       (wrap-cache-control)))
 
