@@ -42,6 +42,7 @@
         max-body-width "150ch"]
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
+              [:html {:scrollbar-gutter :stable}]
               [:body {:font-family "Arial,sans-serif"}]
               [:.full-width {:display               :grid
                              :grid-column           "1 / -1"

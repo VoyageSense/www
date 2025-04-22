@@ -361,7 +361,8 @@
                                    :transform    "translateX(0.3ch)"}]
                   [:.prompt.shown {:opacity      1
                                    :transform    :none}]]]
-                [".modal::backdrop" {:backdrop-filter "blur(10px)"}]]
+                [".modal::backdrop" {:backdrop-filter "blur(10px)"}]
+                ["body:has(.modal[open])" {:overflow :hidden}]]
      :noscript [[:.modal
                  [:.content
                   [:.prompt.left :.prompt.right {:opacity   1
