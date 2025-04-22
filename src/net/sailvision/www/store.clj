@@ -259,9 +259,7 @@
                 [:div.hero-mask.full-width]]}))
 
 (def get-to-know
-  {:css  [[:.get-to-know {:margin 0}
-           [:h1 {:margin  0}]]]
-   :body [[:div.over-hero.full-width
+  {:body [[:div.over-hero.full-width
            [:div.get-to-know.body-width
             [:h1 "Get to know PopAI"]
             [:p "PopAI (pronounced " [:q "Popeye"] ") is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s your smart sailing companion &mdash; always ready when you need it."]
