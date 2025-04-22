@@ -478,7 +478,7 @@
         [{:title    "Cruising Guide"
           :subtitle "Boating almanac on the go"
           :image    "/card-guide.jpg"
-          :intro    "... searching your local guide has never been easier."
+          :intro    "Searching your local guide has never been easier."
           :details
           [{:heading "Planning and Preparation"
             :body    [:p "Get help preparing and running through checklists for gear, travel documents, and provisioning."]
@@ -495,34 +495,20 @@
          {:title    "Boat Mechanic"
           :subtitle "Manuals, diagrams, schematics and troubleshooting"
           :image    "/card-mechanic.jpg"
-          :intro    "... 90% of the time anybody can fix things on the boat with a little bit of help!"
+          :intro    "With a bit of know-how, you can tackle 90% of repairs to your boat; likely saving your day."
           :details
-          [{:heading "Know Your Boat Inside and Out"
-            :body    [:p "PopAI gives you unprecedented confidence and clarity by putting everything about your charter boat at your fingertips. From the owner&rsquo;s manuals to professional-grade engine diagrams, you&rsquo;ll have instant access to:"
-                      [:ul
-                       [:li "Propulsion system details, fuel tank capacity, engine consumption charts"]
-                       [:li "Electrical and water system schematics"]
-                       [:li "Hot water configurations"]
-                       [:li "AC diagrams and instructions"]
-                       [:li "Black and grey water tank types, locations, capacities, and maintenance instructions"]
-                       [:li "Running and standing rigging diagrams, explanations and load tables"]
-                       [:li "Sails&rsquo; load charts, polar diagrams, anchoring, hoisting and reefing instructions"]]
-                      "Whether you&rsquo;re troubleshooting or just getting familiar before you cast off, PopAI makes sure you&rsquo;re fully prepared. Once on board you can " [:b "just ask about any system"] " and " [:b "PopAI will give you an instant reference to the boat documentation"] "."]
-            :prompts ["What is the fuel capacity?"
+          [{:heading "Know Your Boat"
+            :body    [:p "Gain confidence and clarity with information and instructions derived from the owner&rsquo;s manual, engine diagrams, and maintenance guides."]
+            :prompts ["What is our fresh water capacity?"
                       "What is the cruising RPM?"]}
-           {:heading "Operation Instructions"
-            :body    [:p "PopAI will walk you through step by step instructions on how to do specific actions on the boat."]
-            :prompts ["How do I empty the black water?"
-                      "Should I sail with the engine in gear?"]}
            {:heading "Smart Troubleshooting"
-            :body    [:p "PopAI helps guide you through general diagnostic steps when issues arise on board. While boat systems can vary or evolve over time, PopAI provides practical, tailored advice to help you pinpoint the problem &mdash;whether it is electrical, mechanical, or plumbing-related. Even if your system differs slightly from the manual, PopAI can assist with identifying likely causes and recommending next steps to get you back underway."]
-            :prompts ["Why are the running lights off?"
-                      "Why is the water pump turning on when no one is using water?"]}
-           {:heading "Step-by-step Fix It Yourself"
-            :body    [:p "PopAI will provide basic do-it-yourself instructions for simple repairs on the boat. " [:b "90% of the time, you can fix the problem yourself"] " with a bit of knowledge, calm thinking, and a few basic tools."]
-            :prompts ["How do I clean the water strainer?"
-                      "How can I fix the dinghy&rsquo;s flooded carburetor?"
-                      "How do I change the windlass breaker?"]}]}
+            :body    [:p "Get help with general diagnostic steps when issues arise on board and get assistance with identifying likely causes and recommending next steps to get you back underway."]
+            :prompts ["Why does the water pump keep turning on and off?"
+                      "Why are the running lights off?"]}
+           {:heading "Fix It Yourself"
+            :body    [:p "Instructions, tailored to your skill level, for various repairs on the boat. "]
+            :prompts ["How do I reset the windlass breaker?"
+                      "How do I bleed the fuel lines?"]}]}
          {:title    "Sailing Instructor"
           :subtitle "Instant reference, rules and regulations"
           :image    "/card-instructor.jpg"
