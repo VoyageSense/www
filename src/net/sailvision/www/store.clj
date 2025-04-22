@@ -211,7 +211,57 @@
    :1zexj {}
    :1kfny {}
    :1yypb {}
-   :1jrto {}})
+   :1jrto {}
+   :1hwza {}
+   :1yunx {}
+   :1gglp {}
+   :1jnog {}
+   :1dopu {}
+   :1smaj {}
+   :1seja {}
+   :1xzuy {}
+   :1rdyf {}
+   :1obwb {}
+   :1rpsd {}
+   :1uokj {}
+   :1brka {}
+   :1wmef {}
+   :1cddg {}
+   :1rzsg {}
+   :1zxsc {}
+   :1sphl {}
+   :1lvql {}
+   :1mcpd {}
+   :1amcw {}
+   :1dnvv {}
+   :1gmvw {}
+   :1tpfp {}
+   :1cfjg {}
+   :1fcml {}
+   :1envx {}
+   :1xlel {}
+   :1rjza {}
+   :1rbrw {}
+   :1ixeo {}
+   :1fqap {}
+   :1aixh {}
+   :1drkr {}
+   :1ofoh {}
+   :1uscz {}
+   :1slxl {}
+   :1dijp {}
+   :1bdvq {}
+   :1mvyh {}
+   :1jbch {}
+   :1wdti {}
+   :1qaag {}
+   :1ttxc {}
+   :1wpai {}
+   :1ohvg {}
+   :1wabw {}
+   :1jatp {}
+   :1cxmm {}
+   :1kbsu {}})
 
 (defn validate [request]
   (let [code   (keyword (:code request))
