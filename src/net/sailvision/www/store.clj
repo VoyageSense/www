@@ -5,14 +5,13 @@
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
    [garden.core :as g]
-   [garden.stylesheet :as s]
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
 (def route-home "/store/popai/:code")
 (def route-configure (str route-home "/configure"))
 (def route-checkout (str route-home "/checkout"))
-(def route-request-almanac "/store/request-almanac")
+(def route-request-almanac (str route-home "/request-almanac"))
 (def route-survey (str route-home "/survey"))
 
 (defn route-with-code [route code]
@@ -586,7 +585,7 @@
     (resp/redirect "/")))
 
 
-(def almanac-request
+(defn almanac-request [code]
   (let [time-frames [          [2025 2], [2025 3], [2025 4],
                      [2026 1], [2026 2], [2026 3], [2026 4],
                      [2027 1], [2027 2], [2027 3], [2027 4]]]
@@ -595,7 +594,8 @@
      :body [[:details
              [:summary "Don&rsquo;t see your destination or boat?"]
              [:p "Let us know where you&rsquo;re going, what you&rsquo;ll be sailing, and when so we can start working on the almanac. We&rsquo;ll let you know if they&rsquo;ll be ready in time for your trip and follow up once they are."]
-             [:form.sku-request {:action route-request-almanac}
+             [:form.sku-request {:action (route-with-code route-request-almanac code)
+                                 :method :post}
               [:input {:type  :hidden
                        :name  :product
                        :value :popai}]
@@ -642,11 +642,12 @@
              [:.total {:grid-column "1 / -1"
                        :font-size   "1.1em"
                        :margin      "1em 0 0.5em"}]]
-            (first (:css almanac-request))]
+            (first (:css (almanac-request code)))]
      :body [[:main.body-width
              [:div#forms.soft-outline
               [:h1 "PopAI Digital Almanac"]
-              [:form.sku-selection {:action (route-with-code route-checkout code)}
+              [:form.sku-selection {:action (route-with-code route-checkout code)
+                                    :method :post}
                [:input {:type  :hidden
                         :name  :product
                         :value :popai}]
@@ -661,7 +662,7 @@
                 (map (fn [[k v]] [:option {:value k} v]) boats)]
                [:p.total "Subtotal: $" price]
                [:button {:type :submit} "Checkout"]]
-             (first (:body almanac-request))]]]}))
+             (first (:body (almanac-request code)))]]]}))
 
 (defn configure [request]
   (if-let [[code _config] (validate request)]
@@ -714,7 +715,8 @@
                [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
                [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you take a sailing trip, we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
              [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
-             [:form.survey.soft-outline {:action (route-with-code route-survey code)}
+             [:form.survey.soft-outline {:action (route-with-code route-survey code)
+                                         :method :post}
               (apply concat (map (fn [&{:keys [name question answers]}]
                                    [[:label.question {:for name} question]
                                     [:select {:id   name
@@ -756,10 +758,18 @@
 
 (defn request-almanac [request]
   (if-let [[_code _config] (validate request)]
-    (let [params  (codec/form-decode (:query-string request))
+    (let [_ (prn (:params request))
+          params  (:params request)
           storage (db/storage)
           conn    (db/connect storage :requested-almanacs)]
-      (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params))))
+      (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params)))
+      (page/from-components
+       "Requested Almanac"
+       [page/base
+        page/header
+        {:body [[:main.body-width
+                 [:p "Thank you for your submission. We'll let you know when we can support that configuration."]]]}
+        about/footer]))
     (resp/redirect "/")))
 
 (defn submit-survey [request]
