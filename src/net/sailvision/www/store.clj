@@ -529,25 +529,20 @@
          {:title    "Crew Member"
           :subtitle "Interact, control and monitor"
           :image    "/card-crew.jpg"
-          :intro    "Connect PopAI to your boat&rsquo;s Wi-Fi network and turn your boat into a crew member!"
+          :intro    "Connect to your boat&rsquo;s network and turn it into a crew member."
           :details
-          [{:heading "Access All Boat Data With Your Voice"
-            :body    [:p "PopAI connects to your boat&rsquo;s Wi-Fi data network and allows you to query all data available on the network using your voice. You no longer have to make the trip to a MFD or fight with screen glare or brightness just to get the depth. You can keep your eyes on the water and focus on steering while having full access to all the instruments&rsquo; data."]
-            :prompts ["What is the boat speed?"
-                      "What is the true wind speed?"
-                      "What is the engine RPM?"]}
-           {:heading "Simplify and Automate Checklists"
-            :body    [:p "Departure and arrival checklists can feel like they take forever &mdash; there are so many steps, it&rsquo;s almost like you need a checklist just to manage your checklists. That&rsquo;s where PopAI comes in. It automates much of the process, saving you time and reducing the risk of oversight. PopAI can create, remember, and manage your checklists for you &mdash; and even handle many of the tasks itself. From checking fuel and oil levels to monitoring water tanks, battery bank status, lights, instruments, GPS, radar, AIS, and more, PopAI takes care of the details so you can focus on the journey."]
-            :prompts ["Are we ready to go?"
-                      "Walk me through the anchoring checklist."]}
-           {:heading "Voice Control Your Boat"
-            :body    [:p "PopAI allows you to control with your voice almost any functionality that you can control with you chart plotter display or MFD."]
-            :prompts ["Turn on night mode on the instruments."
-                      "Turn up the brightness."]}
+          [{:heading "Boat Systems"
+            :body    [:p "Connect to your boat&rsquo;s Wi-Fi data network and query the systems aboard using your voice &mdash; above or below deck."]
+            :prompts ["What is the name of the boat ahead?"
+                      "What is the depth below the keel?"]}
+           {:heading "Night Control"
+            :body    [:p "Control systems on the boat with your voice and focus on the dark ahead."]
+            :prompts ["Lower the brightness on the displays."
+                      "Turn one point to port."]}
            {:heading "On Watch"
-            :body    [:p "PopAI keeps watch 24 hours a day. It constantly monitors your boat and alerts you when something unusual happens."]
-            :prompts ["Notification: The water tank is empty and the water pump is running continuously."
-                      "Notification: Your house batteries are down to 15% charge."]}]}]]
+            :body    [:p "Keep a constant eye on your boat and be alerted when something unusual happens."]
+            :prompts ["Let me know when the water tank is half empty."
+                      "Tell me if the depth gets below ten feet."]}]}]]
     {:css       [[:.cards {:overflow-x :auto}]
                  [:.cards-slide {:display :flex
                                  :gap     "2em"
