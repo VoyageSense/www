@@ -260,21 +260,12 @@
                 [:div.hero-mask.full-width]]}))
 
 (def get-to-know
-  {:css  [[:.get-to-know {:margin "3em 0"}
-           [:h1 {:margin  0
-                 :display :inline}]
-           [:h2 {:font-size-adjust "0.3"
-                 :padding-left     "0.4em"
-                 :display          :inline}]
-           [:div {:display :inline}]
-           [:.emphasis {:font-weight     :bold
-                        :font-style      :italic
-                        :text-decoration :underline}]]]
+  {:css  [[:.get-to-know {:margin 0}
+           [:h1 {:margin  0}]]]
    :body [[:div.over-hero.full-width
            [:div.get-to-know.body-width
-            [:div [:h1 "Get to know PopAI"]]
-            [:div [:h2 "pronounced " [:q "Popeye"]]]
-            [:p "PopAI is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s your smart sailing companion &mdash; always ready when you need it."]
+            [:h1 "Get to know PopAI"]
+            [:p "PopAI (pronounced " [:q "Popeye"] ") is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s your smart sailing companion &mdash; always ready when you need it."]
             [:p "Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
             [:p "PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]]]]})
 
