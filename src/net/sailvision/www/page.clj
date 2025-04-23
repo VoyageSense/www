@@ -113,6 +113,7 @@
            :href  "/favicon.svg"}]
    [:meta {:name    "viewport"
            :content "width=device-width, initial-scale=1"}]
+   [:meta {:charset "UTF-8"}]
    [:style
     (g/css (pretty-print) base-css)
     extra-css]
@@ -131,6 +132,7 @@
      [:title (str/join " - " (keep identity ["PopAI" title]))]
      [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+     [:meta {:charset "UTF-8"}]
      [:style (g/css
               (pretty-print)
               base-css
