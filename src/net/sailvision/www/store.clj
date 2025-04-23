@@ -685,8 +685,7 @@
 
 (defn request-almanac [request]
   (if-let [[_code _config] (validate request)]
-    (let [_ (prn (:params request))
-          params  (:params request)
+    (let [params  (:params request)
           storage (db/storage)
           conn    (db/connect storage :requested-almanacs)]
       (db/insert-requested-almanac (into {:conn conn} (map (fn [[k v]] [(keyword k) v]) params)))
