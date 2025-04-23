@@ -23,6 +23,14 @@
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}])
 
+(def discount-signups-schema
+  [{:db/ident       :discount-signups/store-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one}
+   {:db/ident       :discount-signups/email-address
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one}])
+
 (defn storage []
   (let [storage (env :db-storage)
         [start] storage]
@@ -39,6 +47,7 @@
                           :storage-dir storage})
         [db-name schema] (case database
                            :requested-almanacs ["requested-almanacs" requested-almanacs-schema]
+                           :discount-signups   ["discount-signups"   discount-signups-schema]
                            :survey-responses   ["survey-responses"   survey-responses-schema])]
     (d/create-database client {:db-name db-name})
     (let [conn (d/connect client {:db-name db-name})]
@@ -68,6 +77,25 @@
               :boat          (:requested-almanacs/boat-model    entity)
               :time-frame    (:requested-almanacs/time-frame    entity)
               :email-address (:requested-almanacs/email-address entity)}))
+         ids)))
+
+(defn insert-discount-signup
+  [{:keys [conn store-code email-address]}]
+  (d/transact conn {:tx-data [{:discount-signups/store-code    store-code
+                               :discount-signups/email-address email-address}]}))
+
+(defn list-discount-signups
+  [{:keys [conn]}]
+  (let [db  (d/db conn)
+        ids (d/q '[:find ?e
+                   :where
+                   [?e :discount-signups/store-code]
+                   [?e :discount-signups/email-address]]
+                 db)]
+    (map (fn [id]
+           (let [entity (d/pull db '[*] (first id))]
+             {:store-code    (:discount-signups/store-code    entity)
+              :email-address (:discount-signups/email-address entity)}))
          ids)))
 
 (defn insert-survey-response
