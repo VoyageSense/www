@@ -237,7 +237,7 @@
                          :color          "rgb(var(--bold-foreground))"
                          :cursor         :pointer
                          :transition     "transform 0.2s ease-out"
-                         :width          "calc(var(--max-body-width)/4)"}
+                         :width          "calc(max(100% - 2em, var(--max-body-width))/4)"}
                  [:h3 :h4 {:text-align :start
                            :margin     0}]
                  [:h3     {:font-size "1.8em"}]
