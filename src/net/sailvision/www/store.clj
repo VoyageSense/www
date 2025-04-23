@@ -506,7 +506,8 @@
             [:label      {:for  :boat} "Boat:"]
             [:input#boat {:name :boat}]
             [:label              {:for  :emailAddress} "Email Address:"]
-            [:input#emailAddress {:name :emailAddress}]
+            [:input#emailAddress {:type :email
+                                  :name :emailAddress}]
             [:button {:type :submit} "Request Almanac"]]]]})
 
 (defn configuration [code]
