@@ -4,6 +4,7 @@
    [net.sailvision.www.about :as about]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
+   [net.sailvision.www.util :refer [inline]]
    [garden.core :as g]
    [ring.util.codec :as codec]
    [ring.util.response :as resp]))
@@ -553,7 +554,7 @@
      :body     [[:div.over-hero.full-width
                  [:div.cards.body-width-no-edge
                   [:div.cards-slide
-                   (apply concat (map #(-> % card :body) cards))]]]]}))
+                   (inline (map #(-> % card :body) cards))]]]]}))
 
   (defn description [code config]
     {:css  [[:.background {:background "rgb(var(--background))"
@@ -730,15 +731,15 @@
              [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
              [:form.survey.soft-outline {:action (route-with-code route-survey code)
                                          :method :post}
-              (apply concat (map (fn [&{:keys [name question answers]}]
-                                   [[:label.question {:for name} question]
-                                    [:select {:id   name
-                                              :name name}
-                                     (map (fn [v]
-                                            [:option {:value v} v])
-                                          (flatten ["-- Select One --"
-                                                    answers]))]])
-                                 survey))
+              (inline (map (fn [&{:keys [name question answers]}]
+                             [[:label.question {:for name} question]
+                              [:select {:id   name
+                                        :name name}
+                               (map (fn [v]
+                                      [:option {:value v} v])
+                                    (flatten ["-- Select One --"
+                                              answers]))]])
+                           survey))
               [:label.question {:for :additionalComments} "Additional comments:"]
               [:textarea#additionalComments {:name :additionalComments}]
               [:label {:for  :emailAddress} "Email Address:"]
