@@ -546,16 +546,19 @@
                         :value :popai}]
                [:label           {:for  :location} "Location:"]
                [:select#location {:name :location}
+                [:option {:value ""} "-- Select One --"]
                 (map (fn [[area locations]]
                        [:optgroup {:label area}
                         (map (fn [[k v]] [:option {:value k} v]) locations)])
                      locations)]
                [:label       {:for  :boat} "Boat:"]
                [:select#boat {:name :boat}
+                [:option {:value ""} "-- Select One --"]
                 (map (fn [[k v]] [:option {:value k} v]) boats)]
                [:p.total "Subtotal: $" price]
                [:button {:type :submit} "Checkout"]]
-             (first (:body (almanac-request code)))]]]}))
+              (first (:body (almanac-request code)))]]]
+     :script [(slurp (io/resource "almanac-checkout.js"))]}))
 
 (defn configure [request]
   (if-let [[code _config] (validate request)]
