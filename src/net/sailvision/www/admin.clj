@@ -54,13 +54,11 @@
               [:tr
                [:th "Destination"]
                [:th "Boat"]
-               [:th "Time Frame"]
                [:th "Email Address"]]
               (map (fn [request]
                      [:tr
                       [:td (:destination   request)]
                       [:td (:boat          request)]
-                      [:td (:time-frame    request)]
                       [:td (:email-address request)]])
                    (db/list-requested-almanacs {:conn conn}))]])}))
 

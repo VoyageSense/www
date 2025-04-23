@@ -491,37 +491,23 @@
 
 
 (defn almanac-request [code]
-  (let [time-frames [          [2025 2], [2025 3], [2025 4],
-                     [2026 1], [2026 2], [2026 3], [2026 4],
-                     [2027 1], [2027 2], [2027 3], [2027 4]]]
-    {:css  [[:details {:margin-top "3em"}
-             [:button {:margin-top "1em"}]]]
-     :body [[:details
-             [:summary "Don&rsquo;t see your destination or boat?"]
-             [:p "Let us know where you&rsquo;re going, what you&rsquo;ll be sailing, and when so we can start working on the almanac. We&rsquo;ll let you know if they&rsquo;ll be ready in time for your trip and follow up once they are."]
-             [:form.sku-request {:action (route-with-code route-request-almanac code)
-                                 :method :post}
-              [:input {:type  :hidden
-                       :name  :product
-                       :value :popai}]
-              [:label             {:for  :destination} "Destination:"]
-              [:input#destination {:name :destination}]
-              [:label      {:for  :boat} "Boat:"]
-              [:input#boat {:name :boat}]
-              [:label            {:for  :timeFrame} "Time Frame:"]
-              [:select#timeFrame {:name :timeFrame}
-               (map (fn [[year quarter]]
-                      (let [id (str year "q" quarter)
-                            months (case quarter
-                                     1 "January - March"
-                                     2 "April - June"
-                                     3 "July - September"
-                                     4 "October - December")]
-                        [:option {:value id} (str months ", " year)]))
-                    time-frames)]
-              [:label              {:for  :emailAddress} "Email Address:"]
-              [:input#emailAddress {:name :emailAddress}]
-              [:button {:type :submit} "Request Almanac"]]]]}))
+  {:css  [[:details {:margin-top "3em"}
+           [:button {:margin-top "1em"}]]]
+   :body [[:details
+           [:summary "Don&rsquo;t see your destination or boat?"]
+           [:p "Let us know where you&rsquo;re going and what you&rsquo;ll be sailing so we can start working on the almanac. We&rsquo;ll follow up once it&rsquo;s ready."]
+           [:form.sku-request {:action (route-with-code route-request-almanac code)
+                               :method :post}
+            [:input {:type  :hidden
+                     :name  :product
+                     :value :popai}]
+            [:label             {:for  :destination} "Destination:"]
+            [:input#destination {:name :destination}]
+            [:label      {:for  :boat} "Boat:"]
+            [:input#boat {:name :boat}]
+            [:label              {:for  :emailAddress} "Email Address:"]
+            [:input#emailAddress {:name :emailAddress}]
+            [:button {:type :submit} "Request Almanac"]]]]})
 
 (defn configuration [code]
   (let [config    (code targets)

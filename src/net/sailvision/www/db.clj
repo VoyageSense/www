@@ -11,9 +11,6 @@
    {:db/ident       :requested-almanacs/boat-model
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident       :requested-almanacs/time-frame
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one}
    {:db/ident       :requested-almanacs/email-address
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}])
@@ -55,10 +52,9 @@
       conn)))
 
 (defn insert-requested-almanac
-  [{:keys [conn destination boat timeFrame emailAddress]}]
+  [{:keys [conn destination boat emailAddress]}]
   (d/transact conn {:tx-data [{:requested-almanacs/destination   destination
                                :requested-almanacs/boat-model    boat
-                               :requested-almanacs/time-frame    timeFrame
                                :requested-almanacs/email-address emailAddress}]}))
 
 (defn list-requested-almanacs
@@ -68,14 +64,12 @@
                    :where
                    [?e :requested-almanacs/destination]
                    [?e :requested-almanacs/boat-model]
-                   [?e :requested-almanacs/time-frame]
                    [?e :requested-almanacs/email-address]]
                  db)]
     (map (fn [id]
            (let [entity (d/pull db '[*] (first id))]
              {:destination   (:requested-almanacs/destination   entity)
               :boat          (:requested-almanacs/boat-model    entity)
-              :time-frame    (:requested-almanacs/time-frame    entity)
               :email-address (:requested-almanacs/email-address entity)}))
          ids)))
 
