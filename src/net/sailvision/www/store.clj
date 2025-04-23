@@ -6,13 +6,13 @@
    [net.sailvision.www.page :as page]
    [net.sailvision.www.util :refer [inline]]
    [garden.core :as g]
-   [ring.util.codec :as codec]
    [ring.util.response :as resp]))
 
 (def route-home "/store/popai/:code")
 (def route-configure (str route-home "/configure"))
 (def route-checkout (str route-home "/checkout"))
 (def route-request-almanac (str route-home "/request-almanac"))
+(def route-discount (str route-home "/discount"))
 (def route-survey (str route-home "/survey"))
 
 (defn route-with-code [route code]
@@ -691,60 +691,75 @@
                    "Boat Mechanic"
                    "Sailing Instructor"
                    "Crew Member"]
-        survey [{:name     :mostIntriguing
-                 :question "Of the four categories of functions, which did you find most intriguing?"
-                 :answers  functions}
-                {:name     :leastIntriguing
-                 :question "Of the four categories of functions, which did you find least intriguing?"
+        survey [{:name     :most-interesting
+                 :question "Which of the functions did you find most interesting?"
                  :answers  functions}
                 {:name     :offline
                  :question "Are you interested in a version of the product that can work entirely offline?"
                  :answers  ["Yes"
-                            "No"
-                            "This product requires an Internet connection?"]}
+                            "No"]}
                 {:name     :remote
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
-    {:css  [[:form.survey {:margin                "4em auto 2em"
+    {:css  [[:form.email {:margin                "2em auto 4em"
+                          :display               :grid
+                          :grid-template-columns "auto 1fr"
+                          :row-gap               "1em"
+                          :width                 :fit-content}
+             [:button {:grid-column "span 2"
+                       :justify-self :center
+                       :padding     "0.3em 1em"}]]
+            [:form.survey {:margin                "2em auto"
                            :display               :grid
                            :grid-template-columns "auto 1fr"
-                           :row-gap               "1em"
+                           :row-gap               "0.5em"
+                           :column-gap            "0.5em"
                            :width                 :fit-content}
              [:label.question {:grid-column "span 2"}]
+             ["label.question:not(:first-child)" {:margin-top "1em"}]
              [:select {:grid-column "span 2"
                        :margin-bottom "3em"
                        :width "100%"}]
-             [:textarea {:grid-column   "span 2"
-                         :margin-bottom "3em"}]
-             [:label {:grid-column 1}]
-             [:input {:grid-column 2}]
-             [:button {:grid-column  "span 2"
+             [:textarea {:grid-column   "span 2"}]
+             [:label {:grid-column 2}]
+             [:input {:grid-column 1}]
+             [:button {:margin-top "0.5em"
+                       :grid-column  "span 2"
                        :justify-self :center
-                       :margin-top   "1em"
                        :padding      "0.3em 1em"}]]]
      :body [[:main.body-width
-             [:p "Thank you for your interest, but unfortunately, this isn&rsquo;t a real product yet. We really appreciate you giving us your attention and we hope we haven&rsquo;t caused any disruption with our experiment."]
+             [:p "Thank you for your interest, but unfortunately, this isn&rsquo;t a real product yet. We appreciate your attention and hope we haven&rsquo;t caused any disruption with our experiment."]
              (if (and boat location)
-               [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
-               [:p "As a thank-you, we&rsquo;d like to offer you 75% off your first purchase. The next time you take a sailing trip, we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+               [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
+               [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you go on a sailing trip, we&rsquo;ll have an almanac ready. Give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+             [:form.email.soft-outline {:action (route-with-code route-discount code)
+                                        :method :post}
+              [:input {:type  :hidden
+                       :name  :store-code
+                       :value code}]
+              [:label {:for  :emailAddress} "Email Address:"]
+              [:input {:name :emailAddress
+                       :type :email}]
+              [:button {:type :submit} "Get Discount"]]
              [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
              [:form.survey.soft-outline {:action (route-with-code route-survey code)
                                          :method :post}
               (inline (map (fn [&{:keys [name question answers]}]
                              [[:label.question {:for name} question]
-                              [:select {:id   name
-                                        :name name}
-                               (map (fn [v]
-                                      [:option {:value v} v])
-                                    (flatten ["-- Select One --"
-                                              answers]))]])
+                              (inline (map (fn [answer]
+                                             (let [id (str/join "-" (-> answer
+                                                                        (str/lower-case)
+                                                                        (str/split #" ")))]
+                                               [[:input {:type  :radio
+                                                         :name  name
+                                                         :id    id
+                                                         :value id}]
+                                                [:label {:for id} answer]]))
+                                           answers))])
                            survey))
               [:label.question {:for :additionalComments} "Additional comments:"]
               [:textarea#additionalComments {:name :additionalComments}]
-              [:label {:for  :emailAddress} "Email Address:"]
-              [:input {:name :emailAddress
-                       :type :email}]
               [:button {:type :submit} "Submit"]]]]}))
 
 (defn checkout [request]
@@ -786,6 +801,23 @@
         about/footer]))
     (resp/redirect "/")))
 
+(defn discount [request]
+  (if-let [[code _config] (validate request)]
+    (let [storage (db/storage)
+          conn    (db/connect storage :discount-signups)
+          address (:emailAddress (:params request))]
+      (db/insert-discount-signup {:conn          conn
+                                  :store-code    (name code)
+                                  :email-address address})
+      (page/from-components
+       "Discount Signup"
+       [page/base
+        page/header
+        {:body [[:main.body-width
+                 [:p "Got it! Thanks again."]]]}
+        about/footer]))
+      (resp/redirect "/")))
+
 (defn submit-survey [request]
   (if-let [[code _config] (validate request)]
     (let [storage (db/storage)
@@ -799,6 +831,6 @@
        [page/base
         page/header
         {:body [[:main.body-width
-                 [:p "Thank you for your submission."]]]}
+                 [:p "Thank you for your feedback!"]]]}
         about/footer]))
       (resp/redirect "/")))
