@@ -5,22 +5,22 @@
    [environ.core :refer [env]]))
 
 (def requested-almanacs-schema
-  [{:db/ident :requested-almanacs/destination
-    :db/valueType :db.type/string
+  [{:db/ident       :requested-almanacs/destination
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :requested-almanacs/boat-model
-    :db/valueType :db.type/string
+   {:db/ident       :requested-almanacs/boat-model
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :requested-almanacs/time-frame
-    :db/valueType :db.type/string
+   {:db/ident       :requested-almanacs/time-frame
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :requested-almanacs/email-address
-    :db/valueType :db.type/string
+   {:db/ident       :requested-almanacs/email-address
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}])
 
 (def survey-responses-schema
-  [{:db/ident :survey-responses/blob
-    :db/valueType :db.type/string
+  [{:db/ident       :survey-responses/blob
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one}])
 
 (defn storage []
@@ -47,14 +47,14 @@
 
 (defn insert-requested-almanac
   [{:keys [conn destination boat timeFrame emailAddress]}]
-  (d/transact conn {:tx-data [{:requested-almanacs/destination destination
-                               :requested-almanacs/boat-model boat
-                               :requested-almanacs/time-frame timeFrame
+  (d/transact conn {:tx-data [{:requested-almanacs/destination   destination
+                               :requested-almanacs/boat-model    boat
+                               :requested-almanacs/time-frame    timeFrame
                                :requested-almanacs/email-address emailAddress}]}))
 
 (defn list-requested-almanacs
   [{:keys [conn]}]
-  (let [db (d/db conn)
+  (let [db  (d/db conn)
         ids (d/q '[:find ?e
                    :where
                    [?e :requested-almanacs/destination]
@@ -64,9 +64,9 @@
                  db)]
     (map (fn [id]
            (let [entity (d/pull db '[*] (first id))]
-             {:destination   (:requested-almanacs/destination entity)
-              :boat          (:requested-almanacs/boat-model entity)
-              :time-frame    (:requested-almanacs/time-frame entity)
+             {:destination   (:requested-almanacs/destination   entity)
+              :boat          (:requested-almanacs/boat-model    entity)
+              :time-frame    (:requested-almanacs/time-frame    entity)
               :email-address (:requested-almanacs/email-address entity)}))
          ids)))
 
