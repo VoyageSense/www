@@ -575,7 +575,7 @@
                                 :padding         "0.75em 2em"}]]
      :body [[:div.background.full-width
              [:div.description.body-width
-              [:p "PopAI is powered by digital almanacs, customized for you and curated from numerous data sources including travel guides, government notices and publications, and local knowledge."]
+              [:p "PopAI is powered by digital almanacs, customized for you, using information curated from numerous data sources including travel guides, government notices and publications, and local knowledge."]
               [:p "Each purchase of a digital almanac, which covers one model of boat and a particular region, grants lifetime access and includes updates for one year. Additional almanacs can be added each time you charter a new boat or travel to a new region."]
               [:div.buy-now
                [:a {:href (if (and (:boats     config)
