@@ -1,5 +1,6 @@
 (ns net.sailvision.www.store
   (:require
+   [clojure.java.io :as io]
    [clojure.string :as str]
    [net.sailvision.www.about :as about]
    [net.sailvision.www.db :as db]
@@ -760,7 +761,8 @@
                            survey))
               [:label.question {:for :additionalComments} "Additional comments:"]
               [:textarea#additionalComments {:name :additionalComments}]
-              [:button {:type :submit} "Submit"]]]]}))
+              [:button {:type :submit} "Submit"]]]]
+     :script [(slurp (io/resource "discount-signup.js"))]}))
 
 (defn checkout [request]
   (if-let [[code config] (validate request)]
