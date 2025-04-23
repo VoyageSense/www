@@ -250,8 +250,9 @@
                            :width                 "100%"
                            :grid-template-columns "1fr auto"}]
                 [:.card:hover {:transform "scale(1.03)"}]
-                [:.modal {:max-width          "100vw"
+                [:.modal {:max-width          :none
                           :max-height         "100vh"
+                          :width              "100vw"
                           :border             0
                           :margin             0
                           :padding            "5vh 5vw"
