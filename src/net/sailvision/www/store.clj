@@ -790,7 +790,7 @@
   (if-let [[code _config] (validate request)]
     (let [storage (db/storage)
           conn    (db/connect storage :survey-responses)
-          blob    (pr-str (merge {:code code}
+          blob    (pr-str (merge {:code (name code)}
                                  (:params request)))]
       (db/insert-survey-response {:conn conn
                                   :blob blob})
