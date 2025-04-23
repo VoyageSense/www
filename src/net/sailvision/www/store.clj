@@ -744,7 +744,7 @@
                                          :method :post}
                (if (and boat location)
                 [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
-                [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you go on a sailing trip, we&rsquo;ll have an almanac ready. Give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+                [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". Give us an email address and we&rsquo;ll send you a message when we&rsquo;re ready to go. Use the same email address at checkout and the discount will automatically be applied."])
                [:input {:type  :hidden
                         :name  :store-code
                         :value code}]
