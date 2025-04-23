@@ -792,7 +792,6 @@
           conn    (db/connect storage :survey-responses)
           blob    (pr-str (merge {:code code}
                                  (:params request)))]
-      (prn blob)
       (db/insert-survey-response {:conn conn
                                   :blob blob})
       (page/from-components
