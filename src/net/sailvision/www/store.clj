@@ -703,11 +703,17 @@
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
-    {:css  [[:form.email {:margin                "2em auto 4em"
+    {:css  [[:main.side-by-side {:display   :flex
+                                 :flex-wrap :wrap}]
+            ["main.side-by-side > .side" {:margin "0 2em"
+                                          :flex   "1 1 50ch"}]
+            [:form.email {:margin                "2em auto"
                           :display               :grid
                           :grid-template-columns "auto 1fr"
                           :row-gap               "1em"
                           :width                 :fit-content}
+             [:p {:grid-column "span 2"
+                  :margin-top  0}]
              [:button {:grid-column "span 2"
                        :justify-self :center
                        :padding     "0.3em 1em"}]]
@@ -717,6 +723,8 @@
                            :row-gap               "0.5em"
                            :column-gap            "0.5em"
                            :width                 :fit-content}
+             [:p {:grid-column "span 2"
+                  :margin-top  0}]
              [:label.question {:grid-column "span 2"}]
              ["label.question:not(:first-child)" {:margin-top "1em"}]
              [:select {:grid-column "span 2"
@@ -729,47 +737,49 @@
                        :grid-column  "span 2"
                        :justify-self :center
                        :padding      "0.3em 1em"}]]]
-     :body [[:main.body-width
+     :body [[:main.body-width.side-by-side
              [:p "Thank you for your interest, but unfortunately, this isn&rsquo;t a real product yet. We appreciate your attention and hope we haven&rsquo;t caused any disruption with our experiment."]
-             (if (and boat location)
-               [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
-               [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you go on a sailing trip, we&rsquo;ll have an almanac ready. Give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
-             [:form.email.soft-outline {:action (route-with-code route-discount code)
-                                        :method :post}
-              [:input {:type  :hidden
-                       :name  :store-code
-                       :value code}]
-              [:label {:for  :emailAddress} "Email Address:"]
-              [:input {:name :emailAddress
-                       :type :email}]
-              [:button {:type :submit} "Get Discount"]]
-             [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
-             [:form.survey.soft-outline {:action (route-with-code route-survey code)
+             [:div.side
+              [:form.email.soft-outline {:action (route-with-code route-discount code)
                                          :method :post}
-              (inline (map (fn [&{:keys [id question answers]}]
-                             (let [other-id (keyword (str (name id) "-other"))]
-                               [[:label.question {:for id} question]
-                                (inline (map (fn [answer]
-                                               (let [option-id (str/join "-" (-> answer
-                                                                                 (str/lower-case)
-                                                                                 (str/split #" ")))]
-                                                 [[:input {:type  :radio
-                                                           :name  option-id
-                                                           :id    id
-                                                           :value id}]
-                                                  [:label {:for id} answer]]))
-                                             answers))
-                                [:input {:type :radio
-                                         :name  id
-                                         :id    other-id
-                                         :value "other"}]
-                                [:div
-                                 [:label {:for  other-id} "Other"]
-                                 [:input {:name other-id}]]]))
-                           survey))
-              [:label.question {:for :additionalComments} "Additional comments:"]
-              [:textarea#additionalComments {:name :additionalComments}]
-              [:button {:type :submit} "Submit"]]]]
+               (if (and boat location)
+                [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you&rsquo;re sailing in " location " or you&rsquo;re on a " boat ", we&rsquo;ll have an almanac ready to go. Just give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."]
+                [:p "As a thank-you, we&rsquo;d like to offer you " [:b "75% off your first purchase"] ". The next time you go on a sailing trip, we&rsquo;ll have an almanac ready. Give us an email address and we&rsquo;ll send you a message when it&rsquo;s ready to go. Use the same email address at checkout and the discount will automatically be applied."])
+               [:input {:type  :hidden
+                        :name  :store-code
+                        :value code}]
+               [:label {:for  :emailAddress} "Email Address:"]
+               [:input {:name :emailAddress
+                        :type :email}]
+               [:button {:type :submit} "Get Discount"]]]
+             [:div.side
+              [:form.survey.soft-outline {:action (route-with-code route-survey code)
+                                          :method :post}
+               [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
+               (inline (map (fn [&{:keys [id question answers]}]
+                              (let [other-id (keyword (str (name id) "-other"))]
+                                [[:label.question {:for id} question]
+                                 (inline (map (fn [answer]
+                                                (let [option-id (str/join "-" (-> answer
+                                                                                  (str/lower-case)
+                                                                                  (str/split #" ")))]
+                                                  [[:input {:type  :radio
+                                                            :name  option-id
+                                                            :id    id
+                                                            :value id}]
+                                                   [:label {:for id} answer]]))
+                                              answers))
+                                 [:input {:type :radio
+                                          :name  id
+                                          :id    other-id
+                                          :value "other"}]
+                                 [:div
+                                  [:label {:for  other-id} "Other"]
+                                  [:input {:name other-id}]]]))
+                            survey))
+               [:label.question {:for :additionalComments} "Additional comments:"]
+               [:textarea#additionalComments {:name :additionalComments}]
+               [:button {:type :submit} "Submit"]]]]]
      :script [(slurp (io/resource "discount-signup.js"))]}))
 
 (defn checkout [request]
