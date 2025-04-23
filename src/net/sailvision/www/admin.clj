@@ -12,6 +12,7 @@
 (def route-home "/admin")
 (def route-requested-almanacs "/admin/requested-almanacs")
 (def route-page-views "/admin/page-views")
+(def route-discount-signups "/admin/discount-signups")
 (def route-survey-responses "/admin/survey-responses")
 
 (defn base-css [& extra-css]
@@ -37,6 +38,7 @@
            [:ul
             [:li [:a {:href route-requested-almanacs} "Requested Almanacs"]]
             [:li [:a {:href route-page-views}         "Page Views"]]
+            [:li [:a {:href route-discount-signups}   "Discount Signups"]]
             [:li [:a {:href route-survey-responses}   "Survey Responses"]]]])})
 
 (defn requested-almanacs []
@@ -92,6 +94,26 @@
                      [:tr [:td agent] [:td count]])
                    (reverse (sort-by (fn [[_ v]] v) user-agents)))]])}))
 
+(defn discount-signups []
+  (let [storage (db/storage)
+        conn    (db/connect storage :discount-signups)
+        signups (db/list-discount-signups {:conn conn})]
+    {:headers page/headers
+     :body (h/html5
+            (page/head {:title     "Admin - Discount Signups"
+                        :extra-css (base-css [:td {:text-align :center}])})
+            [:body
+             [:h1 "Discount Signups"]
+             [:table
+              [:tr
+               [:th "Store Code"]
+               [:th "Email Address"]]
+              (map (fn [response]
+                     [:tr
+                      [:td (:store-code    response)]
+                      [:td (:email-address response)]])
+                   signups)]])}))
+
 (defn survey-responses []
   (let [storage   (db/storage)
         conn      (db/connect storage :survey-responses)
@@ -112,6 +134,7 @@
   (condp c/route-matches request
     (c/route-compile route-requested-almanacs) (requested-almanacs)
     (c/route-compile route-page-views)         (page-views)
+    (c/route-compile route-discount-signups)   (discount-signups)
     (c/route-compile route-survey-responses)   (survey-responses)
     (c/route-compile route-home)               (home)
     (resp/redirect   route-home)))
