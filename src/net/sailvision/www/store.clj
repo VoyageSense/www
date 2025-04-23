@@ -692,14 +692,14 @@
                    "Boat Mechanic"
                    "Sailing Instructor"
                    "Crew Member"]
-        survey [{:name     :most-interesting
+        survey [{:id       :most-interesting
                  :question "Which of the functions did you find most interesting?"
                  :answers  functions}
-                {:name     :offline
+                {:id       :offline
                  :question "Are you interested in a version of the product that can work entirely offline?"
                  :answers  ["Yes"
                             "No"]}
-                {:name     :remote
+                {:id       :remote
                  :question "Are you interested in the capability to monitor and control your boat remotely?"
                  :answers  ["Yes"
                             "No"]}]]
@@ -746,18 +746,26 @@
              [:p "We&rsquo;d love a bit of feedback on the product before you go. No worries if you&rsquo;d rather skip the survey though &mdash; we&rsquo;ll honor the discount either way. Thanks again!"]
              [:form.survey.soft-outline {:action (route-with-code route-survey code)
                                          :method :post}
-              (inline (map (fn [&{:keys [name question answers]}]
-                             [[:label.question {:for name} question]
-                              (inline (map (fn [answer]
-                                             (let [id (str/join "-" (-> answer
-                                                                        (str/lower-case)
-                                                                        (str/split #" ")))]
-                                               [[:input {:type  :radio
-                                                         :name  name
-                                                         :id    id
-                                                         :value id}]
-                                                [:label {:for id} answer]]))
-                                           answers))])
+              (inline (map (fn [&{:keys [id question answers]}]
+                             (let [other-id (keyword (str (name id) "-other"))]
+                               [[:label.question {:for id} question]
+                                (inline (map (fn [answer]
+                                               (let [option-id (str/join "-" (-> answer
+                                                                                 (str/lower-case)
+                                                                                 (str/split #" ")))]
+                                                 [[:input {:type  :radio
+                                                           :name  option-id
+                                                           :id    id
+                                                           :value id}]
+                                                  [:label {:for id} answer]]))
+                                             answers))
+                                [:input {:type :radio
+                                         :name  id
+                                         :id    other-id
+                                         :value "other"}]
+                                [:div
+                                 [:label {:for  other-id} "Other"]
+                                 [:input {:name other-id}]]]))
                            survey))
               [:label.question {:for :additionalComments} "Additional comments:"]
               [:textarea#additionalComments {:name :additionalComments}]
