@@ -137,7 +137,9 @@
               (pretty-print)
               base-css
               (mapcat :css components))]
-     [:script (mapcat :script components)]
+     [:script
+      "document.documentElement.classList.add('js');"
+      (mapcat :script components)]
      [:noscript (g/css
                  (pretty-print)
                  (mapcat :noscript components))]]
