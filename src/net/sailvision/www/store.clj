@@ -466,13 +466,24 @@
                        :padding          "1em"
                        :margin-bottom    "2em"
                        :box-shadow       "0 0px 10px rgba(var(--foreground), 0.1)"
-                       :transition       "opacity 0.6s ease, transform 0.6s ease"}
-            [:h1 {:margin 0
-                  :font-size "1.8em"}]
-            [:img {:height "5em"
-                   :margin "0.5em"}]
-            [:img.left  {:float :left}]
-            [:img.right {:float :right}]]
+                       :transition       "opacity 0.6s ease, transform 0.6s ease"
+
+                       :display               :grid
+                       :align-items           :center
+                       :grid-template-columns "auto 1fr auto"
+                       :column-gap "1em"
+                       }
+            [:h1 {:margin      "0 0 1em"
+                  :font-size   "1.8em"
+                  :grid-column "span 3"}]
+            [:img {:width "5em"}]
+            [:img.left  {:grid-column 1}]
+            [:img.right {:grid-column 3}]
+            [:p {:margin 0}]
+            [:p.left  {:text-align  :left
+                       :grid-column "2 / span 2"}]
+            [:p.right {:text-align  :right
+                       :grid-column "span 2"}]]
            [:html.js
             [:.section.flyup.visible {:transform :none
                                       :opacity   1}]
@@ -481,36 +492,28 @@
    :body  [[:div.background.full-width
             [:div.section.body-width.flyup
              [:h1 "Customize and Purchase"]
-             [:p
-              "Buy a digital almanac for a specific sailing trip. Just choose your destination and boat model."
-              [:img.right {:src "/change-sd-card.jpg"}]]
-             [:p
-              [:img.left  {:src "/change-data-forever.jpg"}]
-              "Your data to use, forever. Each purchase includes updates for one year."]]
+             [:p.right "Buy a digital almanac for your upcoming sailing trip &mdash; just specify your destination and boat."]
+             [:img.right {:src "/change-sd-card.jpg"}]
+             [:img.left  {:src "/change-data-forever.jpg"}]
+             [:p.left "Your data to use, forever. Each purchase includes updates for one year."]]
             [:div.section.body-width.flyup
              [:h1 "Install and Connect"]
-             [:p
-              "Load the digital almanac on your iOS or Android device."
-              [:img.right {:src "/change-mobile-os.jpg"}]]
-             [:p
-              [:img.left {:src "/change-boat-connect.jpg"}]
-              "Connect your device to your boat's NMEA network using the MFD's Wi-Fi."]]
+             [:p.right "Load the digital almanac on your iOS or Android device."]
+             [:img.right {:src "/change-mobile-os.jpg"}]
+             [:img.left {:src "/change-boat-connect.jpg"}]
+             [:p.left "Connect your device to your boat's NMEA network using the MFD's Wi-Fi."]]
             [:div.section.body-width.flyup
              [:h1 "Talk to Your Boat"]
-             [:p
-              "Talk to your boat through PopAI on your device."
-              [:img.right {:src "/change-bullseye-check.jpg"}]]
-             [:p
-              [:img.left {:src "/change-headset-tablet.jpg"}]
-              [:b "Concrete"] " and " [:b "specific"] " answers from your digital almanac " [:b "for your boat"] "."]]
+             [:p.right "Talk to your boat through PopAI on your device."]
+             [:img.right {:src "/change-bullseye-check.jpg"}]
+             [:img.left {:src "/change-headset-tablet.jpg"}]
+             [:p.left [:b "Concrete"] " and " [:b "specific"] " answers from your digital almanac " [:b "for your boat"] "."]]
             [:div.section.body-width.flyup
              [:h1 "Stay Aware"]
-             [:p
-              "Automatically get alerts for anomalous conditions."
-              [:img.right {:src "/change-bullseye-check.jpg"}]]
-             [:p
-              [:img.left {:src "/change-headset-tablet.jpg"}]
-              "Or tell PopAI that you've got it covered."]]]]
+             [:p.right "Automatically get alerts for anomalous conditions."]
+             [:img.right {:src "/change-bullseye-check.jpg"}]
+             [:img.left {:src "/change-headset-tablet.jpg"}]
+             [:p.left "Or tell PopAI that you've got it covered."]]]]
    :script [(slurp (io/resource "reveal-flyups.js"))]})
 
 (defn show-modal-on-load [id]
