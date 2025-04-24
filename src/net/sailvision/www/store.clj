@@ -31,8 +31,9 @@
                             :turks-caicos    "Turks and Caicos Islands"}
                            "South Pacific"
                            {:tahiti          "Tahiti"}}
-               :price     300}]
-    {:watermellon dummy
+               :price     300}
+        get-to-using {:feature-get-to-using true}]
+    {:watermellon (merge dummy get-to-using)
      :mtklk dummy
      :ulrbt dummy
      :pwhom dummy
@@ -460,6 +461,58 @@
                             (route-with-code route-checkout code))}
                 "Customize and Buy"]]]]]})
 
+(def get-to-using
+  {:css   [[:.section {:background-color "rgb(var(--bold-background))"
+                       :padding          "1em"
+                       :margin-bottom    "2em"
+                       :box-shadow       "0 0px 10px rgba(var(--foreground), 0.1)"
+                       :transition       "opacity 0.6s ease, transform 0.6s ease"}
+            [:h1 {:margin 0
+                  :font-size "1.8em"}]
+            [:img {:height "5em"
+                   :margin "0.5em"}]
+            [:img.left  {:float :left}]
+            [:img.right {:float :right}]]
+           [:html.js
+            [:.section.flyup.visible {:transform :none
+                                      :opacity   1}]
+            [:.section.flyup {:transform "translateY(50px)"
+                              :opacity   0}]]]
+   :body  [[:div.background.full-width
+            [:div.section.body-width.flyup
+             [:h1 "Customize and Purchase"]
+             [:p
+              "Buy a digital almanac for a specific sailing trip. Just choose your destination and boat model."
+              [:img.right {:src "/change-sd-card.jpg"}]]
+             [:p
+              [:img.left  {:src "/change-data-forever.jpg"}]
+              "Your data to use, forever. Each purchase includes updates for one year."]]
+            [:div.section.body-width.flyup
+             [:h1 "Install and Connect"]
+             [:p
+              "Load the digital almanac on your iOS or Android device."
+              [:img.right {:src "/change-mobile-os.jpg"}]]
+             [:p
+              [:img.left {:src "/change-boat-connect.jpg"}]
+              "Connect your device to your boat's NMEA network using the MFD's Wi-Fi."]]
+            [:div.section.body-width.flyup
+             [:h1 "Talk to Your Boat"]
+             [:p
+              "Talk to your boat through PopAI on your device."
+              [:img.right {:src "/change-bullseye-check.jpg"}]]
+             [:p
+              [:img.left {:src "/change-headset-tablet.jpg"}]
+              [:b "Concrete"] " and " [:b "specific"] " answers from your digital almanac " [:b "for your boat"] "."]]
+            [:div.section.body-width.flyup
+             [:h1 "Stay Aware"]
+             [:p
+              "Automatically get alerts for anomalous conditions."
+              [:img.right {:src "/change-bullseye-check.jpg"}]]
+             [:p
+              [:img.left {:src "/change-headset-tablet.jpg"}]
+              "Or tell PopAI that you've got it covered."]]]]
+   :script [(slurp (io/resource "reveal-flyups.js"))]})
+
 (defn show-modal-on-load [id]
   {:script [(str "window.addEventListener('load', () => {" (card-modal-show id) "}, false);")]})
 
@@ -472,6 +525,7 @@
                                get-to-know
                                features-cards
                                (description code config)
+                               (when (:feature-get-to-using config) get-to-using)
                                about/footer])
     (resp/redirect "/")))
 
