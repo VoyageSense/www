@@ -7,6 +7,7 @@
    [net.sailvision.www.page :as page]
    [net.sailvision.www.util :refer [inline]]
    [garden.core :as g]
+   [garden.stylesheet :as s]
    [ring.util.response :as resp]))
 
 (def route-home "/store/popai/:code")
@@ -164,33 +165,87 @@
       [code config])))
 
 (def hero
-  (let [loaded      {:opacity   1
-                     :transform :none}
-        mask-opacity 0.85]
-    {:css      [[:body
-                 [:header {:color       "#f8f8f8"
-                           :text-shadow "0.05em 0.1em 0.5em #404040"}]]
-                [:.hero {:width          "100%"
-                         :position       :fixed
-                         :opacity        0
-                         :top            0
-                         :z-index        -2
-                         :transform      "translateY(20px)"
-                         :transition     "opacity 0.8s linear, transform 0.8s ease"
-                         :mask-image     "linear-gradient(to bottom,black 70%,transparent)"
-                         :mask-composite :intersect
-                         :mask-size      "100% 100%"}]
-                [:.dark {:visibility "var(--dark-visibility)"}]
-                [:.light {:visibility "var(--light-visibility)"}]
-                [:.loaded loaded]
-                [:.hero-mask {:height      "calc(min(70vw, 75vh))"
-                              :background  (str
-                                            "linear-gradient(to bottom, transparent 85%, rgba(var(--background),"
-                                            mask-opacity
-                                            "))")
-                              :z-index     -1}]
-                [:.over-hero {:background  (str "rgba(var(--background), " mask-opacity ")")}]]
-     :noscript [[:.hero loaded]]
+  (let [loaded       {:opacity   1
+                      :transform :none}
+        mask-opacity 0.85
+        flyouts      [{:left  "Fix the brightness"
+                       :right "Done"}
+                      {:left  "Do another thing"}
+                      {:left  "3"
+                       :right "4"}
+                      {:left  "5"
+                       :right "6"}
+                      {:left  "7"
+                       :right "8"}
+                      {:left  "9"
+                       :right "10"}
+                      {:left  "11"
+                       :right "12"}
+                      {:left  "13"
+                       :right "14"}
+                      {:left  "15"
+                       :right "16"}
+                      {:left  "17"
+                       :right "18"}]
+        flyout-time  6]
+    {:css      (let [flyout-begin  2
+                     flyout-pause  4
+                     flyout-resume 8
+                     flyout-end    10
+                     %             #(str % "%")]
+                 [[:body
+                   [:header {:color       "#f8f8f8"
+                             :text-shadow "0.05em 0.1em 0.5em #404040"}]]
+                  [:.hero {:width          "100%"
+                           :position       :fixed
+                           :opacity        0
+                           :top            0
+                           :z-index        -2
+                           :transform      "translateY(20px)"
+                           :transition     "opacity 0.8s linear, transform 0.8s ease"
+                           :mask-image     "linear-gradient(to bottom,black 70%,transparent)"
+                           :mask-composite :intersect
+                           :mask-size      "100% 100%"}]
+                  [:.dark {:visibility "var(--dark-visibility)"}]
+                  [:.light {:visibility "var(--light-visibility)"}]
+                  [:.loaded loaded]
+                  [:.flyouts {:font-size "2em"
+                              :margin    "4em 2em"}
+                   (let [duration (* (count flyouts) flyout-time)]
+                     [:.pair {:display :flex}
+                      [:div {:flex-grow 1}]
+                      [:q {:color       "rgb(var(--bold-foreground))"
+                           :text-shadow "0.05em 0.1em 0.5em #404040"}]
+                      [:q.left {:animation (str "slideInOutLeft " duration "s ease-in-out infinite both")}]
+                      [:q.right {:animation (str "slideInOutRight " duration "s ease-in-out infinite both")}]])]
+                  (s/at-keyframes "slideInOutLeft"
+                                  [:0% {:opacity   0
+                                        :transform :none}]
+                                  [(% flyout-begin) {:opacity   0
+                                                     :transform "translateX(-1em)"}]
+                                  [(% flyout-pause) {:opacity   1
+                                                     :transform :none}]
+                                  [(% flyout-resume) {:opacity   1
+                                                      :transform :none}]
+                                  [(% flyout-end) {:opacity   0
+                                                   :transform "translateX(1em)"}]
+                                  [:100% {:opacity   0
+                                          :transform :none}])
+                  (s/at-keyframes "slideInOutRight"
+                                  [:0% {:opacity   0
+                                        :transform :none}]
+                                  [(% (+ 1 flyout-begin)) {:opacity   0
+                                                           :transform "translateX(1em)"}]
+                                  [(% (+ 1 flyout-pause)) {:opacity   1
+                                                           :transform :none}]
+                                  [(% (+ 1 flyout-resume)) {:opacity   1
+                                                            :transform :none}]
+                                  [(% (+ 1 flyout-end)) {:opacity   0
+                                                         :transform "translateX(-1em)"}]
+                                  [:100% {:opacity   0
+                                          :transform :none}])
+                  [:.over-hero {:background  (str "rgba(var(--background), " mask-opacity ")")}]])
+                 :noscript [[:.hero loaded]]
      :body     [[:img.hero.light
                  {:src    "/popai-hero-background-light.jpg"
                   :alt    "Looking over the bow of a boat sailing in the San Francisco bay, city in the background"
@@ -199,336 +254,25 @@
                  {:src    "/popai-hero-background-dark.jpg"
                   :alt    "Looking over the bow of a boat sailing in the San Francisco bay, sunset in the background"
                   :onload "this.classList.add('loaded')"}]
-                [:div.hero-mask.full-width]]}))
-
-(def get-to-know
-  {:body [[:div.over-hero.full-width
-           [:div.get-to-know.body-width
-            [:h1 "Get to know PopAI"]
-            [:p "PopAI (pronounced " [:q "Popeye"] ") is a voice-controlled boating assistant which runs on your phone or tablet and integrates with the systems on your boat. It&rsquo;s an interactive boating companion &mdash; always ready when you need it."]
-            [:p "Whether you&rsquo;re a seasoned skipper or just starting out, PopAI gives you instant access to information tailored to your boat, your trip, and essential maritime rules and regulations."]
-            [:p "PopAI takes the stress out of sailing, helping turn your trip into a memory you&rsquo;ll cherish - and maybe even the start of a beloved tradition with friends and family."]
-            [:br]
-            [:p "Click or tap on the cards below to learn more."]]]]})
-
-(defn card-modal-show [id]
-  (str "let modal = document.getElementById('" id "');"
-       "modal.showModal();"
-       "modal.querySelectorAll('.prompt').forEach((prompt) => prompt.classList.add('shown'));"))
-
-(defn card-modal-hide [id]
-  (str "let modal = document.getElementById('" id "');"
-       "modal.close();"
-       "modal.querySelectorAll('.prompt').forEach((prompt) => prompt.classList.remove('shown'));"))
-
-(defn card [{:keys [title subtitle intro image details]}]
-  (let [image-aspect-ratio "500/630"
-        modal-id (str/join "-" (flatten
-                                ["modal"
-                                 (-> title
-                                     (str/lower-case)
-                                     (str/split #" "))]))]
-    {:css      [[:.card {:display        :flex
-                         :flex-direction :column
-                         :gap            "1.2em"
-                         :padding        "1em"
-                         :border         0
-                         :border-radius  "1em"
-                         :background     "rgb(var(--bold-background))"
-                         :color          "rgb(var(--bold-foreground))"
-                         :cursor         :pointer
-                         :transition     "transform 0.2s ease-out"
-                         :width          "calc(max(100% - 2em, var(--max-body-width))/4)"}
-                 [:h3 :h4 {:text-align :start
-                           :margin     0}]
-                 [:h3     {:font-size "1.8em"}]
-                 [:h4     {:font-size "1em"}]
-                 [:img    {:width         "100%"
-                           :aspect-ratio  image-aspect-ratio
-                           :border-radius "0.5em"}]
-                 [:.space {:flex-grow 1}]]
-                [:.topbar {:display               :grid
-                           :width                 "100%"
-                           :grid-template-columns "1fr auto"}]
-                [:.card:hover {:transform "scale(1.03)"}]
-                [:.modal {:max-width          :none
-                          :max-height         "100vh"
-                          :width              "100vw"
-                          :border             0
-                          :margin             0
-                          :padding            "5vh 5vw"
-                          :background         :transparent
-                          :animation-duration "0.3s"}
-                 [:.content {:margin        "auto"
-                             :max-width     "calc(min(80ch, 100%))"
-                             :padding       "2em"
-                             :border-radius "1em"
-                             :text-align    :start
-                             :color         "rgb(var(--foreground))"
-                             :background    "rgb(var(--background))"}
-                  [:svg.close {:grid-column 2
-                               :cursor      :pointer}]
-                  [:.section {:border        "solid thin rgba(var(--foreground), 0.3)"
-                              :border-radius "0.5em"
-                              :padding       "0 1em"
-                              :margin        "3em 0 0"}]
-                  [:h1 {:text-align :left
-                        :margin-top 0
-                        :font       "italic clamp(2em, 1em + 4vw, 3em) Arial, san-serif"}]
-                  [:p.intro {:font-size "clamp(1.2em, 0.2em + 3vw, 1.4em)"
-                             :margin    0}]
-                  [:span.heading {:font-weight :bold
-                                  :font-style  :italic}]
-                  [".section > *" {:font-size "1.1em"}]
-                  [:.prompt       {:display      :block
-                                   :font         "italic clamp(1.3em, 0.3em + 3vw, 1.8em) Arial, san-serif"
-                                   :padding-top  "0.8em"
-                                   :margin       "0.5em"
-                                   :transition   "opacity 1s linear, transform 1s ease-out"}]
-                  [:.prompt.left  {:margin-right "5ch"
-                                   :text-align   :left
-                                   :opacity      0.4
-                                   :transform    "translateX(-0.3ch)"}]
-                  [:.prompt.right {:margin-left  "5ch"
-                                   :text-align   :right
-                                   :opacity      0.4
-                                   :transform    "translateX(0.3ch)"}]
-                  [:.prompt.shown {:opacity      1
-                                   :transform    :none}]]]
-                [".modal::backdrop" {:backdrop-filter "blur(10px)"}]
-                ["body:has(.modal[open])" {:overflow :hidden}]]
-     :noscript [[:.modal
-                 [:.content
-                  [:.prompt.left :.prompt.right {:opacity   1
-                                                 :transform :none}]]]]
-     :body     [[:button.card {:type    :button
-                               :onclick (card-modal-show modal-id)}
-                 [:div.topbar
-                  [:h3 [:i title]]
-                  [:svg {:width   24
-                         :height  24
-                         :viewBox "0 0 24 24"
-                         :fill    :currentColor
-                         :xmlns   "http://www.w3.org/2000/svg"}
-                   [:circle {:cx 4  :cy 12 :r 2}]
-                   [:circle {:cx 12 :cy 12 :r 2}]
-                   [:circle {:cx 20 :cy 12 :r 2}]]]
-                 [:h4 subtitle]
-                 [:div.space]
-                 [:img {:src image}]]
-                [:dialog.modal {:id      modal-id
-                                :onclick (card-modal-hide modal-id)}
-                 [:div.content
-                  [:div.topbar
-                   [:svg.close {:xmlns           "http://www.w3.org/2000/svg"
-                                :width           24
-                                :height          24
-                                :viewBox         "0 0 24 24"
-                                :fill            :none
-                                :stroke          :currentColor
-                                :stroke-width    2
-                                :stroke-linecap  :round
-                                :stroke-linejoin :round}
-                    [:line {:x1 18
-                            :y1 6
-                            :x2 6
-                            :y2 18}]
-                    [:line {:x1 6
-                            :y1 6
-                            :x2 18
-                            :y2 18}]]]
-                  [:h1 title]
-                  [:p.intro intro]
-                  (map (fn [{:keys [heading body prompts]}]
-                         [:div.section
-                          [:p [:span.heading heading]]
-                          body
-                          (map (fn [prompt, i]
-                                 [:q.prompt {:class (if (= 0 (mod i 2))
-                                                      "left"
-                                                      "right")
-                                             :style (g/style {:transition-duration (str (+ 500 (* 500 i)) "ms")})}
-                                  prompt])
-                               prompts (range))])
-                       details)]]]}))
-
-(def features-cards
-  (let [cards
-        [{:title    "Cruising Guide"
-          :subtitle "Boating almanac on the go"
-          :image    "/card-guide.jpg"
-          :intro    "Searching your local guide has never been easier."
-          :details
-          [{:heading "Planning and Preparation"
-            :body    [:p "Get help preparing and running through checklists for gear, travel documents, and provisioning."]
-            :prompts ["What's next on the pre-cruise checklist?"
-                      "How do I clear customs in Tortola?"]}
-           {:heading "Local Navigation"
-            :body    [:p "Double check local weather patterns and seasonal considerations, as well as local rules and regulations."]
-            :prompts ["Can we anchor in Cam Bay National Park?"
-                      "Can I fish here?"]}
-           {:heading "Shore Support"
-            :body    [:p "Easily find fuel, groceries, and other services ashore."]
-            :prompts ["Which marinas nearby have laundry?"
-                      "Where can I get fuel?"]}]}
-         {:title    "Boat Mechanic"
-          :subtitle "Manuals, diagrams, schematics and troubleshooting"
-          :image    "/card-mechanic.jpg"
-          :intro    "With a little know-how, you can handle 90% of boat repairs yourself &mdash; and probably save the day in the process."
-          :details
-          [{:heading "Know Your Boat"
-            :body    [:p "Gain confidence and clarity with information and instructions derived from the owner&rsquo;s manual, engine diagrams, and maintenance guides."]
-            :prompts ["What is our fresh water capacity?"
-                      "What is the cruising RPM?"]}
-           {:heading "Interactive Troubleshooting"
-            :body    [:p "Get help with general diagnostic steps when issues arise on board and get assistance with identifying likely causes and recommending next steps to get you back underway."]
-            :prompts ["Why is the water pump still running?"
-                      "Why are the running lights off?"]}
-           {:heading "Fix It Yourself"
-            :body    [:p "Instructions, tailored to your skill level, for various repairs on the boat. "]
-            :prompts ["How do I reset the windlass breaker?"
-                      "How do I bleed the fuel lines?"]}]}
-         {:title    "Maritime Reference"
-          :subtitle "Instant access to rules and regulations"
-          :image    "/card-instructor.jpg"
-          :intro    "A quick reminder is usually all it takes to get back into the swing of things."
-          :details
-          [{:heading "Boating Terms"
-            :body    [:p "A glossary of terms and phrases, right in your ear."]
-            :prompts ["What&rsquo;s the metal plate that attaches the shrouds to the hull?"
-                      "How many fathoms are in a shackle?"]}
-           {:heading "Rules and Regulations"
-            :body    [:p "Quick and easy access to all regulations, domestic and international, and other conventions."]
-            :prompts ["What does three short horn blasts mean?"
-                      "Do I need quarantine my dog when visiting Jamaca?"]}
-           {:heading "General Knowledge"
-            :body    [:p "Get answers about boat operations, radio protocols, signaling, and more."]
-            :prompts ["Which VHF channels should I monitor?"
-                      "What does a white flare mean?"]}]}
-         {:title    "Crew Member"
-          :subtitle "Interact, control and monitor"
-          :image    "/card-crew.jpg"
-          :intro    "Connect to the onboard network and turn your boat into a crew member."
-          :details
-          [{:heading "Boat Systems"
-            :body    [:p "Connect to your boat&rsquo;s Wi-Fi data network and query the systems aboard using your voice &mdash; above or below deck."]
-            :prompts ["What is the name of the boat ahead?"
-                      "What is the depth?"]}
-           {:heading "On Watch"
-            :body    [:p "Keep a constant eye on your boat and be alerted when something unusual happens."]
-            :prompts ["Let me know when the water tank is half empty."
-                      "Tell me if the depth gets below ten feet."]}
-           {:heading "Tips and Guidance"
-            :body    [:p "Close the loop and improve your sailing performance with feedback guided by your sails&rsquo; load charts and polar diagrams."]
-            :prompts ["How's my speed look for these conditions?"
-                      "Am I heeling too much?"]}]}]]
-    {:css       [[:.cards {:overflow-x :auto}]
-                 [:.cards-slide {:display :flex
-                                 :gap     "2em"
-                                 :padding "2em"
-                                 :width   "var(--max-body-width)"}]
-                 (-> cards first card :css)]
-     :noscript [(-> cards first card :noscript)]
-     :body     [[:div.over-hero.full-width
-                 [:div.cards.body-width-no-edge
-                  [:div.cards-slide
-                   (inline (map #(-> % card :body) cards))]]]]}))
-
-  (defn description [code config]
-    {:css  [[:.background {:background "rgb(var(--background))"
-                           :color      "rgb(var(--foreground))"}]
-            [:.description {:margin "3em 0"}]
-            [:div.buy-now {:display        :flex
-                           :flex-direction :column
-                           :align-items    :center
-                           :padding        "2em"}]
-            ["div.buy-now > a" {:background      :black
-                                :font-size       "1.75em"
-                                :color           :white
-                                :text-decoration :none
-                                :text-align      :center
-                                :border          "thin rgb(var(--foreground)) solid"
-                                :border-radius   "0.5em"
-                                :padding         "0.75em 2em"}]]
-     :body [[:div.background.full-width
-             [:div.description.body-width
-              [:p "PopAI is powered by digital almanacs, customized for you, using information curated from numerous data sources including travel guides, government notices and publications, and local knowledge."]
-              [:p "Each purchase of a digital almanac, which covers one model of boat and a particular region, grants lifetime access and includes updates for one year. Additional almanacs can be added each time you charter a new boat or travel to a new region."]
-              [:div.buy-now
-               [:a {:href (if (and (:boats     config)
-                                   (:locations config))
-                            (route-with-code route-configure code)
-                            (route-with-code route-checkout code))}
-                "Customize and Buy"]]]]]})
-
-(def get-to-using
-  {:css   [[:.using-section {:background-color "rgb(var(--bold-background))"
-                             :padding          "1em"
-                             :margin-bottom    "2em"
-                             :box-shadow       "0 0px 10px rgba(var(--foreground), 0.1)"
-                             :transition       "opacity 0.6s ease, transform 0.6s ease"
-
-                             :display               :grid
-                             :align-items           :center
-                             :grid-template-columns "auto 1fr auto"
-                             :column-gap "1em"
-                             }
-            [:h1 {:margin      "0 0 1em"
-                  :font-size   "1.8em"
-                  :grid-column "span 3"}]
-            [:img {:width "5em"}]
-            [:img.left  {:grid-column 1}]
-            [:img.right {:grid-column 3}]
-            [:p {:margin 0}]
-            [:p.left  {:text-align  :left
-                       :grid-column "2 / span 2"}]
-            [:p.right {:text-align  :right
-                       :grid-column "span 2"}]]
-           [:html.js
-            [:.using-section.flyup.visible {:transform :none
-                                            :opacity   1}]
-            [:.using-section.flyup {:transform "translateY(50px)"
-                                    :opacity   0}]]]
-   :body  [[:div.background.full-width
-            [:div.using-section.body-width.flyup
-             [:h1 "Customize and Purchase"]
-             [:p.right "Buy a digital almanac for your upcoming sailing trip &mdash; just specify your destination and boat."]
-             [:img.right {:src "/change-sd-card.jpg"}]
-             [:img.left  {:src "/change-data-forever.jpg"}]
-             [:p.left "Your data to use, forever. Each purchase includes updates for one year."]]
-            [:div.using-section.body-width.flyup
-             [:h1 "Install and Connect"]
-             [:p.right "Load the digital almanac on your iOS or Android device."]
-             [:img.right {:src "/change-mobile-os.jpg"}]
-             [:img.left {:src "/change-boat-connect.jpg"}]
-             [:p.left "Connect your device to your boat's NMEA network using the MFD's Wi-Fi."]]
-            [:div.using-section.body-width.flyup
-             [:h1 "Talk to Your Boat"]
-             [:p.right "Talk to your boat through PopAI on your device."]
-             [:img.right {:src "/change-bullseye-check.jpg"}]
-             [:img.left {:src "/change-headset-tablet.jpg"}]
-             [:p.left [:b "Concrete"] " and " [:b "specific"] " answers from your digital almanac " [:b "for your boat"] "."]]
-            [:div.using-section.body-width.flyup
-             [:h1 "Stay Aware"]
-             [:p.right "Automatically get alerts for anomalous conditions."]
-             [:img.right {:src "/change-bullseye-check.jpg"}]
-             [:img.left {:src "/change-headset-tablet.jpg"}]
-             [:p.left "Or tell PopAI that you've got it covered."]]]]
-   :script [(slurp (io/resource "reveal-flyups.js"))]})
-
-(defn show-modal-on-load [id]
-  {:script [(str "window.addEventListener('load', () => {" (card-modal-show id) "}, false);")]})
+                [:div.flyouts.body-width
+                 (map-indexed (fn [i {:keys [left right]}]
+                                (let [delay (str (* i flyout-time) "s")]
+                                  [:div.pair
+                                   (when left
+                                     [:q.left  {:style (g/style {:animation-delay delay})}
+                                      left])
+                                   [:div]
+                                   (when right
+                                     [:q.right {:style (g/style {:animation-delay delay
+                                                                 :margin-top      "2em"})}
+                                      right])]))
+                              flyouts)]]}))
 
 (defn popai [request]
   (if-let [[code config] (validate request)]
     (page/from-components nil [page/base
-                               ;; (show-modal-on-load "modal-cruising-guide")
                                page/header
                                hero
-                               get-to-know
-                               features-cards
-                               (description code config)
-                               (when (:feature-get-to-using config) get-to-using)
                                about/footer])
     (resp/redirect "/")))
 
