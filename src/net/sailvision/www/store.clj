@@ -268,11 +268,112 @@
                                       right])]))
                               flyouts)]]}))
 
+(defn flyout
+  ([pairs]
+   (flyout pairs {}))
+  ([pairs style]
+   (flyout pairs style 0))
+  ([pairs style delay]
+   (let [duration 1]
+     {
+      :css    [[:.flyouts {:display :grid
+                           :row-gap "1em"}
+                [:.body-width {:padding  "4em 0"}]
+                [:.flyout-pair {:display    :flex
+                                :padding    "0 5vw"
+                                :font-size  "2em"
+                                :font-style :italic}
+                 [:div {:flex-grow 1}]
+                 [:q {:quotes :none
+                      :transition (str "transform " duration "s, opacity " duration "s")}]
+                 [:q.right {:margin "0.75em"}]]]
+               [:html.js
+                [:.flyout-pair
+                 [:q       {:opacity   0}]
+                 [:q.left  {:transform "translateX(-1em)"}]
+                 [:q.right {:transform "translateX(1em)"}]]
+                [:.flyout-pair.visible
+                 [:q {:opacity   1
+                      :transform :none}]]]]
+      :body   [[:div.flyouts.full-width
+                [:div.body-width {:style (g/style style)}
+                 (map-indexed (fn [i {:keys [left right]}]
+                                (let [row-delay   (+ delay (* 600 i))
+                                      left-delay  (str row-delay "ms")
+                                      right-delay (str (+ 200 row-delay) "ms")
+                                      row-indent  (str (float (/ i 2)) "em")]
+                                  [:div.flyout-pair.body-width
+                                   (when left
+                                     [:q.left {:style (g/style {:transition-delay left-delay
+                                                                :padding-left     row-indent})} left])
+                                   [:div]
+                                   (when right
+                                     [:q.right {:style (g/style {:transition-delay right-delay
+                                                                 :padding-right    row-indent})} right])]))
+                              pairs)]]]
+      :script [(slurp (io/resource "flyout.js"))]})))
+
+(def background-image
+  {:css  [[:body
+           [:header {:color       "#f8f8f8"
+                     :text-shadow "0.05em 0.1em 0.5em #404040"}]]
+          [:.background {:position :absolute
+                         :z-index  -2}
+           [:img {:position       :fixed
+                  :width          "100vw"
+                  :height         "100vh"
+                  :object-fit     :cover
+                  :transition     "opacity 0.8s linear, transform 0.8s ease"
+                  :mask-image     "linear-gradient(to bottom,black 70%,transparent)"
+                  :mask-composite :intersect
+                  :mask-size      "100% 100%"}]
+           [:img.dark  {:visibility "var(--dark-visibility)"}]
+           [:img.light {:visibility "var(--light-visibility)"}]]
+          [:html.js
+           [:.background
+            [:img {:opacity   0
+                   :transform "translateY(20px)"}]
+            [:img.visible {:opacity   1
+                           :transform :none}]]]]
+   :body [[:div.background
+           [:img.light {:src    "/popai-hero-background-light.jpg"
+                        :onload "this.classList.add('visible')"}]
+           [:img.dark  {:src    "/popai-hero-background-dark.jpg"
+                        :onload "this.classList.add('visible')"}]]]})
+
+(def spacer
+  {:css  [[:.spacer {:height     "60vh"
+                     :background "rgb(var(--background))"}]]
+   :body [[:div.spacer.full-width]]})
+
 (defn popai [request]
   (if-let [[code config] (validate request)]
     (page/from-components nil [page/base
                                page/header
-                               hero
+                               background-image
+                               (flyout[{:left  "Asking a question?"
+                                        :right "Yes, you are."}
+                                       {:left  "And a follow-up?"
+                                        :right "Yep."}]
+                                      {:color       "white"
+                                       :text-shadow "0.1em 0.2em 0.6em black"
+                                       :height      "70vh"}
+                                      700)
+                               spacer
+                               (flyout [{:left  "Asking a question?"
+                                         :right "Yes, you are."}]
+                                       {:color       "white"
+                                        :text-shadow "0.1em 0.2em 0.6em black"})
+                               spacer
+                               (flyout [{:left  "Asking a question?"
+                                         :right "Yes, you are."}]
+                                       {:color       "white"
+                                        :text-shadow "0.1em 0.2em 0.6em black"})
+                               spacer
+                               (flyout [{:left  "Asking a question?"
+                                         :right "Yes, you are."}]
+                                       {:color       "white"
+                                        :text-shadow "0.1em 0.2em 0.6em black"})
                                about/footer])
     (resp/redirect "/")))
 
