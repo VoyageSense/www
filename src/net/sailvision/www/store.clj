@@ -5,9 +5,10 @@
    [net.sailvision.www.about :as about]
    [net.sailvision.www.db :as db]
    [net.sailvision.www.page :as page]
-   [net.sailvision.www.util :refer [inline]]
+   [net.sailvision.www.util :refer [inline long-str]]
    [garden.core :as g]
    [garden.stylesheet :as s]
+   [hiccup.core :as h]
    [ring.util.response :as resp]))
 
 (def route-home "/store/popai/:code")
@@ -278,7 +279,7 @@
      {
       :css    [[:.flyouts {:display :grid
                            :row-gap "1em"}
-                [:.body-width {:padding  "4em 0"}]
+                [:.body-width {:padding  "6em 0"}]
                 [:.flyout-pair {:display    :flex
                                 :padding    "0 5vw"
                                 :font-size  "2em"
@@ -341,42 +342,123 @@
            [:img.dark  {:src    "/popai-hero-background-dark.jpg"
                         :onload "this.classList.add('visible')"}]]]})
 
-(def spacer
-  {:css  [[:.spacer {:height     "60vh"
-                     :background "rgb(var(--background))"}]]
-   :body [[:div.spacer.full-width]]})
+(defn style [content]
+  {:style (g/style content)})
+
+(defn topic [body]
+  (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
+        wave-base {:xmlns               "http://www.w3.org/2000/svg"
+                   :viewBox             "0 0 200 100"
+                   :width               200
+                   :height              100
+                   :preserveAspectRatio :none}
+        head-wave (h/html [:svg wave-base
+                           [:path {:d (long-str "M 0 50"
+                                                "Q 25 90, 50 50"
+                                                "T 100 50"
+                                                "T 150 50"
+                                                "T 200 50"
+                                                "L 200 100"
+                                                "L 0 100"
+                                                "Z")
+                                   :fill "rgb(var(--background))"}]])
+        tail-wave (h/html [:svg wave-base
+                           [:path {:d (long-str "M -25 50"
+                                                "Q 0 10, 25 50"
+                                                "T 75 50"
+                                                "T 125 50"
+                                                "T 175 50"
+                                                "T 225 50"
+                                                "L 225 0"
+                                                "L -25 0"
+                                                "Z")
+                                   :fill "rgb(var(--background))"}]])]
+    {:css [(s/at-media {:prefers-color-scheme :dark}
+                       [":root" {:--accent  "0 164 230"}])
+           (s/at-media {:prefers-color-scheme :light}
+                       [":root" {:--accent "0, 117, 164"}])
+           [:.wave {:height      "1.4em"
+                    :mask-size   "100% 100%"
+                    :mask-repeat :no-repeat
+                    :background  "rgb(var(--background))"}]
+           [:.head-wave {:mask-image (datauri head-wave)
+                         :margin-bottom "-1px"}]
+           [:.tail-wave {:mask-image (datauri tail-wave)
+                         :margin-top "-1px"}]]
+     :body [[:div.full-width.wave.head-wave]
+            [:div.full-width (style {:padding    "5em 0"
+                                     :background "rgb(var(--background))"})
+             body]
+            [:div.full-width.wave.tail-wave ]]}))
 
 (defn popai [request]
   (if-let [[code config] (validate request)]
-    (page/from-components nil [page/base
-                               page/header
-                               background-image
-                               (flyout[{:left  "Asking a question?"
-                                        :right "Yes, you are."}
-                                       {:left  "And a follow-up?"
-                                        :right "Yep."}]
-                                      {:color       "white"
-                                       :text-shadow "0.1em 0.2em 0.6em black"
-                                       :height      "70vh"}
-                                      700)
-                               spacer
-                               (flyout [{:left  "Asking a question?"
-                                         :right "Yes, you are."}]
-                                       {:color       "white"
-                                        :text-shadow "0.1em 0.2em 0.6em black"})
-                               spacer
-                               (flyout [{:left  "Asking a question?"
-                                         :right "Yes, you are."}]
-                                       {:color       "white"
-                                        :text-shadow "0.1em 0.2em 0.6em black"})
-                               spacer
-                               (flyout [{:left  "Asking a question?"
-                                         :right "Yes, you are."}]
-                                       {:color       "white"
-                                        :text-shadow "0.1em 0.2em 0.6em black"})
-                               about/footer])
+    (page/from-components
+     nil
+     [page/base
+      page/header
+      background-image
+      (flyout[{:left  "Asking a question?"
+               :right "Yes, you are."}
+              {:left  "And a follow-up?"
+               :right "Yep."}]
+             {:color       "white"
+              :text-shadow "0.1em 0.2em 0.6em black"
+              :height      "70vh"}
+             700)
+      (topic [:div.body-width (style {:display :flex
+                                      :flex-flow "column nowrap"})
+              [:div (style {:display   :flex
+                            :flex-flow "row nowrap"})
+               [:div (style {:flex-grow 1
+                             :min-width "30vw"})]
+               [:div (style {:color "rgb(var(--accent))"})
+                [:h1 (style {:display :block}) "Ready to Cast Off"]
+                [:p "After months of preparation you are finally on a new charter boat with all your family and friends. The adventure begins …"]]]
+              [:div (style {:margin "3em 0"})
+               [:h1 "Pre-Cruise Checklists"]
+               [:p "PopAI turns your boat into a powerful trusty deckhand who knows their way around the boat and automates going over tedious checklists for you. Save time and have confidence that you will never miss a critical task."]]
+              [:div (style {:display   :flex
+                            :flex-flow "row nowrap"})
+               [:div (style {:flex-grow 1
+                             :min-width "10vw"})]
+               [:div
+                [:h1 "Simple and reliable voice interface"]
+                [:p "Operating a unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed. Simply ask PopAI and get an instant update."]]]])
+      (flyout [{:left  "Asking a question?"
+                :right "Yes, you are."}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (topic [:div.body-width (style {:display :flex
+                                      :flex-flow "column nowrap"})
+              [:div (style {:display   :flex
+                            :flex-flow "row nowrap"})
+               [:div (style {:flex-grow 1
+                             :min-width "30vw"})]
+               [:div (style {:color "rgb(var(--accent))"})
+                [:h1 (style {:display :block})"Cruising"]
+                [:p "It is a glorious day and everybody onboard is having a blast!"]]]
+              [:div (style {:margin "3em 0"})
+               [:h1 "PopAI has your back"]
+               [:p "PopAI reads all your instruments' data and will notify you when prompted. Setting an alarm is as easy as saying it out loud."]]
+              [:div (style {:display   :flex
+                            :flex-flow "row nowrap"})
+               [:div (style {:flex-grow 1
+                             :min-width "10vw"})]
+               [:div
+                [:h1 "Local guide knowledge when you need it"]
+                [:p "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. PopAI has a detailed local area crusing knowledge, that you can access just by asking."]]]])
+      (flyout [{:left  "Asking a question?"
+                :right "Yes, you are."}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (topic [:p "hello"])
+      (flyout [{:left  "Asking a question?"
+                :right "Yes, you are."}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      about/footer])
     (resp/redirect "/")))
-
 
 (defn almanac-request [code]
   {:css  [[:details {:margin-top "3em"}
