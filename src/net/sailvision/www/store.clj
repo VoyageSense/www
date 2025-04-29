@@ -346,51 +346,55 @@
 (defn style [content]
   {:style (g/style content)})
 
-(defn topic [body]
-  (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
-        wave-base {:xmlns               "http://www.w3.org/2000/svg"
-                   :viewBox             "0 0 200 100"
-                   :width               200
-                   :height              100
-                   :preserveAspectRatio :none}
-        head-wave (h/html [:svg wave-base
-                           [:path {:d (long-str "M 0 50"
-                                                "Q 25 90, 50 50"
-                                                "T 100 50"
-                                                "T 150 50"
-                                                "T 200 50"
-                                                "L 200 100"
-                                                "L 0 100"
-                                                "Z")
-                                   :fill "rgb(var(--background))"}]])
-        tail-wave (h/html [:svg wave-base
-                           [:path {:d (long-str "M -25 50"
-                                                "Q 0 10, 25 50"
-                                                "T 75 50"
-                                                "T 125 50"
-                                                "T 175 50"
-                                                "T 225 50"
-                                                "L 225 0"
-                                                "L -25 0"
-                                                "Z")
-                                   :fill "rgb(var(--background))"}]])]
-    {:css [(s/at-media {:prefers-color-scheme :dark}
-                       [":root" {:--accent  "0 164 230"}])
-           (s/at-media {:prefers-color-scheme :light}
-                       [":root" {:--accent "0, 117, 164"}])
-           [:.wave {:height      "1.4em"
-                    :mask-size   "100% 100%"
-                    :mask-repeat :no-repeat
-                    :background  "rgb(var(--background))"}]
-           [:.head-wave {:mask-image (datauri head-wave)
-                         :margin-bottom "-1px"}]
-           [:.tail-wave {:mask-image (datauri tail-wave)
-                         :margin-top "-1px"}]]
-     :body [[:div.full-width.wave.head-wave]
-            [:div.full-width (style {:padding    "5em 0"
-                                     :background "rgb(var(--background))"})
-             body]
-            [:div.full-width.wave.tail-wave ]]}))
+(defn topic
+  ([body]
+   (topic nil body))
+  ([css body]
+   (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
+         wave-base {:xmlns               "http://www.w3.org/2000/svg"
+                    :viewBox             "0 0 200 100"
+                    :width               200
+                    :height              100
+                    :preserveAspectRatio :none}
+         head-wave (h/html [:svg wave-base
+                            [:path {:d (long-str "M 0 50"
+                                                 "Q 25 90, 50 50"
+                                                 "T 100 50"
+                                                 "T 150 50"
+                                                 "T 200 50"
+                                                 "L 200 100"
+                                                 "L 0 100"
+                                                 "Z")
+                                    :fill "rgb(var(--background))"}]])
+         tail-wave (h/html [:svg wave-base
+                            [:path {:d (long-str "M -25 50"
+                                                 "Q 0 10, 25 50"
+                                                 "T 75 50"
+                                                 "T 125 50"
+                                                 "T 175 50"
+                                                 "T 225 50"
+                                                 "L 225 0"
+                                                 "L -25 0"
+                                                 "Z")
+                                    :fill "rgb(var(--background))"}]])]
+     {:css [(s/at-media {:prefers-color-scheme :dark}
+                        [":root" {:--accent  "0 164 230"}])
+            (s/at-media {:prefers-color-scheme :light}
+                        [":root" {:--accent "0, 117, 164"}])
+            [:.wave {:height      "1.4em"
+                     :mask-size   "100% 100%"
+                     :mask-repeat :no-repeat
+                     :background  "rgb(var(--background))"}]
+            [:.head-wave {:mask-image (datauri head-wave)
+                          :margin-bottom "-1px"}]
+            [:.tail-wave {:mask-image (datauri tail-wave)
+                          :margin-top "-1px"}]
+            [:.topic css]]
+      :body [[:div.full-width.wave.head-wave]
+             [:div.full-width.topic (style {:padding    "5em 0"
+                                      :background "rgb(var(--background))"})
+              body]
+             [:div.full-width.wave.tail-wave ]]})))
 
 (defn popai [request]
   (if-let [[code config] (validate request)]
@@ -426,8 +430,8 @@
                [:div
                 [:h1 "Simple and reliable voice interface"]
                 [:p "Operating a unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed. Simply ask PopAI and get an instant update."]]]])
-      (flyout [{:left  "Asking a question?"
-                :right "Yes, you are."}]
+      (flyout [{:right  "Air pressure has been dropping &mdash; expect high winds soon."}
+               {:left "Okay, where can i anchor around here?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (topic [:div.body-width (style {:display :flex
@@ -453,9 +457,25 @@
                 :right "Yes, you are."}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
-      (topic [:p "hello"])
-      (flyout [{:left  "Asking a question?"
-                :right "Yes, you are."}]
+      (topic [[:a {:grid-column     2
+                   :user-select     :none
+                   :text-decoration :none
+                   :font-size       "1.2em"
+                   :border-radius   "1em"
+                   :padding         "1em"
+                   :cursor          :pointer
+                   :color           :white
+                   :background      "rgb(var(--accent))"
+                   :box-shadow      "3px 3px 0px rgba(var(--foreground), 0.9)"}]
+              ["a:hover"        {:background "color-mix(in srgb, rgb(var(--accent)), white 15%)"}]
+              ["a:hover:active" {:background "color-mix(in srgb, rgb(var(--accent)), black 15%)"
+                                 :box-shadow :none
+                                 :transform  "translate(3px, 3px)"}]]
+             [:div.body-width (style {:display               :grid
+                                      :grid-template-columns "1fr auto 1fr"})
+              [:a {:href (route-with-code route-configure code)} "Configure and Buy"]])
+      (flyout [{:left  "Is there anything left on my return checklist?"
+                :right "Nope, that's it!"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       about/footer])
