@@ -318,8 +318,9 @@
   {:css  [[:body
            [:header {:color       "#f8f8f8"
                      :text-shadow "0.05em 0.1em 0.5em #404040"}]]
-          [:.background {:position :absolute
-                         :z-index  -2}
+          [:.background {:position   :absolute
+                         :z-index    -2
+                         :background "rgb(var(--background))"}
            [:img {:position       :fixed
                   :width          "100vw"
                   :height         "100vh"
