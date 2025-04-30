@@ -279,7 +279,7 @@
      {
       :css    [[:.flyouts {:display :grid
                            :row-gap "1em"}
-                [:.body-width {:padding  "6em 0"}]
+                [:.body-width {:padding  "4em 0"}]
                 [:.flyout-pair {:display    :flex
                                 :padding    "0 5vw"
                                 :font-size  "2em"
@@ -392,7 +392,7 @@
             [:.topic css]]
       :body [[:div.full-width.wave.head-wave]
              [:div.full-width.topic (style {:padding    "5em 0"
-                                      :background "rgb(var(--background))"})
+                                            :background "rgb(var(--background))"})
               body]
              [:div.full-width.wave.tail-wave ]]})))
 
@@ -431,7 +431,7 @@
                 [:h1 "Simple and reliable voice interface"]
                 [:p "Operating a unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed. Simply ask PopAI and get an instant update."]]]])
       (flyout [{:right  "Air pressure has been dropping &mdash; expect high winds soon."}
-               {:left "Okay, where can i anchor around here?"}]
+               {:left "Okay, where can I anchor around here?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (topic [:div.body-width (style {:display :flex
@@ -474,6 +474,91 @@
              [:div.body-width (style {:display               :grid
                                       :grid-template-columns "1fr auto 1fr"})
               [:a {:href (route-with-code route-configure code)} "Configure and Buy"]])
+      (flyout [{:left  "Asking a question?"
+                :right "Yes, you are."}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (topic [:div.body-width (style {:display   :flex
+                                      :flex-flow "column nowrap"
+                                      :gap       "4em"})
+              [:h1 (style {:margin 0}) "Instant, Quality Answers"]
+              [:div (style {:display               :grid
+                            :grid-template-columns "auto 1fr 5vw"
+                            :grid-template-rows    "auto auto"
+                            :gap                   "1em"
+                            :text-align            :left})
+               [:img (merge {:src "/change-run.png"}
+                            (style {:grid-column 1
+                                    :grid-row    "1 / -1"
+                                    :align-self  :center
+                                    :height      "3em"}))]
+               [:h2 (style {:margin      0
+                            :grid-column 2}) "Instant reference"]
+               [:p (style {:margin      0
+                           :grid-column 2}) "Access live data from the boat’s instruments, including information about other vessels through AIS."]]
+              [:div (style {:display               :grid
+                            :grid-template-columns "5vw 1fr auto"
+                            :grid-template-rows    "auto auto"
+                            :gap                   "1em"
+                            :text-align            :right})
+               [:svg (merge {:width "35.341206mm"
+                             :height "27.330044mm"
+                             :viewBox "0 0 35.341206 27.330044"
+                             :version "1.1"
+                             :id "svg1"
+                             "xml:space" :preserve
+                             :xmlns "http://www.w3.org/2000/svg"
+                             "xmlns:svg" "http://www.w3.org/2000/svg"}
+                      (style {:grid-column 3
+                              :grid-row    "1 / -1"
+                              :align-self  :center
+                              :height      "3em"}))
+                [:style (g/css [[:path {:fill :none
+                                       :stroke "rgb(var(--foreground))"
+                                       :stroke-width 1.265
+                                       :stroke-linecap :round
+                                       :stroke-linejoin :round
+                                        :stroke-opacity  1}]
+                                [:path.accent {:stroke "rgb(var(--accent))"}]])]
+                [:defs {:id "defs1"}]
+                [:g {:id "layer1"
+                     :transform "translate(-86.072637,-135.23065)"}
+                 [:path {:style "fill:#6b6b6b;stroke-width:1.265"
+                         :d "m 104.81604,145.45514 v 3.84935"}]
+                 [:path {:d "m 94.719374,149.30449 13.819816,0.12621 3.72315,4.10177 8.51906,-0.0631 -4.79592,7.69871"}]
+                 [:path {:d "m 97.81148,149.3676 -1.766916,6.1211"}]
+                 [:path {:d "m 112.32544,153.53247 -4.4804,0.0631 -3.47073,2.08243 -15.776042,0.0631 1.893126,5.61627"}]
+                 [:path {:style "stroke-width:1.865"
+                         :d "m 107.30865,153.28006 -0.59948,-0.75726 -6.56284,0.0631"}]
+                 [:path {:d "m 104.75294,149.05207 0.0631,-3.53383"}]
+                 [:path {:class :accent
+                         :d "m 102.6074,143.12028 c 0.61489,-0.49606 1.42053,-0.74926 2.20864,-0.69414 0.64111,0.0448 1.26672,0.29061 1.76692,0.69414"}]
+                 [:path {:class :accent
+                         :d "m 100.65117,140.65922 c 1.14959,-0.93 2.6231,-1.4514 4.10177,-1.4514 1.47867,0 2.95218,0.5214 4.10177,1.4514"}]
+                 [:path {:class :accent
+                         :d "m 98.442522,138.13505 c 1.740378,-1.44161 3.987448,-2.25873 6.247308,-2.27175 2.33061,-0.0134 4.65665,0.83033 6.43663,2.33485"}]
+                 [:path {:d "m 86.705143,160.85255 c 1.16629,0.69912 2.55892,1.01358 3.912459,0.88346 0.866873,-0.0833 1.705708,-0.3416 2.544564,-0.57556 0.838857,-0.23395 1.696094,-0.44634 2.566877,-0.4341 0.960413,0.0135 1.893747,0.29921 2.81027,0.58654 0.916523,0.28733 1.845987,0.58139 2.805997,0.61244 1.1142,0.036 2.20685,-0.28403 3.26616,-0.63131 1.05932,-0.34728 2.12259,-0.72803 3.23357,-0.82009 1.14173,-0.0946 2.28614,0.12027 3.39913,0.39182 1.113,0.27154 2.21627,0.60163 3.35302,0.74406 1.70023,0.21304 3.45286,-0.006 5.04834,-0.63105"}]]]
+               [:h2 (style {:margin      0
+                            :grid-column 2}) "Concrete, exact answers"]
+               [:p (style {:margin       0
+                            :grid-column 2}) "Answers from the boat and engine operational manuals, maintenance guides, and other manufacturer documentation."]]
+              [:div (style {:display               :grid
+                            :grid-template-columns "auto 1fr 5vw"
+                            :grid-template-rows    "auto auto"
+                            :gap                   "1em"
+                            :text-align            :left})
+               [:img (merge {:src "/change-encyclopedia.png"}
+                            (style {:grid-column 1
+                                    :grid-row    "1 / -1"
+                                    :align-self  :center
+                                    :height      "3em"}))]
+               [:h2 (style {:margin      0
+                            :grid-column 2}) "Encyclopedic detail"]
+               [:p (style {:margin      0
+                           :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]
+              [:div.body-width (style {:display               :grid
+                                      :grid-template-columns "1fr auto 1fr"})
+               [:a {:href (route-with-code route-configure code)} "Configure and Buy"]]])
       (flyout [{:left  "Is there anything left on my return checklist?"
                 :right "Nope, that's it!"}]
               {:color       "white"
