@@ -208,7 +208,7 @@
                    :cursor          :pointer
                    :color           :white
                    :background      "rgb(var(--accent))"
-                   :box-shadow      "3px 3px 0px rgba(var(--foreground), 0.9)"}]
+                   :box-shadow      "3px 3px 0px color-mix(in srgb, rgb(var(--accent)), rgb(var(--foreground)) 70%)"}]
               ["a:hover"        {:background "color-mix(in srgb, rgb(var(--accent)), white 15%)"}]
               ["a:hover:active" {:background "color-mix(in srgb, rgb(var(--accent)), black 15%)"
                                  :box-shadow :none
