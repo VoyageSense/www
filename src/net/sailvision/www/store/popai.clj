@@ -133,51 +133,8 @@
                                                             :margin-bottom offset
                                                             :margin-top    padding}))]]])))
 
-(defn topic
-  ([body] (topic nil body))
-  ([code body]
-   {:body (topic-backdrop
-           (concat
-            body
-            (when code
-              [[:div.body-width (style {:display               :grid
-                                        :grid-template-columns "1fr auto 1fr"})
-                [:a.button {:href (route/with-code route/configure code)}
-                 "Configure and Buy"]]])))}))
-
-(defn elaboration [chunks]
-  (topic
-   (let [[accent & points] chunks
-         [head body]       accent
-
-         gap "3em"]
-     [[:div.body-width (style {:display :flex
-                               :flex-flow "column nowrap"})
-       [:div (style {:display   :flex
-                     :flex-flow "row nowrap"})
-        [:div (style {:flex-grow 1
-                      :min-width "30vw"})]
-        [:div (style {:color "rgb(var(--accent))"})
-         [:h1 (style {:display :block}) head]
-         [:p body]]]
-       (map-indexed (fn [i point]
-                      (let [[head body] point]
-                        (if (= 0 (mod i 2))
-                          [:div (style {:margin-top gap})
-                           [:h1 head]
-                           [:p body]]
-                          [:div (style {:margin-top gap
-                                        :display    :flex
-                                        :flex-flow  "row nowrap"})
-                           [:div (style {:flex-grow 1
-                                         :min-width "10vw"})]
-                           [:div
-                            [:h1 head]
-                            [:p body]]])))
-                    points)]])))
-
 (def buy-button-css
-  [["a.button" {:grid-column     2
+  [["a.button" {:grid-column     3
                 :user-select     :none
                 :text-decoration :none
                 :font-size       "1.2em"
@@ -185,12 +142,58 @@
                 :padding         "1em"
                 :cursor          :pointer
                 :color           :white
+                :justify-self    :center
                 :background      "rgb(var(--accent))"
                 :box-shadow      "3px 3px 0px color-mix(in srgb, rgb(var(--accent)), rgb(var(--foreground)) 70%)"}]
    ["a.button:hover"        {:background "color-mix(in srgb, rgb(var(--accent)), white 15%)"}]
    ["a.button:hover:active" {:background "color-mix(in srgb, rgb(var(--accent)), black 15%)"
                              :box-shadow :none
                              :transform  "translate(3px, 3px)"}]])
+
+(defn topic
+  ([body] (topic nil body))
+  ([code body]
+   {:body (topic-backdrop
+           (concat
+            body
+            (when code
+              [[:a.button {:href (route/with-code route/configure code)
+                           :style (g/style {:margin-top "3em"})}
+                "Configure and Buy"]])))}))
+
+(defn elaboration
+  ([chunks] (elaboration nil chunks))
+  ([code chunks]
+   (topic
+    code
+    (let [[accent & points] chunks
+          [head body]       accent
+
+          gap "3em"]
+      [[:div.body-width (style {:display :flex
+                                :flex-flow "column nowrap"})
+        [:div (style {:display   :flex
+                      :flex-flow "row nowrap"})
+         [:div (style {:flex-grow 1
+                       :min-width "30vw"})]
+         [:div (style {:color "rgb(var(--accent))"})
+          [:h1 (style {:display :block}) head]
+          [:p body]]]
+        (map-indexed (fn [i point]
+                       (let [[head body] point]
+                         (if (= 0 (mod i 2))
+                           [:div (style {:margin-top gap})
+                            [:h1 head]
+                            [:p body]]
+                           [:div (style {:margin-top gap
+                                         :display    :flex
+                                         :flex-flow  "row nowrap"})
+                            [:div (style {:flex-grow 1
+                                          :min-width "10vw"})]
+                            [:div
+                             [:h1 head]
+                             [:p body]]])))
+                     points)]]))))
 
 (defn page [request]
   (if-let [[code config] (request/validate request)]
@@ -200,10 +203,8 @@
       page/header
       {:css [buy-button-css]}
       background-image
-      (flyout[{:left  "Asking a question?"
-               :right "Yes, you are."}
-              {:left  "And a follow-up?"
-               :right "Yep."}]
+      (flyout[{:left  "PopAI, are we ready to go?"
+               :right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."}]
              {:color       "white"
               :text-shadow "0.1em 0.2em 0.6em black"
               :height      "50vh"}
@@ -213,14 +214,60 @@
                     ["Pre-Cruise Checklists"
                      "PopAI turns your boat into a powerful trusty deckhand who knows their way around the boat and automates going over tedious checklists for you. Save time and have confidence that you will never miss a critical task."]
                     ["Simple and reliable voice interface"
-                     "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed."]])
-      (flyout [{:right  "Air pressure has been dropping &mdash; expect high winds soon."}
-               {:left "Okay, where can I anchor around here?"}]
+                     "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed."]
+                    ["Expert handling charter companies"
+                     "It’s easy to overlook things when checking out a charter boat—you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
+      (flyout [{:left "PopAI, notify me when if the depth goes below 15 feet."}
+               {:right "I set an alarm for 15 feet minimum depth."}
+               {:left "PopAI, what time are we set to arrive?"
+                :right "We’ll arrive after dark, around 9:30."}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
-      (topic code [])
-      (flyout [{:left  "Asking a question?"
-                :right "Yes, you are."}]
+      (elaboration [["Cruising"
+                     "It is a glorious day and everybody onboard is having a blast!"]
+                    ["PopAI has your back"
+                     "PopAI will read you your boat instruments' data when prompted. Setting an alarm is as easy as saying it out loud."]
+                    ["Control your boat from anywhere"
+                     "Control yourt boat seamlessly just with your voice. From yout MFD brightness and night mode to turning on and off lights, pumps and other systems."]
+                    ["Activity oriented answers"
+                     "From picturesque anchorages to the hottest local dive spot. PopAI is your instant reference."]])
+      (flyout [{:left  "PopAI, why did the engine suddenly stop?"
+                :right "It could be a fuel, electrical, overheating or a mechanical issue. Would you like me to provide you with troubleshooting steps?"}
+               {:left "PopAI, where is the fuel pump’s fuse?"}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (elaboration [["Breakdown"
+                     "You’re alone at last—open sea, no signal, no distractions. Then—silence. The engine dies."]
+                    ["Instant access to your boat’s manuals"
+                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers for your specific systems."]
+                    ["Troubleshooting"
+                     "PopAI guides you through step-by-step troubleshooting. In a stressful moment, a clear, methodical approach can mean the difference between getting back underway—or drifting for hours in frustration."]
+                    ["Repair instructions for your skill level"
+                     "With a little know-how, you can handle 90% of boat repairs yourself."]])
+      (flyout [{:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"
+                :right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (elaboration [["Land Ahoy"
+                     "You’ve reached your final destination—now it’s time to navigate the last challenge: docking in a new, unfamiliar marina on a foggy night."]
+                    ["VHF instructions"
+                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers tailored to your specific systems."]
+                    ["COLREGS"
+                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]
+                    ["Pilot Plan"
+                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
+      (flyout [{:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"
+                :right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (elaboration code
+                   [["At the dock!"
+                     "What an adventure! You’re safely docked, the crew is happily worn out from a day on the water—and now, it’s time to kick back and unwind."]
+                    ["Instant access to your boat’s manuals"
+                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers tailored to your specific systems."]
+                    ["Local guide knowledge when you need it"
+                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
+      (flyout [{:left  "What should we ask here?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (topic [[:div.body-width (style {:display   :flex
@@ -304,9 +351,8 @@
                [:div.body-width (style {:display               :grid
                                         :grid-template-columns "1fr auto 1fr"})
                 [:a {:href (route/with-code route/configure code)} "Configure and Buy"]]]])
-      (flyout [{:left  "Is there anything left on my return checklist?"
-                :right "Nope, that's it!"}]
-              {:color       "white"
-               :text-shadow "0.1em 0.2em 0.6em black"})
+      (flyout [])
+      (flyout [])
+      (flyout [])
       about/footer])
     (resp/redirect "/")))
