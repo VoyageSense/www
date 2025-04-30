@@ -17,6 +17,8 @@
 (def dark-foreground  "200, 200, 200")
 (def dark-background  "30, 30, 30")
 (def link-visited  "128, 128, 128")
+(def dark-accent "0 164 230")
+(def light-accent "0, 117, 164")
 
 (def base-css
   [[:body {:margin 0}
@@ -29,11 +31,13 @@
    (s/at-media {:prefers-color-scheme :light}
                [":root" {:--foreground     light-foreground
                          :--background     light-background
-                         :--link-unvisited light-foreground}])
+                         :--link-unvisited light-foreground
+                         :--accent         light-accent}])
    (s/at-media {:prefers-color-scheme :dark}
                [":root" {:--foreground     dark-foreground
                          :--background     dark-background
-                         :--link-unvisited dark-foreground}])
+                         :--link-unvisited dark-foreground
+                         :--accent         dark-accent}])
    [:body {:color      "rgb(var(--foreground))"
            :background "rgb(var(--background))"}]])
 
