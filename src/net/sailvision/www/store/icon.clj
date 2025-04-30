@@ -14,7 +14,7 @@
                 :xmlns "http://www.w3.org/2000/svg"
                 "xmlns:svg" "http://www.w3.org/2000/svg"}
                (style {:grid-column 3
-                       :grid-row    "1 / -1"
+                       :grid-row    2
                        :align-self  :center
                        :height      "3em"}))
    [:style (g/css [[:#boat-connect
@@ -49,7 +49,11 @@
                 :version "1.1"
                 "xml:space" "preserve"
                 :xmlns "http://www.w3.org/2000/svg"
-                "xmlns:svg" "http://www.w3.org/2000/svg"})
+                "xmlns:svg" "http://www.w3.org/2000/svg"}
+               (style {:grid-column 1
+                       :grid-row    2
+                       :align-self  :center
+                       :height      "3em"}))
    [:style (g/css [[:#run
                     [:path {:fill :none
                             :stroke "rgb(var(--foreground))"
@@ -91,14 +95,18 @@
             :d "m 2.6257302,11.418984 2.9899019,0.0299"}]]])
 
 (def encyclopedia
-  [:svg {:width "20mm"
-         :height "20mm"
-         :viewBox "0 0 20 20"
-         :version "1.1"
-         :id "svg1"
-         "xml:space" "preserve"
-         :xmlns "http://www.w3.org/2000/svg"
-         "xmlns:svg" "http://www.w3.org/2000/svg"}
+  [:svg (merge {:width "20mm"
+                :height "20mm"
+                :viewBox "0 0 20 20"
+                :version "1.1"
+                :id "svg1"
+                "xml:space" "preserve"
+                :xmlns "http://www.w3.org/2000/svg"
+                "xmlns:svg" "http://www.w3.org/2000/svg"}
+               (style {:grid-column 1
+                       :grid-row    2
+                       :align-self  :center
+                       :height      "3em"}))
    [:style (g/css [[:#encyclopedia
                     [:path {:fill :none
                             :stroke "rgb(var(--foreground))"

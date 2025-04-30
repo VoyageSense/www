@@ -283,7 +283,7 @@
                              :text-align            :left})
                 icon/run
                 [:h2 (style {:margin      0
-                             :grid-column 2}) "Instant reference"]
+                             :grid-column "1 / -1"}) "Instant reference"]
                 [:p (style {:margin      0
                             :grid-column 2}) "Access live data from the boat’s instruments, including information about other vessels through AIS."]]
                [:div (style {:display               :grid
@@ -293,7 +293,7 @@
                              :text-align            :right})
                 icon/boat-connect
                 [:h2 (style {:margin      0
-                             :grid-column 2}) "Concrete, exact answers"]
+                             :grid-column "1 / -1"}) "Concrete, exact answers"]
                 [:p (style {:margin       0
                             :grid-column 2}) "Answers from the boat and engine operational manuals, maintenance guides, and other manufacturer documentation."]]
                [:div (style {:display               :grid
@@ -303,7 +303,7 @@
                              :text-align            :left})
                 icon/encyclopedia
                 [:h2 (style {:margin      0
-                             :grid-column 2}) "Encyclopedic detail"]
+                             :grid-column "1 / -1"}) "Encyclopedic detail"]
                 [:p (style {:margin      0
                             :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]]])
       (flyout [])
