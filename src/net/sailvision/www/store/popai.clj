@@ -158,7 +158,7 @@
             body
             (when code
               [[:a.button {:href (route/with-code route/configure code)
-                           :style (g/style {:margin-top "3em"})}
+                           :style (g/style {:margin "5em 0 3em"})}
                 "Configure and Buy"]])))}))
 
 (defn elaboration
@@ -270,7 +270,8 @@
       (flyout [{:left  "What should we ask here?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
-      (topic [[:div.body-width (style {:display   :flex
+      (topic code
+             [[:div.body-width (style {:display   :flex
                                        :flex-flow "column nowrap"
                                        :gap       "4em"})
                [:h1 (style {:margin 0}) "Instant, Quality Answers"]
@@ -347,10 +348,7 @@
                 [:h2 (style {:margin      0
                              :grid-column 2}) "Encyclopedic detail"]
                 [:p (style {:margin      0
-                            :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]
-               [:div.body-width (style {:display               :grid
-                                        :grid-template-columns "1fr auto 1fr"})
-                [:a {:href (route/with-code route/configure code)} "Configure and Buy"]]]])
+                            :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]]])
       (flyout [])
       (flyout [])
       (flyout [])
