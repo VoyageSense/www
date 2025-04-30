@@ -8,7 +8,10 @@
    [net.sailvision.www.about :as about]
    [net.sailvision.www.admin :as admin]
    [net.sailvision.www.page :as page]
-   [net.sailvision.www.store :as store]
+   [net.sailvision.www.store.checkout :as store-checkout]
+   [net.sailvision.www.store.configuration :as store-configuration]
+   [net.sailvision.www.store.popai :as store-popai]
+   [net.sailvision.www.store.route :as store-route]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :as content-type]
    [ring.middleware.not-modified :as not-modified]
@@ -85,12 +88,12 @@
 
 (defn route [request]
   (condp c/route-matches request
-    (c/route-compile store/route-home)            :>> (wrap-params request store/popai)
-    (c/route-compile store/route-configure)       :>> (wrap-params request store/configure)
-    (c/route-compile store/route-checkout)        :>> (wrap-params request store/checkout)
-    (c/route-compile store/route-request-almanac) :>> (wrap-params request store/request-almanac)
-    (c/route-compile store/route-discount)        :>> (wrap-params request store/discount)
-    (c/route-compile store/route-survey)          :>> (wrap-params request store/submit-survey)
+    (c/route-compile store-route/home)            :>> (wrap-params request store-popai/page)
+    (c/route-compile store-route/configure)       :>> (wrap-params request store-configuration/page)
+    (c/route-compile store-route/request-almanac) :>> (wrap-params request store-configuration/request-almanac)
+    (c/route-compile store-route/checkout)        :>> (wrap-params request store-checkout/page)
+    (c/route-compile store-route/discount)        :>> (wrap-params request store-checkout/discount)
+    (c/route-compile store-route/survey)          :>> (wrap-params request store-checkout/submit-survey)
     (c/route-compile about/route-home)            (about/home)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
