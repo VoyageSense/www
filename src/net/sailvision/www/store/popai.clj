@@ -301,11 +301,7 @@
                              :grid-template-rows    "auto auto"
                              :gap                   "1em"
                              :text-align            :left})
-                [:img (merge {:src "/change-encyclopedia.png"}
-                             (style {:grid-column 1
-                                     :grid-row    "1 / -1"
-                                     :align-self  :center
-                                     :height      "3em"}))]
+                icon/encyclopedia
                 [:h2 (style {:margin      0
                              :grid-column 2}) "Encyclopedic detail"]
                 [:p (style {:margin      0
