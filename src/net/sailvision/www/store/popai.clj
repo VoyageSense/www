@@ -211,63 +211,64 @@
               :height      "50vh"}
              700)
       (elaboration [["Ready to Cast Off"
-                     "After months of preparation you are finally on a new charter boat with all your family and friends. The adventure begins …"]
-                    ["Pre-Cruise Checklists"
-                     "PopAI turns your boat into a powerful trusty deckhand who knows their way around the boat and automates going over tedious checklists for you. Save time and have confidence that you will never miss a critical task."]
+                     "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
+                    ["Verbal Checklists"
+                     "PopAI verbally helps you run through step-by-step procedures – everything from pre-cruise checkout to <b><i>something impressive</i></b>. Save time and have confidence that you’ll never miss a critical task."]
                     ["Simple and reliable voice interface"
-                     "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough. No need to fight screen glare or brightness just to have to find where is the depth or boat speed."]
+                     "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough – no more straining agaist glare and hunting for information."]
                     ["Expert handling charter companies"
-                     "It’s easy to overlook things when checking out a charter boat—you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
+                     "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
       (flyout [{:left "PopAI, notify me when if the depth goes below 15 feet."}
-               {:right "I set an alarm for 15 feet minimum depth."}
-               {:left "PopAI, what time are we set to arrive?"
+               {:right "I set an alarm for 15 feet minimum depth."}]
+              {:color       "white"
+               :text-shadow "0.1em 0.2em 0.6em black"})
+      (flyout [{:left "PopAI, what time are we set to arrive?"
                 :right "We’ll arrive after dark, around 9:30."}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (elaboration [["Cruising"
-                     "It is a glorious day and everybody onboard is having a blast!"]
+                     "It's a glorious day and everybody onboard is having a blast!"]
                     ["PopAI has your back"
-                     "PopAI will read you your boat instruments' data when prompted. Setting an alarm is as easy as saying it out loud."]
-                    ["Control your boat from anywhere"
-                     "Control yourt boat seamlessly just with your voice. From yout MFD brightness and night mode to turning on and off lights, pumps and other systems."]
+                     "PopAI monitors the systems aboard – alerting when it sees trouble unfolding – giving you a “second set of eyes”."]
+                    ["Control your boat"
+                     "Control your boat seamlessly with your voice. Adjust the display brightness, turn on the foredeck light, and interact with other systems aboard, using the network already installed."]
                     ["Activity oriented answers"
                      "From picturesque anchorages to the hottest local dive spot. PopAI is your instant reference."]])
-      (flyout [{:left  "PopAI, why did the engine suddenly stop?"
-                :right "It could be a fuel, electrical, overheating or a mechanical issue. Would you like me to provide you with troubleshooting steps?"}
-               {:left "PopAI, where is the fuel pump’s fuse?"}]
+      (flyout [{:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"
+                :left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (elaboration [["Breakdown"
-                     "You’re alone at last—open sea, no signal, no distractions. Then—silence. The engine dies."]
-                    ["Instant access to your boat’s manuals"
-                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers for your specific systems."]
-                    ["Troubleshooting"
-                     "PopAI guides you through step-by-step troubleshooting. In a stressful moment, a clear, methodical approach can mean the difference between getting back underway—or drifting for hours in frustration."]
-                    ["Repair instructions for your skill level"
-                     "With a little know-how, you can handle 90% of boat repairs yourself."]])
+                     "You’re finally on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
+                    ["Instant access to your boat’s documentation"
+                     "PopAI gets its knowledge from the documentation provided by the boat’s manufacturer. Instant, accurate answers and help with troubleshooting are there when you need it."]
+                    ["Interactive Troubleshooting"
+                     "Get help with troubleshooting, using information from the engine manual itself. In a stressful moment, a clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
+                    ["Repair guidance tailored to your skill level"
+                     "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
       (flyout [{:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"
                 :right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (elaboration [["Land Ahoy"
-                     "You’ve reached your final destination—now it’s time to navigate the last challenge: docking in a new, unfamiliar marina on a foggy night."]
+                     "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
-                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers tailored to your specific systems."]
-                    ["COLREGS"
-                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]
+                     "PopAI is an instant guide to VHF communication &mdash; from choosing the right channel to how to hail a vessel or request assistance, all a question away."]
+                    ["Rules of the road"
+                     "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; just ask PopAI. Easy access to boating rules and conventions, domestic and international."]
                     ["Pilot Plan"
                      "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
-      (flyout [{:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"
-                :right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"}]
+      (flyout [{:left  "PopAI, can I anchor here?"
+                :right "You can, but you'll be half-a-foot in the mud at low tide tonight."}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
       (elaboration code
-                   [["At the dock!"
-                     "What an adventure! You’re safely docked, the crew is happily worn out from a day on the water—and now, it’s time to kick back and unwind."]
-                    ["Instant access to your boat’s manuals"
-                     "Your Data Almanac is built from your boat’s manufacturer manuals. PopAI uses it to deliver instant, accurate answers tailored to your specific systems."]
-                    ["Local guide knowledge when you need it"
-                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
+                   [["Safely in the marina!"
+                     "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
+                    ["Subtle help at critical moments"
+                     "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
+                    ["Rest assured"
+                     "PopAI monitors your vessel’s status and can help remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
       (flyout [{:left  "What should we ask here?"}]
               {:color       "white"
                :text-shadow "0.1em 0.2em 0.6em black"})
