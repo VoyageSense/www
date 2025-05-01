@@ -54,7 +54,7 @@
                                      :background-attachment :fixed
                                      :background-position   :center
                                      :background-repeat     :no-repeat
-                                     :background-size       "auto 100vh"})
+                                     :background-size       "var(--max-body-width) 100vh"})
      head-wave
      body
      tail-wave]))
