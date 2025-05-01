@@ -271,40 +271,49 @@
                      "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "What should we ask here?"]]
               "/popai-hero-background-light.jpg")
-      (topic code
-             [[:div.body-width (style {:display   :flex
-                                       :flex-flow "column nowrap"
-                                       :gap       "4em"})
-               [:h1 (style {:margin 0}) "Instant, Quality Answers"]
-               [:div (style {:display               :grid
-                             :grid-template-columns "auto 1fr 5vw"
-                             :grid-template-rows    "auto auto"
-                             :gap                   "1em"
-                             :text-align            :left})
-                icon/run
-                [:h2 (style {:margin      0
-                             :grid-column "1 / -1"}) "Instant reference"]
-                [:p (style {:margin      0
-                            :grid-column 2}) "Access live data from the boat’s instruments, including information about other vessels through AIS."]]
-               [:div (style {:display               :grid
-                             :grid-template-columns "5vw 1fr auto"
-                             :grid-template-rows    "auto auto"
-                             :gap                   "1em"
-                             :text-align            :right})
-                icon/boat-connect
-                [:h2 (style {:margin      0
-                             :grid-column "1 / -1"}) "Concrete, exact answers"]
-                [:p (style {:margin       0
-                            :grid-column 2}) "Answers from the boat and engine operational manuals, maintenance guides, and other manufacturer documentation."]]
-               [:div (style {:display               :grid
-                             :grid-template-columns "auto 1fr 5vw"
-                             :grid-template-rows    "auto auto"
-                             :gap                   "1em"
-                             :text-align            :left})
-                icon/encyclopedia
-                [:h2 (style {:margin      0
-                             :grid-column "1 / -1"}) "Encyclopedic detail"]
-                [:p (style {:margin      0
-                            :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]]])
+      (merge
+       {:script (slurp (io/resource "visible.js"))
+        :css    [[:html.js
+                  [:.slide-up {:transform "translateY(50px)"
+                               :opacity   0}]
+                  [:.slide-up.visible {:transform :none
+                                       :opacity   1}]]]}
+       (topic code
+              (let [outline (fn [align icon title text]
+                              (into [:div.slide-up.is-visible
+                                     (style (merge {:background-color   "rgb(var(--bold-background))"
+                                                    :padding            "2em"
+                                                    :box-shadow         "0 0px 10px rgba(var(--foreground), 0.1)"
+                                                    :transition         "opacity 0.6s ease, transform 0.6s ease"
+                                                    :display            :grid
+                                                    :align-items        :center
+                                                    :grid-template-rows "auto auto"
+                                                    :gap                "1em"}
+                                                   (case align
+                                                     :left {:grid-template-columns "auto 1fr 5vw"
+                                                            :text-align            :left}
+                                                     :right {:grid-template-columns "5vw 1fr auto"
+                                                             :text-align            :right})))]
+                                    [icon
+                                     [:h2 (style {:margin      0
+                                                  :grid-column "1 / -1"}) title]
+                                     [:p (style {:margin      0
+                                                 :grid-column 2}) text]]))]
+                [[:div.body-width (style {:display   :flex
+                                          :flex-flow "column nowrap"
+                                          :gap       "2em"})
+                  [:h1 (style {:margin 0}) "Instant, Quality Answers"]
+                  (outline :left
+                           icon/run
+                           "Instant reference"
+                           "Access live data from the boat’s instruments, including information about other vessels through AIS.")
+                  (outline :right
+                           icon/boat-connect
+                           "Concrete, exact answers"
+                           "Answers from the boat and engine operational manuals, maintenance guides, and other manufacturer documentation.")
+                  (outline :left
+                           icon/encyclopedia
+                           "Encyclopedic detail"
+                           "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back.")]])))
       about/footer])
     (resp/redirect "/")))
