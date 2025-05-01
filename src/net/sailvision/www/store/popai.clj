@@ -67,9 +67,9 @@
          quote-style (fn [delay]
                       {:transition       (str "transform " duration "s, opacity " duration "s")
                        :transition-delay delay
-                       :background "rgba(0,0,0,0.6)" 
-                       :border-radius "0.4em" 
-                       :padding "0.5em"})
+                       :background       "rgba(0,0,0,0.4)"
+                       :border-radius    "0.4em"
+                       :padding          "0.5em"})
          spacer     {:flex-grow 1
                      :min-width "5vw"}]
      {:css    [[:html.js
