@@ -274,7 +274,7 @@
                     ["Subtle help at critical moments"
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
-                     "PopAI monitors your vessel’s status and can help remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
+                     "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "What should we ask here?"]]
               "/popai-hero-background-light.jpg")
       (topic code
