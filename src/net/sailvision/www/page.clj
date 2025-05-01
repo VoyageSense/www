@@ -43,7 +43,7 @@
 
 (def base
   (let [posthog-script (slurp (io/resource "posthog.js"))
-        max-body-width "150ch"]
+        max-body-width "120ch"]
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
               [:html {:scrollbar-gutter :stable}]
