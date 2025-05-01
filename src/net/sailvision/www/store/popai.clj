@@ -14,39 +14,55 @@
 (defn style [content]
   {:style (g/style content)})
 
-(def background-image
-  {:css  [[:body
-           [:header {:color       "#f8f8f8"
-                     :text-shadow "0.05em 0.1em 0.5em #404040"}]]
-          [:.background {:position   :absolute
-                         :z-index    -2
-                         :background "rgb(var(--background))"}
-           [:img {:position       :fixed
-                  :width          "100vw"
-                  :height         "100vh"
-                  :object-fit     :cover
-                  :transition     "opacity 0.8s linear, transform 0.8s ease"
-                  :mask-image     "linear-gradient(to bottom,black 70%,transparent)"
-                  :mask-composite :intersect
-                  :mask-size      "100% 100%"}]
-           [:img.dark  {:visibility "var(--dark-visibility)"}]
-           [:img.light {:visibility "var(--light-visibility)"}]]
-          [:html.js
-           [:.background
-            [:img {:opacity   0
-                   :transform "translateY(20px)"}]
-            [:img.visible {:opacity   1
-                           :transform :none}]]]]
-   :body [[:div.background
-           [:img.light {:src    "/popai-hero-background-light.jpg"
-                        :onload "this.classList.add('visible')"}]
-           [:img.dark  {:src    "/popai-hero-background-dark.jpg"
-                        :onload "this.classList.add('visible')"}]]]})
+(defn background-mask [image body]
+  (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
+        wave-base {:xmlns               "http://www.w3.org/2000/svg"
+                   :viewBox             "0 0 200 100"
+                   :width               200
+                   :height              100
+                   :preserveAspectRatio :none}
+        height  "1.4em"
+        wave    {:height      height
+                 :grid-column "1 / -1"
+                 :mask-size   "100% 100%"
+                 :mask-repeat :no-repeat
+                 :background  "rgb(var(--background))"}
+        head-wave [:div (style (merge wave {:margin-bottom height
+                                            :margin-top    "-1px"
+                                            :mask-image (datauri (h/html [:svg wave-base
+                                                                          [:path {:d (long-str "M -25 50"
+                                                                                               "Q 0 10, 25 50"
+                                                                                               "T 75 50"
+                                                                                               "T 125 50"
+                                                                                               "T 175 50"
+                                                                                               "T 225 50"
+                                                                                               "L 225 0"
+                                                                                               "L -25 0"
+                                                                                               "Z")}]]))}))]
+        tail-wave [:div (style (merge wave {:margin-top    height
+                                            :margin-bottom "-1px"
+                                            :mask-image (datauri (h/html [:svg wave-base
+                                                                          [:path {:d (long-str "M 0 50"
+                                                                                               "Q 25 90, 50 50"
+                                                                                               "T 100 50"
+                                                                                               "T 150 50"
+                                                                                               "T 200 50"
+                                                                                               "L 200 100"
+                                                                                               "L 0 100"
+                                                                                               "Z")}]]))}))]]
+    [:div.body-width (style {:background-image      (str "url(" image ")")
+                             :background-attachment :fixed
+                             :background-position   :center
+                             :background-repeat     :no-repeat
+                             :background-size       "auto 100vh"})
+     head-wave
+     body
+     tail-wave]))
 
 (defn flyout
-  ([voices]
-   (flyout voices 0))
-  ([voices delay]
+  ([voices image]
+   (flyout voices image 0))
+  ([voices image delay]
    (let [duration 1
          transition (fn [delay]
                       {:transition       (str "transform " duration "s, opacity " duration "s")
@@ -61,27 +77,29 @@
                 [:.flyout-pair.visible
                  [:q {:opacity   1
                       :transform :none}]]]]
-      :body   [[:div.flyouts.full-width (style {:display :grid
-                                                :row-gap "1em"})
-                [:div.body-width (style {:display     :flex
-                                         :flex-flow   "column nowrap"
-                                         :gap         "3em"
-                                         :padding     "4em 0"
-                                         :color       "white"
-                                         :font-size   "2em"
-                                         :font-style  :italic
-                                         :quotes      :none
-                                         :text-shadow "0.1em 0.2em 0.6em black"})
-                 (map-indexed (fn [i [side utterance]]
-                                (let [row-delay (str (+ delay (* 600 i)) "ms")]
-                                  (into [:div.flyout-pair.body-width (style {:display    :flex
-                                                                             :padding    "0 5vw"})]
-                                        (case side
-                                          :left [[:q.left (style (transition row-delay)) utterance]
-                                                 [:div (style spacer)]]
-                                          :right [[:div (style spacer)]
-                                                  [:q.right (style (transition row-delay)) utterance]]))))
-                              voices)]]]
+      :body   [(background-mask
+                image
+                [:div.flyouts.full-width (style {:display :grid
+                                                 :row-gap "1em"})
+                 [:div.body-width (style {:display     :flex
+                                          :flex-flow   "column nowrap"
+                                          :gap         "3em"
+                                          :padding     "4em 0"
+                                          :color       "white"
+                                          :font-size   "2em"
+                                          :font-style  :italic
+                                          :quotes      :none
+                                          :text-shadow "0.1em 0.2em 0.6em black"})
+                  (map-indexed (fn [i [side utterance]]
+                                 (let [row-delay (str (+ delay (* 600 i)) "ms")]
+                                   (into [:div.flyout-pair.body-width (style {:display    :flex
+                                                                              :padding    "0 5vw"})]
+                                         (case side
+                                           :left [[:q.left (style (transition row-delay)) utterance]
+                                                  [:div (style spacer)]]
+                                           :right [[:div (style spacer)]
+                                                   [:q.right (style (transition row-delay)) utterance]]))))
+                               voices)]])]
       :script [(slurp (io/resource "flyout.js"))]})))
 
 (defn topic-backdrop [body]
@@ -199,9 +217,9 @@
      [page/base
       page/header
       {:css [buy-button-css]}
-      background-image
       (flyout [[:left  "PopAI, are we ready to go?"]
                [:right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."]]
+              "/popai-hero-background-light.jpg"
               700)
       (elaboration [["Ready to Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
@@ -212,9 +230,11 @@
                     ["Expert handling charter companies"
                      "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
       (flyout [[:left  "PopAI, notify me when if the depth goes below 15 feet."]
-               [:right "I set an alarm for 15 feet minimum depth."]])
+               [:right "I set an alarm for 15 feet minimum depth."]]
+              "/change-cruising.png")
       (flyout [[:left  "PopAI, what time are we set to arrive?"]
-               [:right "We’ll arrive after dark, around 9:30."]])
+               [:right "We’ll arrive after dark, around 9:30."]]
+              "/change-cruising.png")
       (elaboration [["Cruising"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["PopAI has your back"
@@ -224,7 +244,8 @@
                     ["Activity oriented answers"
                      "From picturesque anchorages to the hottest local dive spot. PopAI is your instant reference."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
-               [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]])
+               [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
+              "/change-tow.png")
       (elaboration [["Breakdown"
                      "You’re finally on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Instant access to your boat’s documentation"
@@ -234,7 +255,8 @@
                     ["Repair guidance tailored to your skill level"
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
       (flyout [[:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"]
-               [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]])
+               [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
+              "/change-bridge.png")
       (elaboration [["Land Ahoy"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
@@ -244,7 +266,8 @@
                     ["Pilot Plan"
                      "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
       (flyout [[:left  "PopAI, can I anchor here?"]
-               [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]])
+               [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
+              "/change-marina.png")
       (elaboration code
                    [["Safely in the marina!"
                      "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
@@ -252,7 +275,8 @@
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
                      "PopAI monitors your vessel’s status and can help remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
-      (flyout [[:left "What should we ask here?"]])
+      (flyout [[:left "What should we ask here?"]]
+              "/popai-hero-background-light.jpg")
       (topic code
              [[:div.body-width (style {:display   :flex
                                        :flex-flow "column nowrap"
@@ -288,8 +312,5 @@
                              :grid-column "1 / -1"}) "Encyclopedic detail"]
                 [:p (style {:margin      0
                             :grid-column 2}) "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back."]]]])
-      (flyout [])
-      (flyout [])
-      (flyout [])
       about/footer])
     (resp/redirect "/")))

@@ -79,13 +79,12 @@
 
 (def header
   {:css  [[:body
-           [:header {:margin-top  "1em"
-                     :display     :flex
-                     :overflow    :hidden
-                     :gap         "0.5em"
-                     :align-items "last baseline"
-                     :color       "rgb(var(--bold-foreground))"
-                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
+           [:header {:margin-top     "1em"
+                     :padding-bottom "2em"
+                     :display        :flex
+                     :overflow       :hidden
+                     :gap            "0.5em"
+                     :align-items    "last baseline"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
