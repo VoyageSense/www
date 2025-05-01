@@ -64,11 +64,14 @@
    (flyout voices image 0))
   ([voices image delay]
    (let [duration 1
-         transition (fn [delay]
+         quote-style (fn [delay]
                       {:transition       (str "transform " duration "s, opacity " duration "s")
-                       :transition-delay delay})
+                       :transition-delay delay
+                       :background "rgba(0,0,0,0.6)" 
+                       :border-radius "0.4em" 
+                       :padding "0.5em"})
          spacer     {:flex-grow 1
-                     :min-width "10vw"}]
+                     :min-width "5vw"}]
      {:css    [[:html.js
                 [:.flyout-pair
                  [:q       {:opacity   0}]
@@ -84,21 +87,20 @@
                  [:div.body-width (style {:display     :flex
                                           :flex-flow   "column nowrap"
                                           :gap         "3em"
-                                          :padding     "4em 0"
+                                          :padding     "2em 0"
                                           :color       "white"
-                                          :font-size   "2em"
+                                          :font-size   "1.75em"
                                           :font-style  :italic
-                                          :quotes      :none
-                                          :text-shadow "0.1em 0.2em 0.6em black"})
+                                          :quotes      :none})
                   (map-indexed (fn [i [side utterance]]
                                  (let [row-delay (str (+ delay (* 600 i)) "ms")]
                                    (into [:div.flyout-pair.body-width (style {:display    :flex
-                                                                              :padding    "0 5vw"})]
+                                                                              :padding    "0 3vw"})]
                                          (case side
-                                           :left [[:q.left (style (transition row-delay)) utterance]
+                                           :left [[:q.left (style (quote-style row-delay)) utterance]
                                                   [:div (style spacer)]]
                                            :right [[:div (style spacer)]
-                                                   [:q.right (style (transition row-delay)) utterance]]))))
+                                                   [:q.right (style (quote-style row-delay)) utterance]]))))
                                voices)]])]
       :script [(slurp (io/resource "flyout.js"))]})))
 
@@ -138,8 +140,7 @@
                    :mask-repeat :no-repeat
                    :background  "rgb(var(--background))"}
           offset   (str "calc(2px - " height ")")]
-      [[:div.full-width.topic (style {:background "rgb(var(--background))"
-                                      :margin     (str "calc(2 * " height ") 0")})
+      [[:div.full-width.topic (style {:background "rgb(var(--background))"})
         [:div (style (merge wave {:mask-image    (datauri head-wave)
                                   :margin-top    offset
                                   :margin-bottom padding}))]
@@ -184,7 +185,7 @@
     (let [[accent & points] chunks
           [head body]       accent
 
-          gap "3em"]
+          gap "2em"]
       [[:div.body-width (style {:display :flex
                                 :flex-flow "column nowrap"})
         [:div (style {:display   :flex
@@ -231,10 +232,7 @@
                      "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
       (flyout [[:left  "PopAI, notify me when if the depth goes below 15 feet."]
                [:right "I set an alarm for 15 feet minimum depth."]]
-              "/change-cruising.png")
-      (flyout [[:left  "PopAI, what time are we set to arrive?"]
-               [:right "We’ll arrive after dark, around 9:30."]]
-              "/change-cruising.png")
+              "/change-cruising.jpg")
       (elaboration [["Cruising"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["PopAI has your back"
@@ -245,7 +243,7 @@
                      "From picturesque anchorages to the hottest local dive spot. PopAI is your instant reference."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
                [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
-              "/change-tow.png")
+              "/tow.jpg")
       (elaboration [["Breakdown"
                      "You’re finally on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Instant access to your boat’s documentation"
@@ -256,7 +254,7 @@
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
       (flyout [[:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
-              "/change-bridge.png")
+              "/bridge.jpg")
       (elaboration [["Land Ahoy"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
@@ -267,7 +265,7 @@
                      "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
       (flyout [[:left  "PopAI, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
-              "/change-marina.png")
+              "/marina.jpg")
       (elaboration code
                    [["Safely in the marina!"
                      "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
