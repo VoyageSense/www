@@ -17,6 +17,8 @@
 (def dark-foreground  "200, 200, 200")
 (def dark-background  "30, 30, 30")
 (def link-visited  "128, 128, 128")
+(def dark-accent "0 164 230")
+(def light-accent "0, 117, 164")
 
 (def base-css
   [[:body {:margin 0}
@@ -29,17 +31,19 @@
    (s/at-media {:prefers-color-scheme :light}
                [":root" {:--foreground     light-foreground
                          :--background     light-background
-                         :--link-unvisited light-foreground}])
+                         :--link-unvisited light-foreground
+                         :--accent         light-accent}])
    (s/at-media {:prefers-color-scheme :dark}
                [":root" {:--foreground     dark-foreground
                          :--background     dark-background
-                         :--link-unvisited dark-foreground}])
+                         :--link-unvisited dark-foreground
+                         :--accent         dark-accent}])
    [:body {:color      "rgb(var(--foreground))"
            :background "rgb(var(--background))"}]])
 
 (def base
   (let [posthog-script (slurp (io/resource "posthog.js"))
-        max-body-width "150ch"]
+        max-body-width "120ch"]
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
               [:html {:scrollbar-gutter :stable}]
@@ -75,13 +79,12 @@
 
 (def header
   {:css  [[:body
-           [:header {:margin-top  "1em"
-                     :display     :flex
-                     :overflow    :hidden
-                     :gap         "0.5em"
-                     :align-items "last baseline"
-                     :color       "rgb(var(--bold-foreground))"
-                     :text-shadow "0.05em 0.1em 0.5em rgb(var(--bold-background))"}
+           [:header {:margin-top     "1em"
+                     :padding-bottom "2em"
+                     :display        :flex
+                     :overflow       :hidden
+                     :gap            "0.5em"
+                     :align-items    "last baseline"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
