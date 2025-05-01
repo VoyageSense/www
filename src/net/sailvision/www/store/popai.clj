@@ -59,50 +59,47 @@
      body
      tail-wave]))
 
-(defn flyout
-  ([voices image]
-   (flyout voices image 0))
-  ([voices image delay]
-   (let [duration 1
-         quote-style (fn [delay]
+(defn flyout [voices image]
+  (let [duration 1
+        quote-style (fn [delay]
                       {:transition       (str "transform " duration "s, opacity " duration "s")
                        :transition-delay delay
                        :background       "rgba(0,0,0,0.4)"
                        :border-radius    "0.4em"
                        :padding          "0.5em"})
-         spacer     {:flex-grow 1
-                     :min-width "5vw"}]
-     {:css    [[:html.js
-                [:.flyout-pair
-                 [:q       {:opacity   0}]
-                 [:q.left  {:transform "translateX(-1em)"}]
-                 [:q.right {:transform "translateX(1em)"}]]
-                [:.flyout-pair.visible
-                 [:q {:opacity   1
-                      :transform :none}]]]]
-      :body   [(background-mask
-                image
-                [:div.flyouts.full-width (style {:display :grid
-                                                 :row-gap "1em"})
-                 [:div.body-width (style {:display     :flex
-                                          :flex-flow   "column nowrap"
-                                          :gap         "3em"
-                                          :padding     "2em 0"
-                                          :color       "white"
-                                          :font-size   "1.75em"
-                                          :font-style  :italic
-                                          :quotes      :none})
-                  (map-indexed (fn [i [side utterance]]
-                                 (let [row-delay (str (+ delay (* 600 i)) "ms")]
-                                   (into [:div.flyout-pair.body-width (style {:display    :flex
-                                                                              :padding    "0 3vw"})]
-                                         (case side
-                                           :left [[:q.left (style (quote-style row-delay)) utterance]
-                                                  [:div (style spacer)]]
-                                           :right [[:div (style spacer)]
-                                                   [:q.right (style (quote-style row-delay)) utterance]]))))
-                               voices)]])]
-      :script [(slurp (io/resource "flyout.js"))]})))
+        spacer     {:flex-grow 1
+                    :min-width "5vw"}]
+    {:css    [[:html.js
+               [:.flyout-pair
+                [:q       {:opacity   0}]
+                [:q.left  {:transform "translateX(-1em)"}]
+                [:q.right {:transform "translateX(1em)"}]]
+               [:.flyout-pair.visible
+                [:q {:opacity   1
+                     :transform :none}]]]]
+     :body   [(background-mask
+               image
+               [:div.flyouts.full-width (style {:display :grid
+                                                :row-gap "1em"})
+                [:div.body-width (style {:display     :flex
+                                         :flex-flow   "column nowrap"
+                                         :gap         "3em"
+                                         :padding     "2em 0"
+                                         :color       "white"
+                                         :font-size   "1.75em"
+                                         :font-style  :italic
+                                         :quotes      :none})
+                 (map-indexed (fn [i [side utterance]]
+                                (let [row-delay (str (* 200 i) "ms")]
+                                  (into [:div.flyout-pair.body-width (style {:display    :flex
+                                                                             :padding    "0 3vw"})]
+                                        (case side
+                                          :left [[:q.left (style (quote-style row-delay)) utterance]
+                                                 [:div (style spacer)]]
+                                          :right [[:div (style spacer)]
+                                                  [:q.right (style (quote-style row-delay)) utterance]]))))
+                              voices)]])]
+     :script [(slurp (io/resource "flyout.js"))]}))
 
 (defn topic-backdrop [body]
   (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
@@ -220,8 +217,7 @@
       {:css [buy-button-css]}
       (flyout [[:left  "PopAI, are we ready to go?"]
                [:right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."]]
-              "/popai-hero-background-light.jpg"
-              700)
+              "/popai-hero-background-light.jpg")
       (elaboration [["Ready to Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
                     ["Verbal Checklists"
