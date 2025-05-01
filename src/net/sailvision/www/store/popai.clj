@@ -126,9 +126,9 @@
                                   :margin-top    offset
                                   :margin-bottom padding}))]
         body
-        [:div.full-width.wave.tail-wave (style (merge wave {:mask-image    (datauri tail-wave)
-                                                            :margin-bottom offset
-                                                            :margin-top    padding}))]]])))
+        [:div (style (merge wave {:mask-image    (datauri tail-wave)
+                                  :margin-bottom offset
+                                  :margin-top    padding}))]]])))
 
 (def buy-button-css
   [["a.button" {:grid-column     3
