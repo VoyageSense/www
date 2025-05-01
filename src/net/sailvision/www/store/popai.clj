@@ -232,7 +232,7 @@
                      "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
       (flyout [[:left  "PopAI, notify me when if the depth goes below 15 feet."]
                [:right "I set an alarm for 15 feet minimum depth."]]
-              "/change-cruising.jpg")
+              "/cruising.jpg")
       (elaboration [["Cruising"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["PopAI has your back"
