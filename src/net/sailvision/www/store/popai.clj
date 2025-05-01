@@ -50,11 +50,11 @@
                                                                                                "L 200 100"
                                                                                                "L 0 100"
                                                                                                "Z")}]]))}))]]
-    [:div.body-width (style {:background-image      (str "url(" image ")")
-                             :background-attachment :fixed
-                             :background-position   :center
-                             :background-repeat     :no-repeat
-                             :background-size       "auto 100vh"})
+    [:div.body-width-no-edge (style {:background-image      (str "url(" image ")")
+                                     :background-attachment :fixed
+                                     :background-position   :center
+                                     :background-repeat     :no-repeat
+                                     :background-size       "auto 100vh"})
      head-wave
      body
      tail-wave]))
