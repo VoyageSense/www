@@ -199,7 +199,8 @@
                                                       :object-fit :cover
                                                       :transition "opacity 0.8s linear, transform 0.8s ease"
                                                       :z-index    -1
-                                                      :visibility "var(--dark-visibility)"}))]]})
+                                                      :visibility "var(--dark-visibility)"}))]]
+   :script (slurp (io/resource "visible.js"))})
 
 (defn page [request]
   (if-let [[code config] (request/validate request)]
