@@ -106,51 +106,6 @@
                               voices)]])]
      :script [(slurp (io/resource "flyout.js"))]}))
 
-(defn topic-backdrop [body]
-  (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
-        wave-base {:xmlns               "http://www.w3.org/2000/svg"
-                   :viewBox             "0 0 200 100"
-                   :width               200
-                   :height              100
-                   :preserveAspectRatio :none}
-        head-wave (h/html [:svg wave-base
-                           [:path {:d (long-str "M 0 50"
-                                                "Q 25 90, 50 50"
-                                                "T 100 50"
-                                                "T 150 50"
-                                                "T 200 50"
-                                                "L 200 100"
-                                                "L 0 100"
-                                                "Z")
-                                   :fill "rgb(var(--background))"}]])
-        tail-wave (h/html [:svg wave-base
-                           [:path {:d (long-str "M -25 50"
-                                                "Q 0 10, 25 50"
-                                                "T 75 50"
-                                                "T 125 50"
-                                                "T 175 50"
-                                                "T 225 50"
-                                                "L 225 0"
-                                                "L -25 0"
-                                                "Z")
-                                   :fill "rgb(var(--background))"}]])]
-    (let [height  "1.4em"
-          padding "3em"
-          wave    {:height      height
-                   :grid-column "1 / -1"
-                   :mask-size   "100% 100%"
-                   :mask-repeat :no-repeat
-                   :background  "rgb(var(--background))"}
-          offset   (str "calc(2px - " height ")")]
-      [[:div.full-width.topic (style {:background "rgb(var(--background))"})
-        [:div (style (merge wave {:mask-image    (datauri head-wave)
-                                  :margin-top    offset
-                                  :margin-bottom padding}))]
-        body
-        [:div (style (merge wave {:mask-image    (datauri tail-wave)
-                                  :margin-bottom offset
-                                  :margin-top    padding}))]]])))
-
 (def buy-button-css
   [["a.button" {:grid-column     3
                 :user-select     :none
@@ -171,13 +126,14 @@
 (defn topic
   ([body] (topic nil body))
   ([code body]
-   {:body (topic-backdrop
-           (concat
-            body
-            (when code
-              [[:a.button {:href (route/with-code route/configure code)
-                           :style (g/style {:margin "5em 0 3em"})}
-                "Configure and Buy"]])))}))
+   {:body [[:div.full-width.topic (style {:background "rgb(var(--background))"
+                                          :padding    "3em 0"})
+            (concat
+             body
+             (when code
+               [[:a.button {:href (route/with-code route/configure code)
+                            :style (g/style {:margin "5em 0 3em"})}
+                 "Configure and Buy"]]))]]}))
 
 (defn elaboration
   ([chunks] (elaboration nil chunks))
