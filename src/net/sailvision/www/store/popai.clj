@@ -103,7 +103,7 @@
                                           :font-style  :italic
                                           :quotes      :none})
                   (map-indexed (fn [i [side utterance]]
-                                 (let [row-delay (str (* 200 i) "ms")]
+                                 (let [row-delay (str (* 400 i) "ms")]
                                    (into [:div.flyout-pair.body-width (style {:display    :flex
                                                                               :padding    "0 3vw"})]
                                          (case side
