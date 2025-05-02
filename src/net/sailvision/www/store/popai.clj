@@ -3,7 +3,6 @@
    [clojure.java.io :as io]
    [net.sailvision.www.about :as about]
    [net.sailvision.www.page :as page]
-   [net.sailvision.www.store.icon :as icon]
    [net.sailvision.www.store.request :as request]
    [net.sailvision.www.store.route :as route]
    [net.sailvision.www.util :refer [long-str]]
@@ -268,51 +267,43 @@
                     ["Rest assured"
                      "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "What should we ask here?"]]
-              "/popai-hero-background-light.jpg")
-      (merge
-       {:script (slurp (io/resource "visible.js"))
-        :css    [[:html.js
-                  [:.slide-up {:transform "translateY(50px)"
-                               :opacity   0}]
-                  [:.slide-up.visible {:transform :none
-                                       :opacity   1}]]]}
-       (topic code
-              (let [outline (fn [align icon title text]
-                              (into [:div.slide-up.is-visible
-                                     (style (merge {:background-color   "rgb(var(--bold-background))"
-                                                    :padding            "2em"
-                                                    :box-shadow         "0 0px 10px rgba(var(--foreground), 0.1)"
-                                                    :transition         "opacity 0.6s ease, transform 0.6s ease"
-                                                    :display            :grid
-                                                    :align-items        :center
-                                                    :grid-template-rows "auto auto"
-                                                    :gap                "1em"}
-                                                   (case align
-                                                     :left {:grid-template-columns "auto 1fr 5vw"
-                                                            :text-align            :left}
-                                                     :right {:grid-template-columns "5vw 1fr auto"
-                                                             :text-align            :right})))]
-                                    [icon
-                                     [:h2 (style {:margin      0
-                                                  :grid-column "1 / -1"}) title]
-                                     [:p (style {:margin      0
-                                                 :grid-column 2}) text]]))]
-                [[:div.body-width (style {:display   :flex
-                                          :flex-flow "column nowrap"
-                                          :gap       "2em"})
-                  [:h1 (style {:margin 0}) "Instant, Quality Answers"]
-                  (outline :left
-                           icon/run
-                           "Instant reference"
-                           "Access live data from the boat’s instruments, including information about other vessels through AIS.")
-                  (outline :right
-                           icon/boat-connect
-                           "Concrete, exact answers"
-                           "Answers from the boat and engine operational manuals, maintenance guides, and other manufacturer documentation.")
-                  (outline :left
-                           icon/encyclopedia
-                           "Encyclopedic detail"
-                           "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back.")]])))
+              "/popai-hero-background-light.jpg") 
+      (topic code
+             (let [outline (fn [align title text]
+                             (into [:div
+                                    (style (merge {:background-color   "rgb(var(--bold-background))"
+                                                   :padding            "2em"
+                                                   :display            :grid
+                                                   :align-items        :center
+                                                   :grid-template-rows "auto auto"
+                                                   :gap                "1em"}
+                                                  (case align
+                                                    :left {:grid-template-columns "auto 1fr"
+                                                           :text-align            :left}
+                                                    :right {:grid-template-columns "1fr auto"
+                                                            :text-align            :right})))]
+                                   [[:h2 (style {:margin      0
+                                                 :color "rgb(var(--accent))"
+                                                 :grid-column "1 / -1"}) title]
+                                    [:p (style {:margin      0
+                                                :grid-column 1}) text]]))]
+               [[:div.body-width (style {:display   :flex
+                                         :background "rgb(var(--bold-background))"
+                                         :box-shadow "0 0px 10px rgba(var(--foreground), 0.1)"
+                                         :margin    "2em 0"
+                                         :padding   "2em 0"
+                                         :flex-flow "column nowrap"
+                                         :gap       "2em"})
+                 [:h1 (style {:margin "1em"}) "PopAI is software for your existing device"]
+                 (outline :left 
+                          "Install In Three Easy Steps"
+                          "You purchase a data package tailored to your boat and location, install it on your existing mobile device, and connect the device to your boat’s MFD Wi-Fi network.")
+                 (outline :right 
+                          "Buy Once and Use Forever"
+                          "You buy a data package for your boat and location. You get free data updates for your data for a year.")
+                 (outline :left 
+                          "Concrete Precise Answers Based on Trustworthy Data"
+                          "PopAI is powered by your boat's sensor data, propriatory data and curated data sources including travel guides, government noticaes and publications, local knowledge and manufacturer's documentation.")]]))
       (flyout [] nil :bottom)
       about/footer])
     (resp/redirect "/")))
