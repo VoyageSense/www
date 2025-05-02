@@ -74,11 +74,13 @@
   ([voices image] (flyout voices image nil))
   ([voices image end]
    (let [duration 1
-         quote-style (fn [delay]
+         quote-style (fn [dir delay]
                        {:transition       (str "transform " duration "s, opacity " duration "s")
                         :transition-delay delay
                         :background       "rgba(0,0,0,0.4)"
-                        :border-radius    "0.4em"
+                        :border-radius    (case dir
+                                            :left  "0.4em 0.4em 0.4em 0"
+                                            :right "0.4em 0.4em 0 0.4em")
                         :padding          "0.5em"})
          spacer     {:flex-grow 1
                      :min-width "5vw"}]
@@ -109,10 +111,10 @@
                                    (into [:div.flyout-pair.body-width (style {:display    :flex
                                                                               :padding    "0 3vw"})]
                                          (case side
-                                           :left [[:q.left (style (quote-style row-delay)) utterance]
+                                           :left [[:q.left (style (quote-style :left row-delay)) utterance]
                                                   [:div (style spacer)]]
                                            :right [[:div (style spacer)]
-                                                   [:q.right (style (quote-style row-delay)) utterance]]))))
+                                                   [:q.right (style (quote-style :right row-delay)) utterance]]))))
                                voices)]]
                 end)]
       :script [(slurp (io/resource "flyout.js"))]})))
