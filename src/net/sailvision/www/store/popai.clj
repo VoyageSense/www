@@ -92,8 +92,10 @@
                       :transform :none}]]]]
       :body   [(background-mask
                 image
-                [:div.flyouts.full-width (style {:display :grid
-                                                 :row-gap "1em"})
+                [:div.flyouts.full-width (style (merge {:display :grid
+                                                        :row-gap "1em"}
+                                                       (when (= end :top)
+                                                         {:min-height "60vh"})))
                  [:div.body-width (style {:display     :flex
                                           :flex-flow   "column nowrap"
                                           :gap         "3em"
