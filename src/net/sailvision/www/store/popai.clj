@@ -27,8 +27,8 @@
                  :mask-size   "100% 100%"
                  :mask-repeat :no-repeat
                  :background  "rgb(var(--background))"}
-        head-wave [:div (style (merge wave {:margin-bottom height
-                                            :margin-top    "-1px"
+        head-wave [:div (style (merge wave {:margin-top    "-1px"
+                                            :margin-bottom (str "calc(1px - " height ")")
                                             :mask-image (datauri (h/html [:svg wave-base
                                                                           [:path {:d (long-str "M -25 50"
                                                                                                "Q 0 10, 25 50"
@@ -50,12 +50,17 @@
                                                                                                "L 200 100"
                                                                                                "L 0 100"
                                                                                                "Z")}]]))}))]]
-    [:div.body-width-no-edge (style {:background-image      (str "url(" image ")")
-                                     :background-attachment :fixed
-                                     :background-position   :center
-                                     :background-repeat     :no-repeat
-                                     :background-size       "var(--max-body-width) 100vh"})
+    [:div.body-width-no-edge {:position :relative}
      head-wave
+     [:div.mobile-hide (style {:width                 "100%"
+                               :height                "100%"
+                               :position              :absolute
+                               :z-index               -1
+                               :background-image      (str "url(" image ")")
+                               :background-attachment :fixed
+                               :background-position   :center
+                               :background-repeat     :no-repeat
+                               :background-size       "var(--max-body-width) 100vh"})]
      body
      tail-wave]))
 
@@ -208,6 +213,29 @@
                              [:p body]]])))
                      points)]]))))
 
+(def mobile-background
+  {:css  [[:html.js
+           [:img {:transform "translateY(20px)"
+                  :opacity   0}]
+           [:img.visible {:transform :none
+                          :opacity   1}]]]
+   :body [[:img.mobile-show.is-visible (merge {:src "/popai-hero-background-light.jpg"}
+                                              (style {:width      "100vw"
+                                                      :height     "100vh"
+                                                      :position   :fixed
+                                                      :object-fit :cover
+                                                      :transition "opacity 0.8s linear, transform 0.8s ease"
+                                                      :z-index    -1
+                                                      :visibility "var(--light-visibility)"}))]
+          [:img.mobile-show.is-visible (merge {:src "/popai-hero-background-dark.jpg"}
+                                              (style {:width      "100vw"
+                                                      :height     "100vh"
+                                                      :position   :fixed
+                                                      :object-fit :cover
+                                                      :transition "opacity 0.8s linear, transform 0.8s ease"
+                                                      :z-index    -1
+                                                      :visibility "var(--dark-visibility)"}))]]})
+
 (defn page [request]
   (if-let [[code config] (request/validate request)]
     (page/from-components
@@ -215,6 +243,7 @@
      [page/base
       page/header
       {:css [buy-button-css]}
+      mobile-background
       (flyout [[:left  "PopAI, are we ready to go?"]
                [:right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."]]
               "/popai-hero-background-light.jpg")

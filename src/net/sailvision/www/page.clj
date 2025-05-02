@@ -57,7 +57,10 @@
               (s/at-media {:pointer :coarse}
                           [:form
                            [:select {:font-size "1em"}]
-                           [:button {:font-size "1.2em"}]])
+                           [:button {:font-size "1.2em"}]]
+                          [:.mobile-hide {:display :none}])
+              (s/at-media {"(pointer: coarse)" false}
+                          [:.mobile-show {:display :none}])
               (s/at-media {:prefers-color-scheme :dark}
                           [":root" {:--bold-foreground  "240 240 240"
                                     :--bold-background  "1 1 1"
