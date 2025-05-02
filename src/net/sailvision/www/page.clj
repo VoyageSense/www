@@ -87,7 +87,9 @@
                      :display        :flex
                      :overflow       :hidden
                      :gap            "0.5em"
-                     :align-items    "last baseline"}
+                     :align-items    "last baseline"
+                     :position       :absolute
+                     :width          "calc(min(100% - 2em, var(--max-body-width)))"}
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold
                           :font-family    "Arial, san-serif"}]
@@ -102,13 +104,14 @@
                       [:body
                        [:header
                         [:h3 {:display :none}]]])]
-   :body [[:header.body-width
-           [:h1 "PopAI"]
-           [:h2 "The ultimate boating companion"]
-           [:div]
-           [:h3
-            [:span "Keep your hands on the helm and eyes on the water"]
-            [:span "Use the power of your voice to manage your boating experience"]]]]})
+   :body [[:div.body-width
+           [:header
+            [:h1 "PopAI"]
+            [:h2 "The ultimate boating companion"]
+            [:div]
+            [:h3
+             [:span "Keep your hands on the helm and eyes on the water"]
+             [:span "Use the power of your voice to manage your boating experience"]]]]]})
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head

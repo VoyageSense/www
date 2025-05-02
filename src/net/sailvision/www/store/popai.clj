@@ -14,97 +14,107 @@
 (defn style [content]
   {:style (g/style content)})
 
-(defn background-mask [image body]
-  (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
-        wave-base {:xmlns               "http://www.w3.org/2000/svg"
-                   :viewBox             "0 0 200 100"
-                   :width               200
-                   :height              100
-                   :preserveAspectRatio :none}
-        height  "1.4em"
-        wave    {:height      height
-                 :grid-column "1 / -1"
-                 :mask-size   "100% 100%"
-                 :mask-repeat :no-repeat
-                 :background  "rgb(var(--background))"}
-        head-wave [:div (style (merge wave {:margin-top    "-1px"
-                                            :margin-bottom (str "calc(1px - " height ")")
-                                            :mask-image (datauri (h/html [:svg wave-base
-                                                                          [:path {:d (long-str "M -25 50"
-                                                                                               "Q 0 10, 25 50"
-                                                                                               "T 75 50"
-                                                                                               "T 125 50"
-                                                                                               "T 175 50"
-                                                                                               "T 225 50"
-                                                                                               "L 225 0"
-                                                                                               "L -25 0"
-                                                                                               "Z")}]]))}))]
-        tail-wave [:div (style (merge wave {:margin-top    height
-                                            :margin-bottom "-1px"
-                                            :mask-image (datauri (h/html [:svg wave-base
-                                                                          [:path {:d (long-str "M 0 50"
-                                                                                               "Q 25 90, 50 50"
-                                                                                               "T 100 50"
-                                                                                               "T 150 50"
-                                                                                               "T 200 50"
-                                                                                               "L 200 100"
-                                                                                               "L 0 100"
-                                                                                               "Z")}]]))}))]]
-    [:div.body-width-no-edge {:position :relative}
-     head-wave
-     [:div.mobile-hide (style {:width                 "100%"
-                               :height                "100%"
-                               :position              :absolute
-                               :z-index               -1
-                               :background-image      (str "url(" image ")")
-                               :background-attachment :fixed
-                               :background-position   :center
-                               :background-repeat     :no-repeat
-                               :background-size       "var(--max-body-width) 100vh"})]
-     body
-     tail-wave]))
+(defn background-mask
+  ([image body] (background-mask image body nil))
+  ([image body end]
+   (let [datauri #(str "url('data:image/svg+xml;utf8," % "')")
+         wave-base {:xmlns               "http://www.w3.org/2000/svg"
+                    :viewBox             "0 0 200 100"
+                    :width               200
+                    :height              100
+                    :preserveAspectRatio :none}
+         height  "1.4em"
+         wave    {:height      height
+                  :grid-column "1 / -1"
+                  :mask-size   "100% 100%"
+                  :mask-repeat :no-repeat
+                  :background  "rgb(var(--background))"}
+         head-wave [:div (style (merge wave {:margin-top "-1px"
+                                             :margin-bottom (str "calc(1px - " height ")")
+                                             :mask-image (datauri (h/html [:svg wave-base
+                                                                           [:path {:d (long-str "M -25 50"
+                                                                                                "Q 0 10, 25 50"
+                                                                                                "T 75 50"
+                                                                                                "T 125 50"
+                                                                                                "T 175 50"
+                                                                                                "T 225 50"
+                                                                                                "L 225 0"
+                                                                                                "L -25 0"
+                                                                                                "Z")}]]))}))]
+         tail-wave [:div (style (merge wave {:margin-top    height
+                                             :margin-bottom "-1px"
+                                             :mask-image (datauri (h/html [:svg wave-base
+                                                                           [:path {:d (long-str "M 0 50"
+                                                                                                "Q 25 90, 50 50"
+                                                                                                "T 100 50"
+                                                                                                "T 150 50"
+                                                                                                "T 200 50"
+                                                                                                "L 200 100"
+                                                                                                "L 0 100"
+                                                                                                "Z")}]]))}))]]
+     [:div.body-width-no-edge {:position :relative}
+      (when image
+        [:div.mobile-hide (style {:width                 "calc(min(100%, 2em + var(--max-body-width)))"
+                                  :height                "100%"
+                                  :position              :absolute
+                                  :z-index               -1
+                                  :background-image      (str "url(" image ")")
+                                  :background-attachment :fixed
+                                  :background-position   :center
+                                  :background-repeat     :no-repeat
+                                  :background-size       "calc(2em + var(--max-body-width)) 100vh"})])
+      (if (= :top end)
+        [:div (style {:height "5em"})]
+        head-wave)
+      body
+      (if (= :bottom end)
+        [:div (style {:height "5em"})]
+        tail-wave)])))
 
-(defn flyout [voices image]
-  (let [duration 1
-        quote-style (fn [delay]
-                      {:transition       (str "transform " duration "s, opacity " duration "s")
-                       :transition-delay delay
-                       :background       "rgba(0,0,0,0.4)"
-                       :border-radius    "0.4em"
-                       :padding          "0.5em"})
-        spacer     {:flex-grow 1
-                    :min-width "5vw"}]
-    {:css    [[:html.js
-               [:.flyout-pair
-                [:q       {:opacity   0}]
-                [:q.left  {:transform "translateX(-1em)"}]
-                [:q.right {:transform "translateX(1em)"}]]
-               [:.flyout-pair.visible
-                [:q {:opacity   1
-                     :transform :none}]]]]
-     :body   [(background-mask
-               image
-               [:div.flyouts.full-width (style {:display :grid
-                                                :row-gap "1em"})
-                [:div.body-width (style {:display     :flex
-                                         :flex-flow   "column nowrap"
-                                         :gap         "3em"
-                                         :padding     "2em 0"
-                                         :color       "white"
-                                         :font-size   "1.75em"
-                                         :font-style  :italic
-                                         :quotes      :none})
-                 (map-indexed (fn [i [side utterance]]
-                                (let [row-delay (str (* 200 i) "ms")]
-                                  (into [:div.flyout-pair.body-width (style {:display    :flex
-                                                                             :padding    "0 3vw"})]
-                                        (case side
-                                          :left [[:q.left (style (quote-style row-delay)) utterance]
-                                                 [:div (style spacer)]]
-                                          :right [[:div (style spacer)]
-                                                  [:q.right (style (quote-style row-delay)) utterance]]))))
-                              voices)]])]
-     :script [(slurp (io/resource "flyout.js"))]}))
+(defn flyout
+  ([voices image] (flyout voices image nil))
+  ([voices image end]
+   (let [duration 1
+         quote-style (fn [delay]
+                       {:transition       (str "transform " duration "s, opacity " duration "s")
+                        :transition-delay delay
+                        :background       "rgba(0,0,0,0.4)"
+                        :border-radius    "0.4em"
+                        :padding          "0.5em"})
+         spacer     {:flex-grow 1
+                     :min-width "5vw"}]
+     {:css    [[:html.js
+                [:.flyout-pair
+                 [:q       {:opacity   0}]
+                 [:q.left  {:transform "translateX(-1em)"}]
+                 [:q.right {:transform "translateX(1em)"}]]
+                [:.flyout-pair.visible
+                 [:q {:opacity   1
+                      :transform :none}]]]]
+      :body   [(background-mask
+                image
+                [:div.flyouts.full-width (style {:display :grid
+                                                 :row-gap "1em"})
+                 [:div.body-width (style {:display     :flex
+                                          :flex-flow   "column nowrap"
+                                          :gap         "3em"
+                                          :padding     "2em 0"
+                                          :color       "white"
+                                          :font-size   "1.75em"
+                                          :font-style  :italic
+                                          :quotes      :none})
+                  (map-indexed (fn [i [side utterance]]
+                                 (let [row-delay (str (* 200 i) "ms")]
+                                   (into [:div.flyout-pair.body-width (style {:display    :flex
+                                                                              :padding    "0 3vw"})]
+                                         (case side
+                                           :left [[:q.left (style (quote-style row-delay)) utterance]
+                                                  [:div (style spacer)]]
+                                           :right [[:div (style spacer)]
+                                                   [:q.right (style (quote-style row-delay)) utterance]]))))
+                               voices)]]
+                end)]
+      :script [(slurp (io/resource "flyout.js"))]})))
 
 (def buy-button-css
   [["a.button" {:grid-column     3
@@ -198,11 +208,14 @@
      nil
      [page/base
       page/header
-      {:css [buy-button-css]}
+      {:css [buy-button-css
+             [:header {:color       "#f8f8f8"
+                       :text-shadow "0.05em 0.1em 0.5em #404040"}]]}
       mobile-background
       (flyout [[:left  "PopAI, are we ready to go?"]
                [:right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."]]
-              "/popai-hero-background-light.jpg")
+              "/popai-hero-background-light.jpg"
+              :top)
       (elaboration [["Ready to Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
                     ["Verbal Checklists"
@@ -300,5 +313,6 @@
                            icon/encyclopedia
                            "Encyclopedic detail"
                            "Look up applicable navigation rules and maritime regulations for your cruising area. From COLREGS to Local Notice to Mariners, PopAI has your back.")]])))
+      (flyout [] nil :bottom)
       about/footer])
     (resp/redirect "/")))
