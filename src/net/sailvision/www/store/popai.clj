@@ -211,8 +211,8 @@
              [:header {:color       "#f8f8f8"
                        :text-shadow "0.05em 0.1em 0.5em #404040"}]]}
       mobile-background
-      (flyout [[:left  "PopAI, are we ready to go?"]
-               [:right "Yes! All instruments are on. AIS is transmitting. The water tanks are 90% full. We have 50 gallons of fuel and the batteries are fully charged."]]
+      (flyout [[:left  "PopAI, can we make it to Simpson Bay this afternoon?"]
+               [:right "Yes, but winds are light, so you'll have to motor sail."]]
               "/popai-hero-background-light.jpg"
               :top)
       (elaboration [["Ready to Cast Off"
@@ -223,8 +223,8 @@
                      "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough – no more straining agaist glare and hunting for information."]
                     ["Expert handling charter companies"
                      "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
-      (flyout [[:left  "PopAI, notify me when if the depth goes below 15 feet."]
-               [:right "I set an alarm for 15 feet minimum depth."]]
+      (flyout [[:left  "PopAI, let me know if the depth goes below 15 feet."]
+               [:right "Okay, I'll notify you if that happens."]]
               "/cruising.jpg")
       (elaboration [["Cruising"
                      "It's a glorious day and everybody onboard is having a blast!"]
@@ -245,7 +245,7 @@
                      "Get help with troubleshooting, using information from the engine manual itself. In a stressful moment, a clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
                     ["Repair guidance tailored to your skill level"
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
-      (flyout [[:left  "PopAI, how do I hail the Simpson Bay Bridge on VHF?"]
+      (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.jpg")
       (elaboration [["Land Ahoy"
@@ -266,8 +266,9 @@
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
                      "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
-      (flyout [[:left "What should we ask here?"]]
-              "/popai-hero-background-light.jpg") 
+      (flyout [[:left "PopAI, make sure the anchor light is on and turn everything else off."]
+               [:right "Done"]]
+              "/popai-hero-background-light.jpg")
       (topic code
              (let [outline (fn [align title text]
                              (into [:div
