@@ -51,7 +51,7 @@
                                                                                                 "L 200 100"
                                                                                                 "L 0 100"
                                                                                                 "Z")}]]))}))]]
-     [:div.body-width-no-edge {:position :relative}
+     [:div.body-width-no-edge
       (when image
         [:div.mobile-hide (style {:width                 "calc(min(100%, 2em + var(--max-body-width)))"
                                   :height                "100%"
