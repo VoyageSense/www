@@ -47,7 +47,13 @@
     {:css    [[":root" {:--max-body-width max-body-width}]
               [:* {:box-sizing :border-box}]
               [:html {:scrollbar-gutter :stable}]
-              [:body {:font-family "Arial,sans-serif"}]
+              ["@font-face" {:font-family "Inter"
+                             :src         (str "url('data:font/woff;base64,"
+                                               (slurp (io/resource "inter.woff.b64"))
+                                               "') format('woff')")
+                             :font-weight :normal
+                             :font-style  :normal}]
+              [:body {:font-family "Inter,Arial,sans-serif"}]
               [:.full-width {:display               :grid
                              :grid-column           "1 / -1"
                              :grid-template-columns "1fr 1em min(calc(100% - 2em), var(--max-body-width)) 1em 1fr"}]
