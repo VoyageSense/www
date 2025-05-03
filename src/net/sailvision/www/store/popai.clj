@@ -127,7 +127,7 @@
   ([body] (topic nil body))
   ([code body]
    {:body [[:div.full-width.topic (style {:background "rgb(var(--background))"
-                                          :padding    "3em 0"})
+                                          :padding    "1em 0 5em"})
             (concat
              body
              (when code
