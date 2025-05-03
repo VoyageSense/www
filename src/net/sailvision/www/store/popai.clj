@@ -23,34 +23,22 @@
                     :height              100
                     :preserveAspectRatio :none}
          height  "1.4em"
-         wave    {:height      height
-                  :grid-column "1 / -1"
-                  :mask-size   "100% 100%"
-                  :mask-repeat :no-repeat
-                  :background  "rgb(var(--background))"}
-         head-wave [:div (style (merge wave {:margin-top "-1px"
-                                             :margin-bottom (str "calc(1px - " height ")")
-                                             :mask-image (datauri (h/html [:svg wave-base
-                                                                           [:path {:d (long-str "M -25 50"
-                                                                                                "Q 0 10, 25 50"
-                                                                                                "T 75 50"
-                                                                                                "T 125 50"
-                                                                                                "T 175 50"
-                                                                                                "T 225 50"
-                                                                                                "L 225 0"
-                                                                                                "L -25 0"
-                                                                                                "Z")}]]))}))]
-         tail-wave [:div (style (merge wave {:margin-top    height
-                                             :margin-bottom "-1px"
-                                             :mask-image (datauri (h/html [:svg wave-base
-                                                                           [:path {:d (long-str "M 0 50"
-                                                                                                "Q 25 90, 50 50"
-                                                                                                "T 100 50"
-                                                                                                "T 150 50"
-                                                                                                "T 200 50"
-                                                                                                "L 200 100"
-                                                                                                "L 0 100"
-                                                                                                "Z")}]]))}))]]
+         wave [:div (style {:height      height
+                            :grid-column "1 / -1"
+                            :mask-size   "100% 100%"
+                            :mask-repeat :no-repeat
+                            :background  "rgb(var(--background))"
+                            :margin-top    height
+                            :margin-bottom "-1px"
+                            :mask-image (datauri (h/html [:svg wave-base
+                                                          [:path {:d (long-str "M 0 50"
+                                                                               "Q 25 90, 50 50"
+                                                                               "T 100 50"
+                                                                               "T 150 50"
+                                                                               "T 200 50"
+                                                                               "L 200 100"
+                                                                               "L 0 100"
+                                                                               "Z")}]]))})]]
      [:div.body-width-no-edge
       (when image
         [:div.mobile-hide (style {:width                 "calc(min(100%, 2em + var(--max-body-width)))"
@@ -63,12 +51,11 @@
                                   :background-repeat     :no-repeat
                                   :background-size       "calc(2em + var(--max-body-width)) 100vh"})])
       (if (= :top end)
-        [:div (style {:height "5em"})]
-        head-wave)
+        [:div (style {:height "5em"})])
       body
       (if (= :bottom end)
         [:div (style {:height "5em"})]
-        tail-wave)])))
+        wave)])))
 
 (defn flyout
   ([voices image] (flyout voices image nil))
