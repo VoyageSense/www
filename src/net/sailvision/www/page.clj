@@ -91,8 +91,7 @@
                      :position       :absolute
                      :width          "calc(min(100% - 2em, var(--max-body-width)))"}
             [:h1 :h2 :h3 {:margin         0
-                          :font-weight    :bold
-                          :font-family    "Arial, san-serif"}]
+                          :font-weight    :bold}]
             [:h1         {:font-size      "3em"}]
             [:h2         {:font-size      "1em"}]
             [:h3         {:font-size      "0.9em"
