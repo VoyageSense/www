@@ -218,22 +218,20 @@
              [:header {:color       "#f8f8f8"
                        :text-shadow "0.05em 0.1em 0.5em #404040"}]]}
       mobile-background
-      (flyout [[:left  "PopAI, can we make it to Simpson Bay this afternoon?"]
+      (flyout [[:left  "PopAI, can we make it to Simpson Bay for the 5pm bridge opening?"]
                [:right "Yes, but winds are light, so you'll have to motor sail."]]
               "/popai-hero-background-light.jpg"
               :top)
-      (elaboration [["Ready to Cast Off"
+      (elaboration [["Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
                     ["Verbal Checklists"
-                     "PopAI verbally helps you run through step-by-step procedures – everything from pre-cruise checkout to <b><i>something impressive</i></b>. Save time and have confidence that you’ll never miss a critical task."]
+                     "PopAI talks you through checklists to save time and have confidence you will not miss anything."]
                     ["Simple and reliable voice interface"
-                     "Simply ask PopAI for any instrument data and get an instant update in your ear. Operating an unfamiliar vessel is stressful enough – no more straining agaist glare and hunting for information."]
-                    ["Expert handling charter companies"
-                     "It’s easy to overlook things when checking out a charter boat &mdash; you’re relying on the charter company to have everything set up correctly. PopAI helps you take control with smart checklists: what gear should be onboard, what to test, what to ask about, and how to operate key systems. It also provides clear return instructions to ensure a smooth handover."]])
+                     "Instantly reads any instrument data for you. No more getting distracted by a screen while maneuvering in close quarters."]])
       (flyout [[:left  "PopAI, let me know if the depth goes below 15 feet."]
                [:right "Okay, I'll notify you if that happens."]]
               "/cruising.jpg")
-      (elaboration [["Cruising"
+      (elaboration [["Cruise"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["PopAI has your back"
                      "PopAI monitors the systems aboard – alerting when it sees trouble unfolding – giving you a “second set of eyes”."]
@@ -255,7 +253,7 @@
       (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.jpg")
-      (elaboration [["Land Ahoy"
+      (elaboration [["Navigate"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
                      "PopAI is an instant guide to VHF communication &mdash; from choosing the right channel to how to hail a vessel or request assistance, all a question away."]
@@ -267,7 +265,7 @@
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.jpg")
       (elaboration code
-                   [["Safely in the marina!"
+                   [["Dock"
                      "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
                     ["Subtle help at critical moments"
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
