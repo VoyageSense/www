@@ -233,22 +233,22 @@
               "/cruising.jpg")
       (elaboration [["Cruise"
                      "It's a glorious day and everybody onboard is having a blast!"]
-                    ["PopAI has your back"
-                     "PopAI monitors the systems aboard – alerting when it sees trouble unfolding – giving you a “second set of eyes”."]
-                    ["Control your boat"
-                     "Control your boat seamlessly with your voice. Adjust the display brightness, turn on the foredeck light, and interact with other systems aboard, using the network already installed."]
-                    ["Activity oriented answers"
-                     "From picturesque anchorages to the hottest local dive spot. PopAI is your instant reference."]])
+                    ["Second set of eyes"
+                     "PopAI monitors the systems aboard – alerting when it sees trouble unfolding."]
+                    ["Hands free control"
+                     "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
+                    ["Cruising guide"
+                     "Answers any question about local marinas, anchorages, dive spots, amenities on shore and more."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
                [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
               "/tow.jpg")
       (elaboration [["Breakdown"
                      "You’re finally on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
-                    ["Instant access to your boat’s documentation"
-                     "PopAI gets its knowledge from the documentation provided by the boat’s manufacturer. Instant, accurate answers and help with troubleshooting are there when you need it."]
-                    ["Interactive Troubleshooting"
-                     "Get help with troubleshooting, using information from the engine manual itself. In a stressful moment, a clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
-                    ["Repair guidance tailored to your skill level"
+                    ["Your boat’s documentation"
+                     "PopAI gets its knowledge from the documentation by the boat’s manufacturer. Instant, accurate answers and help with troubleshooting are there when you need it."]
+                    ["Interactive troubleshooting"
+                     "Troubleshoots using information from the engine and other systems manuals. A clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
+                    ["Repair guidance"
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
       (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
