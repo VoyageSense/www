@@ -243,9 +243,9 @@
                [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
               "/tow.jpg")
       (elaboration [["Breakdown"
-                     "You’re finally on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
+                     "You’re on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Your boat’s documentation"
-                     "PopAI gets its knowledge from the documentation by the boat’s manufacturer. Instant, accurate answers and help with troubleshooting are there when you need it."]
+                     "PopAI gets its knowledge from the documentation by the boat’s manufacturer. Instant, accurate answers are there when you need it."]
                     ["Interactive troubleshooting"
                      "Troubleshoots using information from the engine and other systems manuals. A clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
                     ["Repair guidance"
@@ -271,7 +271,7 @@
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
                      "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
-      (flyout [[:left "PopAI, make sure the anchor light is on and turn everything else off."]
+      (flyout [[:left "PopAI, turn on the anchor light and turn everything else off."]
                [:right "Done"]]
               "/popai-hero-background-light.jpg")
       (topic code
@@ -303,13 +303,13 @@
                  [:h1 (style {:margin "1em"}) "PopAI is software for your existing device"]
                  (outline :left 
                           "Install In Three Easy Steps"
-                          "You purchase a data package tailored to your boat and location, install it on your existing mobile device, and connect the device to your boat’s MFD Wi-Fi network.")
+                          "You purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD Wi-Fi network.")
                  (outline :right 
                           "Buy Once and Use Forever"
-                          "You buy a data package for your boat and location. You get free data updates for your data for a year.")
+                          "You buy a data package for your boat and cruising location. You get free data package updates for a year.")
                  (outline :left 
-                          "Concrete Precise Answers Based on Trustworthy Data"
-                          "PopAI is powered by your boat's sensor data, propriatory data and curated data sources including travel guides, government noticaes and publications, local knowledge and manufacturer's documentation.")]]))
+                          "Trustworthy Answers"
+                          "PopAI is powered by your boat's sensor data and curated data sources including travel guides, government notices and publications, local knowledge and manufacturer's documentation.")]]))
       (flyout [] nil :bottom)
       about/footer])
     (resp/redirect "/")))
