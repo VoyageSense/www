@@ -94,7 +94,7 @@
     (c/route-compile store-route/checkout)        :>> (wrap-params request store-checkout/page)
     (c/route-compile store-route/discount)        :>> (wrap-params request store-checkout/discount)
     (c/route-compile store-route/survey)          :>> (wrap-params request store-checkout/submit-survey)
-    (c/route-compile about/route-home)            (about/home)
+    (c/route-compile store-route/about)           :>> (wrap-params request about/home)
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 internal-error

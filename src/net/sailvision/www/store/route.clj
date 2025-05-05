@@ -8,6 +8,7 @@
 (def request-almanac (str home "/request-almanac"))
 (def discount (str home "/discount"))
 (def survey (str home "/survey"))
+(def about "/about/:code")
 
 (defn with-code [route code]
   (str/replace-first route ":code" (name code)))

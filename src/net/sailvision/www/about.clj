@@ -1,9 +1,10 @@
 (ns net.sailvision.www.about
   (:require
    [net.sailvision.www.page :as page]
-   [net.sailvision.www.util :refer [long-str]]))
-
-(def route-home "/about")
+   [net.sailvision.www.store.request :as request]
+   [net.sailvision.www.store.route :as route]
+   [net.sailvision.www.util :refer [long-str]]
+   [ring.util.response :as resp]))
 
 (def about-us
   {:body [[:main.body-width
@@ -17,7 +18,7 @@
            [:p (long-str "Like what we're doing and are interested in joining the team? We'd love to talk! Send us a"
                          "note using the email address in the footer.")]]]})
 
-(def footer
+(defn footer [code]
   {:css  [[:footer {:padding "1em 0"
                     :display :flex}
            [:.spacer {:flex-grow 1}]
@@ -28,15 +29,17 @@
            [:footer.body-width
             [:span "&copy; 2025 SailVisionPro, LLC"]
             [:div.spacer]
-            [:a {:href route-home} "About"]
+            [:a {:href (route/with-code route/about code)} "About"]
             [:div.spacer]
             [:a {:href "mailto:contact@sailvisionpro.com"} "Contact"]]]]})
 
-(defn home []
-  (page/from-components
-   "About"
-   [page/base
-    page/header
-    page/header-spacer
-    about-us
-    footer]))
+(defn home [request]
+  (if-let [[code _config] (request/validate request)]
+    (page/from-components
+     "About"
+     [page/base
+      (page/header code)
+      page/header-spacer
+      about-us
+      footer])
+    (resp/redirect "/")))

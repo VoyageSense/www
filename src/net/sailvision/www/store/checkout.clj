@@ -121,12 +121,12 @@
       (page/from-components
        "Checkout"
        [page/base
-        page/header
+        (page/header code)
         page/header-spacer
         (thank-you {:location location
                     :boat     boat
                     :code     code})
-        about/footer]))
+        (about/footer code)]))
     (resp/redirect "/")))
 
 ;;
@@ -144,11 +144,11 @@
       (page/from-components
        "Survey"
        [page/base
-        page/header
+        (page/header code)
         page/header-spacer
         {:body [[:main.body-width
                  [:p "Thank you for your feedback!"]]]}
-        about/footer]))
+        (about/footer code)]))
     (resp/redirect "/")))
 
 
@@ -163,9 +163,9 @@
       (page/from-components
        "Discount Signup"
        [page/base
-        page/header
+        (page/header code)
         page/header-spacer
         {:body [[:main.body-width
                  [:p "Got it! Thanks again."]]]}
-        about/footer]))
+        (about/footer code)]))
     (resp/redirect "/")))

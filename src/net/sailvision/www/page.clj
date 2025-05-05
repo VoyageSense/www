@@ -6,6 +6,7 @@
    [garden.core :as g]
    [garden.stylesheet :as s]
    [hiccup.page :as h]
+   [net.sailvision.www.store.route :as route]
    [net.sailvision.www.util :refer [style]]))
 
 (def headers {"Content-Type" "text/html"})
@@ -87,7 +88,7 @@
                [posthog-script]
                nil)}))
 
-(def header
+(defn header [code]
   {:css  [[:body
            [:header {:margin-top     "1em"
                      :display        :flex
@@ -96,6 +97,8 @@
                      :align-items    "last baseline"
                      :position       :absolute
                      :width          "calc(min(100% - 2em, var(--max-body-width)))"}
+            [:a {:text-decoration :none
+                 :color           :inherit}]
             [:h1 :h2 :h3 {:margin         0
                           :font-weight    :bold}]
             [:h1         {:font-size      "3em"}]
@@ -110,13 +113,14 @@
                        [:header
                         [:h3 {:display :none}]]])]
    :body [[:div.body-width
-           [:header
-            [:h1 "PopAI"]
-            [:h2 "The ultimate boating companion"]
-            [:div]
-            [:h3
-             [:span "Keep your hands on the helm and eyes on the water"]
-             [:span "Use the power of your voice to manage your boating experience"]]]]]})
+           (let [home (route/with-code route/home code)]
+             [:header
+              [:h1 [:a {:href home} "PopAI"]]
+              [:h2 [:a {:href home} "The ultimate boating companion"]]
+              [:div]
+              [:h3
+               [:span "Keep your hands on the helm and eyes on the water"]
+               [:span "Use the power of your voice to manage your boating experience"]]])]]})
 
 (def header-spacer
   {:body [[:div (style {:display :block

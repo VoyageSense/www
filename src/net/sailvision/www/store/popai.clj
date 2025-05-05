@@ -210,7 +210,7 @@
     (page/from-components
      nil
      [page/base
-      page/header
+      (page/header code)
       {:css [buy-button-css
              [:header {:color       "#f8f8f8"
                        :text-shadow "0.05em 0.1em 0.5em #404040"}]]}
@@ -311,5 +311,5 @@
                           "Trustworthy Answers"
                           "PopAI is powered by your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation.")]]))
       (flyout [] nil :bottom)
-      about/footer])
+      (about/footer code)])
     (resp/redirect "/")))

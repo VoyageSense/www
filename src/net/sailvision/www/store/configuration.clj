@@ -81,10 +81,10 @@
 (defn page [request]
   (if-let [[code _config] (request/validate request)]
     (page/from-components "Configure PopAI" [page/base
-                                             page/header
+                                             (page/header code)
                                              page/header-spacer
                                              (configuration code)
-                                             about/footer])
+                                             (about/footer code)])
     (resp/redirect "/")))
 
 ;;
@@ -92,7 +92,7 @@
 ;;
 
 (defn request-almanac [request]
-  (if-let [[_code _config] (request/validate request)]
+  (if-let [[code _config] (request/validate request)]
     (let [params  (:params request)
           storage (db/storage)
           conn    (db/connect storage :requested-almanacs)]
@@ -100,9 +100,9 @@
       (page/from-components
        "Requested Almanac"
        [page/base
-        page/header
+        (page/header code)
         page/header-spacer
         {:body [[:main.body-width
                  [:p "Thank you for your submission. We'll let you know when we can support that configuration."]]]}
-        about/footer]))
+        (about/footer code)]))
     (resp/redirect "/")))
