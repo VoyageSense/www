@@ -137,22 +137,25 @@
                              :transform  "translate(3px, 3px)"}]])
 
 (defn topic
-  ([body] (topic nil body))
-  ([code body]
+  ([body] (topic nil nil body))
+  ([code config body]
    {:body [[:div.full-width.topic (style {:background "rgb(var(--background))"
                                           :padding    "1em 0 5em"})
             (concat
              body
              (when code
-               [[:a.button {:href (route/with-code route/configure code)
+               [[:a.button {:href (if (empty? config)
+                                    (route/with-code route/checkout code)
+                                    (route/with-code route/configure code))
                             :style (g/style {:margin "5em 0 3em"})}
                  "Configure and Buy"]]))]]}))
 
 (defn elaboration
-  ([chunks] (elaboration nil chunks))
-  ([code chunks]
+  ([chunks] (elaboration nil nil chunks))
+  ([code config chunks]
    (topic
     code
+    config
     (let [[accent & points] chunks
           [head body]       accent
 
@@ -259,6 +262,7 @@
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.jpg")
       (elaboration code
+                   config
                    [["Dock"
                      "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
                     ["Subtle help at critical moments"
@@ -269,6 +273,7 @@
                [:right "Done"]]
               "/popai-hero-background-light.jpg")
       (topic code
+             config
              (let [outline (fn [align title text]
                              (into [:div
                                     (style (merge {:background-color   "rgb(var(--bold-background))"
