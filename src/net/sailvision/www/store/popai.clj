@@ -111,8 +111,8 @@
                   [:div (style {:flex-grow 1})]
                   (map-indexed (fn [i [side utterance]]
                                  (let [row-delay (str (* 400 i) "ms")]
-                                   (into [:div.flyout-pair.body-width (style {:display    :flex
-                                                                              :padding    "0 3vw"})]
+                                   (into [:div.flyout-pair.is-visible.body-width (style {:display    :flex
+                                                                                         :padding    "0 3vw"})]
                                          (case side
                                            :left [[:q.left (style (quote-style :left row-delay)) utterance]
                                                   [:div (style spacer)]]
@@ -120,7 +120,7 @@
                                                    [:q.right (style (quote-style :right row-delay)) utterance]]))))
                                voices)]]
                 end)]
-      :script [(slurp (io/resource "flyout.js"))]})))
+      :script [(slurp (io/resource "visible.js"))]})))
 
 (def buy-button-css
   [["a.button" {:grid-column     3
