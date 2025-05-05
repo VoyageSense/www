@@ -24,7 +24,7 @@
      ;; :lhztx dummy
      ;; :xqccm dummy
      ;; :plpgm dummy
-     ;; :mango {}
+     :mango {}
      ;; :1ayjd {}
      ;; :1vhji {}
      ;; :1nzxl {}
