@@ -87,10 +87,10 @@
                                                                                   (str/lower-case)
                                                                                   (str/split #" ")))]
                                                   [[:input {:type  :radio
-                                                            :name  option-id
-                                                            :id    id
-                                                            :value id}]
-                                                   [:label {:for id} answer]]))
+                                                            :name  id
+                                                            :id    option-id
+                                                            :value answer}]
+                                                   [:label {:for option-id} answer]]))
                                               answers))
                                  [:input {:type :radio
                                           :name  id
