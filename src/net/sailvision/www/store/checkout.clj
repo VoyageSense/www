@@ -11,19 +11,13 @@
    [ring.util.response :as resp]))
 
 (defn thank-you [&{:keys [location boat code]}]
-  (let [functions ["Cruising Guide"
-                   "Boat Mechanic"
-                   "Sailing Instructor"
-                   "Crew Member"]
-        survey [{:id       :most-interesting
-                 :question "Which of the functions did you find most interesting?"
-                 :answers  functions}
-                {:id       :offline
-                 :question "Are you interested in a version of the product that can work entirely offline?"
-                 :answers  ["Yes"
-                            "No"]}
-                {:id       :remote
-                 :question "Are you interested in the capability to monitor and control your boat remotely?"
+  (let [survey [{:id       :how-often
+                 :question "How often do you charter a boat for multiple days at a time?"
+                 :answers  ["Once a year"
+                            "Multiple times a year"
+                            "Once every several years"]}
+                {:id       :same-place
+                 :question "Do you usually charter in the same waters each time?"
                  :answers  ["Yes"
                             "No"]}]]
     {:css  [[:main.side-by-side {:display   :flex
