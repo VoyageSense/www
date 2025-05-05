@@ -286,8 +286,9 @@
                                                     :right {:grid-template-columns "1fr auto"
                                                             :text-align            :right})))]
                                    [[:h2 (style {:margin      0
-                                                 :color "rgb(var(--accent))"
-                                                 :grid-column "1 / -1"}) title]
+                                                 :color       "rgb(var(--accent))"
+                                                 :grid-column "1 / -1"
+                                                 :font-weight :lighter}) title]
                                     [:p (style {:margin      0
                                                 :grid-column 1}) text]]))]
                [[:div.body-width (style {:display   :flex
@@ -297,9 +298,9 @@
                                          :padding   "2em 0"
                                          :flex-flow "column nowrap"
                                          :gap       "2em"})
-                 [:h1 (style {:margin "1em"}) "PopAI is software for your existing device"]
+                 [:h1 (style {:margin "1em"}) "PopAI runs on your existing device"]
                  (outline :left
-                          "Install In Three Easy Steps"
+                          "Install in Three Easy Steps"
                           "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD using its Wi-Fi network.")
                  (outline :right
                           "Buy Once and Use Forever"
