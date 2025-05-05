@@ -37,5 +37,6 @@
    "About"
    [page/base
     page/header
+    page/header-spacer
     about-us
     footer]))

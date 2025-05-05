@@ -122,6 +122,7 @@
        "Checkout"
        [page/base
         page/header
+        page/header-spacer
         (thank-you {:location location
                     :boat     boat
                     :code     code})
@@ -144,6 +145,7 @@
        "Survey"
        [page/base
         page/header
+        page/header-spacer
         {:body [[:main.body-width
                  [:p "Thank you for your feedback!"]]]}
         about/footer]))
@@ -162,6 +164,7 @@
        "Discount Signup"
        [page/base
         page/header
+        page/header-spacer
         {:body [[:main.body-width
                  [:p "Got it! Thanks again."]]]}
         about/footer]))

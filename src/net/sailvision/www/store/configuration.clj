@@ -82,6 +82,7 @@
   (if-let [[code _config] (request/validate request)]
     (page/from-components "Configure PopAI" [page/base
                                              page/header
+                                             page/header-spacer
                                              (configuration code)
                                              about/footer])
     (resp/redirect "/")))
@@ -100,6 +101,7 @@
        "Requested Almanac"
        [page/base
         page/header
+        page/header-spacer
         {:body [[:main.body-width
                  [:p "Thank you for your submission. We'll let you know when we can support that configuration."]]]}
         about/footer]))

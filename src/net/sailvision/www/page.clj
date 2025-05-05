@@ -5,7 +5,8 @@
    [environ.core :refer [env]]
    [garden.core :as g]
    [garden.stylesheet :as s]
-   [hiccup.page :as h]))
+   [hiccup.page :as h]
+   [net.sailvision.www.util :refer [style]]))
 
 (def headers {"Content-Type" "text/html"})
 
@@ -89,7 +90,6 @@
 (def header
   {:css  [[:body
            [:header {:margin-top     "1em"
-                     :padding-bottom "2em"
                      :display        :flex
                      :overflow       :hidden
                      :gap            "0.5em"
@@ -117,6 +117,10 @@
             [:h3
              [:span "Keep your hands on the helm and eyes on the water"]
              [:span "Use the power of your voice to manage your boating experience"]]]]]})
+
+(def header-spacer
+  {:body [[:div (style {:display :block
+                        :height  "5em"})]]})
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head

@@ -5,13 +5,10 @@
    [net.sailvision.www.page :as page]
    [net.sailvision.www.store.request :as request]
    [net.sailvision.www.store.route :as route]
-   [net.sailvision.www.util :refer [long-str]]
+   [net.sailvision.www.util :refer [long-str style]]
    [garden.core :as g]
    [hiccup.core :as h]
    [ring.util.response :as resp]))
-
-(defn style [content]
-  {:style (g/style content)})
 
 (defn background-mask
   ([image body] (background-mask image body nil))
