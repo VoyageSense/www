@@ -235,29 +235,29 @@
                     ["Hands free control"
                      "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
                     ["Cruising guide"
-                     "Answers any question about local marinas, anchorages, dive spots, amenities on shore and more."]])
+                     "Answers any questions about local marinas, anchorages, dive spots, amenities ashore, and more."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
-               [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
+               [:left  "PopAI, I didn’t see any, and I shut off the engine. What’s wrong?"]]
               "/tow.jpg")
       (elaboration [["Breakdown"
                      "You’re on your way &mdash; open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Your boat’s documentation"
-                     "PopAI gets its knowledge from the documentation by the boat’s manufacturer. Instant, accurate answers are there when you need it."]
+                     "PopAI gets its knowledge from the boat manufacturer’s documentation. Instant, accurate answers are there when you need them."]
                     ["Interactive troubleshooting"
-                     "Troubleshoot with information from the engine and other systems manuals. A clear, methodical approach can mean the difference between getting back underway &mdash; or drifting for hours in frustration."]
+                     "Troubleshoots with engine and systems manuals. A clear, methodical approach can mean getting back underway&mdash;or drifting for hours."]
                     ["Repair guidance"
-                     "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
+                     "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when to let you think."]])
       (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.jpg")
       (elaboration [["Navigate"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
-                     "PopAI is an instant guide to VHF communication &mdash; from choosing the right channel to how to hail a vessel or request assistance, all a question away."]
+                     "PopAI guides your VHF communication with ease &mdash; from choosing the right channel to how to hail a vessel or request assistance."]
                     ["Rules of the road"
-                     "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; just ask PopAI. Easy access to boating rules and conventions, domestic and international."]
+                     "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; PopAI answers any question about boating rules and conventions, both domestic and international."]
                     ["Pilot Plan"
-                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide, PopAI has a detailed local knowledge you can query with your voice."]])
+                     "When you need to change your plans for any reason, PopAI helps you find the best destination. Like a cruising guide, it offers detailed local knowledge you can query with your voice."]])
       (flyout [[:left  "PopAI, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.jpg")
