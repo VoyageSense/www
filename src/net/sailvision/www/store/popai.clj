@@ -191,22 +191,18 @@
                   :opacity   0}]
            [:img.visible {:transform :none
                           :opacity   1}]]]
-   :body [[:img.mobile-show.is-visible (merge {:src "/popai-hero-background-light.jpg"}
-                                              (style {:width      "100vw"
-                                                      :height     "100vh"
-                                                      :position   :fixed
-                                                      :object-fit :cover
-                                                      :transition "opacity 0.8s linear, transform 0.8s ease"
-                                                      :z-index    -1
-                                                      :visibility "var(--light-visibility)"}))]
-          [:img.mobile-show.is-visible (merge {:src "/popai-hero-background-dark.jpg"}
-                                              (style {:width      "100vw"
-                                                      :height     "100vh"
-                                                      :position   :fixed
-                                                      :object-fit :cover
-                                                      :transition "opacity 0.8s linear, transform 0.8s ease"
-                                                      :z-index    -1
-                                                      :visibility "var(--dark-visibility)"}))]]
+   :body (let [base-style {:width      "100vw"
+                           :height     "100vh"
+                           :position   :fixed
+                           :object-fit :cover
+                           :transition "opacity 0.8s linear, transform 0.8s ease"
+                           :z-index    -1}]
+           [[:img.mobile-show (merge {:src    "/popai-hero-background-light.jpg"
+                                      :onload "this.classList.add('visible')"}
+                                     (style (merge base-style {:visibility "var(--light-visibility)"})))]
+            [:img.mobile-show (merge {:src    "/popai-hero-background-dark.jpg"
+                                      :onload "this.classList.add('visible')"}
+                                     (style (merge base-style {:visibility "var(--dark-visibility)"})))]])
    :script (slurp (io/resource "visible.js"))})
 
 (defn page [request]
