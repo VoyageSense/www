@@ -173,7 +173,7 @@
                        (let [[head body] point]
                          (if (= 0 (mod i 2))
                            [:div (style {:margin-top gap})
-                            [:h1 head]
+                            [:h1 (style {:font-weight :lighter}) head]
                             [:p body]]
                            [:div (style {:margin-top gap
                                          :display    :flex
@@ -181,7 +181,7 @@
                             [:div (style {:flex-grow 1
                                           :min-width "10vw"})]
                             [:div
-                             [:h1 head]
+                             [:h1 (style {:font-weight :lighter}) head]
                              [:p body]]])))
                      points)]]))))
 
@@ -220,7 +220,7 @@
               "/popai-hero-background-light.jpg"
               :top)
       (elaboration [["Cast Off"
-                     "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins …"]
+                     "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins…"]
                     ["Verbal Checklists"
                      "PopAI talks you through checklists to save time and have confidence you will not miss anything."]
                     ["Simple and reliable voice interface"
@@ -231,7 +231,7 @@
       (elaboration [["Cruise"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["Second set of eyes"
-                     "PopAI monitors the systems aboard – alerting when it sees trouble unfolding."]
+                     "PopAI monitors the systems aboard, alerting when it sees trouble unfolding."]
                     ["Hands free control"
                      "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
                     ["Cruising guide"
@@ -240,11 +240,11 @@
                [:left  "PopAI, I didn’t see any. And I shut off the engine. What’s wrong?"]]
               "/tow.jpg")
       (elaboration [["Breakdown"
-                     "You’re on your way – open sea, no signal, and no distractions. And then… silence. The engine has died."]
+                     "You’re on your way &mdash; open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Your boat’s documentation"
                      "PopAI gets its knowledge from the documentation by the boat’s manufacturer. Instant, accurate answers are there when you need it."]
                     ["Interactive troubleshooting"
-                     "Troubleshoots using information from the engine and other systems manuals. A clear, methodical approach can mean the difference between getting back underway – or drifting for hours in frustration."]
+                     "Troubleshoot with information from the engine and other systems manuals. A clear, methodical approach can mean the difference between getting back underway &mdash; or drifting for hours in frustration."]
                     ["Repair guidance"
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when it should let you think."]])
       (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
@@ -257,7 +257,7 @@
                     ["Rules of the road"
                      "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; just ask PopAI. Easy access to boating rules and conventions, domestic and international."]
                     ["Pilot Plan"
-                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide PopAI has a detailed local knowledge you can query with your voice."]])
+                     "When you need to change your plans for whatever reason, PopAI is there to help you find the best destination. Just like a cruising guide, PopAI has a detailed local knowledge you can query with your voice."]])
       (flyout [[:left  "PopAI, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.jpg")
@@ -267,7 +267,7 @@
                     ["Subtle help at critical moments"
                      "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
-                     "PopAI monitors your vessel’s status and can help you remember tasks &mdash; like turning off running lights and power winches while at anchor."]])
+                     "PopAI monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "PopAI, turn on the anchor light and turn everything else off."]
                [:right "Done"]]
               "/popai-hero-background-light.jpg")
@@ -298,15 +298,15 @@
                                          :flex-flow "column nowrap"
                                          :gap       "2em"})
                  [:h1 (style {:margin "1em"}) "PopAI is software for your existing device"]
-                 (outline :left 
+                 (outline :left
                           "Install In Three Easy Steps"
-                          "You purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD Wi-Fi network.")
-                 (outline :right 
+                          "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD using its Wi-Fi network.")
+                 (outline :right
                           "Buy Once and Use Forever"
-                          "You buy a data package for your boat and cruising location. You get free data package updates for a year.")
-                 (outline :left 
+                          "Buy the data for your boat and cruising location and get free updates for a year.")
+                 (outline :left
                           "Trustworthy Answers"
-                          "PopAI is powered by your boat's sensor data and curated data sources including travel guides, government notices and publications, local knowledge and manufacturer's documentation.")]]))
+                          "PopAI is powered by your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation.")]]))
       (flyout [] nil :bottom)
       about/footer])
     (resp/redirect "/")))
