@@ -42,6 +42,7 @@
     {:css  [[:form
              [:label {:align-content :center}]]]
      :body [[:main.body-width
+             [:img {:src "/diagram.svg"}]
              [:div.soft-outline (style {:display        :flex
                                         :flex-direction :column
                                         :margin         "auto"
