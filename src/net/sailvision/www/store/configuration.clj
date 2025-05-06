@@ -7,16 +7,20 @@
    [net.sailvision.www.store.request :as request]
    [net.sailvision.www.store.route :as route]
    [net.sailvision.www.store.target :as target]
+   [net.sailvision.www.util :refer [style]]
    [ring.util.response :as resp]))
 
 (defn almanac-request [code]
-  {:css  [[:details {:margin-top "3em"}
-           [:button {:margin-top "1em"}]]]
-   :body [[:details
+  {:body [[:details (style {:margin-top "3em"})
            [:summary "Don&rsquo;t see your destination or boat?"]
            [:p "Let us know where you&rsquo;re going and what you&rsquo;ll be sailing so we can start working on the almanac. We&rsquo;ll follow up once it&rsquo;s ready."]
-           [:form.sku-request {:action (route/with-code route/request-almanac code)
-                               :method :post}
+           [:form.sku-request (merge {:action (route/with-code route/request-almanac code)
+                                      :method :post}
+                                     (style {:display               :grid
+                                             :grid-template-columns "auto 1fr"
+                                             :gap                   "0.3em"
+                                             :width                 :fit-content
+                                             :margin                "auto"}))
             [:input {:type  :hidden
                      :name  :product
                      :value :popai}]
@@ -27,38 +31,30 @@
             [:label              {:for  :emailAddress} "Email Address:"]
             [:input#emailAddress {:type :email
                                   :name :emailAddress}]
-            [:button {:type :submit} "Request Almanac"]]]]})
+            [:button (merge {:type :submit}
+                            (style {:margin-top "1em"})) "Request Almanac"]]]]})
 
 (defn configuration [code]
   (let [config    (code target/configs)
         boats     (:boats     config)
         locations (:locations config)
         price     (:price     config)]
-    {:css  [[:#forms {:display        :flex
-                      :flex-direction :column
-                      :margin         "auto"
-                      :width          :min-content}
-             [:h1 {:font-size "1.5em"
-                   :margin    "1em auto 0.5em"}]
-             [:form
-              {:display               :grid
-               :grid-template-columns "auto 1fr"
-               :gap                   "0.3em"
-               :width                 :fit-content
-               :margin                "auto"}
-              [:label {:align-content :center}]
-              [:button {:grid-column  "span 2"
-                        :justify-self :center
-                        :padding      "0.3em 1em"}]]
-             [:.total {:grid-column "1 / -1"
-                       :font-size   "1.1em"
-                       :margin      "1em 0 0.5em"}]]
-            (first (:css (almanac-request code)))]
+    {:css  [[:form
+             [:label {:align-content :center}]]]
      :body [[:main.body-width
-             [:div#forms.soft-outline
-              [:h1 "PopAI Digital Almanac"]
-              [:form.sku-selection {:action (route/with-code route/checkout code)
-                                    :method :post}
+             [:div.soft-outline (style {:display        :flex
+                                        :flex-direction :column
+                                        :margin         "auto"
+                                        :width          :min-content})
+              [:h1 (style {:font-size "1.5em"
+                           :margin    "0em auto 1em"}) "PopAI Digital Almanac"]
+              [:form.sku-selection (merge {:action (route/with-code route/checkout code)
+                                           :method :post}
+                                          (style {:display               :grid
+                                                  :grid-template-columns "auto 1fr"
+                                                  :gap                   "0.3em"
+                                                  :width                 :fit-content
+                                                  :margin                "auto"}))
                [:input {:type  :hidden
                         :name  :product
                         :value :popai}]
@@ -73,8 +69,13 @@
                [:select#boat {:name :boat}
                 [:option {:value ""} "-- Select One --"]
                 (map (fn [[k v]] [:option {:value k} v]) boats)]
-               [:p.total "Subtotal: $" price]
-               [:button {:type :submit} "Checkout"]]
+               [:p.total (style {:grid-column "1 / -1"
+                                 :font-size   "1.1em"
+                                 :margin      "1em 0 0.5em"}) "Subtotal: $" price]
+               [:button (merge {:type :submit}
+                               (style {:grid-column  "span 2"
+                                       :justify-self :center
+                                       :padding      "0.3em 1em"}))"Checkout"]]
               (first (:body (almanac-request code)))]]]
      :script [(slurp (io/resource "almanac-checkout.js"))]}))
 
