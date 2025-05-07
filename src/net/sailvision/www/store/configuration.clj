@@ -148,17 +148,16 @@
                [:td "Yes"]]]
              [:h1 "Frequently Asked Questions"]
              [:details
-              [:summary "Question 1"]
-              [:p "Answer 1"]]
+              [:summary "How is Popai different than ChatGPT or any other generative LLM based AI?"]
+              [:p "Unlike general purpose products like ChatGPT, Google’s Gemini and Apple Intelligence, Popai is custom built for your boat and boating area for the purpose of assisting you on the water. Even the most advanced generative AI will give you generic answers that you will not trust with the safety of your boat and guests."]
+              [:p "The secret sauce of Popai is the structured data that it uses and how it processes real-time information from your boat. Popai knows how to talk to your chartplotter and all sensors on the boat. It knows your boat’s exact dimensions, capacities and manufacturer’s configuration. Popai combines this knowledge with structured local knowledge, marine navigation data, and maritime rules and regulations to give you concrete actionable answers. You can see exactly how each answer was generated for you and build trust in Popai."]
+              [:p "Lastly, Popai is built using state of the art techniques like machine learning and natural language processing but no single technique singularly describes how Popai works. Popai’s final performance is measured with the satisfaction of our customers and the repeat usage of the product."]]
              [:details
-              [:summary "Question 2"]
-              [:p "Answer 2"]]
+              [:summary "What things can I configure?"]
+              [:p "Popai is designed to seamlessly help with your boating experience. It will use the most common formulas to define answers for you, however you can see those formulas and configure them in the app to your liking. For example, when calculating how much anchor chain is needed for a specific location Popai will assume a desired scope ratio of 7:1. You can edit this ration by updating this setting in the app or verbally telling Popai to remember your preference."]]
              [:details
-              [:summary "Question 3"]
-              [:p "Answer 3"]]
-             [:details
-              [:summary "Question 4"]
-              [:p "Answer 4"]]
+              [:summary "Can I set custom checklists?"]
+              [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add items to the checklist and mark them as completed. You can also set reminders for specific tasks."]]
              [:div.soft-outline (style {:display        :flex
                                         :flex-direction :column
                                         :margin         "5em auto"})
