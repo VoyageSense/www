@@ -93,24 +93,24 @@
              [:h1 "Audio Interface Compatibility"]
              [:p "PopAI installs on your mobile device and supports a wide variety of voice interfaces. Any hands free device, speaker with a microphone or a headset that connects to your PopAI device will work."]
              [:p "In addition we heard our customers and integrated PopAI with the top three most popular assistant ecosystems on the market " [:a {:href "https://assistant.google.com/"} "Google Assistant"] ", " [:a {:href "https://www.apple.com/apple-intelligence/"} "Apple Intelligence"] " (" [:a {:href "https://www.apple.com/siri/"} "Apple Siri"] "), and " [:a {:href "https://www.amazon.com/dp/B0DCCNHWV5"} "Amazon Alexa"] ". This means we support all existing hardware solutions like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " [:a {:href "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011"} "Amazon Echo hardware products"] ". We also support any device like TVs, Roku, smart speakers, etc., that implement the " [:a {:href "https://developers.google.com/assistant"} "Google Assistant API"] ", " [:a {:href "https://developer.amazon.com/en-US/alexa/alexa-skills-kit/get-deeper/dev-tools-skill-management-api"} "Alexa Skills"] " or Apple Siri (" [:a {:href "https://developer.apple.com/documentation/sirikit/"} "SiriKit"] " and " [:a {:href "https://developer.apple.com/documentation/appintents"} "App Intents"] "). Our goal is to make using PopAI so easy and familiar to you that you take it to all your chartering and boating adventures around the world."]
-             [:p "Recommended speakers based to optimize for low power usage on your boat and "]
+             [:p "Recommended speakers based to optimize for low power usage on your boat."]
              [:table
               [:tr
-               [:th "Audio Device"]
-               [:th "Max Power Usage (Max Volume)"]
-               [:th "Power Usage Listening (Standby Mode)"]]
+               [:th "Audio Device"] 
+               [:th "Listening Power Usage (Idle/Standby Mode)"]
+               [:th "Max Power Usage (Max Volume)"]]
               [:tr
-               [:td [:a {:href "https://www.apple.com/homepod-mini/"} "Apple HomePod Mini"]]
-               [:td "4 W"]
-               [:td "0.8 W"]]
+               [:td [:a {:href "https://www.apple.com/homepod-mini/"} "Apple HomePod Mini"]] 
+               [:td "0.8 W"]
+               [:td "4 W"]] 
               [:tr
-               [:td [:a {:href "https://store.google.com/config/google_nest_mini?hl=en-US&selections=eyJwcm9kdWN0RmFtaWx5IjoiWjI5dloyeGxYMjVsYzNSZmJXbHVhUT09In0%3D"} "Google Home Mini 2"]]
-               [:td "2.7 W"]
-               [:td ""]]
+               [:td [:a {:href "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/"} "Amazon Echo Dot 5th Gen"]] 
+               [:td "1.3 W"]
+               [:td "3.9 W"]]
               [:tr
-               [:td [:a {:href "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/"} "Amazon Echo Dot"]]
-               [:td ""]
-               [:td "1.4 W"]]]
+               [:td [:a {:href "https://store.google.com/config/google_nest_mini?hl=en-US&selections=eyJwcm9kdWN0RmFtaWx5IjoiWjI5dloyeGxYMjVsYzNSZmJXbHVhUT09In0%3D"} "Google Home Mini 2"]] 
+               [:td "1.4 W"]
+               [:td "2.7 W"]]]
              [:h1 "Chartplotter Compatibility"]
              [:p "PopAI is compatible with the most popular modern chartplotter on the market built since 2020 that have built in Wi-Fi connection. PopAI knows how to talk to those deivces in a two-way communication to read your boat’s data and control systems and devices on the network. For older chartplotters or chartplotters that do not have Wi-Fi support you can install a " [:a {:href "https://www.yachtd.com/products"} "Yacht Devices Wi-Fi NMEA Data Gateway"] " (" [:a {:href "https://www.yachtd.com/products/wifi_0183_gateway.html"} "YDWN-02"] " or " [:a {:href "https://www.yachtd.com/products/wifi_gateway.html"} "YDWG-02"] ") third party device that enables PopAI to read and control your NMEA data network (NMEA 2000 and NMEA 0183 compatible)."]
              [:table
