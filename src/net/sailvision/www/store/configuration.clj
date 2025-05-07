@@ -161,8 +161,7 @@
               [:p "Answer 4"]]
              [:div.soft-outline (style {:display        :flex
                                         :flex-direction :column
-                                        :margin         "5em auto"
-                                        :width          :min-content})
+                                        :margin         "5em auto"})
               [:h1 (style {:font-size "1.5em"
                            :margin    "0em auto 1em"}) "Popai Digital Almanac"]
               [:form.sku-selection (merge {:action (route/with-code route/checkout code)
@@ -170,20 +169,21 @@
                                           (style {:display               :grid
                                                   :grid-template-columns "auto 1fr"
                                                   :gap                   "0.3em"
-                                                  :width                 :fit-content
                                                   :margin                "auto"}))
                [:input {:type  :hidden
                         :name  :product
                         :value :popai}]
                [:label           {:for  :location} "Location:"]
-               [:select#location {:name :location}
+               [:select#location (merge {:name :location}
+                                        (style {:min-width 0}))
                 [:option {:value ""} "-- Select One --"]
                 (map (fn [[area locations]]
                        [:optgroup {:label area}
                         (map (fn [[k v]] [:option {:value k} v]) locations)])
                      locations)]
                [:label       {:for  :boat} "Boat:"]
-               [:select#boat {:name :boat}
+               [:select#boat (merge {:name :boat}
+                                    (style {:min-width 0}))
                 [:option {:value ""} "-- Select One --"]
                 (map (fn [[k v]] [:option {:value k} v]) boats)]
                [:p.total (style {:grid-column "1 / -1"
