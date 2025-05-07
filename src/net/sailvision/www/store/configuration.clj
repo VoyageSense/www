@@ -40,10 +40,21 @@
         locations (:locations config)
         price     (:price     config)]
     {:css  [[:form
-             [:label {:align-content :center}]]]
+             [:label {:align-content :center}]]
+            [:table {:background      "color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 3%)"
+                     :border          "thin rgb(var(--foreground)) solid"
+                     :border-collapse :collapse
+                     :text-align      :center
+                     :margin          "0 auto"}
+             [:th {:background "color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 10%)"}]
+             [:th :td {:vertical-align :middle
+                       :border         "thin rgb(var(--foreground)) solid"
+                       :padding        "1em"}]]
+            [:h1 {:margin-top "2em"}]]
      :body [[:main.body-width
              [:p "PopAI runs on your existing mobile device, and connects to the systems already aboard your boat."]
-             [:img {:src "/diagram.svg"}]
+             [:img (merge {:src "/diagram.svg"}
+                          (style {:width "100%"}))]
              [:h1 "Device Requirements"]
              [:p "PopAI is a powerful software product that enables you to talk to and control your boat and also has detailed knowledge on maritime rules and regulations. Unlike general purpose products like ChatGPT, Google’s Gemini and Apple Intelligence, PopAI is custom built for your boat and for the purpose of assisting you on the water."]
              [:table
@@ -104,28 +115,32 @@
              [:p "PopAI is compatible with the most popular modern chartplotter on the market built since 2020 that have built in Wi-Fi connection. PopAI knows how to talk to those deivces in a two-way communication to read your boat’s data and control systems and devices on the network. For older chartplotters or chartplotters that do not have Wi-Fi support you can install a " [:a {:href "https://www.yachtd.com/products"} "Yacht Devices Wi-Fi NMEA Data Gateway"] " (" [:a {:href "https://www.yachtd.com/products/wifi_0183_gateway.html"} "YDWN-02"] " or " [:a {:href "https://www.yachtd.com/products/wifi_gateway.html"} "YDWG-02"] ") third party device that enables PopAI to read and control your NMEA data network (NMEA 2000 and NMEA 0183 compatible)."]
              [:table
               [:tr
-               [:th ""]
-               [:th "Garmin GPSMAP and  ECHOMAP"]
-               [:th "Simrad NSX, NSS, NSO and Go Series"]
-               [:th "Raymarine Axiom Series"]
-               [:th "B&G Vulcan Series"]
-               [:th "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"]
-               [:th "Chartplotters built pre 2020 with Wi-Fi"]]
+               [:th "Chartplotter"]
+               [:th "Control Systems and Devices"]
+               [:th "Read Instrument Data"]]
               [:tr
-               [:td "Control Systems and Devices"]
+               [:td "Garmin GPSMAP and  ECHOMAP"]
                [:td "Yes"]
-               [:td "Yes"]
-               [:td "Yes"]
-               [:td "Yes"]
-               [:td "Yes"]
-               [:td ""]]
+               [:td "Yes"]]
               [:tr
-               [:td "Read Instruments  Data"]
+               [:td "Simrad NSX, NSS, NSO and Go Series"]
                [:td "Yes"]
+               [:td "Yes"]]
+              [:tr
+               [:td "Raymarine Axiom Series"]
                [:td "Yes"]
+               [:td "Yes"]]
+              [:tr
+               [:td "B&G Vulcan Series"]
                [:td "Yes"]
+               [:td "Yes"]]
+              [:tr
+               [:td "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"]
                [:td "Yes"]
-               [:td "Yes"]
+               [:td "Yes"]]
+              [:tr
+               [:td "Chartplotters built pre 2020 with Wi-Fi"]
+               [:td ""]
                [:td "Yes"]]]
              [:sup "* all systems must be manufactured post 2020 and have built in Wi-Fi connectivity"]
              [:div.soft-outline (style {:display        :flex
