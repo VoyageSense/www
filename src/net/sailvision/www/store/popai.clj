@@ -197,10 +197,10 @@
                            :object-fit :cover
                            :transition "opacity 0.8s linear, transform 0.8s ease"
                            :z-index    -1}]
-           [[:img.mobile-show (merge {:src    "/popai-hero-background-light.jpg"
+           [[:img.mobile-show (merge {:src    "/popai-hero-background-light.webp"
                                       :onload "this.classList.add('visible')"}
                                      (style (merge base-style {:visibility "var(--light-visibility)"})))]
-            [:img.mobile-show (merge {:src    "/popai-hero-background-dark.jpg"
+            [:img.mobile-show (merge {:src    "/popai-hero-background-dark.webp"
                                       :onload "this.classList.add('visible')"}
                                      (style (merge base-style {:visibility "var(--dark-visibility)"})))]])
    :script (slurp (io/resource "visible.js"))})
@@ -217,7 +217,7 @@
       mobile-background
       (flyout [[:left  "PopAI, can we make it to Simpson Bay for the 5pm bridge opening?"]
                [:right "Yes, but winds are light, so you'll have to motor sail."]]
-              "/popai-hero-background-light.jpg"
+              "/popai-hero-background-light.webp"
               :top)
       (elaboration [["Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins…"]
@@ -227,7 +227,7 @@
                      "Instantly reads any instrument data for you. No more getting distracted by a screen while maneuvering in close quarters."]])
       (flyout [[:left  "PopAI, let me know if the depth goes below 15 feet."]
                [:right "Okay, I'll notify you if that happens."]]
-              "/cruising.jpg")
+              "/cruising.webp")
       (elaboration [["Cruise"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["Second set of eyes"
@@ -238,7 +238,7 @@
                      "Answers any questions about local marinas, anchorages, dive spots, amenities ashore, and more."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
                [:left  "PopAI, I didn’t see any, and I shut off the engine. What’s wrong?"]]
-              "/tow.jpg")
+              "/tow.webp")
       (elaboration [["Breakdown"
                      "You’re on your way &mdash; open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Your boat’s documentation"
@@ -249,7 +249,7 @@
                      "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when to let you think."]])
       (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
-              "/bridge.jpg")
+              "/bridge.webp")
       (elaboration [["Navigate"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
@@ -260,7 +260,7 @@
                      "When you need to change your plans for any reason, PopAI helps you find the best destination. Like a cruising guide, it offers detailed local knowledge you can query with your voice."]])
       (flyout [[:left  "PopAI, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
-              "/marina.jpg")
+              "/marina.webp")
       (elaboration code
                    config
                    [["Dock"
@@ -271,7 +271,7 @@
                      "PopAI monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "PopAI, turn on the anchor light and turn everything else off."]
                [:right "Done"]]
-              "/popai-hero-background-light.jpg")
+              "/popai-hero-background-light.webp")
       (topic code
              config
              (let [outline (fn [align title text]
