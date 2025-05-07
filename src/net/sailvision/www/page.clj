@@ -166,3 +166,8 @@
                  (pretty-print)
                  (mapcat :noscript components))]]
     [:body.full-width (mapcat :body components)])})
+
+(defn external-link [url body]
+  [:a {:href   url
+       :target :_blank
+       :rel    :noopener} body])
