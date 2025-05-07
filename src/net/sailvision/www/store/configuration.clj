@@ -97,7 +97,7 @@
              [:h1 "Audio Interface Compatibility"]
              [:p "Popai installs on your mobile device and supports a wide variety of voice interfaces. Any hands free device, speaker with a microphone or a headset that connects to your Popai device will work."]
              [:p "In addition we heard our customers and integrated Popai with the top three most popular assistant ecosystems on the market " [:a {:href "https://assistant.google.com/" :target "_blank"} "Google Assistant"] ", " [:a {:href "https://www.apple.com/apple-intelligence/" :target "_blank"} "Apple Intelligence"] " (" [:a {:href "https://www.apple.com/siri/" :target "_blank"} "Apple Siri"] "), and " [:a {:href "https://www.amazon.com/dp/B0DCCNHWV5" :target "_blank"} "Amazon Alexa"] ". This means we support all existing hardware solutions like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " [:a {:href "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" :target "_blank"} "Amazon Echo hardware products"] ". We also support any device like TVs, Roku, smart speakers, etc., that implement the " [:a {:href "https://developers.google.com/assistant" :target "_blank"} "Google Assistant API"] ", " [:a {:href "https://developer.amazon.com/en-US/alexa/alexa-skills-kit/get-deeper/dev-tools-skill-management-api" :target "_blank"} "Alexa Skills"] " or Apple Siri (" [:a {:href "https://developer.apple.com/documentation/sirikit/" :target "_blank"} "SiriKit"] " and " [:a {:href "https://developer.apple.com/documentation/appintents" :target "_blank"} "App Intents"] "). Our goal is to make using Popai so easy and familiar to you that you take it to all your chartering and boating adventures around the world."]
-             [:p "Recommended speakers based to optimize for low power usage on your boat."]
+             [:p "To reduce power consumption on your boat, we recommend using a low-power smart speaker such as the " [:a {:href "https://www.apple.com/homepod-mini/" :target "_blank"} "Apple HomePod Mini"]", " [:a {:href "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/" :target "_blank"} "Amazon Echo Dot 5th Gen"] ", or " [:a {:href "https://store.google.com/config/google_nest_mini?hl=en-US&selections=eyJwcm9kdWN0RmFtaWx5IjoiWjI5dloyeGxYMjVsYzNSZmJXbHVhUT09In0%3D" :target "_blank"} "Google Home Mini 2"] " as an onboard speaker and microphone solution."]
              [:table
               [:tr
                [:th "Audio Device"] 
@@ -146,7 +146,6 @@
                [:td "Chartplotters built pre 2020 with Wi-Fi"]
                [:td ""]
                [:td "Yes"]]]
-             [:sup "* all systems must be manufactured post 2020 and have built in Wi-Fi connectivity"]
              [:h1 "Frequently Asked Questions"]
              [:details
               [:summary "Question 1"]
