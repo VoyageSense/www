@@ -162,7 +162,7 @@
               [:p "Answer 4"]]
              [:div.soft-outline (style {:display        :flex
                                         :flex-direction :column
-                                        :margin         "auto"
+                                        :margin         "5em auto"
                                         :width          :min-content})
               [:h1 (style {:font-size "1.5em"
                            :margin    "0em auto 1em"}) "Popai Digital Almanac"]
