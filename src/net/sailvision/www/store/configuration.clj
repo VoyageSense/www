@@ -49,7 +49,7 @@
              [:th {:background "color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 10%)"}]
              [:th :td {:vertical-align :middle
                        :border         "thin rgb(var(--foreground)) solid"
-                       :padding        "1em"}]]
+                       :padding        "0.8em"}]]
             [:h1 {:margin-top "2em"}]
             [:details {:border "thin color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 40%) solid"
                        :margin-bottom "0.5em"
