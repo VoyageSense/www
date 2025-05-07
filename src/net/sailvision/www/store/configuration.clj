@@ -50,7 +50,11 @@
              [:th :td {:vertical-align :middle
                        :border         "thin rgb(var(--foreground)) solid"
                        :padding        "1em"}]]
-            [:h1 {:margin-top "2em"}]]
+            [:h1 {:margin-top "2em"}]
+            [:details {:border "thin color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 40%) solid"
+                       :margin-bottom "0.5em"
+                       :padding "1em"}
+             [:p {:margin-bottom 0}]]]
      :body [[:main.body-width
              [:p "Popai runs on your existing mobile device, and connects to the systems already aboard your boat."]
              [:img (merge {:src "/diagram.svg"}
@@ -143,6 +147,19 @@
                [:td ""]
                [:td "Yes"]]]
              [:sup "* all systems must be manufactured post 2020 and have built in Wi-Fi connectivity"]
+             [:h1 "Frequently Asked Questions"]
+             [:details
+              [:summary "Question 1"]
+              [:p "Answer 1"]]
+             [:details
+              [:summary "Question 2"]
+              [:p "Answer 2"]]
+             [:details
+              [:summary "Question 3"]
+              [:p "Answer 3"]]
+             [:details
+              [:summary "Question 4"]
+              [:p "Answer 4"]]
              [:div.soft-outline (style {:display        :flex
                                         :flex-direction :column
                                         :margin         "auto"
