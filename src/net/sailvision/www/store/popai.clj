@@ -215,50 +215,50 @@
              [:header {:color       "#f8f8f8"
                        :text-shadow "0.05em 0.1em 0.5em #404040"}]]}
       mobile-background
-      (flyout [[:left  "PopAI, can we make it to Simpson Bay for the 5pm bridge opening?"]
+      (flyout [[:left  "Popai, can we make it to Simpson Bay for the 5pm bridge opening?"]
                [:right "Yes, but winds are light, so you'll have to motor sail."]]
               "/popai-hero-background-light.webp"
               :top)
       (elaboration [["Cast Off"
                      "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins…"]
                     ["Verbal Checklists"
-                     "PopAI talks you through checklists to save time and have confidence you will not miss anything."]
+                     "Popai talks you through checklists to save time and have confidence you will not miss anything."]
                     ["Simple and reliable voice interface"
                      "Instantly reads any instrument data for you. No more getting distracted by a screen while maneuvering in close quarters."]])
-      (flyout [[:left  "PopAI, let me know if the depth goes below 15 feet."]
+      (flyout [[:left  "Popai, let me know if the depth goes below 15 feet."]
                [:right "Okay, I'll notify you if that happens."]]
               "/cruising.webp")
       (elaboration [["Cruise"
                      "It's a glorious day and everybody onboard is having a blast!"]
                     ["Second set of eyes"
-                     "PopAI monitors the systems aboard, alerting when it sees trouble unfolding."]
+                     "Popai monitors the systems aboard, alerting when it sees trouble unfolding."]
                     ["Hands free control"
                      "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
                     ["Cruising guide"
                      "Answers any questions about local marinas, anchorages, dive spots, amenities ashore, and more."]])
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
-               [:left  "PopAI, I didn’t see any, and I shut off the engine. What’s wrong?"]]
+               [:left  "Popai, I didn’t see any, and I shut off the engine. What’s wrong?"]]
               "/tow.webp")
       (elaboration [["Breakdown"
                      "You’re on your way &mdash; open sea, no signal, and no distractions. And then… silence. The engine has died."]
                     ["Your boat’s documentation"
-                     "PopAI gets its knowledge from the boat manufacturer’s documentation. Instant, accurate answers are there when you need them."]
+                     "Popai gets its knowledge from the boat manufacturer’s documentation. Instant, accurate answers are there when you need them."]
                     ["Interactive troubleshooting"
                      "Troubleshoots with engine and systems manuals. A clear, methodical approach can mean getting back underway&mdash;or drifting for hours."]
                     ["Repair guidance"
-                     "With a little know-how, you can handle 90% of boat repairs yourself. PopAI recognizes when it needs to detail steps and when to let you think."]])
-      (flyout [[:left  "PopAI, how should I hail the Simpson Bay Bridge on VHF?"]
+                     "With a little know-how, you can handle 90% of boat repairs yourself. Popai recognizes when it needs to detail steps and when to let you think."]])
+      (flyout [[:left  "Popai, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.webp")
       (elaboration [["Navigate"
                      "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
                     ["VHF instructions"
-                     "PopAI guides your VHF communication with ease &mdash; from choosing the right channel to how to hail a vessel or request assistance."]
+                     "Popai guides your VHF communication with ease &mdash; from choosing the right channel to how to hail a vessel or request assistance."]
                     ["Rules of the road"
-                     "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; PopAI answers any question about boating rules and conventions, both domestic and international."]
+                     "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; Popai answers any question about boating rules and conventions, both domestic and international."]
                     ["Pilot Plan"
-                     "When you need to change your plans for any reason, PopAI helps you find the best destination. Like a cruising guide, it offers detailed local knowledge you can query with your voice."]])
-      (flyout [[:left  "PopAI, can I anchor here?"]
+                     "When you need to change your plans for any reason, Popai helps you find the best destination. Like a cruising guide, it offers detailed local knowledge you can query with your voice."]])
+      (flyout [[:left  "Popai, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.webp")
       (elaboration code
@@ -266,10 +266,10 @@
                    [["Dock"
                      "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
                     ["Subtle help at critical moments"
-                     "PopAI won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
+                     "Popai won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
-                     "PopAI monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
-      (flyout [[:left "PopAI, turn on the anchor light and turn everything else off."]
+                     "Popai monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
+      (flyout [[:left "Popai, turn on the anchor light and turn everything else off."]
                [:right "Done"]]
               "/popai-hero-background-light.webp")
       (topic code
@@ -300,7 +300,7 @@
                                          :padding   "2em 0"
                                          :flex-flow "column nowrap"
                                          :gap       "2em"})
-                 [:h1 (style {:margin "1em"}) "PopAI runs on your existing device"]
+                 [:h1 (style {:margin "1em"}) "Popai runs on your existing device"]
                  (outline :left
                           "Install in Three Easy Steps"
                           "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD using its Wi-Fi network.")
@@ -309,7 +309,7 @@
                           "Buy the data for your boat and cruising location and get free updates for a year.")
                  (outline :left
                           "Trustworthy Answers"
-                          "PopAI is powered by your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation.")]]))
+                          "Popai is powered by your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation.")]]))
       (flyout [] nil :bottom)
       (about/footer code)])
     (resp/redirect "/")))

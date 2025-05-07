@@ -52,11 +52,11 @@
                        :padding        "1em"}]]
             [:h1 {:margin-top "2em"}]]
      :body [[:main.body-width
-             [:p "PopAI runs on your existing mobile device, and connects to the systems already aboard your boat."]
+             [:p "Popai runs on your existing mobile device, and connects to the systems already aboard your boat."]
              [:img (merge {:src "/diagram.svg"}
                           (style {:width "100%"}))]
              [:h1 "Device Requirements"]
-             [:p "PopAI is a powerful software product that enables you to talk to and control your boat and also has detailed knowledge on maritime rules and regulations. Unlike general purpose products like ChatGPT, Google’s Gemini and Apple Intelligence, PopAI is custom built for your boat and for the purpose of assisting you on the water."]
+             [:p "Popai is a powerful software product that enables you to talk to and control your boat and also has detailed knowledge on maritime rules and regulations. Unlike general purpose products like ChatGPT, Google’s Gemini and Apple Intelligence, Popai is custom built for your boat and for the purpose of assisting you on the water."]
              [:table
               [:tr
                [:th "Mobile Device"]
@@ -91,8 +91,8 @@
                [:td ""]
                [:td "Yes"]]]
              [:h1 "Audio Interface Compatibility"]
-             [:p "PopAI installs on your mobile device and supports a wide variety of voice interfaces. Any hands free device, speaker with a microphone or a headset that connects to your PopAI device will work."]
-             [:p "In addition we heard our customers and integrated PopAI with the top three most popular assistant ecosystems on the market " [:a {:href "https://assistant.google.com/" :target "_blank"} "Google Assistant"] ", " [:a {:href "https://www.apple.com/apple-intelligence/" :target "_blank"} "Apple Intelligence"] " (" [:a {:href "https://www.apple.com/siri/" :target "_blank"} "Apple Siri"] "), and " [:a {:href "https://www.amazon.com/dp/B0DCCNHWV5" :target "_blank"} "Amazon Alexa"] ". This means we support all existing hardware solutions like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " [:a {:href "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" :target "_blank"} "Amazon Echo hardware products"] ". We also support any device like TVs, Roku, smart speakers, etc., that implement the " [:a {:href "https://developers.google.com/assistant" :target "_blank"} "Google Assistant API"] ", " [:a {:href "https://developer.amazon.com/en-US/alexa/alexa-skills-kit/get-deeper/dev-tools-skill-management-api" :target "_blank"} "Alexa Skills"] " or Apple Siri (" [:a {:href "https://developer.apple.com/documentation/sirikit/" :target "_blank"} "SiriKit"] " and " [:a {:href "https://developer.apple.com/documentation/appintents" :target "_blank"} "App Intents"] "). Our goal is to make using PopAI so easy and familiar to you that you take it to all your chartering and boating adventures around the world."]
+             [:p "Popai installs on your mobile device and supports a wide variety of voice interfaces. Any hands free device, speaker with a microphone or a headset that connects to your Popai device will work."]
+             [:p "In addition we heard our customers and integrated Popai with the top three most popular assistant ecosystems on the market " [:a {:href "https://assistant.google.com/" :target "_blank"} "Google Assistant"] ", " [:a {:href "https://www.apple.com/apple-intelligence/" :target "_blank"} "Apple Intelligence"] " (" [:a {:href "https://www.apple.com/siri/" :target "_blank"} "Apple Siri"] "), and " [:a {:href "https://www.amazon.com/dp/B0DCCNHWV5" :target "_blank"} "Amazon Alexa"] ". This means we support all existing hardware solutions like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " [:a {:href "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" :target "_blank"} "Amazon Echo hardware products"] ". We also support any device like TVs, Roku, smart speakers, etc., that implement the " [:a {:href "https://developers.google.com/assistant" :target "_blank"} "Google Assistant API"] ", " [:a {:href "https://developer.amazon.com/en-US/alexa/alexa-skills-kit/get-deeper/dev-tools-skill-management-api" :target "_blank"} "Alexa Skills"] " or Apple Siri (" [:a {:href "https://developer.apple.com/documentation/sirikit/" :target "_blank"} "SiriKit"] " and " [:a {:href "https://developer.apple.com/documentation/appintents" :target "_blank"} "App Intents"] "). Our goal is to make using Popai so easy and familiar to you that you take it to all your chartering and boating adventures around the world."]
              [:p "Recommended speakers based to optimize for low power usage on your boat."]
              [:table
               [:tr
@@ -112,7 +112,7 @@
                [:td "1.4 W"]
                [:td "2.7 W"]]]
              [:h1 "Chartplotter Compatibility"]
-             [:p "PopAI is compatible with the most popular modern chartplotter on the market built since 2020 that have built in Wi-Fi connection. PopAI knows how to talk to those deivces in a two-way communication to read your boat’s data and control systems and devices on the network. For older chartplotters or chartplotters that do not have Wi-Fi support you can install a " [:a {:href "https://www.yachtd.com/products" :target "_blank"} "Yacht Devices Wi-Fi NMEA Data Gateway"] " (" [:a {:href "https://www.yachtd.com/products/wifi_0183_gateway.html" :target "_blank"} "YDWN-02"] " or " [:a {:href "https://www.yachtd.com/products/wifi_gateway.html" :target "_blank"} "YDWG-02"] ") third party device that enables PopAI to read and control your NMEA data network (NMEA 2000 and NMEA 0183 compatible)."]
+             [:p "Popai is compatible with the most popular modern chartplotter on the market built since 2020 that have built in Wi-Fi connection. Popai knows how to talk to those deivces in a two-way communication to read your boat’s data and control systems and devices on the network. For older chartplotters or chartplotters that do not have Wi-Fi support you can install a " [:a {:href "https://www.yachtd.com/products" :target "_blank"} "Yacht Devices Wi-Fi NMEA Data Gateway"] " (" [:a {:href "https://www.yachtd.com/products/wifi_0183_gateway.html" :target "_blank"} "YDWN-02"] " or " [:a {:href "https://www.yachtd.com/products/wifi_gateway.html" :target "_blank"} "YDWG-02"] ") third party device that enables Popai to read and control your NMEA data network (NMEA 2000 and NMEA 0183 compatible)."]
              [:table
               [:tr
                [:th "Chartplotter"]
@@ -148,7 +148,7 @@
                                         :margin         "auto"
                                         :width          :min-content})
               [:h1 (style {:font-size "1.5em"
-                           :margin    "0em auto 1em"}) "PopAI Digital Almanac"]
+                           :margin    "0em auto 1em"}) "Popai Digital Almanac"]
               [:form.sku-selection (merge {:action (route/with-code route/checkout code)
                                            :method :post}
                                           (style {:display               :grid
@@ -182,7 +182,7 @@
 
 (defn page [request]
   (if-let [[code _config] (request/validate request)]
-    (page/from-components "Configure PopAI" [page/base
+    (page/from-components "Configure Popai" [page/base
                                              (page/header code)
                                              page/header-spacer
                                              (configuration code)

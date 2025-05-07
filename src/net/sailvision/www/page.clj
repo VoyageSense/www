@@ -115,7 +115,7 @@
    :body [[:div.body-width
            (let [home (route/with-code route/home code)]
              [:header
-              [:h1 [:a {:href home} "PopAI"]]
+              [:h1 [:a {:href home} "Popai"]]
               [:h2 [:a {:href home} "The ultimate boating companion"]]
               [:div]
               [:h3
@@ -128,7 +128,7 @@
 
 (defn head [& {:keys [title extra-css noscript extras]}]
   [:head
-   [:title (str/join " - " (keep identity ["PopAI" title]))]
+   [:title (str/join " - " (keep identity ["Popai" title]))]
    [:link {:rel   "icon"
            :type  "image/svg+xml"
            :sizes :any
@@ -151,7 +151,7 @@
    :body
    (h/html5
     [:head
-     [:title (str/join " - " (keep identity ["PopAI" title]))]
+     [:title (str/join " - " (keep identity ["Popai" title]))]
      [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:meta {:charset "UTF-8"}]
