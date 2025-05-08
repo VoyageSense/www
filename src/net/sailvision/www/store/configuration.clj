@@ -54,6 +54,8 @@
                        :padding        "0.8em"}]]
             [:h1 {:margin-top "2em"}]
             [:details.faq {:border        "thin color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 40%) solid"
+                           :border-radius "1em"
+                           :background    "color-mix(in srgb, rgb(var(--background)), rgb(var(--accent)) 10%)"
                            :margin-bottom "0.5em"
                            :padding       "1em"
                            :cursor        :pointer}
