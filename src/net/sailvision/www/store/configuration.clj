@@ -175,10 +175,10 @@
               [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
              [:details.faq
               [:summary "Does Popai consider my experience level?"]
-              [:p "Yes, you can tell Popai that you want explanations and directions for novice or for experienced crew and it will tailor it’s answers and verbosity based on that."]]
+              [:p "Yes, you can tell Popai that you want explanations and directions for novice or for experienced crew and it will tailor it’s answers and verbosity."]]
              [:details.faq
               [:summary "Can I set custom checklists?"]
-              [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add items to the checklist and mark them as completed. You can also set reminders for specific tasks."]]
+              [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add tasks to your checklists and mark them as completed. You can also set reminders for specific tasks."]]
              [:div (style {:display    :flex
                            :flex-wrap  :wrap
                            :margin-top "5em"})
