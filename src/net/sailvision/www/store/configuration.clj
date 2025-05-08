@@ -100,7 +100,7 @@
              [:h1 "Audio Interface Compatibility"]
              [:p "Popai installs on your mobile device and supports a wide variety of voice interfaces. Any hands free device, speaker with a microphone or a headset that connects to your Popai device will work."]
              [:p "In addition we heard our customers and integrated Popai with the top three most popular assistant ecosystems on the market " (external-link "https://assistant.google.com/" "Google Assistant") ", " (external-link "https://www.apple.com/apple-intelligence/" "Apple Intelligence") " (" (external-link "https://www.apple.com/siri/" "Apple Siri") "), and " (external-link "https://www.amazon.com/dp/B0DCCNHWV5" "Amazon Alexa") ". This means we support all existing hardware solutions like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " (external-link "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" "Amazon Echo hardware products") ". We also support any device like TVs, Roku, smart speakers, etc., that implement the " (external-link "https://developers.google.com/assistant" "Google Assistant API") ", " (external-link "https://developer.amazon.com/en-US/alexa/alexa-skills-kit/get-deeper/dev-tools-skill-management-api" "Alexa Skills") " or Apple Siri (" (external-link "https://developer.apple.com/documentation/sirikit/" "SiriKit") " and " (external-link "https://developer.apple.com/documentation/appintents" "App Intents") "). Our goal is to make using Popai so easy and familiar to you that you take it to all your chartering and boating adventures around the world."]
-             [:p "To reduce power consumption on your boat, we recommend using a low-power smart speaker such as the " (external-link "https://www.apple.com/homepod-mini/" "Apple HomePod Mini")", " (external-link "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/" "Amazon Echo Dot 5th Gen") ", or " (external-link "https://store.google.com/config/google_nest_mini?hl=en-US&selections=eyJwcm9kdWN0RmFtaWx5IjoiWjI5dloyeGxYMjVsYzNSZmJXbHVhUT09In0%3D" "Google Home Mini 2") " as an onboard speaker and microphone solution."]
+             [:p "To reduce power consumption on your boat, we recommend using a low-power smart speaker such as the " (external-link "https://www.apple.com/homepod-mini/" "Apple HomePod Mini") ", " (external-link "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/" "Amazon Echo Dot 5th Gen") ", or " (external-link "https://store.google.com/config/google_nest_mini?hl=en-US&selections=eyJwcm9kdWN0RmFtaWx5IjoiWjI5dloyeGxYMjVsYzNSZmJXbHVhUT09In0%3D" "Google Home Mini 2") " as an onboard speaker and microphone solution."]
              [:table
               [:tr
                [:th "Audio Device"]
@@ -151,13 +151,32 @@
                [:td "Yes"]]]
              [:h1 "Frequently Asked Questions"]
              [:details.faq
-              [:summary "How is Popai different than ChatGPT or any other generative LLM based AI?"]
-              [:p "Unlike general purpose products like ChatGPT, Google’s Gemini and Apple Intelligence, Popai is custom built for your boat and boating area for the purpose of assisting you on the water. Even the most advanced generative AI will give you generic answers that you will not trust with the safety of your boat and guests."]
-              [:p "The secret sauce of Popai is the structured data that it uses and how it processes real-time information from your boat. Popai knows how to talk to your chartplotter and all sensors on the boat. It knows your boat’s exact dimensions, capacities and manufacturer’s configuration. Popai combines this knowledge with structured local knowledge, marine navigation data, and maritime rules and regulations to give you concrete actionable answers. You can see exactly how each answer was generated for you and build trust in Popai."]
-              [:p "Lastly, Popai is built using state of the art techniques like machine learning and natural language processing but no single technique singularly describes how Popai works. Popai’s final performance is measured with the satisfaction of our customers and the repeat usage of the product."]]
+              [:summary "AI assistants are unreliable. How is Popai different?"]
+              [:p "Popai is not an AI assistant."]
+              [:p "Popai is a software product built around the principles of reliability, accuracy and transparency. While it uses techniques like machine learning and natural language processing, Popai is built on well understood marine industry rules and formulas."]
+              [:p "The secret sauce of Popai is the structured data that it uses and how it processes real-time information from your boat. Popai knows how to talk to your chartplotter and all sensors on the boat. It knows your boat’s exact dimensions, capacities and manufacturer’s configuration. Popai combines this knowledge with structured local knowledge, marine navigation data, and maritime rules and regulations to give you concrete actionable answers. You can see exactly how each answer was generated for you and build trust in Popai."]]
              [:details.faq
               [:summary "What things can I configure?"]
-              [:p "Popai is designed to seamlessly help with your boating experience. It will use the most common formulas to define answers for you, however you can see those formulas and configure them in the app to your liking. For example, when calculating how much anchor chain is needed for a specific location Popai will assume a desired scope ratio of 7:1. You can edit the scope ratio by updating it in the app or verbally telling Popai."]]
+              [:p "Popai uses the marine industry standard formulas plus the specifics of your boat (draft, materials, size, etc.) and environment (weather, depth, tides, etc.) to define answers for you. You can see and change those formulas in the app or you can simply ask Popai to remember a new setting."]]
+             [:details.faq
+              [:summary "What type of questions can Popai answer?"]
+              [:p "Popai reads data from your chartplotter when prompted and can control systems on your boat. Popai answers questions related to your boat, sailing area, maritime rules and regulations and can help you troubleshoot and repair breakdowns."]]
+             [:details.faq
+              [:summary "How does Popai know about systems on the boat?"]
+              [:p "Popai connects to your chartlotter's Wi-Fi network and accesses the NMEA data bus to read sensor data and control your boat."]
+              [:p "If your chartplotter does not have Wi-Fi connectivity you can install a third party device on the boat (Yacht Devices NMEA Wi-Fi Gateway) that will enable the same functionality."]]
+             [:details.faq
+              [:summary "How do you communicate with Popai"]
+              [:p "Popai enables you to talk to your boat. You do this either by using your phone's speaker or a hands free device like a bluetooth headset or speaker and microphone. You can also configure Popai to work with a smart speaker such as Apple HomePod, Amazon Echo or Google Home."]]
+             [:details.faq
+              [:summary "Does Popai have a screen interface?"]
+              [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
+             [:details.faq
+              [:summary "Does Popai have a screen interface?"]
+              [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
+             [:details.faq
+              [:summary "Does Popai consider my experience level?"]
+              [:p "Yes, you can tell Popai that you want explanations and directions for novice or for experienced crew and it will tailor it’s answers and verbosity based on that."]]
              [:details.faq
               [:summary "Can I set custom checklists?"]
               [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add items to the checklist and mark them as completed. You can also set reminders for specific tasks."]]
