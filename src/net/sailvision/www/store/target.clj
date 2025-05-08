@@ -137,9 +137,85 @@
      ;; :1kbsu {}
      :2dlhi {}
      :2brip {}
-     :2zuta {}
+     :2zuta {:boats     {:sun-odyssey-319 "Jeanneau Sun Odyssey 319"
+                         :sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+                         :sun-odyssey-419 "Jeanneau Sun Odyssey 419"
+                         :sun-odyssey-519 "Jeanneau Sun Odyssey 519"
+                         :bavaria-41      "Bavaria 41"
+                         :bavaria-46      "Bavaria 46"
+                         :bavaria-50      "Bavaria 50"
+                         :bavaria-50c     "Bavaria 50C"
+                         :bavaria-50s     "Bavaria 50S"
+                         :bavaria-50h     "Bavaria 50H"
+                         :bavaria-56      "Bavaria 56"
+                         :bavaria-57      "Bavaria 57"
+                         :oceanis-30.1    "Beneteau Oceanis 30.1"
+                         :oceanis-34.1    "Beneteau Oceanis 34.1"
+                         :oceanis-38.1    "Beneteau Oceanis 38.1"
+                         :oceanis-42.3    "Beneteau Oceanis 42.3"
+                         :oceanis-46.1    "Beneteau Oceanis 46.1"
+                         :oceanis-51.1    "Beneteau Oceanis 51.1"
+                         :oceanis-55.1    "Beneteau Oceanis 55.1"
+                         :oceanis-62.1    "Beneteau Oceanis 62.1"
+                         :dufour-32       "Dufour 32"
+                         :dufour-36       "Dufour 36"
+                         :dufour-40       "Dufour 40"
+                         :dufour-41       "Dufour 41"
+                         :dufour-44       "Dufour 44"
+                         :dufour-45       "Dufour 45"
+                         :dufour-48       "Dufour 48"}
+             :locations {"Carribean"
+                         {:usvi-bvi        "Virgin Islands (British and United States)"
+                          :leeward-islands "Leeward Islands"
+                          :turks-caicos    "Turks and Caicos Islands"}
+                         "Mediterranean"
+                         {:croatia         "Croatia"
+                          :france          "France"
+                          :greece          "Greece"
+                          :italy           "Italy"
+                          :spain           "Spain"
+                          :turkey          "Turkey"}}
+             :price     200}
      :2mnnt {}
-     :2bjii {}
+     :2bjii {:boats     {:sun-odyssey-319 "Jeanneau Sun Odyssey 319"
+                         :sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+                         :sun-odyssey-419 "Jeanneau Sun Odyssey 419"
+                         :sun-odyssey-519 "Jeanneau Sun Odyssey 519"
+                         :bavaria-41      "Bavaria 41"
+                         :bavaria-46      "Bavaria 46"
+                         :bavaria-50      "Bavaria 50"
+                         :bavaria-50c     "Bavaria 50C"
+                         :bavaria-50s     "Bavaria 50S"
+                         :bavaria-50h     "Bavaria 50H"
+                         :bavaria-56      "Bavaria 56"
+                         :bavaria-57      "Bavaria 57"
+                         :oceanis-30.1    "Beneteau Oceanis 30.1"
+                         :oceanis-34.1    "Beneteau Oceanis 34.1"
+                         :oceanis-38.1    "Beneteau Oceanis 38.1"
+                         :oceanis-42.3    "Beneteau Oceanis 42.3"
+                         :oceanis-46.1    "Beneteau Oceanis 46.1"
+                         :oceanis-51.1    "Beneteau Oceanis 51.1"
+                         :oceanis-55.1    "Beneteau Oceanis 55.1"
+                         :oceanis-62.1    "Beneteau Oceanis 62.1"
+                         :dufour-32       "Dufour 32"
+                         :dufour-36       "Dufour 36"
+                         :dufour-40       "Dufour 40"
+                         :dufour-41       "Dufour 41"
+                         :dufour-44       "Dufour 44"
+                         :dufour-45       "Dufour 45"
+                         :dufour-48       "Dufour 48"}
+             :locations {"Carribean"
+                         {:usvi-bvi        "Virgin Islands (British and United States)"
+                          :leeward-islands "Leeward Islands"
+                          :turks-caicos    "Turks and Caicos Islands"}
+                         "Mediterranean"
+                         {:croatia         "Croatia"
+                          :france          "France"
+                          :greece          "Greece"
+                          :italy           "Italy"
+                          :spain           "Spain"
+                          :turkey          "Turkey"}}
+             :price     200}
      :2pugv {}
      :2pjem {}
      :2ftzv {}
