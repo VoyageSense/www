@@ -32,7 +32,9 @@
             [:input#emailAddress {:type :email
                                   :name :emailAddress}]
             [:button (merge {:type :submit}
-                            (style {:margin-top "1em"})) "Request Almanac"]]]]})
+                            (style {:grid-column  "span 2"
+                                    :justify-self :center
+                                    :margin-top   "1em"})) "Request Almanac"]]]]})
 
 (defn configuration [code]
   (let [config    (code target/configs)
