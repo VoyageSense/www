@@ -157,7 +157,7 @@
               [:p "The secret sauce of Popai is the structured data that it uses and how it processes real-time information from your boat. Popai knows how to talk to your chartplotter and all sensors on the boat. It knows your boat’s exact dimensions, capacities and manufacturer’s configuration. Popai combines this knowledge with structured local knowledge, marine navigation data, and maritime rules and regulations to give you concrete actionable answers. You can see exactly how each answer was generated for you and build trust in Popai."]]
              [:details.faq
               [:summary "What things can I configure?"]
-              [:p "Popai uses the marine industry standard formulas plus the specifics of your boat (draft, materials, size, etc.) and environment (weather, depth, tides, etc.) to define answers for you. You can see and change those formulas in the app or you can simply ask Popai to remember a new setting."]]
+              [:p "Popai uses marine industry standard formulas plus the specifics of your boat (draft, materials, size, etc.) and environment (weather, depth, tides, etc.) to define answers for you. You can see and change those formulas in the app or you can simply ask Popai to remember a new setting."]]
              [:details.faq
               [:summary "What type of questions can Popai answer?"]
               [:p "Popai reads data from your chartplotter when prompted and can control systems on your boat. Popai answers questions related to your boat, sailing area, maritime rules and regulations and can help you troubleshoot and repair breakdowns."]]
@@ -168,9 +168,6 @@
              [:details.faq
               [:summary "How do you communicate with Popai"]
               [:p "Popai enables you to talk to your boat. You do this either by using your phone's speaker or a hands free device like a bluetooth headset or speaker and microphone. You can also configure Popai to work with a smart speaker such as Apple HomePod, Amazon Echo or Google Home."]]
-             [:details.faq
-              [:summary "Does Popai have a screen interface?"]
-              [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
              [:details.faq
               [:summary "Does Popai have a screen interface?"]
               [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
