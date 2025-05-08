@@ -55,7 +55,8 @@
             [:h1 {:margin-top "2em"}]
             [:details.faq {:border        "thin color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 40%) solid"
                            :margin-bottom "0.5em"
-                           :padding       "1em"}
+                           :padding       "1em"
+                           :cursor        :pointer}
              [:p {:margin-bottom 0}]]]
      :body [[:main.body-width
              [:p "Popai runs on your existing mobile device, and connects to the systems already aboard your boat."]
@@ -202,7 +203,8 @@
                                         :justify-self :center
                                         :padding      "0.3em 1em"})) "Checkout"]]
                (first (:body (almanac-request code)))]]]]
-     :script [(slurp (io/resource "almanac-checkout.js"))]}))
+     :script [(slurp (io/resource "almanac-checkout.js"))
+              (slurp (io/resource "faq.js"))]}))
 
 (defn page [request]
   (if-let [[code _config] (request/validate request)]
