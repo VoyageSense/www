@@ -154,7 +154,7 @@
               [:p "Lastly, Popai is built using state of the art techniques like machine learning and natural language processing but no single technique singularly describes how Popai works. Popai’s final performance is measured with the satisfaction of our customers and the repeat usage of the product."]]
              [:details
               [:summary "What things can I configure?"]
-              [:p "Popai is designed to seamlessly help with your boating experience. It will use the most common formulas to define answers for you, however you can see those formulas and configure them in the app to your liking. For example, when calculating how much anchor chain is needed for a specific location Popai will assume a desired scope ratio of 7:1. You can edit this ration by updating this setting in the app or verbally telling Popai to remember your preference."]]
+              [:p "Popai is designed to seamlessly help with your boating experience. It will use the most common formulas to define answers for you, however you can see those formulas and configure them in the app to your liking. For example, when calculating how much anchor chain is needed for a specific location Popai will assume a desired scope ratio of 7:1. You can edit the scope ratio by updating it in the app or verbally telling Popai."]]
              [:details
               [:summary "Can I set custom checklists?"]
               [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add items to the checklist and mark them as completed. You can also set reminders for specific tasks."]]
