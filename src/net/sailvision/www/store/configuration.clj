@@ -160,41 +160,48 @@
              [:details.faq
               [:summary "Can I set custom checklists?"]
               [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add items to the checklist and mark them as completed. You can also set reminders for specific tasks."]]
-             [:div.soft-outline (style {:display        :flex
-                                        :flex-direction :column
-                                        :margin         "5em auto"})
-              [:h1 (style {:font-size "1.5em"
-                           :margin    "0em auto 1em"}) "Popai Digital Almanac"]
-              [:form.sku-selection (merge {:action (route/with-code route/checkout code)
-                                           :method :post}
-                                          (style {:display               :grid
-                                                  :grid-template-columns "auto 1fr"
-                                                  :gap                   "0.3em"
-                                                  :margin                "auto"}))
-               [:input {:type  :hidden
-                        :name  :product
-                        :value :popai}]
-               [:label           {:for  :location} "Location:"]
-               [:select#location (merge {:name :location}
-                                        (style {:min-width 0}))
-                [:option {:value ""} "-- Select One --"]
-                (map (fn [[area locations]]
-                       [:optgroup {:label area}
-                        (map (fn [[k v]] [:option {:value k} v]) locations)])
-                     locations)]
-               [:label       {:for  :boat} "Boat:"]
-               [:select#boat (merge {:name :boat}
-                                    (style {:min-width 0}))
-                [:option {:value ""} "-- Select One --"]
-                (map (fn [[k v]] [:option {:value k} v]) boats)]
-               [:p.total (style {:grid-column "1 / -1"
-                                 :font-size   "1.1em"
-                                 :margin      "1em 0 0.5em"}) "Subtotal: $" price]
-               [:button (merge {:type :submit}
-                               (style {:grid-column  "span 2"
-                                       :justify-self :center
-                                       :padding      "0.3em 1em"}))"Checkout"]]
-              (first (:body (almanac-request code)))]]]
+             [:div (style {:display    :flex
+                           :flex-wrap  :wrap
+                           :margin-top "5em"})
+              [:img (merge {:src "/person.svg"}
+                           (style {:flex         "1 1 50%"
+                                   :aspect-ratio 1}))]
+              [:div.soft-outline (style {:display        :flex
+                                         :flex-direction :column
+                                         :flex           "1 1 50%"
+                                         :height         :min-content})
+               [:h1 (style {:font-size "1.5em"
+                            :margin    "0em auto 1em"}) "Popai Digital Almanac"]
+               [:form.sku-selection (merge {:action (route/with-code route/checkout code)
+                                            :method :post}
+                                           (style {:display               :grid
+                                                   :grid-template-columns "auto 1fr"
+                                                   :gap                   "0.6em"
+                                                   :margin                "auto"}))
+                [:input {:type  :hidden
+                         :name  :product
+                         :value :popai}]
+                [:label           {:for  :location} "Location:"]
+                [:select#location (merge {:name :location}
+                                         (style {:min-width 0}))
+                 [:option {:value ""} "-- Select One --"]
+                 (map (fn [[area locations]]
+                        [:optgroup {:label area}
+                         (map (fn [[k v]] [:option {:value k} v]) locations)])
+                      locations)]
+                [:label       {:for  :boat} "Boat:"]
+                [:select#boat (merge {:name :boat}
+                                     (style {:min-width 0}))
+                 [:option {:value ""} "-- Select One --"]
+                 (map (fn [[k v]] [:option {:value k} v]) boats)]
+                [:p.total (style {:grid-column "1 / -1"
+                                  :font-size   "1.1em"
+                                  :margin      "1em 0 0.5em"}) "Subtotal: $" price]
+                [:button (merge {:type :submit}
+                                (style {:grid-column  "span 2"
+                                        :justify-self :center
+                                        :padding      "0.3em 1em"})) "Checkout"]]
+               (first (:body (almanac-request code)))]]]]
      :script [(slurp (io/resource "almanac-checkout.js"))]}))
 
 (defn page [request]
