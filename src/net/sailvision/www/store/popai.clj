@@ -150,40 +150,26 @@
                             :style (g/style {:margin "5em 0 3em"})}
                  "Configure and Buy"]]))]]}))
 
-(defn elaboration
-  ([chunks] (elaboration nil nil chunks))
-  ([code config chunks]
-   (topic
-    code
-    config
-    (let [[accent & points] chunks
-          [head body]       accent
-
-          gap "2em"]
-      [[:div.body-width (style {:display :flex
-                                :flex-flow "column nowrap"})
-        [:div (style {:display   :flex
-                      :flex-flow "row nowrap"})
-         [:div (style {:flex-grow 1
-                       :min-width "30vw"})]
-         [:div (style {:color "rgb(var(--accent))"})
-          [:h1 (style {:display :block}) head]
-          [:p body]]]
-        (map-indexed (fn [i point]
-                       (let [[head body] point]
-                         (if (= 0 (mod i 2))
-                           [:div (style {:margin-top gap})
+(defn elaboration [chunks]
+  (topic
+   (let [gap "2em"]
+     [[:div.body-width (style {:display :flex
+                               :flex-flow "column nowrap"})
+       (map-indexed (fn [i point]
+                      (let [[head body] point]
+                        (if (= 0 (mod i 2))
+                          [:div (style {:margin-bottom gap})
+                           [:h1 (style {:font-weight :lighter}) head]
+                           [:p body]]
+                          [:div (style {:margin-bottom gap
+                                        :display       :flex
+                                        :flex-flow     "row nowrap"})
+                           [:div (style {:flex-grow 1
+                                         :min-width "10vw"})]
+                           [:div
                             [:h1 (style {:font-weight :lighter}) head]
-                            [:p body]]
-                           [:div (style {:margin-top gap
-                                         :display    :flex
-                                         :flex-flow  "row nowrap"})
-                            [:div (style {:flex-grow 1
-                                          :min-width "10vw"})]
-                            [:div
-                             [:h1 (style {:font-weight :lighter}) head]
-                             [:p body]]])))
-                     points)]]))))
+                            [:p body]]])))
+                    chunks)]])))
 
 (def mobile-background
   {:css  [[:html.js
@@ -219,16 +205,14 @@
                [:right "Yes, but winds are light, so you'll have to motor sail."]]
               "/popai-hero-background-light.webp"
               :top)
-      (elaboration [[""]
-                    ["Verbal Checklists"
+      (elaboration [["Verbal Checklists"
                      "Popai talks you through checklists to save time and have confidence you will not miss anything."]
                     ["Simple and reliable voice interface"
                      "Instantly reads any instrument data for you. No more getting distracted by a screen while maneuvering in close quarters."]])
       (flyout [[:left  "Popai, let me know if the depth goes below 15 feet."]
                [:right "Okay, I'll notify you if that happens."]]
               "/cruising.webp")
-      (elaboration [[""]
-                    ["Second set of eyes"
+      (elaboration [["Second set of eyes"
                      "Popai monitors the systems aboard, alerting when it sees trouble unfolding."]
                     ["Hands free control"
                      "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
@@ -237,8 +221,7 @@
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
                [:left  "Popai, I didn’t see any, and I shut off the engine. What’s wrong?"]]
               "/tow.webp")
-      (elaboration [[""]
-                    ["Your boat’s documentation"
+      (elaboration [["Your boat’s documentation"
                      "Popai gets its knowledge from the boat manufacturer’s documentation. Instant, accurate answers are there when you need them."]
                     ["Interactive troubleshooting"
                      "Troubleshoots with engine and systems manuals. A clear, methodical approach can mean getting back underway&mdash;or drifting for hours."]
@@ -247,8 +230,7 @@
       (flyout [[:left  "Popai, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.webp")
-      (elaboration [[""]
-                    ["VHF instructions"
+      (elaboration [["VHF instructions"
                      "Popai guides your VHF communication with ease &mdash; from choosing the right channel to how to hail a vessel or request assistance."]
                     ["Rules of the road"
                      "Nav lights, call signs, fog horns, buoys, COLREGS &mdash; Popai answers any question about boating rules and conventions, both domestic and international."]
@@ -257,9 +239,7 @@
       (flyout [[:left  "Popai, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.webp")
-      (elaboration 
-                   [[""]
-                    ["Subtle help at critical moments"
+      (elaboration [["Subtle help at critical moments"
                      "Popai won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
                      "Popai monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
