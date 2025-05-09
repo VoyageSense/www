@@ -226,7 +226,7 @@
                [:right "Okay, I'll notify you if that happens."]]
               "/cruising.webp")
       (elaboration [["Second set of eyes"
-                     "Popai monitors the systems aboard, alerting when it sees trouble unfolding."]
+                     "Popai monitors the systems aboard, alerting when it sees trouble ahead."]
                     ["Hands free control"
                      "Controls display brightness, lights, pumps, systems and anything available on the boat network already installed."]
                     ["Cruising guide"
