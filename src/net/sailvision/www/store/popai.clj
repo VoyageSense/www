@@ -193,6 +193,17 @@
                                      (style (merge base-style {:visibility "var(--dark-visibility)"})))]])
    :script (slurp (io/resource "visible.js"))})
 
+(defn box-outline [title body]
+  [:div (style {:background-color "rgb(var(--bold-background))"
+                :box-shadow       "0 0px 10px rgba(var(--foreground), 0.1)"
+                :padding          "2em"
+                :margin-top       "1em"
+                :display          :flex
+                :flex-flow        "column nowrap"})
+   [:h2 (style {:margin      "0 0 1em"
+                :font-weight :lighter}) title]
+   body])
+
 (defn page [request]
   (if-let [[code config] (request/validate request)]
     (page/from-components
@@ -250,41 +261,18 @@
               "/popai-hero-background-light.webp")
       (topic code
              config
-             (let [outline (fn [align title text]
-                             (into [:div
-                                    (style (merge {:background-color   "rgb(var(--bold-background))"
-                                                   :padding            "2em"
-                                                   :display            :grid
-                                                   :align-items        :center
-                                                   :grid-template-rows "auto auto"
-                                                   :gap                "1em"}
-                                                  (case align
-                                                    :left {:grid-template-columns "auto 1fr"
-                                                           :text-align            :left}
-                                                    :right {:grid-template-columns "1fr auto"
-                                                            :text-align            :right})))]
-                                   [[:h2 (style {:margin      0
-                                                 :color       "rgb(var(--accent))"
-                                                 :grid-column "1 / -1"
-                                                 :font-weight :lighter}) title]
-                                    [:p (style {:margin      0
-                                                :grid-column 1}) text]]))]
-               [[:div.body-width (style {:display   :flex
-                                         :background "rgb(var(--bold-background))"
-                                         :box-shadow "0 0px 10px rgba(var(--foreground), 0.1)"
-                                         :margin    "2em 0"
-                                         :padding   "2em 0"
-                                         :flex-flow "column nowrap"
-                                         :gap       "2em"}) 
-                 (outline :left
-                          "Install in Three Easy Steps"
-                          "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD Wi-Fi network.")
-                 (outline :left
-                          "Buy Once and Use Forever"
-                          "Buy the data for your boat and cruising location and get free updates for a year.")
-                 (outline :left
-                          "Trustworthy Answers"
-                          "Popai is powered by your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation.")]]))
+             [[:div.body-width (style {:display    :flex
+                                       :flex-flow  "column nowrap"
+                                       :margin-top "3em"})
+               (box-outline "Install in Three Easy Steps"
+                            [:ol (style {:margin 0})
+                             [:li "Purchase a data package for your boat and cruising location"]
+                             [:li "Install it on your mobile device"]
+                             [:li "Connect your mobile device to your boat’s MFD Wi-Fi network."]])
+               (box-outline "Buy Once and Use Forever"
+                            [:p (style {:margin 0})"Buy the data for your boat and cruising location and get free updates for a year."])
+               (box-outline "Trustworthy Answers"
+                            [:p (style {:margin 0}) "Popai reads your boat's sensor data and uses curated data from sources including government notices and publications, travel guides, local knowledge and manufacturer documentation."])]])
       (flyout [] nil :bottom)
       (about/footer code)])
     (resp/redirect "/")))
