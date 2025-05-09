@@ -41,7 +41,10 @@
   (let [config    (code target/configs)
         boats     (:boats     config)
         locations (:locations config)
-        price     (:price     config)]
+        price     (:price     config)
+
+        check     [:td (style {:color :green}) "✔︎"]
+        uncheck   [:td]]
     {:css  [[:form
              [:label {:align-content :center}]]
             [:table {:background      "color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 3%)"
@@ -70,36 +73,22 @@
              [:table
               [:tr
                [:th "Mobile Device"]
-               [:th "Full Offline Support *"]
-               [:th "Requires Internet Connectivity **"]]
+               [:th "Supported"]
+               [:th "Available Offline"]]
               [:tr
-               [:td "iPhone 15 and iPhone 16"]
-               [:td "Yes"]
-               [:td ""]]
+               [:td "iPhone 15 and iPhone 16"] check check]
               [:tr
-               [:td "iPad 11th gen"]
-               [:td "Yes"]
-               [:td ""]]
+               [:td "iPad 11th gen"] check check]
               [:tr
-               [:td "iPhone 12, 13 and 14"]
-               [:td ""]
-               [:td "Yes"]]
+               [:td "iPhone 12, 13 and 14"] check uncheck]
               [:tr
-               [:td "iPad (8th, 9th and 10th generations)"]
-               [:td ""]
-               [:td "Yes"]]
+               [:td "iPad (8th, 9th and 10th generations)"] check uncheck]
               [:tr
-               [:td "Samsung Galaxy S25 Ultra"]
-               [:td ""]
-               [:td "Yes"]]
+               [:td "Samsung Galaxy S25 Ultra"] check uncheck]
               [:tr
-               [:td "Google Pixel 9 Pro"]
-               [:td ""]
-               [:td "Yes"]]
+               [:td "Google Pixel 9 Pro"] check uncheck]
               [:tr
-               [:td "Google Pixel Tablet"]
-               [:td ""]
-               [:td "Yes"]]]
+               [:td "Google Pixel Tablet"] check uncheck]]
              [:h1 "Audio Interface Compatibility"]
              [:p "Since Popai runs as an app on your device and is controlled with your voice, you can use the hands-free device &mdash; or speakerphone &mdash; that you already have."]
              [:p "In addition, Popai integrates with the most popular assistant ecosystems on the market: " (external-link "https://assistant.google.com/" "Google Assistant") ", " (external-link "https://www.apple.com/siri/" "Apple Siri") " and " (external-link "https://www.amazon.com/dp/B0DCCNHWV5" "Amazon Alexa") ". As a result, most existing hardware solutions work out of the box, like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " (external-link "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" "Amazon Echo hardware products") "."]
@@ -129,29 +118,17 @@
                [:th "Control Systems and Devices"]
                [:th "Read Instrument Data"]]
               [:tr
-               [:td "Garmin GPSMAP and  ECHOMAP"]
-               [:td "Yes"]
-               [:td "Yes"]]
+               [:td "Garmin GPSMAP and  ECHOMAP"] check check]
               [:tr
-               [:td "Simrad NSX, NSS, NSO and Go Series"]
-               [:td "Yes"]
-               [:td "Yes"]]
+               [:td "Simrad NSX, NSS, NSO and Go Series"] check check]
               [:tr
-               [:td "Raymarine Axiom Series"]
-               [:td "Yes"]
-               [:td "Yes"]]
+               [:td "Raymarine Axiom Series"] check check]
               [:tr
-               [:td "B&G Vulcan Series"]
-               [:td "Yes"]
-               [:td "Yes"]]
+               [:td "B&G Vulcan Series"] check check]
               [:tr
-               [:td "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"]
-               [:td "Yes"]
-               [:td "Yes"]]
+               [:td "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"] check check]
               [:tr
-               [:td "Chartplotters built pre 2020 with Wi-Fi"]
-               [:td ""]
-               [:td "Yes"]]]
+               [:td "Chartplotters built pre 2020 with Wi-Fi"] uncheck check]]
              [:h1 "Frequently Asked Questions"]
              [:details.faq
               [:summary "AI assistants are unreliable. How is Popai different?"]
