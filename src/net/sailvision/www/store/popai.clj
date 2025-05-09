@@ -159,7 +159,8 @@
                       (let [[head body] point]
                         (if (= 0 (mod i 2))
                           [:div (style {:margin-bottom gap})
-                           [:h1 (style {:font-weight :lighter}) head]
+                           [:h1 (style {:font-weight :lighter
+                                        :color       "rgb(var(--accent))"}) head]
                            [:p body]]
                           [:div (style {:margin-bottom gap
                                         :display       :flex
@@ -167,7 +168,8 @@
                            [:div (style {:flex-grow 1
                                          :min-width "10vw"})]
                            [:div
-                            [:h1 (style {:font-weight :lighter}) head]
+                            [:h1 (style {:font-weight :lighter
+                                         :color       "rgb(var(--accent))"}) head]
                             [:p body]]])))
                     chunks)]])))
 
