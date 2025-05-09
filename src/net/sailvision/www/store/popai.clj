@@ -219,8 +219,7 @@
                [:right "Yes, but winds are light, so you'll have to motor sail."]]
               "/popai-hero-background-light.webp"
               :top)
-      (elaboration [["Cast Off"
-                     "After months of preparation you are finally on your charter boat with all your family and friends. The adventure begins…"]
+      (elaboration [[""]
                     ["Verbal Checklists"
                      "Popai talks you through checklists to save time and have confidence you will not miss anything."]
                     ["Simple and reliable voice interface"
@@ -228,8 +227,7 @@
       (flyout [[:left  "Popai, let me know if the depth goes below 15 feet."]
                [:right "Okay, I'll notify you if that happens."]]
               "/cruising.webp")
-      (elaboration [["Cruise"
-                     "It's a glorious day and everybody onboard is having a blast!"]
+      (elaboration [[""]
                     ["Second set of eyes"
                      "Popai monitors the systems aboard, alerting when it sees trouble unfolding."]
                     ["Hands free control"
@@ -239,8 +237,7 @@
       (flyout [[:right "Skipper, I noticed the engine is getting hot. Is there water still coming out of the exhaust port?"]
                [:left  "Popai, I didn’t see any, and I shut off the engine. What’s wrong?"]]
               "/tow.webp")
-      (elaboration [["Breakdown"
-                     "You’re on your way &mdash; open sea, no signal, and no distractions. And then… silence. The engine has died."]
+      (elaboration [[""]
                     ["Your boat’s documentation"
                      "Popai gets its knowledge from the boat manufacturer’s documentation. Instant, accurate answers are there when you need them."]
                     ["Interactive troubleshooting"
@@ -250,8 +247,7 @@
       (flyout [[:left  "Popai, how should I hail the Simpson Bay Bridge on VHF?"]
                [:right "Use channel 12 and say: “Simpson Bay Bridge, Simpson Bay Bridge, Simpson Bay Bridge, this is sailing vessel Kayo, over.”"]]
               "/bridge.webp")
-      (elaboration [["Navigate"
-                     "You’ve reached your final destination. The crew is exhausted and ready to rest. One final challenge awaits: navigate the coastal waters and dock in an unfamiliar marina."]
+      (elaboration [[""]
                     ["VHF instructions"
                      "Popai guides your VHF communication with ease &mdash; from choosing the right channel to how to hail a vessel or request assistance."]
                     ["Rules of the road"
@@ -261,16 +257,14 @@
       (flyout [[:left  "Popai, can I anchor here?"]
                [:right "You can, but you'll be half-a-foot in the mud at low tide tonight."]]
               "/marina.webp")
-      (elaboration code
-                   config
-                   [["Dock"
-                     "What an adventure! You’re safely at your destination, the crew is happily worn out from a day on the water &mdash; and now, it’s time to kick back and unwind."]
+      (elaboration 
+                   [[""]
                     ["Subtle help at critical moments"
                      "Popai won’t distract during high-stress moments like docking &mdash; but it’s there when you just need a little reminder."]
                     ["Rest assured"
                      "Popai monitors your vessel’s status and can help you remember tasks, like turning off running lights and power winches while at anchor."]])
       (flyout [[:left "Popai, turn on the anchor light and turn everything else off."]
-               [:right "Done"]]
+               [:right "All set."]]
               "/popai-hero-background-light.webp")
       (topic code
              config
@@ -299,12 +293,11 @@
                                          :margin    "2em 0"
                                          :padding   "2em 0"
                                          :flex-flow "column nowrap"
-                                         :gap       "2em"})
-                 [:h1 (style {:margin "1em"}) "Popai runs on your existing device"]
+                                         :gap       "2em"}) 
                  (outline :left
                           "Install in Three Easy Steps"
-                          "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD using its Wi-Fi network.")
-                 (outline :right
+                          "Purchase a data package for your boat and cruising location, install it on your mobile device, and connect your mobile device to your boat’s MFD Wi-Fi network.")
+                 (outline :left
                           "Buy Once and Use Forever"
                           "Buy the data for your boat and cruising location and get free updates for a year.")
                  (outline :left
