@@ -78,11 +78,11 @@
               [:tr
                [:td "iPhone 15 and iPhone 16"] check check]
               [:tr
-               [:td "iPad 11th gen"] check check]
+               [:td "iPad 11th gen."] check check]
               [:tr
                [:td "iPhone 12, 13 and 14"] check uncheck]
               [:tr
-               [:td "iPad (8th, 9th and 10th generations)"] check uncheck]
+               [:td "iPad (8th, 9th and 10th gen.)"] check uncheck]
               [:tr
                [:td "Samsung Galaxy S25 Ultra"] check uncheck]
               [:tr
