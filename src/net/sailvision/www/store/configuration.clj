@@ -51,7 +51,7 @@
                      :border          "thin rgb(var(--foreground)) solid"
                      :border-collapse :collapse
                      :text-align      :center
-                     :margin          "0 auto"}
+                     :margin          "2em auto"}
              [:th {:background "color-mix(in srgb, rgb(var(--background)), rgb(var(--foreground)) 10%)"}]
              [:th :td {:vertical-align :middle
                        :border         "thin rgb(var(--foreground)) solid"
