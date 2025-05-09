@@ -197,7 +197,6 @@
                 [:option {:value ""} "-- Select One --"]
                 (map (fn [[k v]] [:option {:value k} v]) boats)]
                [:p.total (style {:grid-column "1 / -1"
-                                 :font-size   "1.1em"
                                  :margin      "1em 0 0.5em"}) "Subtotal: $" price]
                [:button (merge {:type :submit}
                                (style {:grid-column  "span 2"
