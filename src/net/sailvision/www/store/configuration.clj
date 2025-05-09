@@ -155,30 +155,16 @@
              [:details.faq
               [:summary "AI assistants are unreliable. How is Popai different?"]
               [:p "Popai is not an AI assistant."]
-              [:p "Popai is a software product built around the principles of reliability, accuracy and transparency. While it uses techniques like machine learning and natural language processing, Popai is built on well understood marine industry rules and formulas."]
-              [:p "The secret sauce of Popai is the structured data that it uses and how it processes real-time information from your boat. Popai knows how to talk to your chartplotter and all sensors on the boat. It knows your boat’s exact dimensions, capacities and manufacturer’s configuration. Popai combines this knowledge with structured local knowledge, marine navigation data, and maritime rules and regulations to give you concrete actionable answers. You can see exactly how each answer was generated for you and build trust in Popai."]]
+              [:p "While it uses certain AI techniques &mdash; like the use of natural language processing to make the interface more natural &mdash; Popai's decision-making logic is based on established maritime rules and equations, making it determinstic and predictable."]]
              [:details.faq
-              [:summary "What things can I configure?"]
-              [:p "Popai uses marine industry standard formulas plus the specifics of your boat (draft, materials, size, etc.) and environment (weather, depth, tides, etc.) to define answers for you. You can see and change those formulas in the app or you can simply ask Popai to remember a new setting."]]
+              [:summary "Can I create custom checklists?"]
+              [:p "Popai can remember custom checklists for your boat or the area, allowing you to create and modify them over time. You can add tasks to your checklists and mark them as completed, as well as set reminders for specific tasks."]]
              [:details.faq
-              [:summary "What type of questions can Popai answer?"]
-              [:p "Popai reads data from your chartplotter when prompted and can control systems on your boat. Popai answers questions related to your boat, sailing area, maritime rules and regulations and can help you troubleshoot and repair breakdowns."]]
-             [:details.faq
-              [:summary "How does Popai know about systems on the boat?"]
-              [:p "Popai connects to your chartlotter's Wi-Fi network and accesses the NMEA data bus to read sensor data and control your boat."]
-              [:p "If your chartplotter does not have Wi-Fi connectivity you can install a third party device on the boat (Yacht Devices NMEA Wi-Fi Gateway) that will enable the same functionality."]]
-             [:details.faq
-              [:summary "How do you communicate with Popai"]
-              [:p "Popai enables you to talk to your boat. You do this either by using your phone's speaker or a hands free device like a bluetooth headset or speaker and microphone. You can also configure Popai to work with a smart speaker such as Apple HomePod, Amazon Echo or Google Home."]]
-             [:details.faq
-              [:summary "Does Popai have a screen interface?"]
-              [:p "Popai's super power is voice control which is the intended mode of usage. However Popai is an app and has a chat interface in it as well."]]
+              [:summary "Does Popai have a visual interface?"]
+              [:p "If desired, textual input can be used to interact with Popai. This interface also provides a history of the spoken and written interactions."]]
              [:details.faq
               [:summary "Does Popai consider my experience level?"]
-              [:p "Yes, you can tell Popai that you want explanations and directions for novice or for experienced crew and it will tailor it’s answers and verbosity."]]
-             [:details.faq
-              [:summary "Can I set custom checklists?"]
-              [:p "Yes, Popai allows you to create custom checklists for your boat and name them. You can add tasks to your checklists and mark them as completed. You can also set reminders for specific tasks."]]
+              [:p "Popai learns through its interactions which topics and in which situations you prefer verbose explanations or directions, versus a minimal hint or nothing at all."]]
              [:div (style {:display    :flex
                            :flex-wrap  :wrap
                            :margin-top "5em"})
