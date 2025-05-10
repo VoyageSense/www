@@ -148,7 +148,7 @@
                                     (route/with-code route/checkout code)
                                     (route/with-code route/configure code))
                             :style (g/style {:margin "5em 0 3em"})}
-                 "Configure and Buy"]]))]]}))
+                 "Learn More and Buy"]]))]]}))
 
 (defn elaboration [chunks]
   (topic
