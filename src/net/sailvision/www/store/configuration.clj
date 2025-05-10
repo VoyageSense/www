@@ -138,6 +138,12 @@
               [:summary "Can I create custom checklists?"]
               [:p "Popai can remember custom checklists for your boat or the area, allowing you to create and modify them over time. You can add tasks to your checklists and mark them as completed, as well as set reminders for specific tasks."]]
              [:details.faq
+              [:summary "Can I configure Popai’s behavior?"]
+              [:p "Every sailor has their preferences and tolerance for risk, and Popai does its best to adapt. Things like anchor rode scope, fuel-consumption safety factor, and sail load margins have reasonable defaults but can be tweaked as desired. Just tell Popai."]]
+             [:details.faq
+              [:summary "What type of questions can Popai answer?"]
+              [:p "Popai's knowledge consists of the combination of a cruising almanac, engine operational manual, and sailing textbook. Anything you can find in those books, you can ask Popai. Plus, Popai is tapped into the systems aboard your boat, so it can read all of the instruments."]]
+             [:details.faq
               [:summary "Does Popai have a visual interface?"]
               [:p "If desired, textual input can be used to interact with Popai. This interface also provides a history of the spoken and written interactions."]]
              [:details.faq
