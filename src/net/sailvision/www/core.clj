@@ -56,7 +56,7 @@
           oidc-aud  (:aud oidc)
           oidc-repo (:repository oidc)]
       (if (and (= oidc-aud  "prod-deploy")
-               (= oidc-repo "SailVision/www"))
+               (= oidc-repo "VoyageSense/www"))
         (do
           (println "Writing uberjar to" next-path)
           (with-open [out (io/output-stream next-path)]
