@@ -1,17 +1,17 @@
-(ns net.sailvision.www.core
+(ns com.popaithesailor.www.core
   (:gen-class)
   (:require
    [clojure.java.io :as io]
    [clout.core :as c]
    [com.github.sikt-no.clj-jwt :as clj-jwt]
+   [com.popaithesailor.www.about :as about]
+   [com.popaithesailor.www.admin :as admin]
+   [com.popaithesailor.www.page :as page]
+   [com.popaithesailor.www.store.checkout :as store-checkout]
+   [com.popaithesailor.www.store.configuration :as store-configuration]
+   [com.popaithesailor.www.store.popai :as store-popai]
+   [com.popaithesailor.www.store.route :as store-route]
    [environ.core :refer [env]]
-   [net.sailvision.www.about :as about]
-   [net.sailvision.www.admin :as admin]
-   [net.sailvision.www.page :as page]
-   [net.sailvision.www.store.checkout :as store-checkout]
-   [net.sailvision.www.store.configuration :as store-configuration]
-   [net.sailvision.www.store.popai :as store-popai]
-   [net.sailvision.www.store.route :as store-route]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :as content-type]
    [ring.middleware.not-modified :as not-modified]

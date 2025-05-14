@@ -1,4 +1,4 @@
-(ns net.sailvision.www.nginx
+(ns com.popaithesailor.www.nginx
   (:require
    [clojure.string :as str]
    [environ.core :refer [env]]))

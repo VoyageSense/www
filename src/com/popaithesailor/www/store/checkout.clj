@@ -1,13 +1,13 @@
-(ns net.sailvision.www.store.checkout
+(ns com.popaithesailor.www.store.checkout
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str]
-   [net.sailvision.www.about :as about]
-   [net.sailvision.www.db :as db]
-   [net.sailvision.www.page :as page]
-   [net.sailvision.www.store.route :as route]
-   [net.sailvision.www.store.request :as request]
-   [net.sailvision.www.util :refer [inline]]
+   [com.popaithesailor.www.about :as about]
+   [com.popaithesailor.www.db :as db]
+   [com.popaithesailor.www.page :as page]
+   [com.popaithesailor.www.store.route :as route]
+   [com.popaithesailor.www.store.request :as request]
+   [com.popaithesailor.www.util :refer [inline]]
    [ring.util.response :as resp]))
 
 (defn thank-you [&{:keys [location boat code]}]

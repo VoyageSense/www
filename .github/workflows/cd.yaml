@@ -46,6 +46,6 @@ jobs:
           curl \
             --fail-with-body \
             --silent \
-            --data-binary @target/net.sailvision.www-unversioned-standalone.jar \
+            --data-binary @target/com.popaithesailor.www-unversioned-standalone.jar \
             --header      "Authorization: Bearer $TOKEN" \
             --url         https://www.popaithesailor.com/i/deploy

@@ -1,4 +1,4 @@
-(ns net.sailvision.www.db
+(ns com.popaithesailor.www.db
   (:require
    [clojure.java.io :as io]
    [datomic.client.api :as d]

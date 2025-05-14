@@ -1,11 +1,11 @@
-(ns net.sailvision.www.store.popai
+(ns com.popaithesailor.www.store.popai
   (:require
    [clojure.java.io :as io]
-   [net.sailvision.www.about :as about]
-   [net.sailvision.www.page :as page]
-   [net.sailvision.www.store.request :as request]
-   [net.sailvision.www.store.route :as route]
-   [net.sailvision.www.util :refer [long-str style]]
+   [com.popaithesailor.www.about :as about]
+   [com.popaithesailor.www.page :as page]
+   [com.popaithesailor.www.store.request :as request]
+   [com.popaithesailor.www.store.route :as route]
+   [com.popaithesailor.www.util :refer [long-str style]]
    [garden.core :as g]
    [hiccup.core :as h]
    [ring.util.response :as resp]))

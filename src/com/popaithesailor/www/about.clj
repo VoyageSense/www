@@ -1,9 +1,9 @@
-(ns net.sailvision.www.about
+(ns com.popaithesailor.www.about
   (:require
-   [net.sailvision.www.page :as page]
-   [net.sailvision.www.store.request :as request]
-   [net.sailvision.www.store.route :as route]
-   [net.sailvision.www.util :refer [long-str]]
+   [com.popaithesailor.www.page :as page]
+   [com.popaithesailor.www.store.request :as request]
+   [com.popaithesailor.www.store.route :as route]
+   [com.popaithesailor.www.util :refer [long-str]]
    [ring.util.response :as resp]))
 
 (def about-us

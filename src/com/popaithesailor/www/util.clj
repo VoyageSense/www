@@ -1,4 +1,4 @@
-(ns net.sailvision.www.util
+(ns com.popaithesailor.www.util
   (:require
    [clojure.string :as str]
    [garden.core :as g]))

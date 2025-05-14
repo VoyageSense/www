@@ -1,13 +1,13 @@
-(ns net.sailvision.www.page
+(ns com.popaithesailor.www.page
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str]
+   [com.popaithesailor.www.store.route :as route]
+   [com.popaithesailor.www.util :refer [style]]
    [environ.core :refer [env]]
    [garden.core :as g]
    [garden.stylesheet :as s]
-   [hiccup.page :as h]
-   [net.sailvision.www.store.route :as route]
-   [net.sailvision.www.util :refer [style]]))
+   [hiccup.page :as h]))
 
 (def headers {"Content-Type" "text/html"})
 

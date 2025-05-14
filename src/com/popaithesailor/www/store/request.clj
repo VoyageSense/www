@@ -1,6 +1,6 @@
-(ns net.sailvision.www.store.request
+(ns com.popaithesailor.www.store.request
   (:require
-   [net.sailvision.www.store.target :as target]))
+   [com.popaithesailor.www.store.target :as target]))
 
 (defn validate [request]
   (let [code   (keyword (:code request))

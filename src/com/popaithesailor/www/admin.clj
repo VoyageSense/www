@@ -1,12 +1,12 @@
-(ns net.sailvision.www.admin
+(ns com.popaithesailor.www.admin
   (:require
    [clojure.string :as str]
    [clout.core :as c]
+   [com.popaithesailor.www.db :as db]
+   [com.popaithesailor.www.nginx :as nginx]
+   [com.popaithesailor.www.page :as page]
    [garden.core :as g]
    [hiccup.page :as h]
-   [net.sailvision.www.db :as db]
-   [net.sailvision.www.nginx :as nginx]
-   [net.sailvision.www.page :as page]
    [ring.util.response :as resp]))
 
 (def route-home "/admin")

@@ -1,4 +1,4 @@
-(ns net.sailvision.www.store.target)
+(ns com.popaithesailor.www.store.target)
 
 (def configs
   (let [dummy {:boats     {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"

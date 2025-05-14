@@ -1,4 +1,4 @@
-(ns net.sailvision.www.store.route
+(ns com.popaithesailor.www.store.route
   (:require
    [clojure.string :as str]))
 
