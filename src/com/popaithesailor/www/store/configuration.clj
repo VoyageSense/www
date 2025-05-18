@@ -89,6 +89,12 @@
                [:td "Google Pixel 9 Pro"] check uncheck]
               [:tr
                [:td "Google Pixel Tablet"] check uncheck]]
+             [:img (merge {:src "/popai-indoor.webp"}
+                          (style {:display       :block
+                                  :width         "calc(min(100%, 600px))"
+                                  :aspect-ratio  1
+                                  :border-radius "1em"
+                                  :margin        "5em auto"}))]
              [:h1 "Audio Interface Compatibility"]
              [:p "Since Popai runs as an app on your device and is controlled with your voice, you can use the hands-free device &mdash; or speakerphone &mdash; that you already have."]
              [:p "In addition, Popai integrates with the most popular assistant ecosystems on the market: " (external-link "https://assistant.google.com/" "Google Assistant") ", " (external-link "https://www.apple.com/siri/" "Apple Siri") " and " (external-link "https://www.amazon.com/dp/B0DCCNHWV5" "Amazon Alexa") ". As a result, most existing hardware solutions work out of the box, like Google Home (Next Mini and Nest Audio), Apple’s HomePod, HomePod Mini and Apple TV, and all existing " (external-link "https://www.amazon.com/smart-home-devices/b?ie=UTF8&node=9818047011" "Amazon Echo hardware products") "."]
@@ -129,6 +135,12 @@
                [:td "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"] check check]
               [:tr
                [:td "Chartplotters built pre 2020 with Wi-Fi"] uncheck check]]
+             [:img (merge {:src "/popai-outdoor.webp"}
+                          (style {:display       :block
+                                  :width         "calc(min(100%, 600px))"
+                                  :aspect-ratio  1
+                                  :border-radius "1em"
+                                  :margin        "5em auto"}))]
              [:h1 "Frequently Asked Questions"]
              [:details.faq
               [:summary "AI assistants are unreliable. How is Popai different?"]
