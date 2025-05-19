@@ -67,7 +67,10 @@
      :body [[:main.body-width
              [:p "Popai runs on your existing mobile device, and connects to the systems already aboard your boat."]
              [:img (merge {:src "/diagram.svg"}
-                          (style {:width "100%"}))]
+                          (style {:display      :block
+                                  :width        "calc(min(100%, 600px))"
+                                  :margin       "5em auto"
+                                  :aspect-ratio 2}))]
              [:h1 "Device Requirements"]
              [:p "In order for Popai to run properly on your mobile device, certain hardware features must be present. The following is a list of devices that are known to work, as well as supported features. If you don't see your device, send us a note and we'll figure out how well Popai will work on it."]
              [:table
