@@ -71,6 +71,10 @@
       (println "Deployment attempted but NEXT_PATH is not set")
       {:status 400})))
 
+(defn tarpit []
+  (Thread/sleep 10000)
+  {:status 429})
+
 (def internal-error
   (page/from-components
    "Error"
@@ -98,6 +102,7 @@
     (c/route-compile "/robots.txt")               (robots-exclusion)
     (c/route-compile "/i/deploy")                 (deploy request)
     (c/route-compile "/5xx.html")                 internal-error
+    (c/route-compile "/tarpit")                   (tarpit)
     (c/route-compile "/")                         home
     (resp/redirect   "/")))
 
