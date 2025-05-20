@@ -27,11 +27,11 @@
           [:.footer-background {:color "rgb(var(--foreground))"}]]
    :body [[:div.footer-background.full-width
            [:footer.body-width
-            [:span "&copy; 2025 SailVisionPro, LLC"]
+            [:span "&copy; 2025 Voyage Sense, Inc."]
             [:div.spacer]
             [:a {:href (route/with-code route/about code)} "About"]
             [:div.spacer]
-            [:a {:href "mailto:contact@sailvisionpro.com"} "Contact"]]]]})
+            [:a {:href "mailto:contact@voyagesense.com"} "Contact"]]]]})
 
 (defn home [request]
   (if-let [[code _config] (request/validate request)]
