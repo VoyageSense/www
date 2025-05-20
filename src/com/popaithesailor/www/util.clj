@@ -11,3 +11,7 @@
 
 (defn style [content]
   {:style (g/style content)})
+
+(defn raw-html [s]
+  (proxy [Object] []
+    (toString [] s)))

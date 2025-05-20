@@ -1,13 +1,14 @@
 (ns com.popaithesailor.www.store.configuration
   (:require
    [clojure.java.io :as io]
+   [clojure.string :as str]
    [com.popaithesailor.www.about :as about]
    [com.popaithesailor.www.db :as db]
    [com.popaithesailor.www.page :as page :refer [external-link]]
    [com.popaithesailor.www.store.request :as request]
    [com.popaithesailor.www.store.route :as route]
    [com.popaithesailor.www.store.target :as target]
-   [com.popaithesailor.www.util :refer [style]]
+   [com.popaithesailor.www.util :refer [raw-html style]]
    [ring.util.response :as resp]))
 
 (defn almanac-request [code]
@@ -66,11 +67,10 @@
              [:p {:margin-bottom 0}]]]
      :body [[:main.body-width
              [:p "Popai runs on your existing mobile device, and connects to the systems already aboard your boat."]
-             [:img (merge {:src "/diagram.svg"}
-                          (style {:display      :block
-                                  :width        "calc(min(100%, 600px))"
-                                  :margin       "5em auto"
-                                  :aspect-ratio 2}))]
+             (raw-html (->> (slurp (io/resource "diagram.svg"))
+                            (str/split-lines)
+                            (drop 2) ;; TODO - this hack removes the XML declaration
+                            (str/join)))
              [:h1 "Device Requirements"]
              [:p "In order for Popai to run properly on your mobile device, certain hardware features must be present. The following is a list of devices that are known to work, as well as supported features. If you don't see your device, send us a note and we'll figure out how well Popai will work on it."]
              [:table
