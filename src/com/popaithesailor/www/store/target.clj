@@ -127,7 +127,7 @@
                             :sicily          "Sicily, Italy"
                             :malta           "Malta"}}
                :price     200}]
-    {:watermellon carribean
+    {:watermellon dummy
      ;; :mtklk dummy
      ;; :ulrbt dummy
      ;; :pwhom dummy
