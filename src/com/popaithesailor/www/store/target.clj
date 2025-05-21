@@ -58,9 +58,6 @@
                                :bavaria-41      "Bavaria 41"
                                :bavaria-46      "Bavaria 46"
                                :bavaria-50      "Bavaria 50"
-                               :bavaria-50c     "Bavaria 50C"
-                               :bavaria-50s     "Bavaria 50S"
-                               :bavaria-50h     "Bavaria 50H"
                                :bavaria-56      "Bavaria 56"
                                :bavaria-57      "Bavaria 57"
                                :oceanis-42.3    "Beneteau Oceanis 42.3"
@@ -68,10 +65,7 @@
                                :oceanis-51.1    "Beneteau Oceanis 51.1"
                                :oceanis-55.1    "Beneteau Oceanis 55.1"
                                :oceanis-62.1    "Beneteau Oceanis 62.1"
-                               :dufour-32       "Dufour 32"
-                               :dufour-36       "Dufour 36"
                                :dufour-40       "Dufour 40"
-                               :dufour-41       "Dufour 41"
                                :dufour-44       "Dufour 44"
                                :dufour-45       "Dufour 45"
                                :dufour-48       "Dufour 48"
@@ -85,7 +79,7 @@
                                :lagoon-50       "Lagoon 50"
                                :lagoon-51       "Lagoon 51"
                                :lagoon-52       "Lagoon 52"
-                               :lagoon-52F      "Lagoon 52F"}
+                               :lagoon-55       "Lagoon 55"}
                    :locations {"Carribean"
                                {:bahamas         "Bahamas"
                                 :exumas          "Exuma"
@@ -94,7 +88,45 @@
                                 :usvi-bvi        "Virgin Islands (British and United States)"}
                                "Mediterranean"
                                {:croatia         "Croatia"}}
-                   :price     200}]
+                   :price     200}
+        italy {:boats     {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+                           :sun-odyssey-419 "Jeanneau Sun Odyssey 419"
+                           :sun-odyssey-519 "Jeanneau Sun Odyssey 519"
+                           :bavaria-41      "Bavaria 41"
+                           :bavaria-46      "Bavaria 46"
+                           :bavaria-50      "Bavaria 50"
+                           :bavaria-56      "Bavaria 56"
+                           :bavaria-57      "Bavaria 57"
+                           :oceanis-42.3    "Beneteau Oceanis 42.3"
+                           :oceanis-46.1    "Beneteau Oceanis 46.1"
+                           :oceanis-51.1    "Beneteau Oceanis 51.1"
+                           :oceanis-55.1    "Beneteau Oceanis 55.1"
+                           :oceanis-62.1    "Beneteau Oceanis 62.1"
+                           :dufour-41       "Dufour 41"
+                           :dufour-44       "Dufour 44"
+                           :dufour-45       "Dufour 45"
+                           :dufour-48       "Dufour 48"
+                           :fp-aura-51      "Fountaine Pajot Aura 51"
+                           :fp-saba-50      "Fountaine Pajot Saba 50"
+                           :fp-saona-47     "Fountaine Pajot Saona 47"
+                           :bali-4.5        "Bali 4.5"
+                           :bali-4.6        "Bali 4.6"
+                           :bali-4.8        "Bali 4.8"
+                           :lagoon-42       "Lagoon 42"
+                           :lagoon-45       "Lagoon 450"
+                           :lagoon-51       "Lagoon 51"
+                           :lagoon-52       "Lagoon 52"
+                           :lagoon-55       "Lagoon 55"}
+               :locations {"Carribean"
+                           {:bahamas         "Bahamas"
+                            :usvi-bvi        "Virgin Islands (British and United States)"}
+                           "Mediterranean"
+                           {:croatia         "Croatia"
+                            :amalfi          "Amalfi Coast & Gulf of Naples"
+                            :sardinia        "Sardinia, Italy"
+                            :sicily          "Sicily, Italy"
+                            :malta           "Malta"}}
+               :price     200}]
     {:watermellon carribean
      ;; :mtklk dummy
      ;; :ulrbt dummy
@@ -224,7 +256,7 @@
      :2bjii mediterranean
      :2pugv carribean
      :2pjem {}
-     :2ftzv {}
+     :2ftzv italy
      :2rwdf {}
      :2vuvo {}
      :2xknh {}
