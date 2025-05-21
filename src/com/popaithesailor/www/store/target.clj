@@ -51,8 +51,51 @@
                                     :italy           "Italy"
                                     :spain           "Spain"
                                     :turkey          "Turkey"}}
-                       :price     200}]
-    {:watermellon dummy
+                       :price     200}
+        carribean {:boats     {:sun-odyssey-410 "Jeanneau Sun Odyssey 410"
+                               :sun-odyssey-419 "Jeanneau Sun Odyssey 419"
+                               :sun-odyssey-519 "Jeanneau Sun Odyssey 519"
+                               :bavaria-41      "Bavaria 41"
+                               :bavaria-46      "Bavaria 46"
+                               :bavaria-50      "Bavaria 50"
+                               :bavaria-50c     "Bavaria 50C"
+                               :bavaria-50s     "Bavaria 50S"
+                               :bavaria-50h     "Bavaria 50H"
+                               :bavaria-56      "Bavaria 56"
+                               :bavaria-57      "Bavaria 57"
+                               :oceanis-42.3    "Beneteau Oceanis 42.3"
+                               :oceanis-46.1    "Beneteau Oceanis 46.1"
+                               :oceanis-51.1    "Beneteau Oceanis 51.1"
+                               :oceanis-55.1    "Beneteau Oceanis 55.1"
+                               :oceanis-62.1    "Beneteau Oceanis 62.1"
+                               :dufour-32       "Dufour 32"
+                               :dufour-36       "Dufour 36"
+                               :dufour-40       "Dufour 40"
+                               :dufour-41       "Dufour 41"
+                               :dufour-44       "Dufour 44"
+                               :dufour-45       "Dufour 45"
+                               :dufour-48       "Dufour 48"
+                               :sunsail-424     "Sunsail Lagoon 424 Classic"
+                               :sunsail-454     "Sunsail 454 Classic"
+                               :sunsail-45      "Sunsail 454L"
+                               :sunsail-454W    "Sunsail 454W"
+                               :sunsail-465     "Sunsail 465"
+                               :lagoon-42       "Lagoon 42"
+                               :lagoon-45       "Lagoon 450"
+                               :lagoon-50       "Lagoon 50"
+                               :lagoon-51       "Lagoon 51"
+                               :lagoon-52       "Lagoon 52"
+                               :lagoon-52F      "Lagoon 52F"}
+                   :locations {"Carribean"
+                               {:bahamas         "Bahamas"
+                                :exumas          "Exuma"
+                                :st-martin-anguilla-st-barth "St Martin/Anguilla/St Barthélemy"
+                                :turks-caicos    "Turks and Caicos Islands"
+                                :usvi-bvi        "Virgin Islands (British and United States)"}
+                               "Mediterranean"
+                               {:croatia         "Croatia"}}
+                   :price     200}]
+    {:watermellon carribean
      ;; :mtklk dummy
      ;; :ulrbt dummy
      ;; :pwhom dummy
@@ -179,7 +222,7 @@
      :2zuta mediterranean
      :2mnnt {}
      :2bjii mediterranean
-     :2pugv {}
+     :2pugv carribean
      :2pjem {}
      :2ftzv {}
      :2rwdf {}

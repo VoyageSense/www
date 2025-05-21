@@ -187,13 +187,13 @@
                 [:option {:value ""} "-- Select One --"]
                 (map (fn [[area locations]]
                        [:optgroup {:label area}
-                        (map (fn [[k v]] [:option {:value k} v]) locations)])
+                        (map (fn [[k v]] [:option {:value k} v])(sort-by val locations))])
                      locations)]
                [:label       {:for  :boat} "Boat:"]
                [:select#boat (merge {:name :boat}
                                     (style {:min-width 0}))
                 [:option {:value ""} "-- Select One --"]
-                (map (fn [[k v]] [:option {:value k} v]) boats)]
+                (map (fn [[k v]] [:option {:value k} v])(sort-by val boats))]
                [:p.total (style {:grid-column "1 / -1"
                                  :margin      "1em 0 0.5em"}) "Subtotal: $" price]
                [:button (merge {:type :submit}
