@@ -126,7 +126,7 @@
                             :sardinia        "Sardinia, Italy"
                             :sicily          "Sicily, Italy"
                             :malta           "Malta"}}
-               :price     200}]
+               :price     300}]
     {:watermellon dummy
      ;; :mtklk dummy
      ;; :ulrbt dummy
