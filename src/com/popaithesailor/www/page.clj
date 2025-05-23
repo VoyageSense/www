@@ -15,7 +15,7 @@
   {:pretty-print? (or (env :pretty-print) false)})
 
 (def light-foreground "50, 50, 50")
-(def light-background "245, 250, 255")
+(def light-background "245, 250, 250")
 (def dark-foreground  "200, 200, 200")
 (def dark-background  "30, 40, 50")
 (def link-visited  "128, 128, 128")
