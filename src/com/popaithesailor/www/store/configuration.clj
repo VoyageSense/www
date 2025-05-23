@@ -198,10 +198,10 @@
                      (sort boats))]
                [:p.total (style {:grid-column "1 / -1"
                                  :margin      "1em 0 0.5em"}) "Subtotal: $" price]
-               [:button (merge {:type :submit}
-                               (style {:grid-column  "span 2"
-                                       :justify-self :center
-                                       :padding      "0.3em 1em"})) "Checkout"]]
+               [:button#checkout (merge {:type :submit}
+                                        (style {:grid-column  "span 2"
+                                                :justify-self :center
+                                                :padding      "0.3em 1em"})) "Checkout"]]
               (first (:body (almanac-request code)))]]]
      :script [(slurp (io/resource "almanac-checkout.js"))
               (slurp (io/resource "faq.js"))]}))

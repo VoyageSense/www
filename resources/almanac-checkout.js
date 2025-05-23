@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const location = document.getElementById('location');
     const boat = document.getElementById('boat');
     const price = document.querySelector('.total');
-    const button = document.querySelector('button');
+    const button = document.getElementById('checkout');
 
     const update = () => {
         if (boat.value && location.value) {
