@@ -71,7 +71,7 @@
 
       security.acme = {
         acceptTerms     = true;
-        defaults.email  = "alex+letsencrypt.org@sailvisionpro.com";
+        defaults.email  = "letsencrypt.org@alex.voyagesense.com";
         # defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
 
         certs."wildcard.i.${domain}" = {
@@ -163,7 +163,7 @@
       };
 
       systemd = let
-        uberjar  = "net.sailvision.www-unversioned-standalone.jar";
+        uberjar  = "com.popaithesailor.www-unversioned-standalone.jar";
         localBin = "/usr/local/bin";
         path     = "${localBin}/${uberjar}";
         nextPath = "/tmp/${uberjar}";

@@ -1,5 +1,5 @@
 (defproject com.popaithesailor.www "unversioned"
-  :url "https://sailvision.net"
+  :url "https://www.popaithesailor.com"
   :dependencies [[clout "2.2.1"]
                  [com.github.sikt-no/clj-jwt "0.5.102"]
                  [com.datomic/local "1.0.285"]
