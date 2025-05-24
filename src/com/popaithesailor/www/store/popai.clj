@@ -186,10 +186,12 @@
                            :transition "opacity 0.8s linear, transform 0.8s ease"
                            :z-index    -1}]
            [[:img.mobile-show (merge {:src    "/popai-hero-background-light.webp"
-                                      :onload "this.classList.add('visible')"}
+                                      :onload "this.classList.add('visible')"
+                                      :alt    "Photo of a sailboat anchored off of a tropical beach."}
                                      (style (merge base-style {:visibility "var(--light-visibility)"})))]
             [:img.mobile-show (merge {:src    "/popai-hero-background-dark.webp"
-                                      :onload "this.classList.add('visible')"}
+                                      :onload "this.classList.add('visible')"
+                                      :alt    "Photo of a catamaran with the sunset in the background."}
                                      (style (merge base-style {:visibility "var(--dark-visibility)"})))]])
    :script (slurp (io/resource "visible.js"))})
 

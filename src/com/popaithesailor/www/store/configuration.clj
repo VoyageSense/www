@@ -92,7 +92,8 @@
                [:td "Google Pixel 9 Pro"] check uncheck]
               [:tr
                [:td "Google Pixel Tablet"] check uncheck]]
-             [:img (merge {:src "/popai-indoor.webp"}
+             [:img (merge {:src "/popai-indoor.webp"
+                           :alt "Photo of a sailboat's nav. station with an iPad and Homepod mini on the table. The iPad is running Popai and has a few prompts and responses on the screen."}
                           (style {:display       :block
                                   :width         "calc(min(100%, 600px))"
                                   :aspect-ratio  1
@@ -138,7 +139,8 @@
                [:td "Yacht Devices NMEA Wi-Fi Gateway YDWG-02 or YDWN-02"] check check]
               [:tr
                [:td "Chartplotters built pre 2020 with Wi-Fi"] uncheck check]]
-             [:img (merge {:src "/popai-outdoor.webp"}
+             [:img (merge {:src "/popai-outdoor.webp"
+                           :alt "Photo of the cockpit of a sailboat, with an iPad and Nest mini sitting out on the table. The iPad is running Popai and has a few prompts and responses on the screen."}
                           (style {:display       :block
                                   :width         "calc(min(100%, 600px))"
                                   :aspect-ratio  1
