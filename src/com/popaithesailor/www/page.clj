@@ -149,7 +149,7 @@
 (defn from-components [title components]
   {:headers headers
    :body
-   (h/html5
+   (h/html5 {:lang "en"}
     [:head
      [:title (str/join " - " (keep identity ["Popai" title]))]
      [:link {:rel "icon" :type "image/png" :href "/favicon.svg"}]

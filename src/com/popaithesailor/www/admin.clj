@@ -30,7 +30,7 @@
 
 (defn home []
   {:headers page/headers
-   :body (h/html5
+   :body (h/html5 {:lang "en"}
           (page/head {:title     "Admin"
                       :extra-css (base-css)})
           [:body
@@ -45,7 +45,7 @@
   (let [storage (db/storage)
         conn    (db/connect storage :requested-almanacs)]
     {:headers page/headers
-     :body (h/html5
+     :body (h/html5 {:lang "en"}
             (page/head {:title     "Admin - Requested Almanacs"
                         :extra-css (base-css [:td {:text-align :center}])})
             [:body
@@ -70,7 +70,7 @@
         view-counts (frequencies (map :request    store-gets))
         user-agents (frequencies (map :user-agent store-gets))]
     {:headers page/headers
-     :body (h/html5
+     :body (h/html5 {:lang "en"}
             (page/head {:title     "Admin - Page Views"
                         :extra-css (base-css [:table {:max-width    "100%"
                                                       :table-layout :auto}])})
@@ -97,7 +97,7 @@
         conn    (db/connect storage :discount-signups)
         signups (db/list-discount-signups {:conn conn})]
     {:headers page/headers
-     :body (h/html5
+     :body (h/html5 {:lang "en"}
             (page/head {:title     "Admin - Discount Signups"
                         :extra-css (base-css [:td {:text-align :center}])})
             [:body
@@ -117,7 +117,7 @@
         conn      (db/connect storage :survey-responses)
         responses (db/list-survey-responses {:conn conn})]
     {:headers page/headers
-     :body (h/html5
+     :body (h/html5 {:lang "en"}
             (page/head {:title     "Admin - Survey Responses"
                         :extra-css (base-css [:td {:text-align :center}])})
             [:body
