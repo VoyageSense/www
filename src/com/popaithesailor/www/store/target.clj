@@ -261,8 +261,8 @@
      :2vuvo {}
      :2xknh {}
      :2vznh {}
-     :2afsc {}
-     :2xmcs {}
+     :2afsc italy
+     :2xmcs italy
      :2pxlv dummy
      :2tvsf {}
      :2oxqc {}
