@@ -112,6 +112,9 @@
                            :bali-4.5        "Bali 4.5"
                            :bali-4.6        "Bali 4.6"
                            :bali-4.8        "Bali 4.8"
+                           :leopard-45      "Leopard 45"
+                           :leopard-50      "Leopard 50"
+                           :leopard-53      "Leopard 53"
                            :lagoon-42       "Lagoon 42"
                            :lagoon-45       "Lagoon 450"
                            :lagoon-51       "Lagoon 51"
@@ -267,5 +270,5 @@
      :2tvsf {}
      :2oxqc {}
      :2zojo {}
-     :2qskj {}
-     :2evie {}}))
+     :2qskj italy
+     :2evie italy}))
