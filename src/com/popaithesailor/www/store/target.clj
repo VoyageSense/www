@@ -258,7 +258,7 @@
      :2mnnt {}
      :2bjii mediterranean
      :2pugv carribean
-     :2pjem {}
+     :2pjem mediterranean
      :2ftzv italy
      :2rwdf {}
      :2vuvo {}
