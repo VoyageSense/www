@@ -29,6 +29,7 @@
                                    :oceanis-34.1    "Beneteau Oceanis 34.1"
                                    :oceanis-38.1    "Beneteau Oceanis 38.1"
                                    :oceanis-42.3    "Beneteau Oceanis 42.3"
+                                   :oceanis-45      "Beneteau Oceanis 45"
                                    :oceanis-46.1    "Beneteau Oceanis 46.1"
                                    :oceanis-51.1    "Beneteau Oceanis 51.1"
                                    :oceanis-55.1    "Beneteau Oceanis 55.1"
@@ -260,7 +261,7 @@
      :2pugv carribean
      :2pjem mediterranean
      :2ftzv italy
-     :2rwdf {}
+     :2rwdf mediterranean
      :2vuvo {}
      :2xknh {}
      :2vznh {}
